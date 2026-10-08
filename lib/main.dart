@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maplibre_gl/maplibre_gl.dart';
 
 import 'core/navigation.dart';
 import 'features/onboarding/splash_screen.dart';
@@ -13,8 +12,6 @@ import 'theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // TextureView: GLSurfaceView renders black on some Android devices.
-  MapLibreMap.useHybridComposition = true;
   await PushNotifications.initialize();
 
   final savedLocale = await AppPrefs.readLocale();
