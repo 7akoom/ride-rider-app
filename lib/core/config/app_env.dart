@@ -61,6 +61,12 @@ abstract final class AppEnv {
     defaultValue: '+964',
   );
 
+  /// Sent with every login so the backend can tell which app a session belongs to.
+  static const String clientId = 'rider-app';
+
+  /// Sent with every login. Keep in step with `version:` in pubspec.yaml.
+  static const String appVersion = '0.1.0';
+
   /// Debug builds started with --dart-define=SHOW_GALLERY=true open the component
   /// gallery instead of the app. Never in release builds.
   static const bool showGallery =

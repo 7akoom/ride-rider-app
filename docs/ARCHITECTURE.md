@@ -19,11 +19,14 @@ lib/
     domain/              ← كيانات، واجهات repositories، use cases. Dart صافي: بدون Flutter ولا Dio
     data/                ← DTOs، مصادر البيانات (API)، تنفيذ الـ repositories
     presentation/        ← شاشات، widgets، controllers (Riverpod)
+    <ميزة>_providers.dart ← التوصيل: الملف الوحيد اللي بيعرف data وdomain سوا (repositories وuse cases)
   l10n/                  ← app_ar.arb، app_ku.arb، app_en.arb (+ gen/ مولّد، مش بالـ git)
 ```
 
 - اتجاه الاعتماد: `presentation → domain ← data`. الـ domain ما بيستورد شي من الطبقتين.
 - الشاشة ما بتنادي الـ API أبداً: شاشة ← controller ← use case ← repository ← data source.
+- مثال كامل: `features/onboarding` (البداية، اللغة، الهاتف، الكود، الاسم، الموقع).
+- الاتصال بالباك إند واحد بس: `apiClientProvider` (`core/network/api_client_provider.dart`). لما السيرفر ينهي الجلسة بيزيد `sessionEndedProvider`، والتطبيق بيرجع لتسجيل الدخول.
 - ميزة ما بتستورد من جوّا ميزة تانية. المشترك بينطلع لـ `core/` أو `design/`.
 
 ## حجم الملفات والتكرار
@@ -44,9 +47,10 @@ lib/
 
 ## الأخطاء
 
-- كل استدعاء للباك إند بطبقة الـ data ملفوف بـ `guard()` وبيرجع `Result<T>` (`Ok` أو `Err(Failure)`). ما في exception بيطلع من طبقة الـ data.
+- كل استدعاء للباك إند بطبقة الـ data ملفوف بـ `guard()` (`core/error/guard.dart`؛ `Result` لحاله بـ `result.dart` Dart صافي للـ domain) وبيرجع `Result<T>` (`Ok` أو `Err(Failure)`). ما في exception بيطلع من طبقة الـ data.
 - `Failure` نوع مغلق (sealed). كل نوع إله رسالة مترجمة (`failure.message(context.l10n)`).
-- الميزة اللي عندها رسالة أدق حسب `BackendFailure.reason` (مثلاً عليه دين) بتعرضها، وإلا الرسالة العامة.
+- الميزة اللي عندها رسالة أدق بتحوّل الـ `Failure` لـ enum خاص فيها بالـ domain (متل `codeProblemOf` → `CodeProblem.wrongCode`)، وإلا الرسالة العامة.
+- الجواب الناقص من السيرفر (`requiredText` بـ `core/network/json.dart`) بيصير `UnexpectedFailure`، ولا مرة قيمة فاضية بتمشي.
 - **ممنوع** عرض رسالة السيرفر أو نص الـ exception أو كود HTTP للمستخدم، بأي لغة.
 - الأخطاء غير المتوقعة بتروح لـ `ErrorReporter` (بعد `Redactor`)، مش للشاشة. المعالج العام (`installGlobalErrorHandlers`) بيلقط كل شي فلت، وبيحط `FriendlyErrorWidget` بدل الشاشة الحمرا.
 

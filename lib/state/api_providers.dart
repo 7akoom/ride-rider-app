@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/api/api_client.dart';
 import '../core/api/api_exception.dart';
 import '../core/api/auth_api.dart';
 import '../core/api/maps_api.dart';
@@ -9,34 +8,11 @@ import '../core/api/money_api.dart';
 import '../core/api/notifications_api.dart';
 import '../core/api/rider_api.dart';
 import '../core/api/trip_api.dart';
-import '../core/app_config.dart';
 import '../core/models/rider_profile.dart';
 import '../core/navigation.dart';
+import '../core/network/api_client_provider.dart';
 import '../features/auth/phone_entry_screen.dart';
-import 'locale_provider.dart';
 import 'session_storage.dart';
-
-// These providers refer to each other (a refused session clears the profile), so their
-// types are written out: Dart cannot work them out from a cycle.
-
-/// The one connection to the backend.
-final Provider<ApiClient> apiClientProvider = Provider<ApiClient>((ref) {
-  return ApiClient(
-    baseUrl: AppConfig.apiBaseUrl,
-    languageCode: () => ref.read(localeProvider).languageCode,
-    // The refresh token was refused: the session is over, wherever the person is in the app.
-    onSessionExpired: () async {
-      ref.invalidate(riderProfileProvider);
-      ref.invalidate(myPhoneProvider);
-      await SessionStorage.clear();
-
-      rootNavigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const PhoneEntryScreen()),
-        (route) => false,
-      );
-    },
-  );
-});
 
 final Provider<AuthApi> authApiProvider = Provider<AuthApi>((ref) {
   return AuthApi(ref.watch(apiClientProvider));

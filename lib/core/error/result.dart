@@ -1,9 +1,10 @@
-import 'error_reporter.dart';
 import 'failure.dart';
-import 'failure_mapper.dart';
 
 /// The outcome of a repository or use-case call: a value or a [Failure], never an
 /// exception. The presentation layer only ever receives these.
+///
+/// Pure Dart, so the domain layer can use it; the data layer makes them with `guard`
+/// (guard.dart).
 sealed class Result<T> {
   const Result();
 
@@ -25,22 +26,4 @@ final class Err<T> extends Result<T> {
   const Err(this.failure);
 
   final Failure failure;
-}
-
-/// Runs [body] and catches everything it throws as a [Failure].
-///
-/// Data-layer code wraps every backend call in this. Failures that point to a bug
-/// (not a refusal from the backend or a connection problem) are reported.
-Future<Result<T>> guard<T>(Future<T> Function() body) async {
-  try {
-    return Ok(await body());
-  } catch (error, stack) {
-    final failure = mapToFailure(error);
-
-    if (failure is UnexpectedFailure) {
-      ErrorReporter.report(error, stack);
-    }
-
-    return Err(failure);
-  }
 }
