@@ -2,10 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/location_access.dart';
+import 'package:rider_app/core/rider/display_name.dart';
 import 'package:rider_app/features/onboarding/domain/entities/next_step.dart';
 import 'package:rider_app/features/onboarding/domain/use_cases/finish_location_step.dart';
 import 'package:rider_app/features/onboarding/domain/use_cases/save_name.dart';
-import 'package:rider_app/features/onboarding/domain/values/display_name.dart';
 
 import '../fakes.dart';
 

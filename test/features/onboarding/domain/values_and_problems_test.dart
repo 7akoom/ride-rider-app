@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/failure.dart';
+import 'package:rider_app/core/rider/display_name.dart';
 import 'package:rider_app/features/onboarding/domain/problems/sign_in_problems.dart';
-import 'package:rider_app/features/onboarding/domain/values/display_name.dart';
 import 'package:rider_app/features/onboarding/domain/values/otp_code.dart';
 
 void main() {

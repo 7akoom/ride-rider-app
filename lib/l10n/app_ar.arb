@@ -94,5 +94,19 @@
   "locationSafetyBody": "إذا طلبت المساعدة، يستطيع فريق الأمان الوصول إليك.",
   "locationPrivacy": "يُستخدم موقعك فقط أثناء استخدامك للتطبيق.",
   "locationAllow": "السماح بالوصول إلى الموقع",
-  "locationNotNow": "ليس الآن"
+  "locationNotNow": "ليس الآن",
+  "homeGreetingMorning": "صباح الخير، {name}",
+  "homeGreetingAfternoon": "نهارك سعيد، {name}",
+  "homeGreetingEvening": "مساء الخير، {name}",
+  "homeGreetingPlain": "أهلاً بك",
+  "homeWhereTo": "إلى أين؟",
+  "homePickupFrom": "من: {place}",
+  "homePickupHere": "من موقعك الحالي",
+  "homePickupFinding": "نحدد موقعك…",
+  "homeLocationOff": "الموقع متوقف. فعّله لتحديد نقطة الانطلاق بدقة.",
+  "homeLocationTurnOn": "تفعيل",
+  "homeMyLocation": "موقعي",
+  "homeNotifications": "الإشعارات",
+  "savedHome": "المنزل",
+  "savedWork": "العمل"
 }

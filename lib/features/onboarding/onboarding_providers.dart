@@ -2,13 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/location/location_providers.dart';
 import '../../core/network/api_client_provider.dart';
+import '../../core/rider/rider_providers.dart';
 import 'data/onboarding_preferences_impl.dart';
-import 'data/rider_account_api.dart';
-import 'data/rider_account_repository_impl.dart';
 import 'data/sign_in_api.dart';
 import 'data/sign_in_repository_impl.dart';
 import 'domain/repositories/onboarding_preferences.dart';
-import 'domain/repositories/rider_account_repository.dart';
 import 'domain/repositories/sign_in_repository.dart';
 import 'domain/use_cases/account_step.dart';
 import 'domain/use_cases/confirm_code.dart';
@@ -24,10 +22,6 @@ import 'domain/use_cases/send_code.dart';
 
 final signInRepositoryProvider = Provider<SignInRepository>(
   (ref) => SignInRepositoryImpl(SignInApi(ref.watch(apiClientProvider))),
-);
-
-final riderAccountRepositoryProvider = Provider<RiderAccountRepository>(
-  (ref) => RiderAccountRepositoryImpl(RiderAccountApi(ref.watch(apiClientProvider))),
 );
 
 final onboardingPreferencesProvider = Provider<OnboardingPreferences>(

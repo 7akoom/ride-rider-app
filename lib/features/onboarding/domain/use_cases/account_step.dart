@@ -1,6 +1,6 @@
 import '../../../../core/location/location_access.dart';
+import '../../../../core/rider/rider_account.dart';
 import '../entities/next_step.dart';
-import '../entities/rider_account.dart';
 import '../repositories/onboarding_preferences.dart';
 
 /// Where a signed-in rider goes: the name screen without a profile, then the location

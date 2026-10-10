@@ -51,6 +51,7 @@ class _InputsSectionState extends State<InputsSection> {
         AppTextField(controller: _name, label: l10n.fieldName, hint: l10n.gallerySampleTitle),
         AppTextField(label: l10n.fieldName, error: l10n.errorInvalidInput),
         PhoneField(controller: _phone, label: l10n.fieldPhone),
+        SearchBarButton(label: l10n.homeWhereTo, onTap: () {}),
         OtpBoxes(onCompleted: (_) {}, autofocus: false),
         OtpBoxes(onCompleted: (_) {}, autofocus: false, hasError: true),
         AppChoiceChips<RiderTab>(

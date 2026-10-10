@@ -1,7 +1,7 @@
 import '../../../../core/error/result.dart';
+import '../../../../core/rider/display_name.dart';
+import '../../../../core/rider/rider_account_repository.dart';
 import '../entities/next_step.dart';
-import '../repositories/rider_account_repository.dart';
-import '../values/display_name.dart';
 import 'account_step.dart';
 
 /// Makes the new rider's profile with the name they typed, then says where to go

@@ -5,14 +5,14 @@ import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/network/api_client.dart';
 import 'package:rider_app/core/network/api_exception.dart';
 import 'package:rider_app/core/phone/phone_number.dart';
+import 'package:rider_app/core/rider/display_name.dart';
+import 'package:rider_app/core/rider/rider_account_api.dart';
+import 'package:rider_app/core/rider/rider_account_repository_impl.dart';
 import 'package:rider_app/core/security/session_storage.dart';
 import 'package:rider_app/features/onboarding/data/client_info.dart';
-import 'package:rider_app/features/onboarding/data/rider_account_api.dart';
-import 'package:rider_app/features/onboarding/data/rider_account_repository_impl.dart';
 import 'package:rider_app/features/onboarding/data/sign_in_api.dart';
 import 'package:rider_app/features/onboarding/data/sign_in_repository_impl.dart';
 import 'package:rider_app/features/onboarding/domain/entities/otp_challenge.dart';
-import 'package:rider_app/features/onboarding/domain/values/display_name.dart';
 import 'package:rider_app/features/onboarding/domain/values/otp_code.dart';
 
 class _SignInApi implements SignInApi {

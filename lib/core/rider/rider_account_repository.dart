@@ -1,6 +1,6 @@
-import '../../../../core/error/result.dart';
-import '../entities/rider_account.dart';
-import '../values/display_name.dart';
+import '../error/result.dart';
+import 'display_name.dart';
+import 'rider_account.dart';
 
 /// The signed-in person's rider profile.
 abstract interface class RiderAccountRepository {

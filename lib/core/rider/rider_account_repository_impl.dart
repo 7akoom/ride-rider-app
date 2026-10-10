@@ -1,13 +1,13 @@
-import '../../../core/error/failure.dart';
-import '../../../core/error/failure_mapper.dart';
-import '../../../core/error/guard.dart';
-import '../../../core/error/result.dart';
-import '../../../core/network/json.dart';
-import '../../../core/security/session_storage.dart';
-import '../domain/entities/rider_account.dart';
-import '../domain/repositories/rider_account_repository.dart';
-import '../domain/values/display_name.dart';
+import '../error/failure.dart';
+import '../error/failure_mapper.dart';
+import '../error/guard.dart';
+import '../error/result.dart';
+import '../network/json.dart';
+import '../security/session_storage.dart';
+import 'display_name.dart';
+import 'rider_account.dart';
 import 'rider_account_api.dart';
+import 'rider_account_repository.dart';
 
 final class RiderAccountRepositoryImpl implements RiderAccountRepository {
   RiderAccountRepositoryImpl(this._api);

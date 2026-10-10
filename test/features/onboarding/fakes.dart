@@ -1,18 +1,21 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
-import 'package:rider_app/core/location/location_access.dart';
 import 'package:rider_app/core/location/location_providers.dart';
 import 'package:rider_app/core/phone/phone_number.dart';
+import 'package:rider_app/core/rider/rider_providers.dart';
 import 'package:rider_app/features/onboarding/domain/entities/otp_challenge.dart';
-import 'package:rider_app/features/onboarding/domain/entities/rider_account.dart';
 import 'package:rider_app/features/onboarding/domain/repositories/onboarding_preferences.dart';
-import 'package:rider_app/features/onboarding/domain/repositories/rider_account_repository.dart';
 import 'package:rider_app/features/onboarding/domain/repositories/sign_in_repository.dart';
 import 'package:rider_app/features/onboarding/domain/use_cases/account_step.dart';
-import 'package:rider_app/features/onboarding/domain/values/display_name.dart';
 import 'package:rider_app/features/onboarding/domain/values/otp_code.dart';
 import 'package:rider_app/features/onboarding/onboarding_providers.dart';
+
+import '../../helpers/fake_location.dart';
+import '../../helpers/fake_rider.dart';
+
+export '../../helpers/fake_location.dart';
+export '../../helpers/fake_rider.dart';
 
 class FakePreferences implements OnboardingPreferences {
   FakePreferences({this.chosen = true, this.locationShown = true});
@@ -31,34 +34,6 @@ class FakePreferences implements OnboardingPreferences {
 
   @override
   Future<void> markLocationAsked() async => locationShown = true;
-}
-
-class FakeLocation implements LocationAccess {
-  FakeLocation({
-    this.current = LocationAccessStatus.denied,
-    this.answer = LocationAccessStatus.granted,
-  });
-
-  LocationAccessStatus current;
-
-  /// What the system prompt answers.
-  LocationAccessStatus answer;
-  int prompts = 0;
-  int settingsOpened = 0;
-
-  @override
-  Future<LocationAccessStatus> status() async => current;
-
-  @override
-  Future<LocationAccessStatus> request() async {
-    prompts++;
-    current = answer;
-
-    return answer;
-  }
-
-  @override
-  Future<void> openSettings() async => settingsOpened++;
 }
 
 /// The account step with fakes: location shown already unless [preferences] says not.
@@ -108,29 +83,6 @@ class FakeSignIn implements SignInRepository {
     session = false;
   }
 }
-
-class FakeAccounts implements RiderAccountRepository {
-  FakeAccounts(this.found, {this.createFailure});
-
-  Result<RiderAccount?> found;
-
-  /// When set, making the profile fails with it.
-  Failure? createFailure;
-
-  @override
-  Future<Result<RiderAccount?>> findMine() async => found;
-
-  @override
-  Future<Result<RiderAccount>> create(DisplayName name) async {
-    final failure = createFailure;
-
-    return failure == null
-        ? Ok(RiderAccount(id: 'r1', displayName: name.value))
-        : Err(failure);
-  }
-}
-
-const someone = RiderAccount(id: 'r1', displayName: 'Salem');
 
 /// The onboarding repositories replaced by fakes, for screen tests.
 List<Override> onboardingFakes({

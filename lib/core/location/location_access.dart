@@ -1,3 +1,5 @@
+import 'geo_point.dart';
+
 /// Whether the app may read the phone's location.
 enum LocationAccessStatus {
   /// Allowed while the app is in use (or always).
@@ -13,8 +15,8 @@ enum LocationAccessStatus {
   serviceOff,
 }
 
-/// Asking for the location permission. Pure Dart: the onboarding and the home screen
-/// use it through this interface; the plugin lives in the implementation.
+/// Asking for the location permission and reading the position. Pure Dart: features use
+/// it through this interface; the plugin lives in the implementation.
 abstract interface class LocationAccess {
   Future<LocationAccessStatus> status();
 
@@ -23,4 +25,11 @@ abstract interface class LocationAccess {
 
   /// Opens this app's page in the phone's settings.
   Future<void> openSettings();
+
+  /// Opens the phone's location settings (for location switched off).
+  Future<void> openLocationSettings();
+
+  /// Where the phone is now, or null when location is not allowed, switched off, or
+  /// cannot be found in time.
+  Future<GeoPoint?> currentPosition();
 }

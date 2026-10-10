@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../../core/rider/display_name.dart';
 import '../../domain/entities/next_step.dart';
-import '../../domain/values/display_name.dart';
 import '../../onboarding_providers.dart';
 
 final class NameState {

@@ -1,4 +1,4 @@
-import '../../../core/network/api_client.dart';
+import '../network/api_client.dart';
 
 /// The gateway's rider-profile routes. Failures are thrown as ApiException; the
 /// repository turns them into failures.

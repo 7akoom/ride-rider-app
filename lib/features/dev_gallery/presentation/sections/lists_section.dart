@@ -37,6 +37,23 @@ class ListsSection extends StatelessWidget {
           destructive: true,
           onTap: () {},
         ),
+        Row(
+          children: [
+            Expanded(
+              child: ShortcutTile(icon: Icons.home_outlined, label: l10n.savedHome, onTap: () {}),
+            ),
+            Expanded(
+              child: ShortcutTile(icon: Icons.work_outline, label: l10n.savedWork, onTap: () {}),
+            ),
+            Expanded(
+              child: ShortcutTile(
+                icon: Icons.place_outlined,
+                label: l10n.gallerySampleDestination,
+                onTap: () {},
+              ),
+            ),
+          ],
+        ),
         AppBottomNav(current: RiderTab.home, onSelected: (_) {}),
       ],
     );

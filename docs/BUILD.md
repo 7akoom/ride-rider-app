@@ -16,6 +16,7 @@ scripts/check.sh
 | سيرفر الخرائط | `--dart-define=MAP_TILES_URL` | `https://ride-tiles.example.com` |
 | اسم النسخة جوّا التطبيق | `--dart-define=APP_NAME` | `Taxi` |
 | لون البراند | `--dart-define=BRAND_COLOR` | `#F3D59A` |
+| مدينة النسخة (وين بتفتح الخريطة) | `--dart-define=MAP_CENTER` | `36.1911,44.0092` (أربيل، الافتراضي) |
 | معرّف Android | متغيّر البيئة `ORG_GRADLE_PROJECT_appId` | `com.investor.taxi` |
 | الاسم تحت الأيقونة (Android) | `ORG_GRADLE_PROJECT_appLabel` | `Taxi` |
 

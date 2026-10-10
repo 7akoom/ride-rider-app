@@ -409,5 +409,81 @@
   "locationNotNow": "Not now",
   "@locationNotNow": {
     "description": "Skips the location permission."
+  },
+  "homeGreetingMorning": "Good morning, {name}",
+  "@homeGreetingMorning": {
+    "description": "Home greeting before noon.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeGreetingAfternoon": "Good afternoon, {name}",
+  "@homeGreetingAfternoon": {
+    "description": "Home greeting from noon to five.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeGreetingEvening": "Good evening, {name}",
+  "@homeGreetingEvening": {
+    "description": "Home greeting from five.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeGreetingPlain": "Hello",
+  "@homeGreetingPlain": {
+    "description": "Home greeting when the name is not known yet."
+  },
+  "homeWhereTo": "Where to?",
+  "@homeWhereTo": {
+    "description": "The search bar that starts a booking."
+  },
+  "homePickupFrom": "From: {place}",
+  "@homePickupFrom": {
+    "description": "The pickup under the greeting; place is a street or place name.",
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "homePickupHere": "From your current location",
+  "@homePickupHere": {
+    "description": "The pickup when the map has no name for the point."
+  },
+  "homePickupFinding": "Finding where you are…",
+  "@homePickupFinding": {
+    "description": "While the position is being found."
+  },
+  "homeLocationOff": "Location is off. Turn it on for an exact pickup point.",
+  "@homeLocationOff": {
+    "description": "Notice when location is not allowed or switched off."
+  },
+  "homeLocationTurnOn": "Turn on",
+  "@homeLocationTurnOn": {
+    "description": "Action of the location notice."
+  },
+  "homeMyLocation": "My location",
+  "@homeMyLocation": {
+    "description": "Map button that centres on the rider."
+  },
+  "homeNotifications": "Notifications",
+  "@homeNotifications": {
+    "description": "Button that opens the notifications."
+  },
+  "savedHome": "Home",
+  "@savedHome": {
+    "description": "The saved home address."
+  },
+  "savedWork": "Work",
+  "@savedWork": {
+    "description": "The saved work address."
   }
 }

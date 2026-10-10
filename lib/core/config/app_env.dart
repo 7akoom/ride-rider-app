@@ -61,6 +61,13 @@ abstract final class AppEnv {
     defaultValue: '+964',
   );
 
+  /// Where the map opens before the phone's position is known: the copy's main city,
+  /// as "latitude,longitude". Erbil by default.
+  static const String mapCenter = String.fromEnvironment(
+    'MAP_CENTER',
+    defaultValue: '36.1911,44.0092',
+  );
+
   /// Sent with every login so the backend can tell which app a session belongs to.
   static const String clientId = 'rider-app';
 

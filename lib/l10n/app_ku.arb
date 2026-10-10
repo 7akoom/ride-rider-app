@@ -94,5 +94,19 @@
   "locationSafetyBody": "ئەگەر داوای یارمەتی بکەیت، تیمی سەلامەتی دەتوانێت بتدۆزێتەوە.",
   "locationPrivacy": "شوێنەکەت تەنها لە کاتی بەکارهێنانی ئەپەکەدا بەکاردێت.",
   "locationAllow": "ڕێگەدان بە شوێن",
-  "locationNotNow": "ئێستا نا"
+  "locationNotNow": "ئێستا نا",
+  "homeGreetingMorning": "بەیانیت باش، {name}",
+  "homeGreetingAfternoon": "ڕۆژت باش، {name}",
+  "homeGreetingEvening": "ئێوارەت باش، {name}",
+  "homeGreetingPlain": "سڵاو",
+  "homeWhereTo": "بۆ کوێ دەچیت؟",
+  "homePickupFrom": "لە: {place}",
+  "homePickupHere": "لە شوێنی ئێستات",
+  "homePickupFinding": "شوێنەکەت دیاری دەکەین…",
+  "homeLocationOff": "شوێن ناچالاکە. چالاکی بکە بۆ دیاریکردنی وردی شوێنی سواربوون.",
+  "homeLocationTurnOn": "چالاککردن",
+  "homeMyLocation": "شوێنەکەم",
+  "homeNotifications": "ئاگادارکردنەوەکان",
+  "savedHome": "ماڵ",
+  "savedWork": "کار"
 }

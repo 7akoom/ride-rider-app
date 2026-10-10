@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/error/failure_messages.dart';
 import '../../../../core/l10n/l10n.dart';
+import '../../../../core/rider/display_name.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
-import '../../domain/values/display_name.dart';
 import '../onboarding_navigation.dart';
 import 'name_controller.dart';
 

@@ -1,7 +1,7 @@
 import '../../../../core/error/result.dart';
+import '../../../../core/rider/rider_account_repository.dart';
 import '../entities/next_step.dart';
 import '../entities/otp_challenge.dart';
-import '../repositories/rider_account_repository.dart';
 import '../repositories/sign_in_repository.dart';
 import '../values/otp_code.dart';
 import 'account_step.dart';

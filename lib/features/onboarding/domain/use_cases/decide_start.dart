@@ -1,8 +1,8 @@
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/result.dart';
+import '../../../../core/rider/rider_account_repository.dart';
 import '../entities/next_step.dart';
 import '../repositories/onboarding_preferences.dart';
-import '../repositories/rider_account_repository.dart';
 import '../repositories/sign_in_repository.dart';
 import 'account_step.dart';
 

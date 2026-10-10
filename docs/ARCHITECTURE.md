@@ -26,9 +26,9 @@ lib/
 
 - اتجاه الاعتماد: `presentation → domain ← data`. الـ domain ما بيستورد شي من الطبقتين.
 - الشاشة ما بتنادي الـ API أبداً: شاشة ← controller ← use case ← repository ← data source.
-- مثال كامل: `features/onboarding` (البداية، اللغة، الهاتف، الكود، الاسم، الموقع).
+- مثال كامل: `features/onboarding` (البداية، اللغة، الهاتف، الكود، الاسم، الموقع)، و`features/booking` (الرئيسية والحجز).
 - الاتصال بالباك إند واحد بس: `apiClientProvider` (`core/network/api_client_provider.dart`). لما السيرفر ينهي الجلسة بيزيد `sessionEndedProvider`، والتطبيق بيرجع لتسجيل الدخول.
-- ميزة ما بتستورد من جوّا ميزة تانية. المشترك بينطلع لـ `core/` أو `design/`.
+- ميزة ما بتستورد الـ domain أو الـ data تبع ميزة تانية. المسموح بس فتح شاشة ميزة تانية (التنقل). المشترك بينطلع لـ `core/` (متل `core/rider` و`core/location`) أو `design/`.
 
 ## حجم الملفات والتكرار
 
@@ -77,11 +77,11 @@ lib/
 - **المسافات والزوايا والمقاسات** من `Space`، `Radii`، `Sizes` (`tokens/metrics.dart`)، والظلال من `Shadows`.
 - **البراند لكل نسخة** وقت البناء: `--dart-define=BRAND_COLOR=#RRGGBB` (واختيارياً `BRAND_STRONG_COLOR`). كل الدرجات (النص فوق الزر، النص الملوّن على الفاتح والغامق) بتنحسب بتباين 4.5:1 على الأقل. الافتراضي ذهبي ليندا.
 - **الخطوط** مضمّنة بـ `assets/fonts` (IBM Plex Sans Arabic + IBM Plex Sans، رخصة OFL مسجّلة بقائمة الرخص). العربي والكردي بخط Arabic أولاً، الإنكليزي بـ Latin أولاً.
-- **الخريطة**: `mapStyleUrl(brightness:, locale:)` بيختار light/dark وar/en من `MAP_TILES_URL`.
+- **الخريطة**: `AppMap` (`design/map/app_map.dart`) بس، ولا مرة `MapLibreMap` مباشرة. الستايل من `mapStyleUrl` حسب المظهر واللغة، والتحريك عبر `AppMapController`. بتفتح على `MAP_CENTER` (مدينة النسخة) لحد ما يتحدد موقع الراكب. بالاختبارات `AppMap.usePlaceholder = true`.
 
 ## المكوّنات المشتركة (lib/design/components)
 
-- الشاشات بتنبني من المكوّنات الجاهزة بس (`import '…/design/components/components.dart'`): `AppScaffold`، `AppTopBar`، `AppButton` (primary/secondary/ink/danger/text، مع loading)، `AppIconButton`، `AppListRow`، `SectionHeader`، `EndActionRow` (محتوى + زر نصي بالآخر، الزر أقصاه نص العرض)، `AppTextField`، `PhoneField`، `OtpBoxes`، `AppChoiceChips`، `AppRadioTile` (اختيار واحد من بطاقات)، `NumericKeypad` (للـ PIN بس؛ الهاتف والكود بكيبورد الجهاز)، `MoneyText`، `PlateBadge`، `AppAvatar`، `DriverCard`، `RouteSummary`، `VehicleOptionCard`، `StatusBanner`، `SkeletonView` + `SkeletonBox` (و`SkeletonList`، `SkeletonCard`)، `EmptyState`، `FailureView`، `showAppToast`، `showAppSheet` + `SheetTitle`، `AppBottomNav`، `BrandMark` (أول حرف من اسم النسخة على لون البراند)، `CountdownBuilder` (عدّاد تنازلي).
+- الشاشات بتنبني من المكوّنات الجاهزة بس (`import '…/design/components/components.dart'`): `AppScaffold`، `AppTopBar`، `AppButton` (primary/secondary/ink/danger/text، مع loading)، `AppIconButton`، `AppListRow`، `SectionHeader`، `EndActionRow` (محتوى + زر نصي بالآخر، الزر أقصاه نص العرض)، `AppTextField`، `PhoneField`، `OtpBoxes`، `AppChoiceChips`، `AppRadioTile` (اختيار واحد من بطاقات)، `NumericKeypad` (للـ PIN بس؛ الهاتف والكود بكيبورد الجهاز)، `MoneyText`، `PlateBadge`، `AppAvatar`، `DriverCard`، `RouteSummary`، `VehicleOptionCard`، `StatusBanner`، `SkeletonView` + `SkeletonBox` (و`SkeletonList`، `SkeletonCard`)، `EmptyState`، `FailureView`، `showAppToast`، `showAppSheet` + `SheetTitle`، `AppBottomNav`، `BrandMark` (أول حرف من اسم النسخة على لون البراند)، `CountdownBuilder` (عدّاد تنازلي)، `SearchBarButton` (شكل خانة بحث بيفتح البحث)، `ShortcutTile` (أيقونة دائرية مع اسم).
 - **التحميل:** الشاشة اللي بتنطر بيانات بتعرض هيكلها فاضي مع موجة shimmer (`SkeletonView` حوالين شكل الشاشة مبني من `SkeletonBox`)، ولا مرة دائرة بتفتل. الزر اللي بينطر نتيجة كبسته (`AppButton(loading: true)`) بيعرض تلات نقاط بتنط وما بينكبس مرة تانية. الحركتين بيوقفوا إذا الجهاز طالب حركة أقل.
 - مكوّن ناقص بينضاف لـ `lib/design/components` (مع مثال بالمعرض)، مش جوّا الميزة.
 - `FailureView` و`showAppToast` بياخدوا `Failure` أو رسالتها المترجمة، ولا مرة نص تقني.
