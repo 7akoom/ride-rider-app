@@ -39,4 +39,19 @@ void main() {
       isEmpty,
     );
   });
+
+  test('brand colours must be #RRGGBB', () {
+    List<EnvProblem> withBrand(String brand, [String strong = '']) => AppEnv.check(
+          apiBaseUrl: 'https://api.example.com',
+          mapTilesUrl: tiles,
+          isRelease: true,
+          brandColor: brand,
+          brandStrongColor: strong,
+        );
+
+    expect(withBrand('#1E3A8A'), isEmpty);
+    expect(withBrand('1E3A8A', '#123456'), isEmpty);
+    expect(withBrand('gold'), [EnvProblem.invalidBrandColor]);
+    expect(withBrand('#1E3A8A', '#12'), [EnvProblem.invalidBrandColor]);
+  });
 }

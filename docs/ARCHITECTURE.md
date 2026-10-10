@@ -14,7 +14,7 @@ lib/
     l10n/                ← اللغات والاتجاه والـ delegates و context.l10n
     network/             ← ApiClient، تجديد التوكن، تحويل أخطاء Dio
     security/            ← التخزين الآمن، منع لقطات الشاشة، إخفاء البيانات بالـ logs
-  design/                ← (حزمة 1b/1c) الـ tokens، الـ theme، المكوّنات المشتركة
+  design/                ← الـ tokens، الـ theme، الخطوط، الـ responsive، الخريطة، (1c) المكوّنات
   features/<ميزة>/
     domain/              ← كيانات، واجهات repositories، use cases. Dart صافي: بدون Flutter ولا Dio
     data/                ← DTOs، مصادر البيانات (API)، تنفيذ الـ repositories
@@ -65,10 +65,21 @@ lib/
   ```
 - تثبيت الشهادة (certificate pinning): مؤجّل لسيرفر الإنتاج، لأنه شهادات Cloudflare بتتجدد تلقائياً.
 
-## Responsive (حزمة 1b)
+## التصميم (lib/design)
 
-- كل المقاسات من الـ tokens، والنصوص بتحترم تكبير الخط بالجهاز (مع سقف).
-- على التابلت والشاشات العريضة: المحتوى بعرض أقصى ومتوسّط.
+- **الألوان** من `context.palette` بس (`surface`، `textPrimary`، `brand`، `brandStrong`، `danger`…). ممنوع `Color(0x…)` أو `Colors.x` بالشاشات. القيم بـ `tokens/base_colors.dart` حسب `docs/design/stitch-prompts.md`.
+- **النصوص** من `context.typo` بس (`display`، `h1`، `h2`، `h3`، `body`، `bodyStrong`، `caption`، `micro`، `button`، `price`، `amount`). ممنوع `fontSize` أو `fontWeight` بالشاشات.
+- **المسافات والزوايا والمقاسات** من `Space`، `Radii`، `Sizes` (`tokens/metrics.dart`)، والظلال من `Shadows`.
+- **البراند لكل نسخة** وقت البناء: `--dart-define=BRAND_COLOR=#RRGGBB` (واختيارياً `BRAND_STRONG_COLOR`). كل الدرجات (النص فوق الزر، النص الملوّن على الفاتح والغامق) بتنحسب بتباين 4.5:1 على الأقل. الافتراضي ذهبي ليندا.
+- **الخطوط** مضمّنة بـ `assets/fonts` (IBM Plex Sans Arabic + IBM Plex Sans، رخصة OFL مسجّلة بقائمة الرخص). العربي والكردي بخط Arabic أولاً، الإنكليزي بـ Latin أولاً.
+- **الخريطة**: `mapStyleUrl(brightness:, locale:)` بيختار light/dark وar/en من `MAP_TILES_URL`.
+
+## Responsive
+
+- عرض الشاشة بـ `context.screenSize` (`compact` < 600، `medium` < 840، `expanded`).
+- محتوى كل شاشة ملفوف بـ `ContentWidth`: عرض كامل عالموبايل، وعمود متوسّط أقصاه 560 على الأعرض.
+- تكبير الخط بالجهاز محترم بين 0.85× و1.3× (`TextScaleClamp` على مستوى التطبيق).
+- ممنوع ارتفاعات أو عروض ثابتة للنصوص؛ المقاسات الثابتة للعناصر التفاعلية بس (`Sizes`).
 
 ## الملفات القديمة
 

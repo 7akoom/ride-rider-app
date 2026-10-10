@@ -1,9 +1,9 @@
+import 'config/app_env.dart';
 import 'models/geo_point.dart';
 
-/// The map style, served by the platform's own map server
-/// (scripts/deploy/prepare-tiles.sh in ride-platform). Four styles exist:
-/// light-ar, light-en, dark-ar, dark-en.
-const String kMapStyleUrl = 'https://ride-tiles.lenda-agency.com/styles/light-ar.json';
+/// Legacy: the light Arabic map style, for the screens not migrated yet. New code uses
+/// mapStyleUrl() in lib/design/map, which follows the mode and the language.
+const String kMapStyleUrl = '${AppEnv.mapTilesUrl}/styles/light-ar.json';
 
 /// Where the map opens when the phone's position is not known.
 const GeoPoint kErbilCenter = GeoPoint(36.1911, 44.0092);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../design/tokens/palette.dart';
 
 /// Spacing scale — mirrors the Design System's space-1..space-6.
 class AppSpacing {
@@ -50,6 +50,22 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.surface200,
     required this.border,
   });
+
+  /// The legacy colour names mapped onto the new design tokens, so the screens that
+  /// are not migrated yet already show the new palette. Removed with the last of them.
+  factory AppColors.fromPalette(Palette p) => AppColors(
+        brand500: p.brandStrong,
+        brand600: Color.lerp(p.brandStrong, const Color(0xFF000000), 0.2)!,
+        brand100: p.brandSoft,
+        success: p.success,
+        warning: p.warning,
+        danger: p.danger,
+        ink: p.textPrimary,
+        inkMuted: p.textSecondary,
+        surface100: p.background,
+        surface200: p.surface,
+        border: p.border,
+      );
 
   static const light = AppColors(
     brand500: Color(0xFF0E7C7B),
@@ -131,100 +147,4 @@ class AppColors extends ThemeExtension<AppColors> {
 /// `Theme.of(context).extension<AppColors>()!.brand500`.
 extension AppColorsContext on BuildContext {
   AppColors get colors => Theme.of(this).extension<AppColors>()!;
-}
-
-/// Text styles — mirrors the Text group's display/title/body-strong/body/
-/// caption/label. IBM Plex Sans Arabic carries Arabic & Kurdish Sorani;
-/// IBM Plex Sans is the Latin companion loaded by the same google_fonts call
-/// so numerals and any Latin fragment stay visually consistent.
-class AppTextStyles {
-  static TextTheme build(Color ink) {
-    final arabic = GoogleFonts.ibmPlexSansArabicTextTheme();
-    return arabic.copyWith(
-      displayMedium: GoogleFonts.ibmPlexSansArabic(
-        fontSize: 32,
-        height: 38 / 32,
-        fontWeight: FontWeight.w600,
-        color: ink,
-      ),
-      titleLarge: GoogleFonts.ibmPlexSansArabic(
-        fontSize: 22,
-        height: 28 / 22,
-        fontWeight: FontWeight.w600,
-        color: ink,
-      ),
-      titleMedium: GoogleFonts.ibmPlexSansArabic(
-        // body-strong
-        fontSize: 16,
-        height: 24 / 16,
-        fontWeight: FontWeight.w600,
-        color: ink,
-      ),
-      bodyLarge: GoogleFonts.ibmPlexSansArabic(
-        fontSize: 16,
-        height: 24 / 16,
-        fontWeight: FontWeight.w400,
-        color: ink,
-      ),
-      bodySmall: GoogleFonts.ibmPlexSansArabic(
-        // caption
-        fontSize: 13,
-        height: 18 / 13,
-        fontWeight: FontWeight.w400,
-        color: ink,
-      ),
-      labelLarge: GoogleFonts.ibmPlexSansArabic(
-        // label — sentence case, never all-caps (see Design System README)
-        fontSize: 13,
-        height: 16 / 13,
-        fontWeight: FontWeight.w600,
-        color: ink,
-      ),
-    );
-  }
-}
-
-class AppTheme {
-  static ThemeData light() => _build(AppColors.light, Brightness.light);
-  static ThemeData dark() => _build(AppColors.dark, Brightness.dark);
-
-  static ThemeData _build(AppColors colors, Brightness brightness) {
-    return ThemeData(
-      brightness: brightness,
-      scaffoldBackgroundColor: colors.surface100,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: colors.brand500,
-        brightness: brightness,
-        primary: colors.brand500,
-        error: colors.danger,
-        surface: colors.surface200,
-      ),
-      textTheme: AppTextStyles.build(colors.ink),
-      extensions: [colors],
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: colors.brand500,
-          foregroundColor: Colors.white,
-          minimumSize: const Size.fromHeight(52),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.sm),
-          ),
-          textStyle: GoogleFonts.ibmPlexSansArabic(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: colors.danger,
-          side: BorderSide(color: colors.danger, width: 1.5),
-          minimumSize: const Size.fromHeight(52),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.sm),
-          ),
-        ),
-      ),
-    );
-  }
 }

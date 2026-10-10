@@ -5,6 +5,7 @@ import '../core/config/app_env.dart';
 import '../core/error/error_reporter.dart';
 import '../core/error/global_error_handlers.dart';
 import '../core/l10n/app_locales.dart';
+import '../design/fonts/font_licenses.dart';
 import '../state/app_prefs.dart';
 import '../state/locale_provider.dart';
 import '../state/push_notifications.dart';
@@ -17,6 +18,7 @@ import 'config_error_app.dart';
 Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   installGlobalErrorHandlers();
+  registerFontLicenses();
 
   final problems = AppEnv.problems();
   if (problems.isNotEmpty) {
