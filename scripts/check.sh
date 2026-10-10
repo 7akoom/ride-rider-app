@@ -10,6 +10,9 @@ flutter gen-l10n
 echo "== no hardcoded user-visible text"
 scripts/check-hardcoded-strings.sh
 
+echo "== design system used (tokens, start/end)"
+scripts/check-design-usage.sh
+
 echo "== no oversized files"
 scripts/check-file-size.sh
 

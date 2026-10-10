@@ -74,6 +74,26 @@ lib/
 - **الخطوط** مضمّنة بـ `assets/fonts` (IBM Plex Sans Arabic + IBM Plex Sans، رخصة OFL مسجّلة بقائمة الرخص). العربي والكردي بخط Arabic أولاً، الإنكليزي بـ Latin أولاً.
 - **الخريطة**: `mapStyleUrl(brightness:, locale:)` بيختار light/dark وar/en من `MAP_TILES_URL`.
 
+## المكوّنات المشتركة (lib/design/components)
+
+- الشاشات بتنبني من المكوّنات الجاهزة بس (`import '…/design/components/components.dart'`): `AppScaffold`، `AppTopBar`، `AppButton` (primary/secondary/ink/danger/text، مع loading)، `AppIconButton`، `AppListRow`، `SectionHeader`، `EndActionRow` (محتوى + زر نصي بالآخر، الزر أقصاه نص العرض)، `AppTextField`، `PhoneField`، `OtpBoxes`، `AppChoiceChips`، `NumericKeypad`، `MoneyText`، `PlateBadge`، `AppAvatar`، `DriverCard`، `RouteSummary`، `VehicleOptionCard`، `StatusBanner`، `SkeletonView` + `SkeletonBox` (و`SkeletonList`، `SkeletonCard`)، `EmptyState`، `FailureView`، `showAppToast`، `showAppSheet` + `SheetTitle`، `AppBottomNav`.
+- **التحميل:** الشاشة اللي بتنطر بيانات بتعرض هيكلها فاضي مع موجة shimmer (`SkeletonView` حوالين شكل الشاشة مبني من `SkeletonBox`)، ولا مرة دائرة بتفتل. الزر اللي بينطر نتيجة كبسته (`AppButton(loading: true)`) بيعرض تلات نقاط بتنط وما بينكبس مرة تانية. الحركتين بيوقفوا إذا الجهاز طالب حركة أقل.
+- مكوّن ناقص بينضاف لـ `lib/design/components` (مع مثال بالمعرض)، مش جوّا الميزة.
+- `FailureView` و`showAppToast` بياخدوا `Failure` أو رسالتها المترجمة، ولا مرة نص تقني.
+- **المبالغ** دايماً بـ `MoneyText` أو `formatMoney`: أرقام غربية، فواصل الآلاف، الرقم معزول LTR، والعملة من الترجمة.
+- **أزرار الأيقونة** إلها `semanticLabel` إلزامي (قارئ الشاشة).
+- `scripts/check-design-usage.sh` بيرفض بالكود الجديد: `Color(0x…)`، `Colors.x` (إلا `transparent`)، `fontSize`/`fontWeight` برا `design/tokens` و`design/theme`، و`left/right` (`EdgeInsets.only(left:)`، `Alignment.centerLeft`، `TextAlign.left`، `Positioned(left:)`).
+
+## معرض المكوّنات
+
+نسخة debug بس:
+
+```
+flutter run --dart-define=SHOW_GALLERY=true --dart-define=API_BASE_URL=https://ride-api.lenda-agency.com
+```
+
+بيفتح المعرض بدل التطبيق، مع زرّين لتبديل اللغة (عربي ← كردي ← إنكليزي) والمظهر. `test/features/dev_gallery/gallery_test.dart` بيبنيه كامل على شاشة 390×844 بالثلاث لغات والوضعين، فأي overflow بيفشّل الاختبار.
+
 ## Responsive
 
 - عرض الشاشة بـ `context.screenSize` (`compact` < 600، `medium` < 840، `expanded`).

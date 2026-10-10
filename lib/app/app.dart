@@ -6,6 +6,7 @@ import '../core/l10n/app_locales.dart';
 import '../core/l10n/localization_setup.dart';
 import '../core/navigation.dart';
 import '../design/responsive/text_scale_clamp.dart';
+import '../features/dev_gallery/presentation/gallery_screen.dart';
 import '../features/onboarding/splash_screen.dart';
 import '../state/locale_provider.dart';
 import '../state/theme_provider.dart';
@@ -31,7 +32,7 @@ class RiderApp extends ConsumerWidget {
       themeMode: themeMode,
       builder: (context, child) =>
           TextScaleClamp(child: child ?? const SizedBox.shrink()),
-      home: const SplashScreen(),
+      home: AppEnv.showGallery ? const GalleryScreen() : const SplashScreen(),
     );
   }
 }

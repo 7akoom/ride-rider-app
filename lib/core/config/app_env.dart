@@ -55,6 +55,17 @@ abstract final class AppEnv {
   /// is derived from [brandColor] with enough contrast.
   static const String brandStrongColor = String.fromEnvironment('BRAND_STRONG_COLOR');
 
+  /// The country calling code shown before phone numbers (one country per copy).
+  static const String phoneDialCode = String.fromEnvironment(
+    'PHONE_DIAL_CODE',
+    defaultValue: '+964',
+  );
+
+  /// Debug builds started with --dart-define=SHOW_GALLERY=true open the component
+  /// gallery instead of the app. Never in release builds.
+  static const bool showGallery =
+      !kReleaseMode && bool.fromEnvironment('SHOW_GALLERY');
+
   /// The problems with this build's configuration; empty when it is fine to run.
   static List<EnvProblem> problems() => check(
         apiBaseUrl: apiBaseUrl,

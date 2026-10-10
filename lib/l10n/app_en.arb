@@ -1,45 +1,235 @@
 {
   "@@locale": "en",
-
   "errorNoConnection": "No internet connection. Check your network and try again.",
-  "@errorNoConnection": {"description": "Shown when a request could not reach the server at all."},
-
+  "@errorNoConnection": {
+    "description": "Shown when a request could not reach the server at all."
+  },
   "errorTimeout": "This is taking longer than usual. Please try again.",
-  "@errorTimeout": {"description": "Shown when a request timed out."},
-
+  "@errorTimeout": {
+    "description": "Shown when a request timed out."
+  },
   "errorServer": "Something went wrong on our side. Please try again shortly.",
-  "@errorServer": {"description": "Shown for 5xx answers from the server."},
-
+  "@errorServer": {
+    "description": "Shown for 5xx answers from the server."
+  },
   "errorSessionExpired": "Your session has ended. Please sign in again.",
-  "@errorSessionExpired": {"description": "Shown when the session could not be renewed."},
-
+  "@errorSessionExpired": {
+    "description": "Shown when the session could not be renewed."
+  },
   "errorForbidden": "You are not allowed to do this.",
-  "@errorForbidden": {"description": "Shown for permission errors."},
-
+  "@errorForbidden": {
+    "description": "Shown for permission errors."
+  },
   "errorNotFound": "We couldn't find what you're looking for.",
-  "@errorNotFound": {"description": "Shown when the requested item does not exist."},
-
+  "@errorNotFound": {
+    "description": "Shown when the requested item does not exist."
+  },
   "errorConflict": "This was already done or the details have changed. Refresh and try again.",
-  "@errorConflict": {"description": "Shown for conflicts such as a duplicate action."},
-
+  "@errorConflict": {
+    "description": "Shown for conflicts such as a duplicate action."
+  },
   "errorTooManyRequests": "Too many attempts. Please wait a moment and try again.",
-  "@errorTooManyRequests": {"description": "Shown when the server rate-limits the user."},
-
+  "@errorTooManyRequests": {
+    "description": "Shown when the server rate-limits the user."
+  },
   "errorInvalidInput": "Some details are not valid. Please check them and try again.",
-  "@errorInvalidInput": {"description": "Generic message for rejected input."},
-
+  "@errorInvalidInput": {
+    "description": "Generic message for rejected input."
+  },
   "errorNotAllowedNow": "This can't be done right now.",
-  "@errorNotAllowedNow": {"description": "Generic message for a failed precondition."},
-
+  "@errorNotAllowedNow": {
+    "description": "Generic message for a failed precondition."
+  },
   "errorUnexpected": "Something unexpected happened. Please try again.",
-  "@errorUnexpected": {"description": "Fallback for any error that has no better message."},
-
+  "@errorUnexpected": {
+    "description": "Fallback for any error that has no better message."
+  },
   "errorAppMisconfigured": "The app is not set up correctly. Please contact the service provider.",
-  "@errorAppMisconfigured": {"description": "Shown when the build has an unsafe or missing configuration."},
-
+  "@errorAppMisconfigured": {
+    "description": "Shown when the build has an unsafe or missing configuration."
+  },
   "errorPartFailed": "This part couldn't be shown.",
-  "@errorPartFailed": {"description": "Shown in place of a widget that failed to build."},
-
+  "@errorPartFailed": {
+    "description": "Shown in place of a widget that failed to build."
+  },
   "actionRetry": "Try again",
-  "@actionRetry": {"description": "Button that repeats a failed action."}
+  "@actionRetry": {
+    "description": "Button that repeats a failed action."
+  },
+  "actionBack": "Back",
+  "@actionBack": {
+    "description": "Back button and its screen-reader label."
+  },
+  "actionClose": "Close",
+  "@actionClose": {
+    "description": "Closes a sheet or dialog."
+  },
+  "actionContinue": "Continue",
+  "@actionContinue": {
+    "description": "Moves to the next step."
+  },
+  "actionCancel": "Cancel",
+  "@actionCancel": {
+    "description": "Cancels the current action."
+  },
+  "actionConfirm": "Confirm",
+  "@actionConfirm": {
+    "description": "Confirms the current action."
+  },
+  "actionSave": "Save",
+  "@actionSave": {
+    "description": "Saves changes."
+  },
+  "actionDeleteDigit": "Delete",
+  "@actionDeleteDigit": {
+    "description": "Screen-reader label of the keypad's backspace key."
+  },
+  "actionCall": "Call",
+  "@actionCall": {
+    "description": "Calls the captain."
+  },
+  "actionChat": "Message",
+  "@actionChat": {
+    "description": "Opens the chat with the captain."
+  },
+  "loading": "Loading",
+  "@loading": {
+    "description": "Screen-reader label while something loads."
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom navigation tab."
+  },
+  "navActivity": "Activity",
+  "@navActivity": {
+    "description": "Bottom navigation tab."
+  },
+  "navAccount": "Account",
+  "@navAccount": {
+    "description": "Bottom navigation tab."
+  },
+  "routePickup": "Pickup",
+  "@routePickup": {
+    "description": "Label of the pickup point."
+  },
+  "routeDestination": "Destination",
+  "@routeDestination": {
+    "description": "Label of the destination."
+  },
+  "emptyNothingYet": "Nothing here yet",
+  "@emptyNothingYet": {
+    "description": "Generic empty state."
+  },
+  "vehicleEconomy": "Economy",
+  "@vehicleEconomy": {
+    "description": "Vehicle class name."
+  },
+  "vehicleComfort": "Comfort",
+  "@vehicleComfort": {
+    "description": "Vehicle class name."
+  },
+  "galleryTitle": "Component gallery",
+  "@galleryTitle": {
+    "description": "Developer-only screen title."
+  },
+  "gallerySectionButtons": "Buttons",
+  "@gallerySectionButtons": {
+    "description": "Gallery section."
+  },
+  "gallerySectionInputs": "Inputs",
+  "@gallerySectionInputs": {
+    "description": "Gallery section."
+  },
+  "gallerySectionLists": "Lists",
+  "@gallerySectionLists": {
+    "description": "Gallery section."
+  },
+  "gallerySectionTrip": "Trip",
+  "@gallerySectionTrip": {
+    "description": "Gallery section."
+  },
+  "gallerySectionStates": "States",
+  "@gallerySectionStates": {
+    "description": "Gallery section."
+  },
+  "galleryToggleTheme": "Switch theme",
+  "@galleryToggleTheme": {
+    "description": "Gallery action."
+  },
+  "galleryToggleLanguage": "Switch language",
+  "@galleryToggleLanguage": {
+    "description": "Gallery action."
+  },
+  "gallerySampleTitle": "Sample title",
+  "@gallerySampleTitle": {
+    "description": "Gallery sample text."
+  },
+  "gallerySampleBody": "Sample text to preview style and direction.",
+  "@gallerySampleBody": {
+    "description": "Gallery sample text."
+  },
+  "gallerySampleWarning": "Demand is high right now, fares are a little higher.",
+  "@gallerySampleWarning": {
+    "description": "Gallery sample banner."
+  },
+  "gallerySampleDriver": "Salem Sleiman",
+  "@gallerySampleDriver": {
+    "description": "Gallery sample captain name."
+  },
+  "gallerySampleCar": "Toyota Corolla · Beige",
+  "@gallerySampleCar": {
+    "description": "Gallery sample car."
+  },
+  "gallerySamplePickup": "Gulan Street",
+  "@gallerySamplePickup": {
+    "description": "Gallery sample place."
+  },
+  "gallerySampleDestination": "Family Mall",
+  "@gallerySampleDestination": {
+    "description": "Gallery sample place."
+  },
+  "fieldPhone": "Phone number",
+  "@fieldPhone": {
+    "description": "Phone field label."
+  },
+  "fieldName": "Name",
+  "@fieldName": {
+    "description": "Name field label."
+  },
+  "moneyAmount": "{amount} IQD",
+  "@moneyAmount": {
+    "description": "An amount of money. amount is already formatted (Western digits, isolated left-to-right).",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "routeStop": "Stop {number}",
+  "@routeStop": {
+    "description": "A stop on the route.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "seatsCount": "{count, plural, =1{1 seat} other{{count} seats}}",
+  "@seatsCount": {
+    "description": "Number of seats in a vehicle.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "etaMinutes": "{minutes, plural, =1{1 min} other{{minutes} min}}",
+  "@etaMinutes": {
+    "description": "Minutes until something happens.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

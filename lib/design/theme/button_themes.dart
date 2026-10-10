@@ -37,6 +37,21 @@ ButtonStyle secondaryButtonStyle(Palette p, AppTypography t) =>
       overlayColor: WidgetStatePropertyAll(p.textPrimary.withValues(alpha: 0.06)),
     );
 
+/// Dark filled action (secondary emphasis on light screens).
+ButtonStyle inkButtonStyle(Palette p, AppTypography t) => _fullWidth(t).copyWith(
+      backgroundColor: _byState(p.ink, p.surface2),
+      foregroundColor: _byState(p.onInk, p.textTertiary),
+      overlayColor: WidgetStatePropertyAll(p.onInk.withValues(alpha: 0.08)),
+    );
+
+/// Destructive action (cancel a trip, delete the account): danger outline.
+ButtonStyle dangerButtonStyle(Palette p, AppTypography t) => _fullWidth(t).copyWith(
+      backgroundColor: WidgetStatePropertyAll(p.surface),
+      foregroundColor: _byState(p.danger, p.textTertiary),
+      side: WidgetStatePropertyAll(BorderSide(color: p.danger)),
+      overlayColor: WidgetStatePropertyAll(p.danger.withValues(alpha: 0.06)),
+    );
+
 /// Text-only action (links, "Not now").
 ButtonStyle textButtonStyle(Palette p, AppTypography t) => ButtonStyle(
       minimumSize: const WidgetStatePropertyAll(
