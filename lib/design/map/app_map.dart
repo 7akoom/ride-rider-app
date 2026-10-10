@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' show Point;
 
 import 'package:flutter/material.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
@@ -7,6 +8,7 @@ import '../../core/config/app_env.dart';
 import '../../core/error/error_reporter.dart';
 import '../../core/location/geo_point.dart';
 import '../design_context.dart';
+import '../tokens/metrics.dart';
 import 'map_route.dart';
 import 'map_style.dart';
 import 'route_layer.dart';
@@ -154,11 +156,13 @@ class _AppMapState extends State<AppMap> {
       trackCameraPosition: widget.onSettled != null,
       onCameraIdle: widget.onSettled == null ? null : _idle,
       compassEnabled: false,
-      // The data's licence asks for the attribution; it sits at the start corner,
-      // away from the map buttons at the end.
+      // The data's licence asks for the attribution; it sits in the start corner,
+      // away from the map buttons at the end. Its own margin leaves room for a
+      // logo the map does not show, which put it in the middle: set it here.
       attributionButtonPosition: rtl
           ? AttributionButtonPosition.bottomRight
           : AttributionButtonPosition.bottomLeft,
+      attributionButtonMargins: const Point(Space.x2, Space.x2),
       onMapCreated: _created,
       onStyleLoadedCallback: _styleLoaded,
     );
