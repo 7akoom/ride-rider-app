@@ -8,7 +8,8 @@ import 'package:rider_app/design/tokens/brand.dart';
 
 /// Pumps [child] inside the app's real localization and theme setup.
 ///
-/// [inScaffold] false is for widgets that are whole screens themselves.
+/// [inScaffold] false is for widgets that are whole screens themselves. [overrides]
+/// replace providers (usually repositories with fakes).
 Future<void> pumpApp(
   WidgetTester tester,
   Widget child, {
@@ -16,9 +17,11 @@ Future<void> pumpApp(
   bool dark = false,
   bool inScaffold = true,
   bool settle = true,
+  List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
     ProviderScope(
+      overrides: overrides,
       child: MaterialApp(
         locale: locale,
         supportedLocales: AppLocales.all,

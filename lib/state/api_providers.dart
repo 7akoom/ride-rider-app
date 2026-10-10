@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/api/api_exception.dart';
@@ -9,9 +8,7 @@ import '../core/api/notifications_api.dart';
 import '../core/api/rider_api.dart';
 import '../core/api/trip_api.dart';
 import '../core/models/rider_profile.dart';
-import '../core/navigation.dart';
 import '../core/network/api_client_provider.dart';
-import '../features/auth/phone_entry_screen.dart';
 import 'session_storage.dart';
 
 final Provider<AuthApi> authApiProvider = Provider<AuthApi>((ref) {
@@ -127,12 +124,8 @@ Future<void> signOut(WidgetRef ref) async {
     }
   }
 
-  ref.invalidate(riderProfileProvider);
-  ref.invalidate(myPhoneProvider);
   await SessionStorage.clear();
 
-  rootNavigatorKey.currentState?.pushAndRemoveUntil(
-    MaterialPageRoute(builder: (_) => const PhoneEntryScreen()),
-    (route) => false,
-  );
+  // The app listens to this: it clears the cached profile and opens the phone screen.
+  ref.read(sessionEndedProvider.notifier).state++;
 }

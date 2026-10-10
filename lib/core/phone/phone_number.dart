@@ -12,6 +12,12 @@ final class PhoneNumber {
   /// The ten digits after the country code (7701234567).
   String get national => e164.substring(_countryCode.length + 1);
 
+  /// Grouped for reading: +964 750 123 4567. Wrap it with isolateLtr inside a
+  /// sentence.
+  String get display =>
+      '+$_countryCode ${national.substring(0, 3)} ${national.substring(3, 6)} '
+      '${national.substring(6)}';
+
   static const String _countryCode = '964';
   static const int _nationalLength = 10;
 

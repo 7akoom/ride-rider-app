@@ -11,6 +11,7 @@ import 'domain/repositories/rider_account_repository.dart';
 import 'domain/repositories/sign_in_repository.dart';
 import 'domain/use_cases/confirm_code.dart';
 import 'domain/use_cases/decide_start.dart';
+import 'domain/use_cases/finish_language_step.dart';
 import 'domain/use_cases/save_name.dart';
 import 'domain/use_cases/send_code.dart';
 
@@ -51,4 +52,8 @@ final confirmCodeProvider = Provider<ConfirmCode>(
 
 final saveNameProvider = Provider<SaveName>(
   (ref) => SaveName(ref.watch(riderAccountRepositoryProvider)),
+);
+
+final finishLanguageStepProvider = Provider<FinishLanguageStep>(
+  (ref) => FinishLanguageStep(ref.watch(onboardingPreferencesProvider)),
 );

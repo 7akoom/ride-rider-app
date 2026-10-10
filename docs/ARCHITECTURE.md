@@ -80,7 +80,7 @@ lib/
 
 ## المكوّنات المشتركة (lib/design/components)
 
-- الشاشات بتنبني من المكوّنات الجاهزة بس (`import '…/design/components/components.dart'`): `AppScaffold`، `AppTopBar`، `AppButton` (primary/secondary/ink/danger/text، مع loading)، `AppIconButton`، `AppListRow`، `SectionHeader`، `EndActionRow` (محتوى + زر نصي بالآخر، الزر أقصاه نص العرض)، `AppTextField`، `PhoneField`، `OtpBoxes`، `AppChoiceChips`، `NumericKeypad`، `MoneyText`، `PlateBadge`، `AppAvatar`، `DriverCard`، `RouteSummary`، `VehicleOptionCard`، `StatusBanner`، `SkeletonView` + `SkeletonBox` (و`SkeletonList`، `SkeletonCard`)، `EmptyState`، `FailureView`، `showAppToast`، `showAppSheet` + `SheetTitle`، `AppBottomNav`.
+- الشاشات بتنبني من المكوّنات الجاهزة بس (`import '…/design/components/components.dart'`): `AppScaffold`، `AppTopBar`، `AppButton` (primary/secondary/ink/danger/text، مع loading)، `AppIconButton`، `AppListRow`، `SectionHeader`، `EndActionRow` (محتوى + زر نصي بالآخر، الزر أقصاه نص العرض)، `AppTextField`، `PhoneField`، `OtpBoxes`، `AppChoiceChips`، `AppRadioTile` (اختيار واحد من بطاقات)، `NumericKeypad` (للـ PIN بس؛ الهاتف والكود بكيبورد الجهاز)، `MoneyText`، `PlateBadge`، `AppAvatar`، `DriverCard`، `RouteSummary`، `VehicleOptionCard`، `StatusBanner`، `SkeletonView` + `SkeletonBox` (و`SkeletonList`، `SkeletonCard`)، `EmptyState`، `FailureView`، `showAppToast`، `showAppSheet` + `SheetTitle`، `AppBottomNav`، `BrandMark` (أول حرف من اسم النسخة على لون البراند)، `CountdownBuilder` (عدّاد تنازلي).
 - **التحميل:** الشاشة اللي بتنطر بيانات بتعرض هيكلها فاضي مع موجة shimmer (`SkeletonView` حوالين شكل الشاشة مبني من `SkeletonBox`)، ولا مرة دائرة بتفتل. الزر اللي بينطر نتيجة كبسته (`AppButton(loading: true)`) بيعرض تلات نقاط بتنط وما بينكبس مرة تانية. الحركتين بيوقفوا إذا الجهاز طالب حركة أقل.
 - مكوّن ناقص بينضاف لـ `lib/design/components` (مع مثال بالمعرض)، مش جوّا الميزة.
 - `FailureView` و`showAppToast` بياخدوا `Failure` أو رسالتها المترجمة، ولا مرة نص تقني.
@@ -97,6 +97,11 @@ flutter run --dart-define=SHOW_GALLERY=true --dart-define=API_BASE_URL=https://r
 ```
 
 بيفتح المعرض بدل التطبيق، مع زرّين لتبديل اللغة (عربي ← كردي ← إنكليزي) والمظهر. `test/features/dev_gallery/gallery_test.dart` بيبنيه كامل على شاشة 390×844 بالثلاث لغات والوضعين، فأي overflow بيفشّل الاختبار.
+
+## الاختبارات
+
+- منطق الـ domain والـ data بيتفحص بـ fakes بتطبّق نفس الـ interfaces (`test/features/onboarding/fakes.dart`).
+- الشاشات بتتفحص بـ `pumpApp(..., overrides: [...])`: الـ repositories بتنستبدل بـ fakes، فالاختبار ما بيلمس الشبكة ولا التخزين.
 
 ## Responsive
 

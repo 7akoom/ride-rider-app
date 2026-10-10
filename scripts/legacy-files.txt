@@ -20,13 +20,7 @@ lib/core/models/trip.dart
 lib/core/models/wallet_tx.dart
 lib/core/navigation.dart
 lib/core/phone.dart
-lib/features/auth/otp_screen.dart
-lib/features/auth/phone_entry_screen.dart
 lib/features/auth/profile_setup_screen.dart
-lib/features/auth/splash_screen.dart
-lib/features/onboarding/language_select_screen.dart
-lib/features/onboarding/splash_screen.dart
-lib/features/onboarding/theme_select_screen.dart
 lib/features/rider/cancel_trip_sheet.dart
 lib/features/rider/coupons_screen.dart
 lib/features/rider/map_overlay.dart

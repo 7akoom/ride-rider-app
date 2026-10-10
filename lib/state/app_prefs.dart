@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/l10n/language_preference.dart';
+
 class AppPrefs {
-  static const _onboardedKey = 'onboarded';
   static const _themeModeKey = 'theme_mode';
-  static const _localeKey = 'locale';
-
-  static Future<bool> hasOnboarded() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_onboardedKey) ?? false;
-  }
-
-  static Future<void> setOnboarded() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_onboardedKey, true);
-  }
 
   static Future<ThemeMode> readThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
@@ -31,14 +21,8 @@ class AppPrefs {
     await prefs.setString(_themeModeKey, mode.name);
   }
 
-  static Future<Locale> readLocale() async {
-    final prefs = await SharedPreferences.getInstance();
-    final code = prefs.getString(_localeKey) ?? 'ar';
-    return Locale(code);
-  }
+  // Moved to LanguagePreference (lib/core/l10n). Kept for the legacy settings screen.
+  static Future<Locale> readLocale() => LanguagePreference.read();
 
-  static Future<void> saveLocale(Locale locale) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_localeKey, locale.languageCode);
-  }
+  static Future<void> saveLocale(Locale locale) => LanguagePreference.save(locale);
 }

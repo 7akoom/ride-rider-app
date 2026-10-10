@@ -7,9 +7,9 @@ import '../core/l10n/localization_setup.dart';
 import '../core/navigation.dart';
 import '../core/network/api_client_provider.dart';
 import '../design/responsive/text_scale_clamp.dart';
-import '../features/auth/phone_entry_screen.dart';
 import '../features/dev_gallery/presentation/gallery_screen.dart';
-import '../features/onboarding/splash_screen.dart';
+import '../features/onboarding/presentation/phone/phone_screen.dart';
+import '../features/onboarding/presentation/splash/splash_screen.dart';
 import '../state/api_providers.dart';
 import '../state/locale_provider.dart';
 import '../state/theme_provider.dart';
@@ -23,14 +23,15 @@ class RiderApp extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
     final themeMode = ref.watch(themeModeProvider);
 
-    // The backend ended the session (the stored login was refused): back to sign-in,
-    // wherever the rider is. The legacy phone screen is replaced in stage 2b.
+    // The session ended (the backend refused the stored login, or the rider signed
+    // out): back to the phone screen, wherever the rider is. The two invalidations go
+    // with the old screens that use them.
     ref.listen(sessionEndedProvider, (_, __) {
       ref.invalidate(riderProfileProvider);
       ref.invalidate(myPhoneProvider);
 
       rootNavigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute<void>(builder: (_) => const PhoneEntryScreen()),
+        MaterialPageRoute<void>(builder: (_) => const PhoneScreen()),
         (route) => false,
       );
     });

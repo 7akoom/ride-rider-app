@@ -231,5 +231,107 @@
         "type": "int"
       }
     }
+  },
+  "splashTagline": "Your ride, made easy",
+  "@splashTagline": {
+    "description": "Under the app name on the start screen."
+  },
+  "languageTitle": "Choose your language",
+  "@languageTitle": {
+    "description": "Language screen title."
+  },
+  "languageSubtitle": "You can change it later in Settings.",
+  "@languageSubtitle": {
+    "description": "Under the language screen title."
+  },
+  "languageNameArabic": "العربية",
+  "@languageNameArabic": {
+    "description": "The Arabic language in Arabic: the same in every file."
+  },
+  "languageNameKurdish": "کوردی",
+  "@languageNameKurdish": {
+    "description": "Kurdish (Sorani) in Kurdish: the same in every file."
+  },
+  "languageNameEnglish": "English",
+  "@languageNameEnglish": {
+    "description": "English in English: the same in every file."
+  },
+  "phoneTitle": "Enter your phone number",
+  "@phoneTitle": {
+    "description": "Phone screen title."
+  },
+  "phoneSubtitle": "We'll send you a code to sign in.",
+  "@phoneSubtitle": {
+    "description": "Under the phone screen title."
+  },
+  "phoneInvalid": "Enter a valid mobile number, for example 0750 123 4567.",
+  "@phoneInvalid": {
+    "description": "Under the phone field when the number cannot be used."
+  },
+  "phoneSendCode": "Send code",
+  "@phoneSendCode": {
+    "description": "Phone screen button."
+  },
+  "phoneTerms": "By continuing you agree to the Terms of Use and the Privacy Policy.",
+  "@phoneTerms": {
+    "description": "Small print under the phone field."
+  },
+  "sendCodeTooMany": "Too many codes requested. Wait a few minutes and try again.",
+  "@sendCodeTooMany": {
+    "description": "The backend refused to send another code yet."
+  },
+  "sendCodeUnavailable": "We can't send codes right now. Please try again shortly.",
+  "@sendCodeUnavailable": {
+    "description": "The code delivery service is down."
+  },
+  "otpTitle": "Enter the code",
+  "@otpTitle": {
+    "description": "Code screen title."
+  },
+  "otpSentTo": "We sent a 6-digit code to {phone}",
+  "@otpSentTo": {
+    "description": "Under the code screen title.",
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "otpEditNumber": "Edit number",
+  "@otpEditNumber": {
+    "description": "Goes back to change the phone number."
+  },
+  "otpResendIn": "Resend in {time}",
+  "@otpResendIn": {
+    "description": "Countdown before a new code can be asked for; time is like 0:43.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "otpResend": "Resend code",
+  "@otpResend": {
+    "description": "Asks for a new code."
+  },
+  "otpResent": "A new code is on its way.",
+  "@otpResent": {
+    "description": "Toast after a new code was sent."
+  },
+  "codeWrong": "That code isn't right. Check it and try again.",
+  "@codeWrong": {
+    "description": "The typed code was refused."
+  },
+  "codeExpired": "This code has expired. Ask for a new one.",
+  "@codeExpired": {
+    "description": "The code ran out or was already used."
+  },
+  "codeTooManyTries": "Too many wrong tries. Ask for a new code.",
+  "@codeTooManyTries": {
+    "description": "Too many wrong codes for this one."
+  },
+  "accountBlocked": "This account is suspended. Please contact support.",
+  "@accountBlocked": {
+    "description": "The account cannot sign in."
   }
 }

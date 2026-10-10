@@ -15,6 +15,7 @@ class ButtonsSection extends StatelessWidget {
     return GallerySection(
       title: l10n.gallerySectionButtons,
       children: [
+        const Center(child: BrandMark()),
         AppButton(label: l10n.actionContinue, onPressed: () {}),
         AppButton(label: l10n.actionContinue, onPressed: () {}, loading: true),
         AppButton(label: l10n.actionContinue, onPressed: null),

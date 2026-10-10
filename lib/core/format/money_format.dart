@@ -1,9 +1,7 @@
 import 'package:intl/intl.dart';
 
 import '../l10n/l10n.dart';
-
-const String _ltrIsolate = '\u2066';
-const String _popIsolate = '\u2069';
+import 'bidi.dart';
 
 final NumberFormat _grouped = NumberFormat.decimalPattern('en');
 
@@ -29,5 +27,5 @@ String formatAmount(int amount, {bool signed = false}) {
 String formatMoney(AppLocalizations l10n, int amount, {bool signed = false}) {
   final number = formatAmount(amount, signed: signed);
 
-  return l10n.moneyAmount('$_ltrIsolate$number$_popIsolate');
+  return l10n.moneyAmount(isolateLtr(number));
 }

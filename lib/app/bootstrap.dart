@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/config/app_env.dart';
 import '../core/error/error_reporter.dart';
 import '../core/error/global_error_handlers.dart';
-import '../core/l10n/app_locales.dart';
+import '../core/l10n/language_preference.dart';
 import '../design/fonts/font_licenses.dart';
 import '../state/app_prefs.dart';
 import '../state/locale_provider.dart';
@@ -30,15 +30,13 @@ Future<void> bootstrap() async {
 
   await _initPush();
 
-  final savedLocale = await AppPrefs.readLocale();
+  final savedLocale = await LanguagePreference.read();
   final savedThemeMode = await AppPrefs.readThemeMode();
 
   runApp(
     ProviderScope(
       overrides: [
-        localeProvider.overrideWith(
-          (ref) => AppLocales.fromCode(savedLocale.languageCode),
-        ),
+        localeProvider.overrideWith((ref) => savedLocale),
         themeModeProvider.overrideWith((ref) => savedThemeMode),
       ],
       child: const RiderApp(),

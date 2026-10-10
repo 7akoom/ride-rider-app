@@ -54,14 +54,17 @@ class _InputsSectionState extends State<InputsSection> {
         OtpBoxes(onCompleted: (_) {}, autofocus: false),
         OtpBoxes(onCompleted: (_) {}, autofocus: false, hasError: true),
         AppChoiceChips<RiderTab>(
-          options: [
-            (RiderTab.home, l10n.navHome),
-            (RiderTab.activity, l10n.navActivity),
-            (RiderTab.account, l10n.navAccount),
-          ],
+          options: [for (final tab in RiderTab.values) (tab, _tabName(l10n, tab))],
           selected: _chip,
           onSelected: (value) => setState(() => _chip = value),
         ),
+        for (final tab in RiderTab.values)
+          AppRadioTile(
+            title: _tabName(l10n, tab),
+            subtitle: tab == RiderTab.home ? l10n.gallerySampleBody : null,
+            selected: tab == _chip,
+            onTap: () => setState(() => _chip = tab),
+          ),
         MoneyText(int.tryParse(_typed) ?? 0, style: context.typo.amount),
         NumericKeypad(
           extraKey: _thousands,
@@ -72,4 +75,10 @@ class _InputsSectionState extends State<InputsSection> {
       ],
     );
   }
+
+  static String _tabName(AppLocalizations l10n, RiderTab tab) => switch (tab) {
+        RiderTab.home => l10n.navHome,
+        RiderTab.activity => l10n.navActivity,
+        RiderTab.account => l10n.navAccount,
+      };
 }

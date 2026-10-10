@@ -16,6 +16,7 @@ class AppScaffold extends StatelessWidget {
     this.bottomAction,
     this.bottomNavigation,
     this.padded = true,
+    this.background,
   });
 
   final Widget body;
@@ -26,12 +27,15 @@ class AppScaffold extends StatelessWidget {
   final Widget? bottomNavigation;
   final bool padded;
 
+  /// Replaces the page background (the start screen uses the dark ink).
+  final Color? background;
+
   @override
   Widget build(BuildContext context) {
     const gutter = EdgeInsetsDirectional.symmetric(horizontal: Space.gutter);
 
     return Scaffold(
-      backgroundColor: context.palette.background,
+      backgroundColor: background ?? context.palette.background,
       appBar: topBar,
       bottomNavigationBar: bottomNavigation,
       body: SafeArea(
