@@ -1,0 +1,45 @@
+{
+  "@@locale": "en",
+
+  "errorNoConnection": "No internet connection. Check your network and try again.",
+  "@errorNoConnection": {"description": "Shown when a request could not reach the server at all."},
+
+  "errorTimeout": "This is taking longer than usual. Please try again.",
+  "@errorTimeout": {"description": "Shown when a request timed out."},
+
+  "errorServer": "Something went wrong on our side. Please try again shortly.",
+  "@errorServer": {"description": "Shown for 5xx answers from the server."},
+
+  "errorSessionExpired": "Your session has ended. Please sign in again.",
+  "@errorSessionExpired": {"description": "Shown when the session could not be renewed."},
+
+  "errorForbidden": "You are not allowed to do this.",
+  "@errorForbidden": {"description": "Shown for permission errors."},
+
+  "errorNotFound": "We couldn't find what you're looking for.",
+  "@errorNotFound": {"description": "Shown when the requested item does not exist."},
+
+  "errorConflict": "This was already done or the details have changed. Refresh and try again.",
+  "@errorConflict": {"description": "Shown for conflicts such as a duplicate action."},
+
+  "errorTooManyRequests": "Too many attempts. Please wait a moment and try again.",
+  "@errorTooManyRequests": {"description": "Shown when the server rate-limits the user."},
+
+  "errorInvalidInput": "Some details are not valid. Please check them and try again.",
+  "@errorInvalidInput": {"description": "Generic message for rejected input."},
+
+  "errorNotAllowedNow": "This can't be done right now.",
+  "@errorNotAllowedNow": {"description": "Generic message for a failed precondition."},
+
+  "errorUnexpected": "Something unexpected happened. Please try again.",
+  "@errorUnexpected": {"description": "Fallback for any error that has no better message."},
+
+  "errorAppMisconfigured": "The app is not set up correctly. Please contact the service provider.",
+  "@errorAppMisconfigured": {"description": "Shown when the build has an unsafe or missing configuration."},
+
+  "errorPartFailed": "This part couldn't be shown.",
+  "@errorPartFailed": {"description": "Shown in place of a widget that failed to build."},
+
+  "actionRetry": "Try again",
+  "@actionRetry": {"description": "Button that repeats a failed action."}
+}
