@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
-        android:label="rider_app"
+        android:label="${appLabel}"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
@@ -12,6 +12,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:taskAffinity=""
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

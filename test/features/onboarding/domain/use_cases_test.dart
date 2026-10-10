@@ -21,6 +21,7 @@ Future<Result<NextStep>> _start({
     preferences: FakePreferences(chosen: chosen),
     signIn: signIn ?? FakeSignIn(session: session),
     accounts: FakeAccounts(found),
+    accountStep: accountStepWith(),
   ).call();
 }
 
@@ -73,6 +74,7 @@ void main() {
         ConfirmCode(
           signIn: FakeSignIn(confirmResult: verified),
           accounts: FakeAccounts(found),
+          accountStep: accountStepWith(),
         ).call(challenge, code);
 
     test('a refused code is returned as the failure', () async {

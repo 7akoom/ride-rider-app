@@ -41,6 +41,10 @@ abstract final class Sizes {
   static const double icon = 24;
   static const double iconSmall = 20;
 
+  /// The round picture at the top of an explaining screen (location permission).
+  static const double hero = 112;
+  static const double heroIcon = 56;
+
   /// The widest content column on tablets and wide phones.
   static const double maxContentWidth = 560;
 }

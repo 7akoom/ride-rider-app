@@ -11,6 +11,7 @@ lib/
   core/                  ← بنية مشتركة بدون أي ميزة
     config/              ← قيم --dart-define والتحقق منها (AppEnv)
     error/               ← Failure، التحويل، الرسائل، Result/guard، المعالج العام
+    location/            ← إذن الموقع (LocationAccess) لكل الميزات
     l10n/                ← اللغات والاتجاه والـ delegates و context.l10n
     network/             ← ApiClient، تجديد التوكن، تحويل أخطاء Dio
     security/            ← التخزين الآمن، منع لقطات الشاشة، إخفاء البيانات بالـ logs
@@ -61,7 +62,7 @@ lib/
 - `allowBackup=false` وقواعد `data_extraction_rules`: بيانات التطبيق ما بتنسخ للسحابة ولا لجهاز جديد.
 - الشاشات اللي فيها PIN أو مبالغ أو أكواد OTP ملفوفة بـ `SecureScreen` (بتمنع لقطات الشاشة والتسجيل).
 - ممنوع `print`. ممنوع تسجيل توكنات أو أرقام هواتف أو إيميلات، حتى بالـ debug (`Redactor`).
-- بناء الإنتاج:
+- بناء الإنتاج (التفاصيل والتوقيع ومعرّف كل مستثمر بـ `docs/BUILD.md`):
   ```
   flutter build apk --release --obfuscate --split-debug-info=build/symbols \
     --dart-define=API_BASE_URL=https://… --dart-define=MAP_TILES_URL=https://… \

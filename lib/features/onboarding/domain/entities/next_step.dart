@@ -9,6 +9,10 @@ enum NextStep {
   /// Signed in, but no rider profile yet: type a name.
   enterName,
 
+  /// Signed in with a profile, the location screen not shown yet and location not
+  /// allowed: explain why the app needs it.
+  askLocation,
+
   /// Signed in with a profile: the app itself.
   home,
 

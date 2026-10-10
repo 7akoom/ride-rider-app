@@ -4,9 +4,10 @@ import '../entities/next_step.dart';
 import '../repositories/onboarding_preferences.dart';
 import '../repositories/rider_account_repository.dart';
 import '../repositories/sign_in_repository.dart';
+import 'account_step.dart';
 
 /// Where the app opens: the language screen on the first run, sign-in without a
-/// session, the name screen without a profile, otherwise the app.
+/// session, then whatever [AccountStep] says (name, location once, the app).
 ///
 /// A stored session is only trusted once the backend has accepted it. When the backend
 /// cannot be reached the failure is returned and the session is kept: losing the
@@ -16,11 +17,13 @@ final class DecideStart {
     required this.preferences,
     required this.signIn,
     required this.accounts,
+    required this.accountStep,
   });
 
   final OnboardingPreferences preferences;
   final SignInRepository signIn;
   final RiderAccountRepository accounts;
+  final AccountStep accountStep;
 
   Future<Result<NextStep>> call() async {
     if (!await preferences.languageChosen()) {
@@ -33,7 +36,7 @@ final class DecideStart {
 
     switch (await accounts.findMine()) {
       case Ok(:final value):
-        return Ok(value == null ? NextStep.enterName : NextStep.home);
+        return Ok(await accountStep.after(value));
       case Err(failure: SessionExpiredFailure()):
         await signIn.forgetSession();
 

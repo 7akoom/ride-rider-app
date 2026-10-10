@@ -4,4 +4,9 @@ abstract interface class OnboardingPreferences {
   Future<bool> languageChosen();
 
   Future<void> markLanguageChosen();
+
+  /// Whether the location screen has been shown once (allowed or "not now").
+  Future<bool> locationAsked();
+
+  Future<void> markLocationAsked();
 }

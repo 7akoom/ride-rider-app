@@ -1,13 +1,21 @@
 import '../../../../core/error/result.dart';
-import '../entities/rider_account.dart';
+import '../entities/next_step.dart';
 import '../repositories/rider_account_repository.dart';
 import '../values/display_name.dart';
+import 'account_step.dart';
 
-/// Makes the new rider's profile with the name they typed.
+/// Makes the new rider's profile with the name they typed, then says where to go
+/// (the location screen once, or the app).
 final class SaveName {
-  const SaveName(this.accounts);
+  const SaveName({required this.accounts, required this.accountStep});
 
   final RiderAccountRepository accounts;
+  final AccountStep accountStep;
 
-  Future<Result<RiderAccount>> call(DisplayName name) => accounts.create(name);
+  Future<Result<NextStep>> call(DisplayName name) async {
+    return switch (await accounts.create(name)) {
+      Ok(:final value) => Ok(await accountStep.after(value)),
+      Err(:final failure) => Err(failure),
+    };
+  }
 }

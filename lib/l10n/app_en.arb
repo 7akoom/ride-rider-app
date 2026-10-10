@@ -333,5 +333,81 @@
   "accountBlocked": "This account is suspended. Please contact support.",
   "@accountBlocked": {
     "description": "The account cannot sign in."
+  },
+  "nameTitle": "What's your name?",
+  "@nameTitle": {
+    "description": "Name screen title."
+  },
+  "nameSubtitle": "This is how your captain will see you.",
+  "@nameSubtitle": {
+    "description": "Under the name screen title."
+  },
+  "fieldFirstName": "First name",
+  "@fieldFirstName": {
+    "description": "First-name field label."
+  },
+  "fieldFamilyName": "Family name (optional)",
+  "@fieldFamilyName": {
+    "description": "Family-name field label."
+  },
+  "namePrivacy": "We don't share your details or your number with anyone.",
+  "@namePrivacy": {
+    "description": "Privacy note on the name screen."
+  },
+  "nameStart": "Get started",
+  "@nameStart": {
+    "description": "Name screen button."
+  },
+  "nameTooShort": "Enter at least 2 letters.",
+  "@nameTooShort": {
+    "description": "The name is too short."
+  },
+  "nameTooLong": "This name is too long.",
+  "@nameTooLong": {
+    "description": "The name is too long."
+  },
+  "locationTitle": "Allow access to your location",
+  "@locationTitle": {
+    "description": "Location screen title."
+  },
+  "locationSubtitle": "We use it to set your pickup point and find the nearest captain.",
+  "@locationSubtitle": {
+    "description": "Under the location screen title."
+  },
+  "locationPickupTitle": "Pickup set for you",
+  "@locationPickupTitle": {
+    "description": "First reason to allow location."
+  },
+  "locationPickupBody": "No need to type an address.",
+  "@locationPickupBody": {
+    "description": "Under the first reason."
+  },
+  "locationEtaTitle": "Accurate arrival times",
+  "@locationEtaTitle": {
+    "description": "Second reason to allow location."
+  },
+  "locationEtaBody": "Worked out from where you really are.",
+  "@locationEtaBody": {
+    "description": "Under the second reason."
+  },
+  "locationSafetyTitle": "A safer trip",
+  "@locationSafetyTitle": {
+    "description": "Third reason to allow location."
+  },
+  "locationSafetyBody": "If you ask for help, the safety team can find you.",
+  "@locationSafetyBody": {
+    "description": "Under the third reason."
+  },
+  "locationPrivacy": "Your location is used only while you use the app.",
+  "@locationPrivacy": {
+    "description": "Privacy note on the location screen."
+  },
+  "locationAllow": "Allow location access",
+  "@locationAllow": {
+    "description": "Location screen main button."
+  },
+  "locationNotNow": "Not now",
+  "@locationNotNow": {
+    "description": "Skips the location permission."
   }
 }

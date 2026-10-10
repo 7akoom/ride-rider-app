@@ -29,7 +29,7 @@ class EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 56, color: p.brandStrong),
+            Icon(icon, size: Sizes.heroIcon, color: p.brandStrong),
             const SizedBox(height: Space.x3),
             Text(
               message,
