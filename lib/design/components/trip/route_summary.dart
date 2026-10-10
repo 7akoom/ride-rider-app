@@ -72,9 +72,20 @@ class _PointRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(point.label, style: t.micro.copyWith(color: p.textTertiary)),
-                  Text(point.title, style: t.bodyStrong),
+                  // A long address keeps to two lines; the summary stays compact.
+                  Text(
+                    point.title,
+                    style: t.bodyStrong,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   if (point.subtitle != null)
-                    Text(point.subtitle!, style: t.caption.copyWith(color: p.textSecondary)),
+                    Text(
+                      point.subtitle!,
+                      style: t.caption.copyWith(color: p.textSecondary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                 ],
               ),
             ),

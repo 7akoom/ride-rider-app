@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/error/result.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/fare_quote.dart';
+import '../../domain/entities/passenger.dart';
 import '../../domain/entities/payment_method.dart';
+import '../../domain/entities/ride.dart';
 import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/order_ride.dart';
 import '../../domain/use_cases/quote_ride.dart';
@@ -96,6 +98,10 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
 
   void choosePayment(PaymentMethod method) => state = state.copyWith(payment: method);
 
+  /// Someone else rides; null puts the rider back.
+  void setPassenger(Passenger? passenger) =>
+      state = state.copyWith(passenger: passenger, orderFailure: null);
+
   /// Tries [code] on every price. The result shows on the prices (CouponResult).
   Future<void> applyCoupon(String code) async {
     state = state.copyWith(couponCode: normalizeCoupon(code), orderFailure: null);
@@ -107,9 +113,9 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
     await _load();
   }
 
-  /// Requests the trip at the chosen price. Returns the trip's id, or null when it did
-  /// not go through (the reason is in [ChooseRideState.orderFailure]).
-  Future<String?> order() async {
+  /// Requests the trip at the chosen price. Returns the ride, or null when it did not
+  /// go through (the reason is in [ChooseRideState.orderFailure]).
+  Future<Ride?> order() async {
     final quote = state.selected;
     if (quote == null || !state.canOrder) {
       return null;
@@ -118,7 +124,7 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
     state = state.copyWith(ordering: true, orderFailure: null);
     final result = await ref
         .read(orderRideProvider)
-        .call(draft: arg, quote: quote, payment: state.payment);
+        .call(draft: arg, quote: quote, payment: state.payment, passenger: state.passenger);
 
     if (_closed) {
       return null;

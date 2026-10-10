@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/tokens/metrics.dart';
+import '../../../../state/locale_provider.dart';
+import '../../booking_providers.dart';
 import '../../domain/entities/spot.dart';
 import '../choose_ride/choose_ride_screen.dart';
 import '../map_picker/map_picker_screen.dart';
@@ -25,6 +27,7 @@ class WhereToScreen extends ConsumerStatefulWidget {
 
 class _WhereToScreenState extends ConsumerState<WhereToScreen> {
   final _query = TextEditingController();
+  bool _locating = false;
 
   WhereToController get _controller =>
       ref.read(whereToControllerProvider(widget.start).notifier);
@@ -49,6 +52,26 @@ class _WhereToScreenState extends ConsumerState<WhereToScreen> {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(builder: (_) => ChooseRideScreen(draft: draft)),
       );
+    }
+  }
+
+  /// The pickup is where the rider is now (asking for location first if needed).
+  Future<void> _useCurrentLocation() async {
+    setState(() => _locating = true);
+    final spot = await ref
+        .read(locateRiderProvider)
+        .call(languageCode: ref.read(localeProvider).languageCode);
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() => _locating = false);
+
+    if (spot == null) {
+      showAppToast(context, context.l10n.whereToNoLocation, tone: Tone.warning);
+    } else {
+      await _choose(spot);
     }
   }
 
@@ -103,6 +126,8 @@ class _WhereToScreenState extends ConsumerState<WhereToScreen> {
               from: state.draft.pickup?.point,
               onChoose: _choose,
               onMap: _pickOnMap,
+              onCurrentLocation: state.field is PickupField ? _useCurrentLocation : null,
+              locating: _locating,
             ),
           ),
         ],

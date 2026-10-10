@@ -14,12 +14,15 @@ import 'domain/repositories/routes_repository.dart';
 import 'domain/repositories/saved_places_repository.dart';
 import 'domain/use_cases/estimate_route.dart';
 import 'domain/use_cases/find_pickup.dart';
+import 'domain/use_cases/follow_ride.dart';
 import 'domain/use_cases/load_shortcuts.dart';
 import 'domain/use_cases/load_suggestions.dart';
 import 'domain/use_cases/load_wallet_balance.dart';
+import 'domain/use_cases/locate_rider.dart';
 import 'domain/use_cases/name_point.dart';
 import 'domain/use_cases/order_ride.dart';
 import 'domain/use_cases/quote_ride.dart';
+import 'domain/use_cases/retry_ride.dart';
 import 'domain/use_cases/search_places.dart';
 import 'domain/use_cases/turn_on_location.dart';
 
@@ -91,4 +94,24 @@ final orderRideProvider = Provider<OrderRide>(
 
 final loadWalletBalanceProvider = Provider<LoadWalletBalance>(
   (ref) => LoadWalletBalance(ref.watch(ridesRepositoryProvider)),
+);
+
+final loadRideProvider = Provider<LoadRide>(
+  (ref) => LoadRide(ref.watch(ridesRepositoryProvider)),
+);
+
+final findActiveRideProvider = Provider<FindActiveRide>(
+  (ref) => FindActiveRide(ref.watch(ridesRepositoryProvider)),
+);
+
+final cancelRideProvider = Provider<CancelRide>(
+  (ref) => CancelRide(ref.watch(ridesRepositoryProvider)),
+);
+
+final retryRideProvider = Provider<RetryRide>(
+  (ref) => RetryRide(quote: ref.watch(quoteRideProvider), order: ref.watch(orderRideProvider)),
+);
+
+final locateRiderProvider = Provider<LocateRider>(
+  (ref) => LocateRider(find: ref.watch(findPickupProvider), turnOn: ref.watch(turnOnLocationProvider)),
 );

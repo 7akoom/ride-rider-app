@@ -3,41 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/geo_point.dart';
-import 'package:rider_app/core/network/api_client.dart';
-import 'package:rider_app/features/booking/data/rides_api.dart';
 import 'package:rider_app/features/booking/data/rides_repository_impl.dart';
 import 'package:rider_app/features/booking/domain/entities/fare_quote.dart';
+import 'package:rider_app/features/booking/domain/entities/passenger.dart';
 import 'package:rider_app/features/booking/domain/entities/payment_method.dart';
+import 'package:rider_app/features/booking/domain/entities/ride.dart';
 import 'package:rider_app/features/booking/domain/entities/spot.dart';
 import 'package:rider_app/features/booking/domain/entities/trip_draft.dart';
 
 import '../fakes.dart';
-
-class _Api implements RidesApi {
-  JsonMap quoted = {};
-  JsonMap walletAnswer = {};
-  JsonMap requested = {
-    'trip': {'id': 'trip-9'},
-  };
-  JsonMap? sent;
-
-  @override
-  Future<JsonMap> quotes(JsonMap body) async {
-    sent = body;
-
-    return quoted;
-  }
-
-  @override
-  Future<JsonMap> wallet(String riderId) async => walletAnswer;
-
-  @override
-  Future<JsonMap> requestTrip(JsonMap body) async {
-    sent = body;
-
-    return requested;
-  }
-}
+import 'fake_rides_api.dart';
 
 const _draft = TripDraft(
   pickup: Spot(point: GeoPoint(36.19, 44.01), kind: SpotKind.currentLocation, title: 'Gulan'),
@@ -55,7 +30,7 @@ void main() {
 
   test('prices are read with discount, surge and coupon; missing fields are zero',
       () async {
-    final api = _Api()
+    final api = FakeRidesApi()
       ..quoted = {
         'quotes': [
           {
@@ -97,7 +72,7 @@ void main() {
   });
 
   test('a price without a total is a malformed answer, never shown', () async {
-    final api = _Api()
+    final api = FakeRidesApi()
       ..quoted = {
         'quotes': [
           {'quoteId': 'q1', 'vehicleClass': 'economy', 'expiresAt': '2026-10-10T10:00:00Z'},
@@ -110,15 +85,18 @@ void main() {
   });
 
   test('the request carries the price, payment, addresses and stops', () async {
-    final api = _Api();
+    final api = FakeRidesApi();
 
     final result = await RidesRepositoryImpl(api).request(
       draft: _draft,
       quote: quoteOf('comfort', 3750),
       payment: PaymentMethod.wallet,
+      passenger: const Passenger(name: 'Rania', phone: '+9647504489210'),
     );
 
-    expect((result as Ok<String>).value, 'trip-9');
+    expect((result as Ok<Ride>).value.id, 'trip-9');
+    expect(api.sent?['passengerName'], 'Rania');
+    expect(api.sent?['passengerPhone'], '+9647504489210');
     expect(api.sent?['quoteId'], 'q-comfort-3750');
     expect(api.sent?['vehicleClass'], 'comfort');
     expect(api.sent?['paymentMethod'], 'wallet');
@@ -134,7 +112,7 @@ void main() {
   });
 
   test('the wallet balance is read in whole units', () async {
-    final api = _Api()
+    final api = FakeRidesApi()
       ..walletAnswer = {
         'wallet': {'balance': '12500.4', 'currencyCode': 'IQD'},
       };

@@ -1,5 +1,6 @@
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/fare_quote.dart';
+import '../../domain/entities/passenger.dart';
 import '../../domain/entities/payment_method.dart';
 
 /// Stands for "leave as it is" in [ChooseRideState.copyWith], so null can clear.
@@ -15,6 +16,7 @@ final class ChooseRideState {
     this.couponCode,
     this.ordering = false,
     this.orderFailure,
+    this.passenger,
   });
 
   /// The last prices; kept on screen while new ones load.
@@ -33,6 +35,9 @@ final class ChooseRideState {
   /// Why the last request did not go through.
   final Failure? orderFailure;
 
+  /// Set when the ride is for someone else.
+  final Passenger? passenger;
+
   FareQuote? get selected => quotes?.ofClass(selectedClass);
 
   /// What became of the coupon on the chosen ride type.
@@ -49,6 +54,7 @@ final class ChooseRideState {
     Object? couponCode = _same,
     bool? ordering,
     Object? orderFailure = _same,
+    Object? passenger = _same,
   }) =>
       ChooseRideState(
         quotes: identical(quotes, _same) ? this.quotes : quotes as FareQuotes?,
@@ -62,5 +68,6 @@ final class ChooseRideState {
         ordering: ordering ?? this.ordering,
         orderFailure:
             identical(orderFailure, _same) ? this.orderFailure : orderFailure as Failure?,
+        passenger: identical(passenger, _same) ? this.passenger : passenger as Passenger?,
       );
 }

@@ -723,5 +723,109 @@
   "couponBetterDiscount": "You already have a bigger discount on this trip.",
   "@couponBetterDiscount": {
     "description": "Another, larger discount applies instead."
+  },
+  "passengerChip": "Someone else",
+  "@passengerChip": {
+    "description": "The button under the ride types that books for someone else."
+  },
+  "passengerTitle": "Ride for someone else",
+  "@passengerTitle": {
+    "description": "Title of the someone-else sheet."
+  },
+  "passengerExplain": "We send the captain the rider's name and number, so they can meet and call during the trip. You pay.",
+  "@passengerExplain": {
+    "description": "Explains what booking for someone else does."
+  },
+  "passengerName": "Rider's name",
+  "@passengerName": {
+    "description": "Label of the name field."
+  },
+  "passengerPhone": "Rider's phone number",
+  "@passengerPhone": {
+    "description": "Label of the phone field."
+  },
+  "passengerNameMissing": "Write the rider's name.",
+  "@passengerNameMissing": {
+    "description": "The name is empty."
+  },
+  "passengerNameTooLong": "The name is too long.",
+  "@passengerNameTooLong": {
+    "description": "The name is over the limit."
+  },
+  "passengerPhoneInvalid": "Enter a valid mobile number.",
+  "@passengerPhoneInvalid": {
+    "description": "The number is not a mobile number."
+  },
+  "passengerSave": "Save",
+  "@passengerSave": {
+    "description": "Saves the passenger."
+  },
+  "passengerForMe": "The ride is for me",
+  "@passengerForMe": {
+    "description": "Puts the rider back as the passenger."
+  },
+  "searchingBarTitle": "Your ride",
+  "@searchingBarTitle": {
+    "description": "Title bar while a captain is looked for."
+  },
+  "searchingTitle": "Looking for a captain nearby…",
+  "@searchingTitle": {
+    "description": "Looking for a captain."
+  },
+  "searchingSubtitle": "Usually under a minute",
+  "@searchingSubtitle": {
+    "description": "How long the search usually takes."
+  },
+  "searchingNotice": "We sent your request to the nearest captains.",
+  "@searchingNotice": {
+    "description": "Shown while looking for a captain."
+  },
+  "searchingCancel": "Cancel request",
+  "@searchingCancel": {
+    "description": "Cancels the request while no captain has it."
+  },
+  "searchingCancelTitle": "Cancel this request?",
+  "@searchingCancelTitle": {
+    "description": "Confirming the cancel."
+  },
+  "searchingCancelBody": "No captain has taken it yet, so there is no fee.",
+  "@searchingCancelBody": {
+    "description": "Why cancelling now is free."
+  },
+  "searchingCancelYes": "Yes, cancel",
+  "@searchingCancelYes": {
+    "description": "Confirms the cancel."
+  },
+  "searchingCancelNo": "Keep looking",
+  "@searchingCancelNo": {
+    "description": "Keeps the request."
+  },
+  "searchingCancelled": "Request cancelled.",
+  "@searchingCancelled": {
+    "description": "After the rider cancelled."
+  },
+  "searchingEnded": "This request is no longer active.",
+  "@searchingEnded": {
+    "description": "The request ended without the rider (staff, another device)."
+  },
+  "noCaptainTitle": "No captain available right now",
+  "@noCaptainTitle": {
+    "description": "The search ran out."
+  },
+  "noCaptainSubtitle": "Try again, or choose another ride type.",
+  "@noCaptainSubtitle": {
+    "description": "What the rider can do."
+  },
+  "noCaptainChange": "Change ride type",
+  "@noCaptainChange": {
+    "description": "Back to choosing the ride."
+  },
+  "whereToNoLocation": "We couldn't find your location. Turn on location, or choose the pickup on the map.",
+  "@whereToNoLocation": {
+    "description": "Current location could not be found for the pickup."
+  },
+  "rideType": "Ride type",
+  "@rideType": {
+    "description": "Label of the ride type in a ride's summary."
   }
 }

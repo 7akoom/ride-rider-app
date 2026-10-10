@@ -5,6 +5,7 @@ import 'package:rider_app/core/error/failure_messages.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/l10n/app_locales.dart';
 import 'package:rider_app/core/l10n/l10n.dart';
+import 'package:rider_app/core/location/location_access.dart';
 import 'package:rider_app/core/location/geo_point.dart';
 import 'package:rider_app/design/map/app_map.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
@@ -51,6 +52,37 @@ void main() {
 
     expect(find.byType(ChooseRideScreen), findsOneWidget);
     expect(find.text(l10n.chooseRideOrder(l10n.vehicleEconomy)), findsOneWidget);
+  });
+
+  testWidgets('the pickup can be the rider\'s own position, asking for location first',
+      (tester) async {
+    usePhoneScreen(tester);
+    final location = FakeLocation(current: LocationAccessStatus.denied);
+    await pumpApp(
+      tester,
+      const WhereToScreen(start: WhereToStart(destination: _here)),
+      inScaffold: false,
+      overrides: bookingFakes(location: location, places: FakePlaces(address: 'Lebanese Village')),
+    );
+
+    // No pickup yet: its field is the one being filled, with "current location" first.
+    await tester.tap(find.text(l10n.spotCurrentLocation));
+    await tester.pumpAndSettle();
+
+    expect(location.prompts, 1);
+    expect(find.byType(ChooseRideScreen), findsOneWidget);
+  });
+
+  testWidgets('the current location row is only for the pickup', (tester) async {
+    usePhoneScreen(tester);
+    await pumpApp(
+      tester,
+      const WhereToScreen(start: WhereToStart(pickup: _here)),
+      inScaffold: false,
+      overrides: bookingFakes(),
+    );
+
+    expect(find.text(l10n.spotCurrentLocation), findsNothing);
   });
 
   testWidgets('nothing found says so in words', (tester) async {

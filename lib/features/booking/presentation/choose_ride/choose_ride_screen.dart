@@ -10,10 +10,10 @@ import '../../booking_providers.dart';
 import '../../domain/entities/route_estimate.dart';
 import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/estimate_route.dart';
-import '../legacy_routes.dart';
-import '../spot_view.dart';
+import '../searching/searching_screen.dart';
 import 'choose_ride_controller.dart';
 import 'choose_ride_panel.dart';
+import 'passenger_sheet.dart';
 import 'payment_sheet.dart';
 
 final _routeProvider = FutureProvider.autoDispose.family<Result<RouteEstimate>, TripDraft>(
@@ -39,7 +39,7 @@ final _mapRouteProvider = Provider.autoDispose.family<MapRoute, TripDraft>((ref,
 });
 
 /// 11: the route on the map, and the ride types with their fixed prices. Requesting
-/// opens the search for a captain.
+/// opens the search for a captain (15).
 class ChooseRideScreen extends ConsumerWidget {
   const ChooseRideScreen({super.key, required this.draft});
 
@@ -47,22 +47,11 @@ class ChooseRideScreen extends ConsumerWidget {
   final TripDraft draft;
 
   Future<void> _order(BuildContext context, WidgetRef ref) async {
-    final state = ref.read(chooseRideControllerProvider(draft));
-    final quote = state.selected;
-    final tripId = await ref.read(chooseRideControllerProvider(draft).notifier).order();
+    final ride = await ref.read(chooseRideControllerProvider(draft).notifier).order();
 
-    if (tripId == null || quote == null || !context.mounted) {
-      return;
+    if (ride != null && context.mounted) {
+      await openSearching(context, ride);
     }
-
-    await openLegacySearching(
-      context,
-      tripId: tripId,
-      draft: draft,
-      vehicleClass: quote.vehicleClass,
-      payment: state.payment,
-      destinationLabel: SpotView.title(context.l10n, draft.destination!),
-    );
   }
 
   @override
@@ -88,6 +77,7 @@ class ChooseRideScreen extends ConsumerWidget {
             draft: draft,
             noRoad: noRoad,
             onPayment: () => showPaymentSheet(context, draft),
+            onPassenger: () => showPassengerSheet(context, draft),
             onOrder: () => _order(context, ref),
           ),
         ],

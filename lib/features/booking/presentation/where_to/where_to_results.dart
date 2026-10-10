@@ -22,6 +22,8 @@ class WhereToResults extends StatelessWidget {
     required this.from,
     required this.onChoose,
     required this.onMap,
+    this.onCurrentLocation,
+    this.locating = false,
   });
 
   final SearchView view;
@@ -31,6 +33,11 @@ class WhereToResults extends StatelessWidget {
   final ValueChanged<Spot> onChoose;
   final VoidCallback onMap;
 
+  /// Set while the pickup is being chosen: "Current location" puts the rider's own
+  /// position there.
+  final VoidCallback? onCurrentLocation;
+  final bool locating;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -39,6 +46,14 @@ class WhereToResults extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(bottom: Space.x8),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
+        if (onCurrentLocation != null)
+          AppListRow(
+            icon: Icons.my_location,
+            title: l10n.spotCurrentLocation,
+            showChevron: !locating,
+            trailing: locating ? LoadingDots(color: context.palette.brandStrong) : null,
+            onTap: locating ? null : onCurrentLocation,
+          ),
         AppListRow(
           icon: Icons.map_outlined,
           title: l10n.whereToOnMap,

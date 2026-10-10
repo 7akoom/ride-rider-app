@@ -52,14 +52,14 @@ void main() {
     expect(_state(container).coupon, CouponResult.none);
   });
 
-  test('ordering sends the chosen price and payment, and returns the trip', () async {
+  test('ordering sends the chosen price and payment, and returns the ride', () async {
     final rides = FakeRides();
     final (container, controller) = await _open(rides);
 
     controller.choosePayment(PaymentMethod.wallet);
-    final tripId = await controller.order();
+    final ride = await controller.order();
 
-    expect(tripId, 'trip-1');
+    expect(ride?.id, 'trip-1');
     expect(rides.orders.single.$1.vehicleClass, 'economy');
     expect(rides.orders.single.$2, PaymentMethod.wallet);
     expect(_state(container).ordering, isFalse);
@@ -86,3 +86,4 @@ void main() {
     expect(await controller.order(), isNull);
   });
 }
+

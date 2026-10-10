@@ -1,7 +1,9 @@
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/result.dart';
 import '../entities/fare_quote.dart';
+import '../entities/passenger.dart';
 import '../entities/payment_method.dart';
+import '../entities/ride.dart';
 import '../entities/trip_draft.dart';
 import '../repositories/rides_repository.dart';
 
@@ -22,16 +24,17 @@ final class OrderRide {
   final RidesRepository rides;
   final DateTime Function() _clock;
 
-  Future<Result<String>> call({
+  Future<Result<Ride>> call({
     required TripDraft draft,
     required FareQuote quote,
     required PaymentMethod payment,
+    Passenger? passenger,
   }) async {
     if (quote.isExpiredAt(_clock())) {
       return const Err(NotFoundFailure());
     }
 
-    return rides.request(draft: draft, quote: quote, payment: payment);
+    return rides.request(draft: draft, quote: quote, payment: payment, passenger: passenger);
   }
 }
 

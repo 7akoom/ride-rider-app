@@ -7,6 +7,7 @@ import 'package:rider_app/core/l10n/l10n.dart';
 import 'package:rider_app/design/map/app_map.dart';
 import 'package:rider_app/features/booking/domain/entities/trip_draft.dart';
 import 'package:rider_app/features/booking/presentation/choose_ride/choose_ride_screen.dart';
+import 'package:rider_app/features/booking/presentation/searching/searching_screen.dart';
 
 import '../../../helpers/pump_app.dart';
 import '../fakes.dart';
@@ -79,6 +80,32 @@ void main() {
 
     expect(find.text(l10n.paymentWallet), findsOneWidget);
     expect(find.text(l10n.chooseRideCouponApplied), findsNWidgets(2));
+  });
+
+  testWidgets('for someone else: their name and number go with the request',
+      (tester) async {
+    final rides = FakeRides();
+    await _open(tester, rides: rides);
+
+    await tester.tap(find.text(l10n.passengerChip));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.passengerSave));
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.passengerNameMissing), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField).first, 'Rania');
+    await tester.enterText(find.byType(TextField).last, '0750 448 9210');
+    await tester.tap(find.text(l10n.passengerSave));
+    await tester.pumpAndSettle();
+    expect(find.text('Rania'), findsOneWidget);
+
+    await tester.tap(find.text(l10n.chooseRideOrder(l10n.vehicleEconomy)));
+    // The search screen's pulse never settles: time is moved on by hand.
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(rides.passengers.single?.phone, '+9647504489210');
+    expect(find.byType(SearchingScreen), findsOneWidget);
   });
 
   testWidgets('a refused request says what the rider can do', (tester) async {

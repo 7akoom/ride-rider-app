@@ -17,6 +17,7 @@ class ChooseRidePanel extends ConsumerWidget {
     required this.draft,
     required this.noRoad,
     required this.onPayment,
+    required this.onPassenger,
     required this.onOrder,
   });
 
@@ -25,6 +26,7 @@ class ChooseRidePanel extends ConsumerWidget {
   /// No road joins the points: the rider has to move one, so nothing can be requested.
   final bool noRoad;
   final VoidCallback onPayment;
+  final VoidCallback onPassenger;
   final VoidCallback onOrder;
 
   @override
@@ -56,13 +58,22 @@ class ChooseRidePanel extends ConsumerWidget {
                 onPressed: onPayment,
               ),
             ),
-            const SizedBox(width: Space.x3),
+            const SizedBox(width: Space.x2),
             Expanded(
               child: PillButton(
                 icon: Icons.local_offer_outlined,
                 label: l10n.couponChip,
                 marked: state.coupon == CouponResult.applied,
                 onPressed: onPayment,
+              ),
+            ),
+            const SizedBox(width: Space.x2),
+            Expanded(
+              child: PillButton(
+                icon: Icons.person_add_alt_1_outlined,
+                label: state.passenger?.name ?? l10n.passengerChip,
+                marked: state.passenger != null,
+                onPressed: onPassenger,
               ),
             ),
           ],

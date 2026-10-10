@@ -4,11 +4,14 @@ import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
 import '../../../core/security/session_storage.dart';
 import '../domain/entities/fare_quote.dart';
+import '../domain/entities/passenger.dart';
 import '../domain/entities/payment_method.dart';
+import '../domain/entities/ride.dart';
 import '../domain/entities/spot.dart';
 import '../domain/entities/trip_draft.dart';
 import '../domain/repositories/rides_repository.dart';
 import 'fare_quote_json.dart';
+import 'ride_json.dart';
 import 'rides_api.dart';
 
 final class RidesRepositoryImpl implements RidesRepository {
@@ -18,6 +21,9 @@ final class RidesRepositoryImpl implements RidesRepository {
 
   /// The trip-service's limit for an address.
   static const int maxAddressLength = 300;
+
+  /// Recorded on the trip; staff read it, riders never see it.
+  static const String cancelReason = 'rider cancelled while waiting for a captain';
 
   @override
   Future<Result<FareQuotes>> quote(TripDraft draft, {String? couponCode}) => guard(() async {
@@ -40,10 +46,11 @@ final class RidesRepositoryImpl implements RidesRepository {
       });
 
   @override
-  Future<Result<String>> request({
+  Future<Result<Ride>> request({
     required TripDraft draft,
     required FareQuote quote,
     required PaymentMethod payment,
+    Passenger? passenger,
   }) =>
       guard(() async {
         final json = await _api.requestTrip({
@@ -55,6 +62,10 @@ final class RidesRepositoryImpl implements RidesRepository {
           'vehicleClass': quote.vehicleClass,
           'paymentMethod': payment.name,
           'quoteId': quote.id,
+          if (passenger != null) ...{
+            'passengerName': passenger.name,
+            'passengerPhone': passenger.phone,
+          },
           if (draft.stops.isNotEmpty)
             'stops': [
               for (final stop in draft.stops)
@@ -62,8 +73,28 @@ final class RidesRepositoryImpl implements RidesRepository {
             ],
         });
 
-        return requiredText(objectAt(json, 'trip') ?? const {}, 'id');
+        return RideJson.fromAnswer(json);
       });
+
+  @override
+  Future<Result<Ride>> ride(String id) =>
+      guard(() async => RideJson.fromAnswer(await _api.trip(id)));
+
+  @override
+  Future<Result<Ride?>> activeRide() async {
+    final result = await guard(() async => RideJson.fromAnswer(await _api.activeTrip(await _riderId())));
+
+    // No trip under way is answered 404.
+    return switch (result) {
+      Ok(:final value) => Ok(value),
+      Err(failure: NotFoundFailure()) => const Ok(null),
+      Err(:final failure) => Err(failure),
+    };
+  }
+
+  @override
+  Future<Result<Ride>> cancel(String id) =>
+      guard(() async => RideJson.fromAnswer(await _api.cancelTrip(id, cancelReason)));
 
   /// The place as the captain reads it: its name and address, within the limit.
   static String addressOf(Spot spot) {
