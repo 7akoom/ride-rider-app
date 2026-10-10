@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans',sans-serif;}body{overscroll-behavior:none;background-color:#faf8ff;color:#191b24;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e1e1ee", "on-tertiary-fixed": "#271900", "outline": "#7e7669", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-inset": "#F2EFEB", "primary": "#715b2c", "on-error": "#ffffff", "surface-container-highest": "#e1e1ee", "surface-container": "#ededfa", "tertiary-container": "#fcd389", "on-primary-fixed": "#261a00", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "on-tertiary": "#ffffff", "primary-fixed": "#fddfa3", "tertiary": "#78591c", "status-error-bg": "#FDF2F2", "status-success-bg": "#E8F3EC", "tertiary-fixed": "#ffdea7", "on-tertiary-container": "#77591c", "surface-white": "#FFFFFF", "inverse-on-surface": "#f0f0fd", "status-warning": "#B35C00", "on-primary-container": "#715b2c", "secondary-container": "#dedfec", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-background": "#191b24", "status-success": "#1B5E3B", "surface-container-low": "#f3f2ff", "on-primary": "#ffffff", "error": "#ba1a1a", "on-secondary-container": "#60626d", "tertiary-fixed-dim": "#e9c179", "surface-container-high": "#e7e7f4", "on-surface": "#191b24", "status-error": "#9E1C1C", "border-hairline": "#E5E2DC", "on-surface-variant": "#4d463a", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed-dim": "#e0c389", "outline-variant": "#cfc5b6", "ink-secondary": "#5C606E", "canvas-base": "#F9F8F5", "surface-bright": "#faf8ff", "secondary-fixed-dim": "#c5c6d2", "on-primary-fixed-variant": "#584416", "inverse-primary": "#e0c389", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "surface-dim": "#d9d9e6", "secondary-fixed": "#e1e2ee", "background": "#faf8ff", "surface-tint": "#715b2c", "secondary": "#5c5e69", "status-warning-bg": "#FFF4E5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1.25rem", "gutter": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, fontSize: { "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "18px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "plate-display": ["14px", { lineHeight: "18px", letterSpacing: "0.08em", fontWeight: "700" }], "headline-lg": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }], "numeral-price": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["16px", { lineHeight: "20px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">التفضيلات   رايد</h1></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full pb-safe">
+<div class="px-margin pt-space-md flex flex-col gap-space-lg">
+<!-- Overview Banner / Live Status Card -->
+<div class="relative overflow-hidden bg-primary-container text-on-primary-container rounded-xl p-gutter shadow-sm">
+<div class="relative z-10 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-tertiary" style="font-variation-settings: 'FILL' 1;">tune</span>
+<span class="text-label-md font-label-md text-tertiary">إعداداتك الحالية نشطة</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-white/60 text-label-sm font-label-sm text-tertiary">محدّثة الآن</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="text-headline-sm font-headline-sm text-on-primary-fixed" id="summary-lang">العربية</span>
+<span class="text-on-primary-container opacity-60">·</span>
+<span class="text-headline-sm font-headline-sm text-on-primary-fixed" id="summary-theme">الوضع التلقائي</span>
+<span class="text-on-primary-container opacity-60">·</span>
+<span class="text-headline-sm font-headline-sm text-on-primary-fixed" id="summary-city">أربيل</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary mt-1 opacity-90">تساعدنا هذه الإعدادات على تقديم تجربة تنقل دقيقة ومناسبة لمنطقتك ولغتك المفضلة.</p>
+</div>
+<div class="absolute -bottom-6 -left-6 w-24 h-24 bg-surface-white/20 rounded-full blur-xl pointer-events-none"></div>
+</div>
+<!-- Section 1: Language Picker -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">translate</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">اختيار اللغة</h2>
+</div>
+<span class="text-body-sm font-body-sm text-secondary">اللغة والخط المعتمد</span>
+</div>
+<div class="bg-surface-white rounded-xl shadow-sm p-space-sm flex flex-col gap-space-xs">
+<!-- Radio Option 1: Arabic -->
+<label class="lang-option flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-primary-fixed/20 text-on-surface hover:bg-primary-fixed/30" data-lang="العربية">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm">
+              ع
+            </div>
+<div class="flex flex-col">
+<span class="text-label-lg font-label-lg text-on-surface">العربية</span>
+<span class="text-body-sm font-body-sm text-secondary">اللغة الافتراضية للتطبيق</span>
+</div>
+</div>
+<input checked="" class="hidden" name="app_language" type="radio" value="العربية"/>
+<div class="radio-indicator w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- Radio Option 2: Kurdish Sorani -->
+<label class="lang-option flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-lang="کوردی">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-headline-sm">
+              ک
+            </div>
+<div class="flex flex-col">
+<span class="text-label-lg font-label-lg text-on-surface">کوردی (سۆرانی)</span>
+<span class="text-body-sm font-body-sm text-secondary">زمانی کوردی بۆ ناوچەی کوردستان</span>
+</div>
+</div>
+<input class="hidden" name="app_language" type="radio" value="کوردی"/>
+<div class="radio-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- Radio Option 3: English -->
+<label class="lang-option flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-lang="English">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-headline-sm font-mono">
+              En
+            </div>
+<div class="flex flex-col">
+<span class="text-label-lg font-label-lg text-on-surface font-sans" dir="ltr">English</span>
+<span class="text-body-sm font-body-sm text-secondary">International Rider Interface</span>
+</div>
+</div>
+<input class="hidden" name="app_language" type="radio" value="English"/>
+<div class="radio-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Section 2: Appearance & Theme -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">palette</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">المظهر وعرض الشاشة</h2>
+</div>
+<span class="text-body-sm font-body-sm text-secondary">راحة العين والتنقل</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<!-- Appearance 1: Light -->
+<label class="theme-option flex flex-col items-center justify-center p-space-md rounded-xl cursor-pointer bg-surface-white text-on-surface hover:bg-surface-container-low transition-all shadow-sm text-center relative" data-theme="فاتح">
+<input class="hidden" name="app_theme" type="radio" value="فاتح"/>
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center mb-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[22px]">light_mode</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface">فاتح</span>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">نهاري ناصع</span>
+<div class="radio-badge absolute top-2 left-2 w-4 h-4 rounded-full bg-transparent flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+</label>
+<!-- Appearance 2: Dark -->
+<label class="theme-option flex flex-col items-center justify-center p-space-md rounded-xl cursor-pointer bg-surface-white text-on-surface hover:bg-surface-container-low transition-all shadow-sm text-center relative" data-theme="داكن">
+<input class="hidden" name="app_theme" type="radio" value="داكن"/>
+<div class="w-10 h-10 rounded-full bg-inverse-surface flex items-center justify-center mb-space-xs text-inverse-on-surface">
+<span class="material-symbols-outlined text-[22px]">dark_mode</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface">داكن</span>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">مريح للرحلات ليلاً</span>
+<div class="radio-badge absolute top-2 left-2 w-4 h-4 rounded-full bg-transparent flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+</label>
+<!-- Appearance 3: System Auto (Selected) -->
+<label class="theme-option flex flex-col items-center justify-center p-space-md rounded-xl cursor-pointer bg-primary-fixed/20 text-on-surface hover:bg-primary-fixed/30 transition-all shadow-sm text-center relative" data-theme="الوضع التلقائي">
+<input checked="" class="hidden" name="app_theme" type="radio" value="الوضع التلقائي"/>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center mb-space-xs text-on-primary-container">
+<span class="material-symbols-outlined text-[22px]">brightness_auto</span>
+</div>
+<span class="text-label-md font-label-md text-on-surface">تلقائي</span>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">حسب النظام</span>
+<div class="radio-badge absolute top-2 left-2 w-4 h-4 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Section 3: City Picker with Search -->
+<section class="flex flex-col gap-space-sm mb-space-md">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">location_city</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">المدينة الحالية</h2>
+</div>
+<span class="text-body-sm font-body-sm text-secondary">تحديد تسعيرة الكيلومتر</span>
+</div>
+<!-- City Search Bar -->
+<div class="relative flex items-center bg-surface-white rounded-xl shadow-sm px-space-md h-[52px]">
+<span class="material-symbols-outlined text-[22px] text-secondary ml-space-sm">search</span>
+<input class="w-full bg-transparent text-body-lg font-body-lg text-on-surface placeholder:text-ink-secondary focus:outline-none" id="city-search" placeholder="ابحث عن مدينتك في العراق..." type="text"/>
+<button class="hidden text-secondary hover:text-on-surface p-1" id="clear-search">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Cities List -->
+<div class="bg-surface-white rounded-xl shadow-sm p-space-sm flex flex-col gap-space-xs" id="cities-list">
+<!-- City 1: Erbil (Selected) -->
+<label class="city-item flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-primary-fixed/20 text-on-surface hover:bg-primary-fixed/30" data-city-name="أربيل (هەولێر)">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">near_me</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-on-surface">أربيل (هەولێر)</span>
+<span class="city-active-badge inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm">المدينة النشطة</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">إقليم كوردستان · تغطية شاملة لكافة الأحياء</span>
+</div>
+</div>
+<input checked="" class="hidden" name="app_city" type="radio" value="أربيل"/>
+<div class="city-indicator w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- City 2: Sulaymaniyah -->
+<label class="city-item flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-city-name="السليمانية (سلێمانی)">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-on-surface">السليمانية (سلێمانی)</span>
+<span class="city-active-badge hidden inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm">المدينة النشطة</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">إقليم كوردستان · متوفر تاكسي وتوصيل سريع</span>
+</div>
+</div>
+<input class="hidden" name="app_city" type="radio" value="السليمانية"/>
+<div class="city-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- City 3: Duhok -->
+<label class="city-item flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-city-name="دهوك (دهۆك)">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-on-surface">دهوك (دهۆك)</span>
+<span class="city-active-badge hidden inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm">المدينة النشطة</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">إقليم كوردستان · تكسي اقتصادي وخاص</span>
+</div>
+</div>
+<input class="hidden" name="app_city" type="radio" value="دهوك"/>
+<div class="city-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- City 4: Baghdad -->
+<label class="city-item flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-city-name="بغداد">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-on-surface">بغداد</span>
+<span class="city-active-badge hidden inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm">المدينة النشطة</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">العاصمة · الكرخ والرصافة والمطار</span>
+</div>
+</div>
+<input class="hidden" name="app_city" type="radio" value="بغداد"/>
+<div class="city-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<!-- City 5: Basra -->
+<label class="city-item flex items-center justify-between p-space-md rounded-lg cursor-pointer transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container" data-city-name="البصرة">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="text-label-lg font-label-lg text-on-surface">البصرة</span>
+<span class="city-active-badge hidden inline-flex items-center px-2 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm">المدينة النشطة</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary mt-0.5">المنطقة الجنوبية · خدمة المطار ومراكز العمل</span>
+</div>
+</div>
+<input class="hidden" name="app_city" type="radio" value="البصرة"/>
+<div class="city-indicator w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+</div>
+<!-- Empty state when no cities match search -->
+<div class="hidden bg-surface-white rounded-xl shadow-sm p-gutter flex flex-col items-center justify-center text-center gap-space-xs py-8" id="no-cities-msg">
+<span class="material-symbols-outlined text-[36px] text-secondary">location_off</span>
+<span class="text-headline-sm font-headline-sm text-on-surface">لم يتم العثور على المدينة</span>
+<span class="text-body-sm font-body-sm text-secondary">تأكد من كتابة اسم المدينة بالشكل الصحيح (مثل: بغداد، دهوك)</span>
+</div>
+</section>
+<!-- Save Action Button Area -->
+<div class="sticky bottom-4 z-20 pt-space-xs pb-space-sm">
+<button class="w-full h-[52px] bg-primary-container text-on-background font-label-lg text-label-lg rounded-xl flex items-center justify-center gap-space-xs shadow-md active:scale-[0.98] transition-transform focus:outline-none" id="save-preferences-btn">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+<span>حفظ التفضيلات</span>
+</button>
+</div>
+<!-- Toast Notification for delightful confirmation -->
+<div class="fixed bottom-24 inset-x-margin z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl flex items-center justify-between shadow-xl" id="saved-toast">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-status-success text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md">تم تطبيق التفضيلات بنجاح</span>
+<span class="text-body-sm font-body-sm text-secondary-container">أصبح تطبيق "رايد" مهيئاً لاختياراتك</span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-primary-fixed">تم الحفظ</span>
+</div>
+</div>
+</div>
+<script>
+  // Interactive handlers for Preferences screen
+  document.addEventListener('DOMContentLoaded', () => {
+    const summaryLang = document.getElementById('summary-lang');
+    const summaryTheme = document.getElementById('summary-theme');
+    const summaryCity = document.getElementById('summary-city');
+
+    // Language selection
+    const langOptions = document.querySelectorAll('.lang-option');
+    langOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        langOptions.forEach(item => {
+          item.classList.remove('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+          item.classList.add('bg-surface-container-low', 'hover:bg-surface-container');
+          const radio = item.querySelector('.radio-indicator');
+          radio.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          radio.classList.add('bg-surface-container-highest', 'text-transparent');
+          item.querySelector('input').checked = false;
+        });
+
+        opt.classList.add('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+        opt.classList.remove('bg-surface-container-low', 'hover:bg-surface-container');
+        const radio = opt.querySelector('.radio-indicator');
+        radio.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        radio.classList.remove('bg-surface-container-highest', 'text-transparent');
+        const input = opt.querySelector('input');
+        input.checked = true;
+        if (summaryLang) summaryLang.textContent = input.value;
+      });
+    });
+
+    // Theme selection
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        themeOptions.forEach(item => {
+          item.classList.remove('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+          item.classList.add('bg-surface-white');
+          const badge = item.querySelector('.radio-badge');
+          badge.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          badge.classList.add('bg-transparent', 'text-transparent');
+          item.querySelector('input').checked = false;
+        });
+
+        opt.classList.add('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+        opt.classList.remove('bg-surface-white');
+        const badge = opt.querySelector('.radio-badge');
+        badge.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        badge.classList.remove('bg-transparent', 'text-transparent');
+        const input = opt.querySelector('input');
+        input.checked = true;
+        if (summaryTheme) summaryTheme.textContent = input.value;
+      });
+    });
+
+    // City selection
+    const cityItems = document.querySelectorAll('.city-item');
+    cityItems.forEach(item => {
+      item.addEventListener('click', () => {
+        cityItems.forEach(c => {
+          c.classList.remove('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+          c.classList.add('bg-surface-container-low', 'hover:bg-surface-container');
+          
+          const iconContainer = c.querySelector('.w-10');
+          if (iconContainer) {
+            iconContainer.classList.remove('bg-primary-container', 'text-on-primary-container');
+            iconContainer.classList.add('bg-surface-container-highest', 'text-on-surface-variant');
+          }
+
+          const badge = c.querySelector('.city-active-badge');
+          if (badge) badge.classList.add('hidden');
+
+          const ind = c.querySelector('.city-indicator');
+          if (ind) {
+            ind.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            ind.classList.add('bg-surface-container-highest', 'text-transparent');
+          }
+          c.querySelector('input').checked = false;
+        });
+
+        item.classList.add('bg-primary-fixed/20', 'hover:bg-primary-fixed/30');
+        item.classList.remove('bg-surface-container-low', 'hover:bg-surface-container');
+
+        const iconContainer = item.querySelector('.w-10');
+        if (iconContainer) {
+          iconContainer.classList.add('bg-primary-container', 'text-on-primary-container');
+          iconContainer.classList.remove('bg-surface-container-highest', 'text-on-surface-variant');
+        }
+
+        const badge = item.querySelector('.city-active-badge');
+        if (badge) badge.classList.remove('hidden');
+
+        const ind = item.querySelector('.city-indicator');
+        if (ind) {
+          ind.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+          ind.classList.remove('bg-surface-container-highest', 'text-transparent');
+        }
+
+        const input = item.querySelector('input');
+        input.checked = true;
+        if (summaryCity) summaryCity.textContent = input.value;
+      });
+    });
+
+    // City search filter
+    const searchInput = document.getElementById('city-search');
+    const clearSearch = document.getElementById('clear-search');
+    const noCitiesMsg = document.getElementById('no-cities-msg');
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (q.length > 0) {
+        clearSearch.classList.remove('hidden');
+      } else {
+        clearSearch.classList.add('hidden');
+      }
+
+      let matches = 0;
+      cityItems.forEach(item => {
+        const name = (item.getAttribute('data-city-name') || '').toLowerCase();
+        if (name.includes(q)) {
+          item.classList.remove('hidden');
+          matches++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (matches === 0) {
+        noCitiesMsg.classList.remove('hidden');
+      } else {
+        noCitiesMsg.classList.add('hidden');
+      }
+    });
+
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearch.classList.add('hidden');
+      cityItems.forEach(item => item.classList.remove('hidden'));
+      noCitiesMsg.classList.add('hidden');
+      searchInput.focus();
+    });
+
+    // Save preferences toast action
+    const saveBtn = document.getElementById('save-preferences-btn');
+    const toast = document.getElementById('saved-toast');
+
+    saveBtn.addEventListener('click', () => {
+      // Haptic-like visual response
+      toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+      }, 2600);
+    });
+  });
+</script></main></body></html>

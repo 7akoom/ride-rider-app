@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "on-primary-container": "#715b2c", "on-tertiary-fixed": "#271900", "on-tertiary": "#ffffff", "inverse-on-surface": "#f0f0fd", "on-background": "#191b24", "secondary-fixed": "#e1e2ee", "on-surface": "#191b24", "on-secondary": "#ffffff", "surface-container": "#ededfa", "secondary-container": "#dedfec", "surface-container-low": "#f3f2ff", "inverse-primary": "#e0c389", "primary-container": "#f3d59a", "status-success": "#1B5E3B", "on-primary-fixed": "#261a00", "outline-variant": "#cfc5b6", "on-primary": "#ffffff", "outline": "#7e7669", "border-hairline": "#E5E2DC", "surface": "#faf8ff", "primary": "#715b2c", "on-tertiary-fixed-variant": "#5d4203", "background": "#faf8ff", "ink-secondary": "#5C606E", "status-success-bg": "#E8F3EC", "error": "#ba1a1a", "tertiary-container": "#fcd389", "surface-bright": "#faf8ff", "error-container": "#ffdad6", "surface-inset": "#F2EFEB", "surface-container-highest": "#e1e1ee", "secondary-fixed-dim": "#c5c6d2", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "status-error": "#9E1C1C", "canvas-base": "#F9F8F5", "secondary": "#5c5e69", "surface-container-lowest": "#ffffff", "status-error-bg": "#FDF2F2", "on-error": "#ffffff", "surface-dim": "#d9d9e6", "on-secondary-container": "#60626d", "inverse-surface": "#2e303a", "surface-white": "#FFFFFF", "primary-fixed-dim": "#e0c389", "on-surface-variant": "#4d463a", "on-primary-fixed-variant": "#584416", "primary-fixed": "#fddfa3", "tertiary-fixed-dim": "#e9c179", "surface-tint": "#715b2c", "status-warning": "#B35C00", "tertiary-fixed": "#ffdea7", "surface-container-high": "#e7e7f4", "on-tertiary-container": "#77591c", "tertiary": "#78591c", "status-warning-bg": "#FFF4E5", "surface-variant": "#e1e1ee" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "0.75rem", "gutter": "1rem", "space-xs": "0.25rem", "margin": "1.25rem", "space-xl": "1.5rem", "space-lg": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-xl": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"] }, "fontSize": { "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "numeral-price": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "plate-display": ["14px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-sm": ["17px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 px-margin flex items-center justify-between"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-on-surface rounded-full hover:bg-surface-container active:bg-surface-container transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface select-none">Active Ride Tracking</h1><div aria-hidden="true" class="w-11 h-11 flex items-center justify-center"></div></div></header><main class="flex flex-col relative w-full pt-14 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Interactive In-Trip Map Viewport -->
+<div class="relative w-full h-[360px] overflow-hidden bg-surface-container">
+<!-- Base Map Graphic Container -->
+<div class="w-full h-full bg-cover bg-center" data-location="Erbil, Iraq" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqg2m1nHNTGJxvFdKSAnpnUrIPuF9Fzs0cDSbVa0hCkiPq08NBOHh3u2nLbU4wmdGFveEH_Hv9jnUsJMsBrLKjw3JrRr0SnoWa8_JYgZYix5FWfbm8LY7HR_A2BxMGXD1hTwHV1cr0IeBjwBSejz9YIbxIdgi2SMyItepBkGwwNUGDNJhHyUJJ0jyJumZnP52WR5ztaC8JIjH-jTuFD044xT3g3_sA4ODA0NQo0sZDNu_-UlaGXdPW')">
+<!-- Simulated Realistic Road Canvas Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" viewbox="0 0 390 360" xmlns="http://www.w3.org/2000/svg">
+<!-- Completed Trail Path -->
+<path d="M 60 70 C 80 120, 110 160, 160 190" opacity="0.6" stroke="#715b2c" stroke-dasharray="4 6" stroke-linecap="round" stroke-width="6"></path>
+<!-- Active Projected Route Track -->
+<path d="M 160 190 C 205 218, 250 230, 275 275 C 290 300, 310 320, 325 345" id="routePath" stroke="#715b2c" stroke-linecap="round" stroke-width="6"></path>
+<!-- Secondary Flow Highlight -->
+<path d="M 160 190 C 205 218, 250 230, 275 275 C 290 300, 310 320, 325 345" stroke="#f3d59a" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<!-- Map Contextual Floating Bar (Safety Shield & Actions) -->
+<div class="absolute top-4 inset-x-0 px-margin flex items-center justify-between pointer-events-auto z-10">
+<!-- Left: Share Quick Action -->
+<button aria-label="مشاركة سريعة" class="w-11 h-11 rounded-full bg-surface-white/95 backdrop-blur-md shadow-md flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-all" id="quickShareTrigger">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<!-- Center: Safety Shield Pill Indicator -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-white/95 backdrop-blur-md rounded-full shadow-md">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold select-none">الأمان مشغّل</span>
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+</div>
+<!-- Right: Map Centering Shortcut -->
+<button aria-label="إعادة التمركز" class="w-11 h-11 rounded-full bg-surface-white/95 backdrop-blur-md shadow-md flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-all" id="recenterBtn">
+<span class="material-symbols-outlined text-[20px]">my_location</span>
+</button>
+</div>
+<!-- Active Vehicle Marker (GPS Tracked) -->
+<div class="absolute top-[182px] left-[152px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 flex flex-col items-center">
+<div class="relative w-12 h-12 flex items-center justify-center">
+<!-- Pulse Echo Ring -->
+<div class="absolute inset-0 rounded-full bg-primary/20 animate-ping"></div>
+<!-- Vehicle Pill Icon -->
+<div class="relative w-9 h-9 bg-on-surface rounded-full shadow-lg flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]" style="transform: rotate(42deg);">local_taxi</span>
+</div>
+</div>
+<div class="px-2 py-0.5 mt-[-4px] bg-on-surface/90 text-surface rounded-full shadow-sm">
+<span class="font-label-sm text-label-sm text-surface select-none">السيارة</span>
+</div>
+</div>
+<!-- Destination Drop-off Pin Marker: Gold Square Marker with Ink Flag -->
+<div class="absolute top-[330px] left-[320px] -translate-x-1/2 -translate-y-full pointer-events-none z-10 flex flex-col items-center">
+<div class="flex items-center gap-1 bg-on-surface text-primary-container px-2 py-1 rounded-lg shadow-md mb-1">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span class="font-label-sm text-label-sm text-primary-container whitespace-nowrap">بوابة 2</span>
+</div>
+<!-- Gold Square Anchor Base -->
+<div class="w-4 h-4 bg-primary-container shadow-md rotate-45 flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-on-surface rounded-full"></div>
+</div>
+</div>
+<!-- Floating Live Speed Pill -->
+<div class="absolute bottom-4 right-4 z-10 bg-surface-white/90 backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm text-on-surface">42 كم/ساعة</span>
+</div>
+</div>
+<!-- Bottom Drawer / Sheet Structure -->
+<div class="flex flex-col bg-surface-white rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.08)] px-margin pt-3 pb-8 -mt-6 z-20">
+<!-- Drag Handle -->
+<div class="w-10 h-1 bg-border-hairline rounded-full mx-auto mb-4 self-center"></div>
+<!-- Primary Metric: ETA & Destination Cluster -->
+<div class="flex items-start justify-between mb-4">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">12:34 م</span>
+<span class="font-label-md text-label-md text-status-success font-semibold">باقي 8 دقائق</span>
+</div>
+<span class="font-label-sm text-label-sm text-ink-secondary mt-0.5">الوصول المتوقع حسب حركة السير</span>
+</div>
+<!-- Live Distance Meter -->
+<div class="flex flex-col items-end bg-surface-container-low px-3 py-1.5 rounded-xl">
+<span class="font-numeral-price text-numeral-price text-on-surface">3.8</span>
+<span class="font-label-sm text-label-sm text-ink-secondary">كيلومتر</span>
+</div>
+</div>
+<!-- Destination Landmark Header -->
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-2xl mb-4">
+<div class="w-9 h-9 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-ink-secondary">الوجهة المقصودة</span>
+<span class="font-label-lg text-label-lg text-on-surface truncate font-semibold">فاميلي مول (بوابة 2)</span>
+</div>
+</div>
+<!-- Stops Row Chips -->
+<div class="flex items-center gap-2 mb-5 overflow-x-auto pb-1">
+<!-- Completed Stop Chip -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-status-success-bg text-status-success rounded-full shrink-0">
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+<span class="font-label-sm text-label-sm font-semibold">محطة 1 ✓</span>
+</div>
+<div class="w-4 h-0.5 bg-border-hairline shrink-0"></div>
+<!-- Upcoming Stop Chip -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary-container text-on-primary-container rounded-full shrink-0 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-on-primary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm font-semibold">محطة 2 (التالية)</span>
+</div>
+<div class="w-4 h-0.5 bg-border-hairline shrink-0"></div>
+<!-- Final Target Stop -->
+<div class="flex items-center gap-1 px-3 py-1.5 bg-surface-container text-ink-secondary rounded-full shrink-0">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span class="font-label-sm text-label-sm">الوجهة النهائية</span>
+</div>
+</div>
+<!-- Driver Mini-Card -->
+<div class="p-3.5 bg-surface-inset rounded-2xl flex items-center justify-between mb-5">
+<!-- Driver Photo & Identity -->
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative shrink-0">
+<img class="w-13 h-13 rounded-full object-cover shadow-sm w-[52px] h-[52px]" data-alt="Close-up candid portrait of an Iraqi taxi driver named Salem in his mid-30s smiling gently inside his modern sedan vehicle in Erbil under bright daytime ambient daylight, neutral warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl1u_dKkDZg-kXmoDWquZbhMK96hghJWJJbn8yMXn6U_0DePPHsLQFM7PnVj90a2ngkuWOURth74Fi8FxdUB6gvaDHPg7O5Ym_yfEPiX8B5cDMcswEy08Wq5GmLCRMvlEZ0DdHNF4fGJbwBWNTk4oKO9ksbp02_ZiW-ExsWukixmgb4T8Tp0zRoqKdkcjunx-69lsoktGPlBDDicTrrNgeSMrWTRp5w2EhSztS7-EDkwslHw8c3EhA"/>
+<div class="absolute -bottom-1 -left-1 bg-surface-white px-1.5 py-0.5 rounded-full shadow-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-primary text-[11px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">4.9</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate">سالم سليمان</span>
+<span class="font-body-sm text-body-sm text-ink-secondary truncate">تويوتا كورولا • أبيض</span>
+<!-- Iraqi License Plate (BiDi Split) -->
+<div class="inline-flex items-center gap-1.5 mt-1 px-2 py-0.5 bg-surface-white rounded-md w-fit shadow-xs">
+<span class="font-label-sm text-label-sm text-ink-secondary font-medium">أربيل</span>
+<span class="w-1 h-1 rounded-full bg-border-hairline"></span>
+<span class="font-plate-display text-plate-display text-on-surface" dir="ltr">22 A25626</span>
+</div>
+</div>
+</div>
+<!-- Communication Shortcuts -->
+<div class="flex items-center gap-2 shrink-0">
+<!-- Chat Shortcut Button -->
+<button aria-label="مراسلة السائق" class="w-11 h-11 rounded-full bg-surface-white text-on-surface hover:bg-surface-container active:scale-95 transition-all shadow-sm flex items-center justify-center" id="chatActionBtn">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<!-- Phone Call Button -->
+<a aria-label="اتصال بالسائق" class="w-11 h-11 rounded-full bg-on-surface text-surface hover:bg-secondary active:scale-95 transition-all shadow-sm flex items-center justify-center" href="tel:07500000000">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+</div>
+<!-- Primary Action Pair (Side by Side) -->
+<div class="grid grid-cols-2 gap-3">
+<!-- 1. Secondary Button: Share Trip -->
+<button class="h-[52px] rounded-xl bg-surface-inset text-on-surface hover:bg-surface-container active:scale-[0.98] transition-all flex items-center justify-center gap-2 px-3" id="shareRideAction" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span class="font-label-lg text-label-lg font-semibold">مشاركة الرحلة</span>
+</button>
+<!-- 2. Danger Filled Button: SOS Emergency -->
+<button class="h-[52px] rounded-xl bg-[#DC2626] text-white hover:bg-red-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2 px-3 shadow-md" id="sosEmergencyAction" type="button">
+<span class="material-symbols-outlined text-[22px] text-white" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-lg text-label-lg text-white font-bold tracking-wide">طوارئ SOS</span>
+</button>
+</div>
+</div>
+<!-- Shared Feedback Toast Container -->
+<div class="fixed bottom-6 inset-x-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex justify-center" id="tripToast">
+<div class="bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 max-w-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]" id="toastIcon">info</span>
+<span class="font-body-md text-body-md" id="toastMessage">تم نسخ رابط التتبع المباشر للرحلة</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Interactive micro-feedbacks for buttons
+    const toast = document.getElementById('tripToast');
+    const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    let toastTimeout;
+
+    function triggerToast(message, iconName) {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastMsg.textContent = message;
+      toastIcon.textContent = iconName || 'info';
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    const shareBtn = document.getElementById('shareRideAction');
+    const quickShare = document.getElementById('quickShareTrigger');
+    const handleShare = () => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'رحلتي المباشرة',
+          text: 'أنا في طريقي إلى فاميلي مول بواسطة سالم سليمان',
+          url: window.location.href
+        }).catch(() => {
+          triggerToast('تم تجهيز رابط التتبع المباشر', 'link');
+        });
+      } else {
+        triggerToast('تم نسخ رابط التتبع لمشاركته مع العائلة', 'content_copy');
+      }
+    };
+
+    if (shareBtn) shareBtn.addEventListener('click', handleShare);
+    if (quickShare) quickShare.addEventListener('click', handleShare);
+
+    const sosBtn = document.getElementById('sosEmergencyAction');
+    if (sosBtn) {
+      sosBtn.addEventListener('click', () => {
+        const confirmSos = window.confirm('هل تريد تفعيل إشعار الطوارئ والتواصل مع عمليات النجدة ومشاركة موقعك فوراً؟');
+        if (confirmSos) {
+          triggerToast('تم إرسال إشعار الطوارئ وموقعك فوراً', 'warning');
+        }
+      });
+    }
+
+    const recenterBtn = document.getElementById('recenterBtn');
+    if (recenterBtn) {
+      recenterBtn.addEventListener('click', () => {
+        triggerToast('تم تحديث موقع المركبة وتوسيط الخريطة', 'gps_fixed');
+      });
+    }
+
+    const chatBtn = document.getElementById('chatActionBtn');
+    if (chatBtn) {
+      chatBtn.addEventListener('click', () => {
+        triggerToast('جاري فتح محادثة فورية مع سالم...', 'chat');
+      });
+    }
+  })();
+</script></main></body></html>

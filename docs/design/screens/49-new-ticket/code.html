@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans',sans-serif;}body{overscroll-behavior:none;background-color:#faf8ff;color:#191b24;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e1e1ee", "on-tertiary-fixed": "#271900", "outline": "#7e7669", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-inset": "#F2EFEB", "primary": "#715b2c", "on-error": "#ffffff", "surface-container-highest": "#e1e1ee", "surface-container": "#ededfa", "tertiary-container": "#fcd389", "on-primary-fixed": "#261a00", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "on-tertiary": "#ffffff", "primary-fixed": "#fddfa3", "tertiary": "#78591c", "status-error-bg": "#FDF2F2", "status-success-bg": "#E8F3EC", "tertiary-fixed": "#ffdea7", "on-tertiary-container": "#77591c", "surface-white": "#FFFFFF", "inverse-on-surface": "#f0f0fd", "status-warning": "#B35C00", "on-primary-container": "#715b2c", "secondary-container": "#dedfec", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-background": "#191b24", "status-success": "#1B5E3B", "surface-container-low": "#f3f2ff", "on-primary": "#ffffff", "error": "#ba1a1a", "on-secondary-container": "#60626d", "tertiary-fixed-dim": "#e9c179", "surface-container-high": "#e7e7f4", "on-surface": "#191b24", "status-error": "#9E1C1C", "border-hairline": "#E5E2DC", "on-surface-variant": "#4d463a", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed-dim": "#e0c389", "outline-variant": "#cfc5b6", "ink-secondary": "#5C606E", "canvas-base": "#F9F8F5", "surface-bright": "#faf8ff", "secondary-fixed-dim": "#c5c6d2", "on-primary-fixed-variant": "#584416", "inverse-primary": "#e0c389", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "surface-dim": "#d9d9e6", "secondary-fixed": "#e1e2ee", "background": "#faf8ff", "surface-tint": "#715b2c", "secondary": "#5c5e69", "status-warning-bg": "#FFF4E5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1.25rem", "gutter": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, fontSize: { "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "18px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "plate-display": ["14px", { lineHeight: "18px", letterSpacing: "0.08em", fontWeight: "700" }], "headline-lg": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }], "numeral-price": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["16px", { lineHeight: "20px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">تذكرة جديدة   رايد</h1></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full pb-safe">
+<div class="px-margin pt-space-md flex flex-col gap-space-lg">
+<!-- Context reassurance banner -->
+<div class="bg-primary-container/20 rounded-xl p-space-md flex items-center gap-space-sm text-on-surface">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shrink-0 text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">فريق الدعم في خدمتك 24/7</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">سنراجع التذكرة ونتواصل معك خلال أقل من 15 دقيقة</span>
+</div>
+</div>
+<!-- 1. Trip Selector Section -->
+<section class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold">اختر الرحلة</label>
+<button class="font-label-sm text-label-sm text-tertiary hover:opacity-80 transition-opacity flex items-center gap-0.5" type="button">
+<span>تغيير الرحلة</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<!-- Selected Trip Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h2 class="font-label-lg text-label-lg text-on-surface truncate">رحلة شارع كولان إلى فاميلي مول</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">12 تشرين الأول · 12:42 م</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-numeral-price text-numeral-price text-on-surface">3,000 د.ع</span>
+<span class="font-label-sm text-label-sm text-status-success bg-status-success-bg px-1.5 py-0.5 rounded-full mt-0.5">مكتملة</span>
+</div>
+</div>
+<div class="bg-surface-inset rounded-lg p-space-xs px-space-sm flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-tertiary">person</span>
+<span class="font-label-sm text-label-sm">الكابتن: <strong class="text-on-surface">سالم سليمان</strong></span>
+</div>
+<div class="flex items-center gap-1 font-plate-display text-plate-display text-on-surface">
+<span class="text-label-sm text-on-surface-variant">أربيل</span>
+<span class="bg-surface-white px-1.5 py-0.5 rounded text-[11px] text-on-surface" dir="ltr">22 H 89412</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Category Radio List -->
+<section class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">نوع المشكلة</label>
+<div aria-label="نوع المشكلة" class="flex flex-col gap-1.5" id="problem-category-group" role="radiogroup">
+<!-- Radio Option 1 -->
+<label class="category-item flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">الكابتن طلب مبلغ أعلى</span>
+</div>
+<input class="hidden" name="problem_type" type="radio" value="overcharge"/>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-primary transform scale-0 transition-transform"></div>
+</div>
+</label>
+<!-- Radio Option 2 -->
+<label class="category-item flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">backpack</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">شي ضايع بالسيارة</span>
+</div>
+<input class="hidden" name="problem_type" type="radio" value="lost_item"/>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-primary transform scale-0 transition-transform"></div>
+</div>
+</label>
+<!-- Radio Option 3 -->
+<label class="category-item flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">credit_card_off</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">مشكلة بالدفع</span>
+</div>
+<input class="hidden" name="problem_type" type="radio" value="payment_issue"/>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-primary transform scale-0 transition-transform"></div>
+</div>
+</label>
+<!-- Radio Option 4 -->
+<label class="category-item flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">sentiment_dissatisfied</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">سلوك الكابتن</span>
+</div>
+<input class="hidden" name="problem_type" type="radio" value="driver_behavior"/>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-primary transform scale-0 transition-transform"></div>
+</div>
+</label>
+<!-- Radio Option 5 (Selected) -->
+<label class="category-item selected-item flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]">help_center</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">غير ذلك</span>
+</div>
+<input checked="" class="hidden" name="problem_type" type="radio" value="other"/>
+<div class="radio-indicator w-5 h-5 rounded-full bg-primary flex items-center justify-center transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-surface-white transform scale-100 transition-transform"></div>
+</div>
+</label>
+</div>
+</section>
+<!-- 3. Problem Details Textarea -->
+<section class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="ticket-details">تفاصيل المشكلة</label>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="char-counter">0 / 500</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm transition-all focus-within:bg-surface-white">
+<textarea class="w-full bg-transparent text-on-surface font-body-md text-body-md placeholder:text-ink-secondary resize-none outline-none leading-relaxed" id="ticket-details" maxlength="500" placeholder="اكتب تفاصيل ما حدث بدقة لمساعدتنا على حل المشكلة بأسرع وقت..." rows="4"></textarea>
+<div class="flex items-center justify-between pt-space-xs text-ink-secondary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span class="font-label-sm text-label-sm">الرجاء ذكر أوقات التواصل المناسبة إن وجدت</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Attachments Section -->
+<section class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold">المرفقات (حتى 5 صور)</label>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2 من 5 مرفوعة</span>
+</div>
+<div class="flex items-center gap-space-sm overflow-x-auto pb-1" id="attachments-container">
+<!-- Thumbnail 1: Receipt screenshot -->
+<div class="relative w-20 h-20 rounded-xl overflow-hidden shrink-0 shadow-sm group bg-surface-container" id="attachment-1">
+<img class="w-full h-full object-cover" data-alt="A smartphone screen displaying a digital taxi ride receipt in Baghdad with fare details and payment confirmation in clean Arabic typography with warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4b_x8aMV7HRNMGzBlpLBOP0aCe3dMnQ5cEMBWIZUGp-6H4AAWPCAXmqztTUeH0P_PaTPk9YdW2GtPntfYCy2fvdJO0f7TEWCd_roVk98Uft_x8CQzQitB5ecio_RX4bgBIaWxwlqL1ZjUMExqflhUc7vUYyvuMbm0q0NjxbJD9IyPdUAgV4n3yglY0jNhjCIg6fFiSpZ2OlHaOyeb-Hipd6JKByrpDmTkCF8WqZVvijttt33g-QLc"/>
+<button aria-label="حذف الصورة" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-inverse-surface/85 text-inverse-on-surface flex items-center justify-center transition-transform active:scale-90" onclick="document.getElementById('attachment-1').remove()" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<!-- Thumbnail 2: Route / Car context -->
+<div class="relative w-20 h-20 rounded-xl overflow-hidden shrink-0 shadow-sm group bg-surface-container" id="attachment-2">
+<img class="w-full h-full object-cover" data-alt="A close up view of a taxi car window and dashboard parked near Family Mall in Erbil Iraq under daylight with soft natural reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlwAK8pHpJRg-FCHBJZhrm-Dl4r9f8HXUn8LreHTByXMVF0VSSOGCyhOJXmlMkUROcojP3peRe-r34dzMqOHiSgI0_VC6xcG0xeU0fXo85QsSB6HVW_M0nCTpiWkiUwlqkcgrgDK5lNAh3hkGEQ5n1avkfRpgGAKi6Gsq71g8jKpDMQeWwgSga3jsReOzEU26H-psYQnyJy5N-IDV0Ouv3eMM5lQ3tm5LYg7WVt0SNu7aBghcMmfOU"/>
+<button aria-label="حذف الصورة" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-inverse-surface/85 text-inverse-on-surface flex items-center justify-center transition-transform active:scale-90" onclick="document.getElementById('attachment-2').remove()" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<!-- Add Attachment Tile -->
+<button class="w-20 h-20 rounded-xl bg-surface-container-lowest flex flex-col items-center justify-center gap-1 shrink-0 text-on-surface-variant hover:text-primary transition-all active:scale-95 shadow-sm" type="button">
+<div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+</div>
+<span class="font-label-sm text-label-sm">إضافة مرفق</span>
+</button>
+</div>
+</section>
+<!-- 5. Bottom Action Button -->
+<div class="pt-space-sm pb-space-lg">
+<button class="w-full h-[52px] bg-primary-container text-on-primary-fixed font-label-lg text-label-lg font-semibold rounded-xl flex items-center justify-center gap-space-xs shadow-sm hover:opacity-95 active:scale-[0.99] transition-all" id="submit-ticket-btn" type="button">
+<span>إرسال التذكرة</span>
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+<p class="text-center font-body-sm text-body-sm text-ink-secondary mt-space-sm">
+        سيتم إشعارك عبر التطبيق ورسالة نصية فور مراجعة التذكرة
+      </p>
+</div>
+</div>
+<script>
+    (function() {
+      // Dynamic Character Counter
+      const textarea = document.getElementById('ticket-details');
+      const counter = document.getElementById('char-counter');
+      if (textarea && counter) {
+        textarea.addEventListener('input', () => {
+          counter.textContent = textarea.value.length + ' / 500';
+        });
+      }
+
+      // Interactive Radio Selection Styling
+      const categoryItems = document.querySelectorAll('.category-item');
+      categoryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          categoryItems.forEach(el => {
+            el.classList.remove('selected-item', 'bg-surface-container-low');
+            el.classList.add('bg-surface-container-lowest');
+            const ind = el.querySelector('.radio-indicator');
+            const dot = ind ? ind.querySelector('div') : null;
+            if (ind && dot) {
+              ind.className = 'radio-indicator w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center transition-colors';
+              dot.className = 'w-2.5 h-2.5 rounded-full bg-primary transform scale-0 transition-transform';
+            }
+            const labelSpan = el.querySelector('span.text-label-md');
+            if (labelSpan) labelSpan.classList.remove('font-semibold');
+          });
+
+          item.classList.remove('bg-surface-container-lowest');
+          item.classList.add('selected-item', 'bg-surface-container-low');
+          const radioInput = item.querySelector('input[type="radio"]');
+          if (radioInput) radioInput.checked = true;
+
+          const ind = item.querySelector('.radio-indicator');
+          const dot = ind ? ind.querySelector('div') : null;
+          if (ind && dot) {
+            ind.className = 'radio-indicator w-5 h-5 rounded-full bg-primary flex items-center justify-center transition-colors';
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-surface-white transform scale-100 transition-transform';
+          }
+          const labelSpan = item.querySelector('span.text-label-md');
+          if (labelSpan) labelSpan.classList.add('font-semibold');
+        });
+      });
+
+      // Simple submit interaction feedback
+      const submitBtn = document.getElementById('submit-ticket-btn');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>جارِ الإرسال...</span>';
+          submitBtn.disabled = true;
+          setTimeout(() => {
+            submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>تم الإرسال بنجاح</span>';
+            submitBtn.classList.remove('bg-primary-container', 'text-on-primary-fixed');
+            submitBtn.classList.add('bg-status-success', 'text-on-primary');
+          }, 900);
+        });
+      }
+    })();
+  </script>
+</div></main></body></html>

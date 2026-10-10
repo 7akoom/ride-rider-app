@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans',sans-serif;}body{overscroll-behavior:none;background-color:#faf8ff;color:#191b24;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e1e1ee", "on-tertiary-fixed": "#271900", "outline": "#7e7669", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-inset": "#F2EFEB", "primary": "#715b2c", "on-error": "#ffffff", "surface-container-highest": "#e1e1ee", "surface-container": "#ededfa", "tertiary-container": "#fcd389", "on-primary-fixed": "#261a00", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "on-tertiary": "#ffffff", "primary-fixed": "#fddfa3", "tertiary": "#78591c", "status-error-bg": "#FDF2F2", "status-success-bg": "#E8F3EC", "tertiary-fixed": "#ffdea7", "on-tertiary-container": "#77591c", "surface-white": "#FFFFFF", "inverse-on-surface": "#f0f0fd", "status-warning": "#B35C00", "on-primary-container": "#715b2c", "secondary-container": "#dedfec", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-background": "#191b24", "status-success": "#1B5E3B", "surface-container-low": "#f3f2ff", "on-primary": "#ffffff", "error": "#ba1a1a", "on-secondary-container": "#60626d", "tertiary-fixed-dim": "#e9c179", "surface-container-high": "#e7e7f4", "on-surface": "#191b24", "status-error": "#9E1C1C", "border-hairline": "#E5E2DC", "on-surface-variant": "#4d463a", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed-dim": "#e0c389", "outline-variant": "#cfc5b6", "ink-secondary": "#5C606E", "canvas-base": "#F9F8F5", "surface-bright": "#faf8ff", "secondary-fixed-dim": "#c5c6d2", "on-primary-fixed-variant": "#584416", "inverse-primary": "#e0c389", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "surface-dim": "#d9d9e6", "secondary-fixed": "#e1e2ee", "background": "#faf8ff", "surface-tint": "#715b2c", "secondary": "#5c5e69", "status-warning-bg": "#FFF4E5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1.25rem", "gutter": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, fontSize: { "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "18px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "plate-display": ["14px", { lineHeight: "18px", letterSpacing: "0.08em", fontWeight: "700" }], "headline-lg": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }], "numeral-price": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["16px", { lineHeight: "20px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">الإشعارات   رايد</h1></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full px-margin pb-12 gap-space-lg">
+<!-- Header Quick Controls Bar (Mark as read & subtle stats) -->
+<div class="flex items-center justify-between pt-space-xs pb-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>3 غير مقروءة</span>
+</div>
+<button class="text-primary hover:text-on-primary-container font-label-md text-label-md transition-colors active:scale-95 flex items-center gap-1 focus:outline-none" id="markAllReadBtn" onclick="markAllAsRead()">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span>تعليم الكل كمقروء</span>
+</button>
+</div>
+<!-- Filter Chips (Single-line horizontal scroll) -->
+<div aria-label="تصفية الإشعارات" class="flex items-center gap-space-sm overflow-x-auto no-scrollbar py-0.5" role="tablist">
+<!-- Selected: All (Ink style) -->
+<button aria-selected="true" class="filter-chip shrink-0 px-4 py-2 rounded-full bg-inverse-surface text-inverse-on-surface font-label-md text-label-md shadow-sm transition-all active:scale-95" onclick="filterNotifications('all', this)" role="tab">
+      الكل (4)
+    </button>
+<!-- Rides -->
+<button aria-selected="false" class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md transition-all active:scale-95" onclick="filterNotifications('trips', this)" role="tab">
+      الرحلات
+    </button>
+<!-- Wallet -->
+<button aria-selected="false" class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md transition-all active:scale-95" onclick="filterNotifications('wallet', this)" role="tab">
+      المحفظة
+    </button>
+<!-- Promos -->
+<button aria-selected="false" class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-variant font-label-md text-label-md transition-all active:scale-95" onclick="filterNotifications('promos', this)" role="tab">
+      العروض
+    </button>
+</div>
+<!-- Notifications Feed -->
+<div class="flex flex-col gap-space-md" id="notificationsList">
+<!-- Notification 1 (Unread, trip) -->
+<article class="notification-item relative p-4 rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm transition-all duration-200 hover:shadow-md cursor-pointer" data-category="trips" data-status="unread">
+<div class="flex items-start gap-3">
+<!-- Visual Icon Avatar (Blue tint for transit) -->
+<div class="w-11 h-11 shrink-0 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">local_taxi</span>
+</div>
+<!-- Copy & Content -->
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">الكابتن وصل إلى موقعك!</h2>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-body-sm text-body-sm text-ink-secondary">منذ دقيقتين</span>
+<span class="unread-dot w-2.5 h-2.5 rounded-full bg-primary-container ring-2 ring-primary"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            تويوتا كورولا بيج <span class="font-plate-display text-plate-display bg-surface-variant px-1.5 py-0.5 rounded text-on-surface inline-block" dir="ltr">22 A 25626</span> بانتظارك أمام شارع كولان.
+          </p>
+</div>
+</div>
+<!-- Quick Action / Delight Pill -->
+<div class="flex items-center justify-between pt-1 mr-14">
+<span class="font-label-sm text-label-sm text-status-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span>
+          أمام المجمع مباشرة
+        </span>
+<button class="font-label-md text-label-md text-primary hover:underline flex items-center gap-0.5">
+<span>تتبع الكابتن</span>
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+</div>
+</article>
+<!-- Notification 2 (Unread, wallet) -->
+<article class="notification-item relative p-4 rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm transition-all duration-200 hover:shadow-md cursor-pointer" data-category="wallet" data-status="unread">
+<div class="flex items-start gap-3">
+<!-- Icon Avatar (Gold tint for Iraqi Dinar Wallet) -->
+<div class="w-11 h-11 shrink-0 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">تم إيداع 10,000 د.ع في محفظتك</h2>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-body-sm text-body-sm text-ink-secondary">منذ ساعة</span>
+<span class="unread-dot w-2.5 h-2.5 rounded-full bg-primary-container ring-2 ring-primary"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            تمت عملية الشحن عبر زين كاش بنجاح ورصيدك الحالي <span class="font-numeral-price text-numeral-price text-on-surface">12,500 د.ع</span>.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-end pt-1 mr-14">
+<button class="font-label-md text-label-md text-primary hover:underline flex items-center gap-0.5">
+<span>عرض سجل المحفظة</span>
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+</div>
+</article>
+<!-- Notification 3 (Unread, promo) -->
+<article class="notification-item relative p-4 rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm transition-all duration-200 hover:shadow-md cursor-pointer" data-category="promos" data-status="unread">
+<div class="flex items-start gap-3">
+<!-- Icon Avatar (Amber / Promo badge) -->
+<div class="w-11 h-11 shrink-0 rounded-xl bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">local_offer</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">خصم 30% على مشاوير نهاية الأسبوع!</h2>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-body-sm text-body-sm text-ink-secondary">منذ 4 ساعات</span>
+<span class="unread-dot w-2.5 h-2.5 rounded-full bg-primary-container ring-2 ring-primary"></span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            استخدم كود <span class="font-plate-display text-plate-display bg-primary-container/40 text-on-primary-fixed px-1.5 py-0.5 rounded font-semibold" dir="ltr">BTS26</span> ووفر حتى 2,000 د.ع على رحلتك القادمة في أربيل.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 mr-14">
+<span class="font-label-sm text-label-sm text-ink-secondary">صالح حتى يوم السبت</span>
+<button class="font-label-md text-label-md text-primary hover:underline flex items-center gap-0.5">
+<span>نسخ الكود والحجز</span>
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+</div>
+</article>
+<!-- Notification 4 (Read, support) -->
+<article class="notification-item relative p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm transition-all duration-200 hover:shadow-md cursor-pointer opacity-90 hover:opacity-100" data-category="trips" data-status="read">
+<div class="flex items-start gap-3">
+<!-- Icon Avatar (Support headset) -->
+<div class="w-11 h-11 shrink-0 rounded-xl bg-surface-container text-ink-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">support_agent</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">تم الرد على تذكرتك #4920</h2>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-body-sm text-body-sm text-ink-secondary">أمس</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            أهلاً أحمد، تم مراجعة مسار الرحلة وإعادة فرق الأجرة إلى محفظتك.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 mr-14">
+<span class="font-label-sm text-label-sm text-status-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+          تمت المعالجة
+        </span>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-0.5">
+<span>تفاصيل التذكرة</span>
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Decorative Separator & Context Label for the Spec preview -->
+<div class="flex items-center gap-3 pt-6 pb-2 text-ink-secondary">
+<div class="h-px bg-surface-variant flex-1"></div>
+<span class="font-label-sm text-label-sm text-ink-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+      معاينة: عند عدم وجود إشعارات
+    </span>
+<div class="h-px bg-surface-variant flex-1"></div>
+</div>
+<!-- Delightful Empty State Card (Component Preview) -->
+<div class="relative w-full p-6 rounded-2xl bg-surface-container-low shadow-sm flex flex-col items-center text-center overflow-hidden">
+<!-- Subtle Ambient Gold Glow in Background -->
+<div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-tertiary-container/20 blur-2xl pointer-events-none"></div>
+<!-- Whimsical Icon Framing -->
+<div class="relative w-20 h-20 mb-4 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full bg-primary-fixed/30 animate-ping opacity-25"></div>
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined text-[36px]">notifications_none</span>
+</div>
+<!-- Little sparkle badge -->
+<span class="absolute top-0 left-1 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+</span>
+</div>
+<!-- Empty State Content -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1.5">
+      لا توجد إشعارات جديدة حالياً
+    </h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-5">
+      سنخبرك هنا فور وجود تحديثات عن رحلاتك ومحفظتك والعروض الخاصة.
+    </p>
+<!-- Interactive micro-trigger for peace of mind -->
+<button class="px-5 py-2.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center gap-2 transition-all active:scale-95 shadow-xs" onclick="simulateRefresh(this)">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>تحديث القائمة</span>
+</button>
+</div>
+</div>
+<script>
+  // Mark all as read micro-interaction
+  function markAllAsRead() {
+    const unreadDots = document.querySelectorAll('.unread-dot');
+    unreadDots.forEach(dot => {
+      dot.style.opacity = '0';
+      dot.style.transform = 'scale(0.5)';
+      dot.style.transition = 'all 0.25s ease';
+      setTimeout(() => dot.remove(), 250);
+    });
+
+    const unreadCards = document.querySelectorAll('[data-status="unread"]');
+    unreadCards.forEach(card => {
+      card.dataset.status = 'read';
+      card.classList.remove('bg-surface-container-low');
+      card.classList.add('bg-surface-container-lowest', 'opacity-95');
+    });
+
+    const statusPill = document.querySelector('#markAllReadBtn');
+    if (statusPill) {
+      statusPill.innerHTML = '<span class="material-symbols-outlined text-[18px] text-status-success">check</span><span class="text-status-success">تمت القراءة</span>';
+      statusPill.disabled = true;
+    }
+  }
+
+  // Filter chips interaction
+  function filterNotifications(category, clickedBtn) {
+    const chips = document.querySelectorAll('.filter-chip');
+    chips.forEach(chip => {
+      chip.classList.remove('bg-inverse-surface', 'text-inverse-on-surface', 'shadow-sm');
+      chip.classList.add('bg-surface-container', 'text-on-surface-variant');
+      chip.setAttribute('aria-selected', 'false');
+    });
+
+    clickedBtn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+    clickedBtn.classList.add('bg-inverse-surface', 'text-inverse-on-surface', 'shadow-sm');
+    clickedBtn.setAttribute('aria-selected', 'true');
+
+    const items = document.querySelectorAll('.notification-item');
+    items.forEach(item => {
+      if (category === 'all' || item.dataset.category === category) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Soft refresh feedback
+  function simulateRefresh(btn) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon) {
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 700);
+    }
+  }
+</script></main></body></html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans',sans-serif;}body{overscroll-behavior:none;background-color:#faf8ff;color:#191b24;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e1e1ee", "on-tertiary-fixed": "#271900", "outline": "#7e7669", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-inset": "#F2EFEB", "primary": "#715b2c", "on-error": "#ffffff", "surface-container-highest": "#e1e1ee", "surface-container": "#ededfa", "tertiary-container": "#fcd389", "on-primary-fixed": "#261a00", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "on-tertiary": "#ffffff", "primary-fixed": "#fddfa3", "tertiary": "#78591c", "status-error-bg": "#FDF2F2", "status-success-bg": "#E8F3EC", "tertiary-fixed": "#ffdea7", "on-tertiary-container": "#77591c", "surface-white": "#FFFFFF", "inverse-on-surface": "#f0f0fd", "status-warning": "#B35C00", "on-primary-container": "#715b2c", "secondary-container": "#dedfec", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-background": "#191b24", "status-success": "#1B5E3B", "surface-container-low": "#f3f2ff", "on-primary": "#ffffff", "error": "#ba1a1a", "on-secondary-container": "#60626d", "tertiary-fixed-dim": "#e9c179", "surface-container-high": "#e7e7f4", "on-surface": "#191b24", "status-error": "#9E1C1C", "border-hairline": "#E5E2DC", "on-surface-variant": "#4d463a", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed-dim": "#e0c389", "outline-variant": "#cfc5b6", "ink-secondary": "#5C606E", "canvas-base": "#F9F8F5", "surface-bright": "#faf8ff", "secondary-fixed-dim": "#c5c6d2", "on-primary-fixed-variant": "#584416", "inverse-primary": "#e0c389", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "surface-dim": "#d9d9e6", "secondary-fixed": "#e1e2ee", "background": "#faf8ff", "surface-tint": "#715b2c", "secondary": "#5c5e69", "status-warning-bg": "#FFF4E5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1.25rem", "gutter": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, fontSize: { "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "18px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "plate-display": ["14px", { lineHeight: "18px", letterSpacing: "0.08em", fontWeight: "700" }], "headline-lg": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }], "numeral-price": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["16px", { lineHeight: "20px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors focus:outline-none" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">حذف الحساب   رايد</h1></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 bg-surface"><div class="flex flex-col w-full pb-safe">
+<div class="px-margin pt-space-md flex flex-col gap-space-lg">
+<!-- Hero Warning Graphic Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col items-center text-center relative overflow-hidden shadow-sm">
+<div class="w-16 h-16 rounded-full bg-status-error-bg flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-error text-[36px]" style="font-variation-settings: 'FILL' 1;">gpp_maybe</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-space-xs">حذف الحساب نهائياً</h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-[280px]">
+        نحن حريصون على بقائك معنا في رحلاتك اليومية عبر العراق، ولكن نرجو مراجعة الشروط قبل اتخاذ القرار.
+      </p>
+<!-- Decorative subtle backdrop badge -->
+<div class="absolute -left-6 -top-6 w-24 h-24 bg-error/5 rounded-full pointer-events-none"></div>
+</div>
+<!-- What happens breakdown -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<h3 class="text-label-lg font-label-lg text-on-surface mb-space-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+        ماذا يحدث عند تأكيد الحذف؟
+      </h3>
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-2 h-2 rounded-full bg-error mt-2 shrink-0"></div>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+            سيتوقف حسابك فوراً ولن تتمكن من طلب المشاوير أو التنقل اليومي.
+          </p>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-2 h-2 rounded-full bg-primary mt-2 shrink-0"></div>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+            لديك 30 يوماً للتراجع واستعادة الحساب بمجرد إعادة تسجيل الدخول عبر رقم هاتفك.
+          </p>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></div>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+            بعد انتهاء المدة تُحذف بياناتك الشخصية، عناوbounding المحفوظة، وسجل رحلاتك نهائياً من أنظمتنا.
+          </p>
+</div>
+</div>
+</div>
+<!-- Active Blocking State Card -->
+<div class="bg-status-error-bg rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-error/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-status-error text-[22px]">event_busy</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-lg font-label-lg text-status-error">لا يمكن الحذف الآن: لديك رحلة مجدولة قادمة</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+            مطار بغداد الدولي • غداً في تمام الساعة 08:30 صباحاً
+          </p>
+</div>
+</div>
+<div class="pt-space-xs flex justify-end">
+<button class="h-10 px-space-md bg-surface-container-lowest text-status-error rounded-lg text-label-md font-label-md flex items-center gap-space-xs active:bg-surface-variant shadow-sm transition-colors" type="button">
+<span>عرض وإلغاء الرحلة المجدولة</span>
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+</button>
+</div>
+</div>
+<!-- Wallet Balance Loss State Card -->
+<div class="bg-status-warning-bg rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-status-warning/10 flex items-center justify-center text-status-warning">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-status-warning block">رصيد المحفظة النشط</span>
+<span class="text-headline-sm font-headline-sm text-on-surface font-numeral-price">12,500 د.ع</span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-lowest text-status-warning px-2.5 py-1 rounded-full shadow-sm">سيتم إلغاؤه</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+        ستخسر رصيدك المتبقي في المحفظة: 12,500 د.ع عند تأكيد الحذف النهائي دون إمكانية استرجاعه نقدياً.
+      </p>
+<label class="flex items-start gap-space-sm bg-surface-container-lowest p-space-md rounded-lg cursor-pointer select-none shadow-sm">
+<input class="mt-1 w-5 h-5 rounded accent-primary cursor-pointer shrink-0" id="balance-acknowledgement" onchange="toggleDeleteButton()" type="checkbox"/>
+<span class="text-body-sm font-body-sm text-on-surface">
+          أفهم أنني سأخسر رصيدي المالي نهائياً ولا يمكن استرداده بعد الحذف.
+        </span>
+</label>
+</div>
+<!-- Trigger Action Button -->
+<div class="pt-space-xs">
+<button class="w-full h-[52px] bg-error text-on-error rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:opacity-90 transition-all opacity-50 cursor-not-allowed" disabled="" id="delete-trigger-btn" onclick="revealOtpConfirmation()" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_forever</span>
+<span>متابعة الحذف</span>
+</button>
+</div>
+<!-- OTP Modal / Inset Drawer Card (Initial state hidden or ready) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-lg flex flex-col gap-space-md transition-all duration-300" id="otp-confirmation-card">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-status-error text-[24px]">verified_user</span>
+<h4 class="text-headline-sm font-headline-sm text-on-surface">تأكيد الحذف النهائي</h4>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-status-error animate-pulse"></span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-body-md font-body-md text-on-surface-variant">
+          أدخل رمز التحقق المرسل إلى رقمك
+        </p>
+<span class="text-label-md font-label-md text-on-surface" dir="ltr">+964 750 123 4567</span>
+</div>
+<!-- OTP Digits Inputs -->
+<div class="flex items-center justify-center gap-space-sm py-space-sm" dir="ltr">
+<input class="otp-input w-[52px] h-[52px] text-center text-headline-sm font-headline-sm bg-surface-inset text-on-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-colors" inputmode="numeric" maxlength="1" type="text"/>
+<input class="otp-input w-[52px] h-[52px] text-center text-headline-sm font-headline-sm bg-surface-inset text-on-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-colors" inputmode="numeric" maxlength="1" type="text"/>
+<input class="otp-input w-[52px] h-[52px] text-center text-headline-sm font-headline-sm bg-surface-inset text-on-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-colors" inputmode="numeric" maxlength="1" type="text"/>
+<input class="otp-input w-[52px] h-[52px] text-center text-headline-sm font-headline-sm bg-surface-inset text-on-surface rounded-xl focus:bg-surface-container-lowest focus:outline-none transition-colors" inputmode="numeric" maxlength="1" type="text"/>
+</div>
+<!-- Resend Timer -->
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-space-xs">
+<span>إعادة إرسال الرمز خلال:</span>
+<div class="flex items-center gap-1 text-primary font-label-md" dir="ltr">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span id="countdown-timer">00:58</span>
+</div>
+</div>
+<!-- Final Destruction Confirmation Action -->
+<button class="w-full h-[52px] bg-error text-on-error rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:opacity-90 transition-all mt-space-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>تأكيد حذف الحساب كلياً</span>
+</button>
+<button class="w-full h-[44px] bg-transparent text-secondary rounded-xl font-label-md text-label-md flex items-center justify-center hover:bg-surface-variant transition-colors" onclick="history.back()" type="button">
+<span>إلغاء والعودة للرئيسية</span>
+</button>
+</div>
+<!-- Security Footnote -->
+<div class="flex items-center justify-center gap-space-xs text-on-surface-variant text-body-sm font-body-sm pb-space-lg opacity-75">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>يتم تشفير وتأكيد العمليات المصرفية وفق لوائح الأمان العراقية</span>
+</div>
+</div>
+</div>
+<script>
+  function toggleDeleteButton() {
+    const checkbox = document.getElementById('balance-acknowledgement');
+    const deleteBtn = document.getElementById('delete-trigger-btn');
+    if (checkbox.checked) {
+      deleteBtn.disabled = false;
+      deleteBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    } else {
+      deleteBtn.disabled = true;
+      deleteBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+  }
+
+  function revealOtpConfirmation() {
+    const otpCard = document.getElementById('otp-confirmation-card');
+    otpCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const firstInput = otpCard.querySelector('input');
+    if (firstInput) firstInput.focus();
+  }
+
+  // Handle OTP Inputs Auto-Focus progression
+  const otpInputs = document.querySelectorAll('.otp-input');
+  otpInputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+      if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+        otpInputs[index + 1].focus();
+      }
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !e.target.value && index > 0) {
+        otpInputs[index - 1].focus();
+      }
+    });
+  });
+
+  // Simple countdown timer tick
+  let secondsLeft = 58;
+  const timerElement = document.getElementById('countdown-timer');
+  const timerInterval = setInterval(() => {
+    if (secondsLeft > 0) {
+      secondsLeft--;
+      const formatted = secondsLeft < 10 ? '0' + secondsLeft : secondsLeft;
+      timerElement.textContent = '00:' + formatted;
+    } else {
+      clearInterval(timerInterval);
+      timerElement.textContent = '00:00';
+    }
+  }, 1000);
+</script></main></body></html>

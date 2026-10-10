@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#faf8ff;}body{overscroll-behavior:none;font-family:'IBM Plex Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'surface-tint': '#715b2c', 'status-error': '#9E1C1C', 'on-primary-fixed': '#261a00', 'on-background': '#191b24', 'on-error-container': '#93000a', 'surface-inset': '#F2EFEB', 'on-tertiary-fixed': '#271900', 'secondary-container': '#dedfec', 'secondary-fixed-dim': '#c5c6d2', 'tertiary': '#78591c', 'secondary-fixed': '#e1e2ee', 'status-success': '#1B5E3B', 'outline': '#7e7669', 'error-container': '#ffdad6', 'surface-container-high': '#e7e7f4', 'tertiary-fixed-dim': '#e9c179', 'border-hairline': '#E5E2DC', 'on-secondary': '#ffffff', 'ink-secondary': '#5C606E', 'canvas-base': '#F9F8F5', 'surface-white': '#FFFFFF', 'status-warning-bg': '#FFF4E5', 'primary-fixed': '#fddfa3', 'surface-container-low': '#f3f2ff', 'inverse-surface': '#2e303a', 'surface-variant': '#e1e1ee', 'surface-container-highest': '#e1e1ee', 'error': '#ba1a1a', 'on-secondary-container': '#60626d', 'on-surface': '#191b24', 'primary-container': '#f3d59a', 'on-error': '#ffffff', 'surface-container-lowest': '#ffffff', 'on-primary-container': '#715b2c', 'status-warning': '#B35C00', 'on-primary': '#ffffff', 'tertiary-container': '#fcd389', 'on-primary-fixed-variant': '#584416', 'on-tertiary-container': '#77591c', 'inverse-primary': '#e0c389', 'on-secondary-fixed-variant': '#444651', 'on-tertiary': '#ffffff', 'outline-variant': '#cfc5b6', 'on-secondary-fixed': '#191b24', 'surface-container': '#ededfa', 'status-error-bg': '#FDF2F2', 'primary': '#715b2c', 'tertiary-fixed': '#ffdea7', 'surface': '#faf8ff', 'surface-bright': '#faf8ff', 'status-success-bg': '#E8F3EC', 'primary-fixed-dim': '#e0c389', 'on-tertiary-fixed-variant': '#5d4203', 'background': '#faf8ff', 'inverse-on-surface': '#f0f0fd', 'secondary': '#5c5e69', 'on-surface-variant': '#4d463a', 'surface-dim': '#d9d9e6' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'space-lg': '1rem', 'space-md': '0.75rem', 'space-xl': '1.5rem', 'gutter': '1rem', 'space-xs': '0.25rem', 'space-sm': '0.5rem', 'margin': '1.25rem' }, fontFamily: { 'headline-xl': ['IBM Plex Sans'], 'headline-lg': ['IBM Plex Sans'], 'body-lg': ['IBM Plex Sans'], 'headline-sm': ['IBM Plex Sans'], 'numeral-price': ['IBM Plex Sans'], 'label-lg': ['IBM Plex Sans'], 'body-md': ['IBM Plex Sans'], 'label-md': ['IBM Plex Sans'], 'body-sm': ['IBM Plex Sans'], 'label-sm': ['IBM Plex Sans'], 'headline-md': ['IBM Plex Sans'], 'plate-display': ['IBM Plex Sans'] }, fontSize: { 'headline-xl': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '600' }], 'headline-lg': ['26px', { lineHeight: '34px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'headline-sm': ['17px', { lineHeight: '24px', fontWeight: '600' }], 'numeral-price': ['18px', { lineHeight: '22px', letterSpacing: '-0.01em', fontWeight: '700' }], 'label-lg': ['16px', { lineHeight: '20px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'label-md': ['14px', { lineHeight: '18px', fontWeight: '500' }], 'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'label-sm': ['11px', { lineHeight: '14px', fontWeight: '500' }], 'headline-md': ['20px', { lineHeight: '28px', fontWeight: '600' }], 'plate-display': ['14px', { lineHeight: '18px', letterSpacing: '0.08em', fontWeight: '700' }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 px-margin flex items-center gap-space-sm justify-start"><button aria-label="رجوع" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-variant transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface select-none">المحفظة والرصيد</h1></div></header><main class="flex flex-col relative w-full px-margin pt-14 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-10" dir="rtl">
+<!-- Progress Stepper Tracker -->
+<div class="w-full bg-surface-container-lowest py-space-md px-margin mb-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs cursor-pointer" id="pill-step-1" onclick="goToStep(1)">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold transition-all shadow-sm" id="dot-1">١</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">المستلم</span>
+</div>
+<div class="flex-1 h-0.5 mx-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 transition-all duration-300" id="progress-line-1"></div>
+</div>
+<div class="flex items-center gap-space-xs cursor-pointer" id="pill-step-2" onclick="goToStep(2)">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold transition-all" id="dot-2">٢</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">المبلغ</span>
+</div>
+<div class="flex-1 h-0.5 mx-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 transition-all duration-300" id="progress-line-2"></div>
+</div>
+<div class="flex items-center gap-space-xs cursor-pointer" id="pill-step-3" onclick="openPinModal()">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold transition-all" id="dot-3">٣</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">التأكيد</span>
+</div>
+</div>
+<!-- STEP 1: Search & Pick Recipient -->
+<section class="flex flex-col gap-space-md transition-opacity duration-300" id="step-1">
+<!-- Notice Banner -->
+<div class="bg-primary-fixed/40 px-gutter py-space-sm rounded-xl flex items-center gap-space-sm text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[20px] text-tertiary">info</span>
+<p class="font-body-sm text-body-sm">التحويل متاح فورياً لجميع مستخدمي رايد في العراق دون رسوم.</p>
+</div>
+<!-- Search Input -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-ink-secondary">
+<span class="material-symbols-outlined text-[22px]">search</span>
+</div>
+<input class="w-full h-[52px] pr-11 pl-4 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder-ink-secondary shadow-sm focus:outline-none focus:ring-0" placeholder="ابحث باسم أو رقم هاتف..." type="text"/>
+</div>
+<!-- Quick Action / Add New Number -->
+<button class="w-full bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between hover:bg-surface-container transition-colors text-right" onclick="goToStep(2)">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">add</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">إضافة رقم جديد</span>
+<span class="font-body-sm text-body-sm text-ink-secondary">إرسال مباشر بواسطة رقم الهاتف</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-secondary text-[20px]">chevron_left</span>
+</button>
+<!-- Recent Recipients Header & Row -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">المستلمون الأحدث</span>
+<button class="font-label-sm text-label-sm text-tertiary font-semibold hover:underline">عرض الكل</button>
+</div>
+<div class="flex items-start gap-space-md overflow-x-auto py-1 no-scrollbar">
+<!-- Haider Kamal -->
+<button class="flex flex-col items-center gap-space-xs min-w-[72px] group text-center" onclick="selectRecipient('حيدر كمال', 'HK', '+964 750 123 4567')">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-sm text-headline-sm font-bold shadow-sm group-hover:scale-105 transition-transform">
+              HK
+            </div>
+<div class="absolute bottom-0 left-0 w-4 h-4 bg-status-success rounded-full ring-2 ring-surface"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[76px]">حيدر كمال</span>
+</button>
+<!-- Sara Ali -->
+<button class="flex flex-col items-center gap-space-xs min-w-[72px] group text-center" onclick="selectRecipient('سارة علي', 'SA', '+964 770 987 6543')">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-headline-sm text-headline-sm font-bold shadow-sm group-hover:scale-105 transition-transform">
+              SA
+            </div>
+<div class="absolute bottom-0 left-0 w-4 h-4 bg-status-success rounded-full ring-2 ring-surface"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[76px]">سارة علي</span>
+</button>
+<!-- Omar Azad -->
+<button class="flex flex-col items-center gap-space-xs min-w-[72px] group text-center" onclick="selectRecipient('عمر آزاد', 'OA', '+964 751 445 8899')">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center font-headline-sm text-headline-sm font-bold shadow-sm group-hover:scale-105 transition-transform">
+              OA
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[76px]">عمر آزاد</span>
+</button>
+<!-- Noor Mohammed -->
+<button class="flex flex-col items-center gap-space-xs min-w-[72px] group text-center" onclick="selectRecipient('نور محمد', 'NM', '+964 780 234 5678')">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-headline-sm text-headline-sm font-bold shadow-sm group-hover:scale-105 transition-transform">
+              NM
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[76px]">نور محمد</span>
+</button>
+</div>
+</div>
+<!-- Contacts List Preview -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<span class="font-label-md text-label-md text-ink-secondary font-medium">سجل جهات الاتصال</span>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer" onclick="selectRecipient('حيدر كمال', 'HK', '+964 750 123 4567')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md font-bold">
+              HK
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">حيدر كمال</span>
+<span class="font-body-sm text-body-sm text-ink-secondary" dir="ltr">+964 750 123 4567</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-status-success font-medium bg-status-success-bg px-2 py-0.5 rounded-full">رايد Pay</span>
+</div>
+<div class="h-[1px] bg-surface-container-high mx-4"></div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer" onclick="selectRecipient('سارة علي', 'SA', '+964 770 987 6543')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-md text-label-md font-bold">
+              SA
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">سارة علي</span>
+<span class="font-body-sm text-body-sm text-ink-secondary" dir="ltr">+964 770 987 6543</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-status-success font-medium bg-status-success-bg px-2 py-0.5 rounded-full">رايد Pay</span>
+</div>
+<div class="h-[1px] bg-surface-container-high mx-4"></div>
+<div class="p-space-md flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer" onclick="selectRecipient('عمر آزاد', 'OA', '+964 751 445 8899')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center font-label-md text-label-md font-bold">
+              OA
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">عمر آزاد</span>
+<span class="font-body-sm text-body-sm text-ink-secondary" dir="ltr">+964 751 445 8899</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-status-success font-medium bg-status-success-bg px-2 py-0.5 rounded-full">رايد Pay</span>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 2: Amount & Details -->
+<section class="hidden flex flex-col gap-space-md transition-opacity duration-300" id="step-2">
+<!-- Selected Recipient Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-sm text-headline-sm font-bold" id="target-avatar">
+          HK
+        </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold" id="target-name">حيدر كمال</span>
+<span class="font-body-sm text-body-sm text-ink-secondary" dir="ltr" id="target-phone">+964 750 123 4567</span>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high" onclick="goToStep(1)">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<!-- Large Amount Entry Display -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-sm flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-ink-secondary mb-space-xs">مبلغ التحويل المطلوب</span>
+<div class="flex items-baseline justify-center gap-2" dir="ltr">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">5,000</span>
+<span class="font-headline-sm text-headline-sm text-tertiary font-semibold" dir="rtl">د.ع</span>
+</div>
+<p class="font-body-sm text-body-sm text-status-success mt-space-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+        الرصيد المتاح: 42,500 د.ع
+      </p>
+<!-- Quick Amount Presets -->
+<div class="flex items-center gap-space-xs mt-space-md flex-wrap justify-center">
+<button class="bg-surface-container-low px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface hover:bg-surface-container font-semibold transition-colors">2,500 د.ع</button>
+<button class="bg-primary-container text-on-primary-container px-3 py-1.5 rounded-full font-label-sm text-label-sm font-semibold transition-colors">5,000 د.ع</button>
+<button class="bg-surface-container-low px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface hover:bg-surface-container font-semibold transition-colors">10,000 د.ع</button>
+<button class="bg-surface-container-low px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface hover:bg-surface-container font-semibold transition-colors">25,000 د.ع</button>
+</div>
+</div>
+<!-- Note Input Field -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-ink-secondary">ملاحظة للطلب</label>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-ink-secondary text-[20px]">description</span>
+<input class="w-full bg-transparent text-on-surface font-body-md text-body-md placeholder-ink-secondary focus:outline-none" placeholder="أضف ملاحظة (اختياري)... مثلاً: أجرة مشوار الأمس" type="text"/>
+</div>
+</div>
+<!-- Policy Banner -->
+<div class="bg-surface-container px-gutter py-space-sm rounded-xl flex items-center gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px] text-ink-secondary">shield</span>
+<span class="font-body-sm text-body-sm">التحويل فوري وموثق فقط لأرقام مسجّلة في تطبيق رايد العراق.</span>
+</div>
+<!-- Next Action Button -->
+<button class="w-full h-[52px] bg-primary-container text-on-background font-label-lg text-label-lg font-semibold rounded-xl flex items-center justify-center gap-space-sm shadow-sm active:scale-[0.99] transition-transform" onclick="openPinModal()">
+<span>متابعة وتأكيد الدفع</span>
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+</section>
+<!-- STEP 3: Bottom Sheet Modal (PIN Auth) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-end justify-center transition-all" id="pin-modal-overlay">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-t-3xl p-margin shadow-2xl flex flex-col items-center gap-space-md animate-in slide-in-from-bottom duration-300">
+<!-- Drag handle -->
+<div class="w-12 h-1 bg-surface-container-highest rounded-full mb-1"></div>
+<!-- Header details -->
+<div class="text-center flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/60 flex items-center justify-center text-on-primary-fixed-variant mb-space-xs">
+<span class="material-symbols-outlined text-[22px]">lock</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">أدخل رمز PIN للمحفظة</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-0.5">لتأكيد إرسال 5,000 د.ع إلى حيدر كمال</p>
+</div>
+<!-- 4 PIN Dots (● ● ● ○) -->
+<div class="flex items-center justify-center gap-space-md py-space-sm" dir="ltr">
+<div class="w-4 h-4 rounded-full bg-primary shadow-sm"></div>
+<div class="w-4 h-4 rounded-full bg-primary shadow-sm"></div>
+<div class="w-4 h-4 rounded-full bg-primary shadow-sm"></div>
+<div class="w-4 h-4 rounded-full bg-surface-container-highest"></div>
+</div>
+<button class="font-label-sm text-label-sm text-tertiary font-semibold hover:underline">نسيت الرمز؟</button>
+<!-- Keypad -->
+<div class="grid grid-cols-3 gap-3 w-full max-w-[300px] mt-1" dir="ltr">
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('1')">1</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('2')">2</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('3')">3</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('4')">4</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('5')">5</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('6')">6</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('7')">7</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('8')">8</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('9')">9</button>
+<button class="h-12 rounded-xl text-on-surface-variant font-label-md text-label-md font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="closePinModal()">إلغاء</button>
+<button class="h-12 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold hover:bg-surface-container active:scale-95 transition-all" onclick="handleKeypad('0')">0</button>
+<button class="h-12 rounded-xl bg-primary-container text-on-background flex items-center justify-center hover:bg-primary-fixed active:scale-95 transition-all" onclick="submitPinSuccess()">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</div>
+</div>
+</div>
+<!-- STEP 4: Success View (Step D) -->
+<section class="hidden flex flex-col gap-space-lg items-center text-center animate-in fade-in duration-300" id="step-4">
+<div class="w-full bg-surface-container-lowest rounded-2xl p-space-xl shadow-sm flex flex-col items-center">
+<!-- Animated Check Circle -->
+<div class="w-20 h-20 rounded-full bg-status-success-bg text-status-success flex items-center justify-center mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[44px]">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-status-success font-semibold bg-status-success-bg px-3 py-1 rounded-full mb-space-sm">حوالة مكتملة</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+        تم إرسال 5,000 د.ع بنجاح!
+      </h2>
+<p class="font-body-md text-body-md text-ink-secondary">
+        تم إيداع المبلغ في محفظة <strong class="text-on-surface">حيدر كمال (HK)</strong> فوراً.
+      </p>
+<!-- Transaction Slip Details -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-md mt-space-lg flex flex-col gap-space-sm text-right">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">رقم الإيصال</span>
+<span class="font-mono text-on-surface font-semibold" dir="ltr">#TXN-98421</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">المستلم</span>
+<span class="text-on-surface font-semibold">حيدر كمال (+964 750 123 4567)</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">رسوم الخدمة</span>
+<span class="text-status-success font-semibold">مجاناً (0 د.ع)</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">وقت العملية</span>
+<span class="text-on-surface">اليوم، 12:45 م</span>
+</div>
+</div>
+</div>
+<!-- Done CTA -->
+<button class="w-full h-[52px] bg-primary-container text-on-background font-label-lg text-label-lg font-semibold rounded-xl flex items-center justify-center shadow-sm active:scale-[0.99] transition-transform" onclick="goToStep(1)">
+      تم
+    </button>
+</section>
+</div>
+<script>
+  function goToStep(step) {
+    // Hide all
+    document.getElementById('step-1').classList.add('hidden');
+    document.getElementById('step-2').classList.add('hidden');
+    document.getElementById('step-4').classList.add('hidden');
+    closePinModal();
+
+    const dot1 = document.getElementById('dot-1');
+    const dot2 = document.getElementById('dot-2');
+    const dot3 = document.getElementById('dot-3');
+    const line1 = document.getElementById('progress-line-1');
+    const line2 = document.getElementById('progress-line-2');
+
+    if (step === 1) {
+      document.getElementById('step-1').classList.remove('hidden');
+      dot1.className = 'w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      dot2.className = 'w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold';
+      dot3.className = 'w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold';
+      line1.style.width = '0%';
+      line2.style.width = '0%';
+    } else if (step === 2) {
+      document.getElementById('step-2').classList.remove('hidden');
+      dot1.className = 'w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      dot2.className = 'w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      dot3.className = 'w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-semibold';
+      line1.style.width = '100%';
+      line2.style.width = '0%';
+    } else if (step === 4) {
+      document.getElementById('step-4').classList.remove('hidden');
+      dot1.className = 'w-7 h-7 rounded-full bg-status-success flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      dot2.className = 'w-7 h-7 rounded-full bg-status-success flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      dot3.className = 'w-7 h-7 rounded-full bg-status-success flex items-center justify-center text-on-primary font-label-sm text-label-sm font-semibold shadow-sm';
+      line1.style.width = '100%';
+      line2.style.width = '100%';
+    }
+  }
+
+  function selectRecipient(name, initials, phone) {
+    document.getElementById('target-name').innerText = name;
+    document.getElementById('target-avatar').innerText = initials;
+    document.getElementById('target-phone').innerText = phone;
+    goToStep(2);
+  }
+
+  function openPinModal() {
+    document.getElementById('pin-modal-overlay').classList.remove('hidden');
+  }
+
+  function closePinModal() {
+    document.getElementById('pin-modal-overlay').classList.add('hidden');
+  }
+
+  function handleKeypad(num) {
+    // Micro interaction trigger: auto complete on pin button click
+    submitPinSuccess();
+  }
+
+  function submitPinSuccess() {
+    closePinModal();
+    goToStep(4);
+  }
+</script></main></body></html>

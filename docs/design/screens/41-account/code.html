@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans',sans-serif;}body{overscroll-behavior:none;background-color:#faf8ff;color:#191b24;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-variant": "#e1e1ee", "on-tertiary-fixed": "#271900", "outline": "#7e7669", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-inset": "#F2EFEB", "primary": "#715b2c", "on-error": "#ffffff", "surface-container-highest": "#e1e1ee", "surface-container": "#ededfa", "tertiary-container": "#fcd389", "on-primary-fixed": "#261a00", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "on-tertiary": "#ffffff", "primary-fixed": "#fddfa3", "tertiary": "#78591c", "status-error-bg": "#FDF2F2", "status-success-bg": "#E8F3EC", "tertiary-fixed": "#ffdea7", "on-tertiary-container": "#77591c", "surface-white": "#FFFFFF", "inverse-on-surface": "#f0f0fd", "status-warning": "#B35C00", "on-primary-container": "#715b2c", "secondary-container": "#dedfec", "on-error-container": "#93000a", "error-container": "#ffdad6", "on-background": "#191b24", "status-success": "#1B5E3B", "surface-container-low": "#f3f2ff", "on-primary": "#ffffff", "error": "#ba1a1a", "on-secondary-container": "#60626d", "tertiary-fixed-dim": "#e9c179", "surface-container-high": "#e7e7f4", "on-surface": "#191b24", "status-error": "#9E1C1C", "border-hairline": "#E5E2DC", "on-surface-variant": "#4d463a", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed-dim": "#e0c389", "outline-variant": "#cfc5b6", "ink-secondary": "#5C606E", "canvas-base": "#F9F8F5", "surface-bright": "#faf8ff", "secondary-fixed-dim": "#c5c6d2", "on-primary-fixed-variant": "#584416", "inverse-primary": "#e0c389", "on-secondary-fixed-variant": "#444651", "on-secondary-fixed": "#191b24", "surface-dim": "#d9d9e6", "secondary-fixed": "#e1e2ee", "background": "#faf8ff", "surface-tint": "#715b2c", "secondary": "#5c5e69", "status-warning-bg": "#FFF4E5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1.25rem", "gutter": "1rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "headline-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"], "label-sm": ["IBM Plex Sans"] }, fontSize: { "headline-sm": ["17px", { lineHeight: "24px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["14px", { lineHeight: "18px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "plate-display": ["14px", { lineHeight: "18px", letterSpacing: "0.08em", fontWeight: "700" }], "headline-lg": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }], "numeral-price": ["18px", { lineHeight: "22px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["16px", { lineHeight: "20px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">الحساب   رايد</h1></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full px-margin pb-8 gap-space-xl">
+<!-- Profile Header Card -->
+<div class="relative bg-surface-container-lowest rounded-xl p-gutter shadow-sm overflow-hidden">
+<!-- Subtle warm glow top accent -->
+<div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-primary-container via-tertiary-fixed to-primary-container"></div>
+<div class="flex items-center justify-between gap-space-md pt-space-xs">
+<!-- Right Side: Avatar + Details (RTL flow) -->
+<div class="flex items-center gap-space-md min-w-0">
+<!-- Friendly Profile Avatar -->
+<div class="relative shrink-0 w-16 h-16 rounded-full overflow-hidden bg-primary-container flex items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A warm, confident portrait of an Iraqi young man named Ahmed Karim wearing a neutral polo shirt against a softly blurred Baghdad or Erbil modern architecture backdrop with pleasant morning sunlight and a clean friendly smile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_UcWwG62YcI9sHjl1w4eM0zFh644ncOuZ_P9B1P2rIimC9NSFpZKaraSGa3opqNt3V_nKhRoeAQ89EGP7xXt1igxkVimXKBHoqRkhj1cXdlGrnXuNHen_EKpfsw5WwuxCX0Dz6HzzrN-FVHU8WZ6JzOfE8zq6wAtwWhMafueWeAkUSIbD846tlyHEfYb9-HXDUdCbf2qriAQjIEwih_fGV698ulQFVlPt2FuQ7M2hfIL0K4qaYmRu"/>
+<!-- Fallback Initial Badge (Accessible decorative) -->
+<span class="sr-only">أك</span>
+<!-- Online / Active Status indicator -->
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-status-success ring-2 ring-surface-white" title="نشط الآن"></div>
+</div>
+<!-- Name & Verified Phone -->
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<h2 class="text-headline-sm font-headline-sm text-on-surface truncate">
+              أحمد كريم
+            </h2>
+<span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-status-success-bg text-status-success" title="حساب موثق">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="text-body-sm font-body-sm text-ink-secondary tracking-wide" dir="ltr">
+              +964 750 123 4567
+            </span>
+<span class="text-label-sm font-label-sm text-status-success px-1.5 py-0.5 rounded-full bg-status-success-bg">
+              موثق
+            </span>
+</div>
+</div>
+</div>
+<!-- Left Side: Edit Profile Circular Button -->
+<button aria-label="تعديل الملف الشخصي" class="shrink-0 w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary-container hover:text-on-primary-fixed transition-all active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<!-- Quick Stats Strip -->
+<div class="mt-4 pt-3 flex items-center justify-around bg-surface-container-low rounded-lg py-2.5">
+<div class="flex flex-col items-center">
+<span class="text-label-lg font-label-lg text-on-surface">4.92 ★</span>
+<span class="text-label-sm font-label-sm text-ink-secondary">تقييم الراكب</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/40"></div>
+<div class="flex flex-col items-center">
+<span class="text-label-lg font-label-lg text-on-surface">84</span>
+<span class="text-label-sm font-label-sm text-ink-secondary">رحلة مكتملة</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/40"></div>
+<div class="flex flex-col items-center">
+<span class="text-label-lg font-label-lg text-primary font-bold">عضو ذهبي</span>
+<span class="text-label-sm font-label-sm text-ink-secondary">فئة الولاء</span>
+</div>
+</div>
+</div>
+<!-- GROUP 1: Your Account (حسابك) -->
+<div class="flex flex-col gap-space-xs">
+<div class="px-space-xs">
+<h3 class="text-label-md font-label-md text-ink-secondary font-semibold">حسابك</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Row: Personal Info -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">person</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">المعلومات الشخصية</span>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Row: Saved Addresses -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">bookmark</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-on-surface truncate">العناوين المحفوظة</span>
+<span class="text-body-sm font-body-sm text-ink-secondary truncate">المنزل، العمل، مطار أربيل</span>
+</div>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Row: Wallet (with balance pill) -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">المحفظة</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 mr-space-sm">
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-fixed text-label-md font-label-md font-bold tracking-tight">
+            12,500 د.ع
+          </span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Row: Notifications (with red badge 3) -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">الإشعارات</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 mr-space-sm">
+<span class="w-5 h-5 rounded-full bg-status-error text-on-error text-label-sm font-label-sm flex items-center justify-center font-bold">
+            3
+          </span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Row: Coupons & Offers -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">local_offer</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">الكوبونات والعروض</span>
+</div>
+<div class="flex items-center gap-space-xs text-outline-variant shrink-0 mr-space-sm">
+<span class="text-label-sm font-label-sm text-primary font-semibold">خصم 20% متوفر</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+</div>
+</div>
+<!-- GROUP 2: Support (الدعم) -->
+<div class="flex flex-col gap-space-xs">
+<div class="px-space-xs">
+<h3 class="text-label-md font-label-md text-ink-secondary font-semibold">الدعم والمساعدة</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Help Center -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">help</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">مركز المساعدة</span>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- My Tickets -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">confirmation_number</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-on-surface truncate">تذاكري</span>
+<span class="text-body-sm font-body-sm text-status-success truncate">تم حل آخر تذكرة</span>
+</div>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Safety Center -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-on-surface truncate">مركز الأمان</span>
+<span class="text-body-sm font-body-sm text-ink-secondary truncate">مشاركة مسار الرحلة والطوارئ</span>
+</div>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+</div>
+</div>
+<!-- GROUP 3: Preferences (التفضيلات) -->
+<div class="flex flex-col gap-space-xs">
+<div class="px-space-xs">
+<h3 class="text-label-md font-label-md text-ink-secondary font-semibold">التفضيلات</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Language -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">language</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">اللغة</span>
+</div>
+<div class="flex items-center gap-space-xs text-ink-secondary shrink-0 mr-space-sm">
+<span class="text-label-md font-label-md">العربية</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Appearance -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">brightness_medium</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">المظهر</span>
+</div>
+<div class="flex items-center gap-space-xs text-ink-secondary shrink-0 mr-space-sm">
+<span class="text-label-md font-label-md">تلقائي</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- City Selection -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">location_on</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">المدينة</span>
+</div>
+<div class="flex items-center gap-space-xs text-ink-secondary shrink-0 mr-space-sm">
+<span class="text-label-md font-label-md">أربيل، العراق</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_left</span>
+</div>
+</a>
+</div>
+</div>
+<!-- GROUP 4: Privacy & Account Actions (الخصوصية) -->
+<div class="flex flex-col gap-space-xs">
+<div class="px-space-xs">
+<h3 class="text-label-md font-label-md text-ink-secondary font-semibold">الخصوصية وإدارة الحساب</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Download My Data -->
+<a class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors active:bg-surface-container" href="#">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface shrink-0">
+<span class="material-symbols-outlined text-[22px]">download</span>
+</div>
+<span class="text-body-lg font-body-lg text-on-surface truncate">تحميل بياناتي</span>
+</div>
+<div class="flex items-center text-outline-variant shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-container mx-gutter"></div>
+<!-- Delete Account (Danger Action) -->
+<button class="w-full flex items-center justify-between p-gutter hover:bg-status-error-bg/70 transition-colors active:bg-status-error-bg text-right" id="delete-account-btn" type="button">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-error-container/60 flex items-center justify-center text-status-error shrink-0">
+<span class="material-symbols-outlined text-[22px]">delete_forever</span>
+</div>
+<span class="text-body-lg font-body-lg text-status-error font-medium truncate">حذف الحساب</span>
+</div>
+<div class="flex items-center text-status-error shrink-0 mr-space-sm">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</div>
+</button>
+</div>
+</div>
+<!-- App Callout / Iraqi Hospitality Note -->
+<div class="bg-surface-container-low p-gutter rounded-xl flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shrink-0">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-label-md font-label-md text-on-surface font-semibold">خدمتكم شرفنا في كل محافظات العراق</span>
+<span class="text-body-sm font-body-sm text-ink-secondary">رحلات آمنة وموثوقة على مدار الساعة طوال أيام الأسبوع</span>
+</div>
+</div>
+<!-- Footer Information & Links -->
+<div class="flex flex-col items-center justify-center gap-space-sm pt-space-xs text-center">
+<div class="flex items-center gap-space-sm text-label-md font-label-md text-ink-secondary">
+<a class="hover:text-primary transition-colors underline-offset-4 hover:underline" href="#">الشروط والأحكام</a>
+<span class="text-outline-variant font-bold">·</span>
+<a class="hover:text-primary transition-colors underline-offset-4 hover:underline" href="#">سياسة الخصوصية</a>
+</div>
+<div class="flex flex-col items-center gap-0.5 mt-1">
+<span class="text-body-sm font-body-sm text-ink-secondary">
+        إصدار رايد 2.4.0 (142)
+      </span>
+<span class="text-label-sm font-label-sm text-outline-variant">
+        صُنع بكل حب في بلاد الرافدين 🇮🇶
+      </span>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive feedback for list items
+  document.querySelectorAll('a[href="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Tactile gentle tap effect
+      link.classList.add('bg-surface-container');
+      setTimeout(() => {
+        link.classList.remove('bg-surface-container');
+      }, 150);
+    });
+  });
+
+  // Danger confirmation for Delete Account
+  const deleteBtn = document.getElementById('delete-account-btn');
+  if (deleteBtn) {
+    deleteBtn.addEventListener('click', () => {
+      const confirmed = confirm('هل أنت متأكد من رغبتك في حذف الحساب؟ سيتم إلغاء تفعيل كافة بياناتك ومحفظتك نهائياً.');
+      if (confirmed) {
+        alert('تم تقديم طلب حذف الحساب. سنتواصل معك عبر رسالة نصية قصيرة للتأكيد.');
+      }
+    });
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-label-md"><div class="flex justify-around items-center h-16 px-gutter"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-space-xs text-ink-secondary hover:text-on-surface transition-colors" data-path="alrayisiat-rayid" href="#"><span class="material-symbols-outlined text-[24px]">local_taxi</span><span class="text-label-sm font-label-sm">الرئيسية</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-space-xs text-ink-secondary hover:text-on-surface transition-colors" data-path="alanshitat-rayid" href="#"><span class="material-symbols-outlined text-[24px]">receipt_long</span><span class="text-label-sm font-label-sm">الأنشطة</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[44px] gap-space-xs text-ink-secondary hover:text-on-surface transition-colors" data-path="alhisab-rayid" href="#"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-label-sm font-label-sm">الحساب</span></a></div></nav></body></html>

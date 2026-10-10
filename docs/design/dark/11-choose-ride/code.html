@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'IBM Plex Sans Arabic',sans-serif;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-high": "#e7e7f4", "surface-container": "#ededfa", "status-success": "#1B5E3B", "outline": "#7e7669", "surface-bright": "#faf8ff", "border-hairline": "#E5E2DC", "primary": "#715b2c", "primary-fixed-dim": "#e0c389", "on-surface": "#191b24", "status-success-bg": "#E8F3EC", "status-warning": "#B35C00", "outline-variant": "#cfc5b6", "surface": "#faf8ff", "on-primary-container": "#715b2c", "secondary-fixed-dim": "#c5c6d2", "surface-tint": "#715b2c", "inverse-primary": "#e0c389", "inverse-on-surface": "#f0f0fd", "tertiary": "#78591c", "tertiary-fixed-dim": "#e9c179", "on-background": "#191b24", "on-primary-fixed-variant": "#584416", "surface-container-low": "#f3f2ff", "on-secondary-fixed-variant": "#444651", "on-tertiary-container": "#77591c", "canvas-base": "#F9F8F5", "on-secondary-fixed": "#191b24", "on-error": "#ffffff", "on-tertiary-fixed-variant": "#5d4203", "primary-fixed": "#fddfa3", "error": "#ba1a1a", "on-primary": "#ffffff", "ink-secondary": "#5C606E", "on-tertiary": "#ffffff", "background": "#faf8ff", "surface-dim": "#d9d9e6", "status-error-bg": "#FDF2F2", "on-tertiary-fixed": "#271900", "surface-white": "#FFFFFF", "inverse-surface": "#2e303a", "primary-container": "#f3d59a", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "surface-variant": "#e1e1ee", "on-error-container": "#93000a", "secondary-container": "#dedfec", "secondary-fixed": "#e1e2ee", "on-primary-fixed": "#261a00", "secondary": "#5c5e69", "on-surface-variant": "#4d463a", "tertiary-container": "#fcd389", "on-secondary-container": "#60626d", "status-warning-bg": "#FFF4E5", "on-secondary": "#ffffff", "status-error": "#9E1C1C", "surface-inset": "#F2EFEB", "tertiary-fixed": "#ffdea7", "surface-container-highest": "#e1e1ee" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "0.75rem", "space-xs": "0.25rem", "gutter": "1rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "space-lg": "1rem", "margin": "1.25rem" }, fontFamily: { "label-sm": ["IBM Plex Sans"], "label-md": ["IBM Plex Sans"], "plate-display": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "headline-sm": ["IBM Plex Sans"], "headline-md": ["IBM Plex Sans"], "headline-xl": ["IBM Plex Sans"], "body-sm": ["IBM Plex Sans"], "numeral-price": ["IBM Plex Sans"], "headline-lg": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "label-lg": ["IBM Plex Sans"] }, fontSize: { "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }], "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "500" }], "plate-display": ["14px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["17px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "numeral-price": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-[#05070F] font-body-md text-white flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-[#05070F]/80 backdrop-blur-xl pt-safe border-b border-[rgba(255,255,255,0.08)] shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button class="min-w-[44px] min-h-[44px] flex items-center justify-center text-white hover:text-[#9BA1B0] transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><h1 class="text-headline-sm font-headline-sm text-white truncate">اختيار فئة المشوار</h1></div><div class="w-8 h-8 rounded-full bg-[#151B2C] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[#F3D59A] text-[18px]">person</span></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-[#05070F]"><div class="flex flex-col w-full relative select-none">
+<!-- Top Map Section (45% approximate visual height) -->
+<div class="relative w-full h-[360px] bg-[#0A0E17] overflow-hidden">
+<!-- Dark Mode Stylized Map Canvas SVG -->
+<div class="absolute inset-0 w-full h-full bg-[#0A0E17]">
+<svg class="w-full h-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 390 360" xmlns="http://www.w3.org/2000/svg">
+<!-- Water body -->
+<path d="M 180 -10 C 190 60, 205 120, 220 180 C 240 250, 275 320, 290 370 L 260 370 C 245 320, 210 250, 195 180 C 180 120, 165 60, 155 -10 Z" fill="#070B12"></path>
+<!-- Roads / Arterials -->
+<path d="M -10 90 L 400 90" stroke="#161F30" stroke-width="6"></path>
+<path d="M -10 170 L 400 170" stroke="#161F30" stroke-width="4"></path>
+<path d="M -10 260 L 400 260" stroke="#161F30" stroke-width="5"></path>
+<path d="M 90 -10 L 90 370" stroke="#161F30" stroke-width="4"></path>
+<path d="M 310 -10 L 310 370" stroke="#161F30" stroke-width="5"></path>
+<path d="M 40 370 L 360 -10" stroke="#131B29" stroke-width="3"></path>
+<path d="M -10 300 L 380 50" stroke="#131B29" stroke-width="3"></path>
+<!-- Minor Streets Grid -->
+<path d="M -10 40 L 400 40 M -10 130 L 400 130 M -10 220 L 400 220 M -10 310 L 400 310" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"></path>
+<path d="M 45 -10 L 45 370 M 140 -10 L 140 370 M 230 -10 L 230 370 M 350 -10 L 350 370" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"></path>
+<!-- District text labels -->
+<text fill="#8892B0" font-family="IBM Plex Sans Arabic, sans-serif" font-size="10" opacity="0.6" x="60" y="65">الكاظمية</text>
+<text fill="#8892B0" font-family="IBM Plex Sans Arabic, sans-serif" font-size="10" opacity="0.6" x="290" y="70">القاهرة</text>
+<text fill="#8892B0" font-family="IBM Plex Sans Arabic, sans-serif" font-size="13" font-weight="600" opacity="0.8" x="165" y="150">بغداد</text>
+<text fill="#8892B0" font-family="IBM Plex Sans Arabic, sans-serif" font-size="10" opacity="0.6" x="50" y="240">اليرموك</text>
+<text fill="#8892B0" font-family="IBM Plex Sans Arabic, sans-serif" font-size="10" opacity="0.6" x="260" y="295">الدورة</text>
+</svg>
+</div>
+<!-- Route Line Simulation with Glow Filter -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 390 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter height="160%" id="routeShadowDark" width="160%" x="-30%" y="-30%">
+<fedropshadow dx="0" dy="0" flood-color="#3B82F6" flood-opacity="0.6" stddeviation="4"></fedropshadow>
+</filter>
+</defs>
+<path d="M 95 90 C 130 90, 160 140, 195 190 S 260 250, 290 270" fill="none" filter="url(#routeShadowDark)" stroke="#3B82F6" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+<path d="M 290 270 L 305 285" fill="none" stroke="#60A5FA" stroke-dasharray="3,3" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<!-- Top Floating Back Control -->
+<div class="absolute top-3 right-4 z-20">
+<button aria-label="رجوع" class="w-11 h-11 rounded-full bg-[#0D1220]/90 border border-[rgba(255,255,255,0.1)] shadow-md flex items-center justify-center text-white active:scale-95 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+</button>
+</div>
+<!-- Pickup Marker -->
+<div class="absolute top-[68px] right-[75px] z-10 flex flex-col items-center pointer-events-none transform -translate-x-1/2">
+<div class="bg-[#0D1220] border border-[rgba(255,255,255,0.12)] text-white px-2.5 py-1 rounded-full shadow-lg text-label-sm font-label-sm whitespace-nowrap mb-1.5 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse"></span>
+<span>الانطلاق خلال 5 دقائق</span>
+</div>
+<div class="relative flex items-center justify-center">
+<div class="w-8 h-8 rounded-full bg-[#F3D59A] text-[#05070F] flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-[#F3D59A] absolute -bottom-1"></div>
+</div>
+</div>
+<!-- Drop-off Marker -->
+<div class="absolute top-[248px] right-[275px] z-10 flex flex-col items-center pointer-events-none transform -translate-x-1/2">
+<div class="bg-[#0D1220] border border-[rgba(255,255,255,0.12)] text-white px-2.5 py-1 rounded-full shadow-lg text-label-sm font-label-sm whitespace-nowrap mb-1.5">
+الوصول حوالي 12:34 م
+</div>
+<div class="relative flex items-center justify-center">
+<div class="w-8 h-8 rounded-lg bg-[#3B82F6] text-white flex items-center justify-center shadow-lg rotate-3">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">flag</span>
+</div>
+<div class="w-1.5 h-2 bg-[#3B82F6] absolute -bottom-1"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Sheet (Taking bottom 55% visual flow, white rounded top corners 24px) -->
+<div class="relative -mt-6 z-30 w-full bg-[#0D1220] border-t border-[rgba(255,255,255,0.08)] rounded-t-[24px] shadow-[0_-8px_28px_rgba(0,0,0,0.6)] px-margin pt-3 pb-6 flex flex-col gap-3.5">
+<!-- Drag Handle -->
+<div class="w-10 h-1 bg-[rgba(255,255,255,0.2)] rounded-full mx-auto mb-0.5"></div>
+<!-- Surge Warning-tint Banner -->
+<div class="w-full bg-[rgba(251,191,36,0.15)] border border-[rgba(251,191,36,0.3)] rounded-xl p-2.5 flex items-center gap-2.5 text-[#FBBF24] shadow-sm">
+<div class="w-7 h-7 rounded-lg bg-[rgba(251,191,36,0.2)] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px] text-[#FBBF24]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="text-body-sm font-body-sm text-[#FBBF24] font-medium leading-tight">
+الطلب مرتفع الآن، الأسعار أعلى قليلاً
+</div>
+</div>
+<!-- Vehicle Selection Options List -->
+<div class="flex flex-col gap-2.5 w-full" id="ride-options-group">
+<!-- Option 1: اقتصادي (SELECTED) -->
+<div class="ride-card w-full p-3 rounded-2xl bg-[rgba(243,213,154,0.1)] border-2 border-[#F3D59A] shadow-sm flex items-center justify-between cursor-pointer transition-all duration-200" id="option-eco" onclick="selectRide('eco')">
+<!-- Vehicle Visual -->
+<div class="w-20 h-14 relative flex items-center justify-center shrink-0 rounded-xl bg-[#151B2C] border border-[rgba(255,255,255,0.08)] overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="Modern white taxi sedan on clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd8dPQOhLdtXLSZBY_TKFVUdBWd3kTCkFfPFSbkM1g9JsrSagQqHC1cZ2_-ezz31iTdXh6dd_aZ2-FCea0rZw-K_bGW95zo8YBjRtSjhMNFDhGLYRShpds_koQGQZx0DX8hYtOiFD4xS2yOxYo7s_Ww8Rc7a4PkjL1TVLisjYtBwhQUkw3MMqJ27x5XVcN6P0V5Ap_E5SHIhP16D-KadcJaCOaZ1cncH7ULVyAgYg2PhGoxdi7xe9S"/>
+</div>
+<!-- Center & Right Details -->
+<div class="flex-1 px-3 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm text-white font-bold">اقتصادي</span>
+<span class="text-label-sm font-label-sm bg-[#F3D59A]/20 text-[#F3D59A] px-1.5 py-0.5 rounded-full">شائع</span>
+</div>
+<div class="text-body-sm font-body-sm text-[#9BA1B0] mt-0.5 flex items-center gap-1.5 flex-wrap">
+<span>4 مقاعد</span>
+<span>•</span>
+<span class="text-[#F3D59A] font-medium">5 دقائق وصول</span>
+</div>
+</div>
+<!-- Price Details -->
+<div class="flex flex-col items-end text-left shrink-0">
+<div class="text-body-sm font-body-sm text-[#6B7280] line-through">4,250 د.ع</div>
+<div class="text-numeral-price font-numeral-price text-white font-bold">3,000 د.ع</div>
+<div class="flex items-center gap-0.5 text-label-sm font-label-sm text-[#4ADE80] mt-0.5 font-medium bg-[rgba(74,222,128,0.15)] px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>تم تطبيق BTS26</span>
+</div>
+</div>
+</div>
+<!-- Option 2: مريح (UNSELECTED) -->
+<div class="ride-card w-full p-3 rounded-2xl bg-[#151B2C] border border-[rgba(255,255,255,0.08)] shadow-sm flex items-center justify-between cursor-pointer transition-all duration-200" id="option-comfort" onclick="selectRide('comfort')">
+<!-- Vehicle Visual -->
+<div class="w-20 h-14 relative flex items-center justify-center shrink-0 rounded-xl bg-[#0D1220] border border-[rgba(255,255,255,0.08)] overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="Silver sedan car" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0kF31ltqS3lRsfwwwKl_U06pIv50lOg04T9FDB1Y6_eE44YyEh87gi-1y5Rv4GZrAWrBRt4JQwihS7KLfBN_dft32qFGms7iHz6y95HQqKasMsrTGS18mIaMF3New1tbMm_4HMWViSmiVroXcvK7iRf5r0tLeAMez6rEvRzLlN1UPL4CUKEuaQ9uilQA4IVmyPS-6ECPmuz7zI1rHWvtLW0ihOAFxk_6tce2PphMc-2-NqtT3vXq5"/>
+</div>
+<!-- Center & Right Details -->
+<div class="flex-1 px-3 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm text-white font-bold">مريح</span>
+</div>
+<div class="text-body-sm font-body-sm text-[#9BA1B0] mt-0.5 flex items-center gap-1.5 flex-wrap">
+<span>4 مقاعد</span>
+<span>•</span>
+<span>7 دقائق وصول</span>
+</div>
+</div>
+<!-- Price Details -->
+<div class="flex flex-col items-end text-left shrink-0">
+<div class="text-numeral-price font-numeral-price text-white font-bold">3,750 د.ع</div>
+<div class="text-label-sm font-label-sm text-[#9BA1B0] mt-0.5">سعر ثابت تقريبي</div>
+</div>
+</div>
+</div>
+<!-- Row of Three Compact Control Chips -->
+<div class="grid grid-cols-3 gap-2 w-full pt-1">
+<!-- Payment Method Chip -->
+<button class="h-10 px-2 rounded-full bg-[#151B2C] border border-[rgba(255,255,255,0.08)] flex items-center justify-center gap-1.5 text-white active:bg-[#1C243B] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-white" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-md font-label-md truncate">نقداً</span>
+<span class="material-symbols-outlined text-[16px] text-[#9BA1B0]">expand_more</span>
+</button>
+<!-- Coupon Chip -->
+<button class="h-10 px-2 rounded-full bg-[#151B2C] border border-[rgba(255,255,255,0.08)] flex items-center justify-center gap-1.5 text-white relative active:bg-[#1C243B] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-white">local_offer</span>
+<span class="text-label-md font-label-md truncate">كوبون</span>
+<span class="w-2 h-2 rounded-full bg-[#4ADE80] inline-block"></span>
+</button>
+<!-- Rider Selection Chip -->
+<button class="h-10 px-2 rounded-full bg-[#151B2C] border border-[rgba(255,255,255,0.08)] flex items-center justify-center gap-1.5 text-white active:bg-[#1C243B] transition-colors">
+<span class="material-symbols-outlined text-[18px] text-white">person_add</span>
+<span class="text-label-md font-label-md truncate">لشخص آخر</span>
+</button>
+</div>
+<!-- Bottom Action CTA Area -->
+<div class="w-full flex items-center gap-2.5 pt-2">
+<!-- Schedule Button -->
+<button aria-label="جدولة موعد لاحق" class="w-12 h-12 rounded-[14px] bg-[#151B2C] border border-[rgba(255,255,255,0.1)] shadow-sm flex items-center justify-center text-white active:scale-95 transition-transform shrink-0">
+<span class="material-symbols-outlined text-[22px] text-white">schedule</span>
+</button>
+<!-- Primary Action CTA -->
+<button class="flex-1 h-[52px] bg-[#F3D59A] text-[#05070F] font-bold text-label-lg rounded-[14px] flex items-center justify-center gap-2 active:brightness-95 transition-all shadow-md" id="primary-submit-btn">
+<span id="primary-cta-label">اطلب اقتصادي</span>
+<span class="material-symbols-outlined text-[20px] transform rotate-180">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function selectRide(category) {
+    const ecoCard = document.getElementById('option-eco');
+    const comfCard = document.getElementById('option-comfort');
+    const ctaLabel = document.getElementById('primary-cta-label');
+
+    if (category === 'eco') {
+      ecoCard.classList.remove('bg-surface-container-lowest');
+      ecoCard.classList.add('bg-[#FFFDF7]');
+
+      comfCard.classList.remove('bg-[#FFFDF7]');
+      comfCard.classList.add('bg-surface-container-lowest');
+
+      ctaLabel.textContent = 'اطلب اقتصادي';
+    } else {
+      comfCard.classList.remove('bg-surface-container-lowest');
+      comfCard.classList.add('bg-[#FFFDF7]');
+
+      ecoCard.classList.remove('bg-[#FFFDF7]');
+      ecoCard.classList.add('bg-surface-container-lowest');
+
+      ctaLabel.textContent = 'اطلب مريح';
+    }
+  }
+</script></main></body></html>
