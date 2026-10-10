@@ -5,15 +5,15 @@ import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../domain/entities/spot.dart';
+import '../choose_ride/choose_ride_screen.dart';
 import '../map_picker/map_picker_screen.dart';
-import '../review/trip_review_screen.dart';
 import 'where_to_controller.dart';
 import 'where_to_fields.dart';
 import 'where_to_results.dart';
 import 'where_to_state.dart';
 
 /// 08 and 09: where the trip goes, with up to two stops. Once both ends are known the
-/// trip is reviewed.
+/// ride is chosen.
 class WhereToScreen extends ConsumerStatefulWidget {
   const WhereToScreen({super.key, required this.start});
 
@@ -47,7 +47,7 @@ class _WhereToScreenState extends ConsumerState<WhereToScreen> {
     if (complete && mounted) {
       final draft = ref.read(whereToControllerProvider(widget.start)).draft;
       await Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => TripReviewScreen(draft: draft)),
+        MaterialPageRoute<void>(builder: (_) => ChooseRideScreen(draft: draft)),
       );
     }
   }

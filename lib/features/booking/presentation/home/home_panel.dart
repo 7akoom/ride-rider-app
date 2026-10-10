@@ -6,7 +6,6 @@ import '../../../../core/location/location_access.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
-import '../../../../design/tokens/shadows.dart';
 import '../../domain/entities/day_part.dart';
 import '../../domain/entities/saved_place.dart';
 import 'home_state.dart';
@@ -28,57 +27,41 @@ class HomePanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final p = context.palette;
     final status = ref.watch(locationStatusProvider).valueOrNull;
     final shortcuts = ref.watch(shortcutsProvider).valueOrNull ?? const <SavedPlace>[];
 
-    return Container(
-      decoration: BoxDecoration(
-        color: p.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.sheet)),
-        boxShadow: Shadows.floating,
-      ),
-      padding: const EdgeInsetsDirectional.fromSTEB(
-        Space.gutter,
-        Space.x5,
-        Space.gutter,
-        Space.x4,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const _Greeting(),
-          const SizedBox(height: Space.x1),
-          const _PickupLine(),
-          if (status != null && status != LocationAccessStatus.granted) ...[
-            const SizedBox(height: Space.x3),
-            StatusBanner(
-              tone: Tone.warning,
-              message: l10n.homeLocationOff,
-              actionLabel: l10n.homeLocationTurnOn,
-              onAction: onTurnOnLocation,
-            ),
-          ],
-          const SizedBox(height: Space.x4),
-          SearchBarButton(label: l10n.homeWhereTo, onTap: onWhereTo),
-          if (shortcuts.isNotEmpty) ...[
-            const SizedBox(height: Space.x4),
-            Row(
-              children: [
-                for (final place in shortcuts)
-                  Expanded(
-                    child: ShortcutTile(
-                      icon: _iconOf(place.kind),
-                      label: _nameOf(l10n, place),
-                      onTap: () => onSavedPlace(place),
-                    ),
-                  ),
-              ],
-            ),
-          ],
+    return MapPanel(
+      children: [
+        const _Greeting(),
+        const SizedBox(height: Space.x1),
+        const _PickupLine(),
+        if (status != null && status != LocationAccessStatus.granted) ...[
+          const SizedBox(height: Space.x3),
+          StatusBanner(
+            tone: Tone.warning,
+            message: l10n.homeLocationOff,
+            actionLabel: l10n.homeLocationTurnOn,
+            onAction: onTurnOnLocation,
+          ),
         ],
-      ),
+        const SizedBox(height: Space.x4),
+        SearchBarButton(label: l10n.homeWhereTo, onTap: onWhereTo),
+        if (shortcuts.isNotEmpty) ...[
+          const SizedBox(height: Space.x4),
+          Row(
+            children: [
+              for (final place in shortcuts)
+                Expanded(
+                  child: ShortcutTile(
+                    icon: _iconOf(place.kind),
+                    label: _nameOf(l10n, place),
+                    onTap: () => onSavedPlace(place),
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ],
     );
   }
 

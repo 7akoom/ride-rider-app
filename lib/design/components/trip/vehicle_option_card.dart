@@ -7,23 +7,28 @@ import '../money/money_text.dart';
 
 /// One vehicle class in the fare list: picture, name, seats and pickup time, price.
 /// The selected one gets a brand border and tint.
+///
+/// Without [etaMinutes] the line shows [unavailable] instead (no captain nearby), or
+/// only the seats.
 class VehicleOptionCard extends StatelessWidget {
   const VehicleOptionCard({
     super.key,
     required this.name,
     required this.seats,
-    required this.etaMinutes,
     required this.price,
     required this.selected,
     required this.onTap,
     this.priceBeforeDiscount,
     this.note,
     this.picture,
+    this.etaMinutes,
+    this.unavailable,
   });
 
   final String name;
   final int seats;
-  final int etaMinutes;
+  final int? etaMinutes;
+  final String? unavailable;
   final int price;
   final int? priceBeforeDiscount;
 
@@ -70,7 +75,11 @@ class VehicleOptionCard extends StatelessWidget {
                     children: [
                       Text(name, style: t.bodyStrong),
                       Text(
-                        '${l10n.seatsCount(seats)} · ${l10n.etaMinutes(etaMinutes)}',
+                        [
+                          l10n.seatsCount(seats),
+                          if (etaMinutes != null) l10n.etaMinutes(etaMinutes!),
+                          if (etaMinutes == null && unavailable != null) unavailable!,
+                        ].join(' · '),
                         style: t.caption.copyWith(color: p.textSecondary),
                       ),
                     ],

@@ -7,7 +7,6 @@ import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/map/app_map.dart';
 import '../../../../design/tokens/metrics.dart';
-import '../../../../design/tokens/shadows.dart';
 import '../../../../state/locale_provider.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/spot.dart';
@@ -91,43 +90,28 @@ class _MapPickerScreenState extends ConsumerState<MapPickerScreen> {
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: p.surface,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.sheet)),
-              boxShadow: Shadows.floating,
-            ),
-            padding: const EdgeInsetsDirectional.fromSTEB(
-              Space.gutter,
-              Space.x5,
-              Space.gutter,
-              Space.x4,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                switch (pinned) {
-                  AsyncData(:final value) => Text(
-                      SpotView.title(l10n, value),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.typo.h3,
-                    ),
-                  _ => const SkeletonView(child: SkeletonBox(height: 22)),
+          MapPanel(
+            children: [
+              switch (pinned) {
+                AsyncData(:final value) => Text(
+                    SpotView.title(l10n, value),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.typo.h3,
+                  ),
+                _ => const SkeletonView(child: SkeletonBox(height: 22)),
+              },
+              const SizedBox(height: Space.x4),
+              AppButton(
+                label: l10n.mapPickerConfirm,
+                icon: Icons.check,
+                // Only the name of the point under the pin now, not of an earlier one.
+                onPressed: switch (pinned) {
+                  AsyncData(:final value) => () => Navigator.of(context).pop(value),
+                  _ => null,
                 },
-                const SizedBox(height: Space.x4),
-                AppButton(
-                  label: l10n.mapPickerConfirm,
-                  icon: Icons.check,
-                  // Only the name of the point under the pin now, not of an earlier one.
-                  onPressed: switch (pinned) {
-                    AsyncData(:final value) => () => Navigator.of(context).pop(value),
-                    _ => null,
-                  },
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

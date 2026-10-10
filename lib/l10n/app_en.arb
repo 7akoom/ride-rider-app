@@ -573,28 +573,155 @@
   "@mapPickerConfirm": {
     "description": "Map picker button."
   },
-  "reviewTitle": "Your trip",
-  "@reviewTitle": {
-    "description": "Trip review title."
-  },
-  "reviewContinue": "Choose a ride",
-  "@reviewContinue": {
-    "description": "Continues to choosing the vehicle."
-  },
   "reviewNoRoad": "We couldn't find a road between these places. Choose a point closer to a street.",
   "@reviewNoRoad": {
     "description": "No road between the trip's points."
   },
-  "reviewDistanceTime": "{distance} · {time}",
-  "@reviewDistanceTime": {
-    "description": "Road distance and time of the trip; both already formatted.",
+  "chooseRideTitle": "Choose a ride",
+  "@chooseRideTitle": {
+    "description": "Title of the screen that lists the ride types and prices."
+  },
+  "chooseRideOrder": "Request {name}",
+  "@chooseRideOrder": {
+    "description": "The button that requests the chosen ride type.",
     "placeholders": {
-      "distance": {
-        "type": "String"
-      },
-      "time": {
+      "name": {
         "type": "String"
       }
     }
+  },
+  "chooseRideSurge": "Demand is high right now, so prices are a little higher.",
+  "@chooseRideSurge": {
+    "description": "Shown when the prices include a surge."
+  },
+  "chooseRideNoCaptains": "No captains nearby",
+  "@chooseRideNoCaptains": {
+    "description": "A ride type with no free captain near the pickup."
+  },
+  "chooseRideCouponApplied": "Coupon applied",
+  "@chooseRideCouponApplied": {
+    "description": "Under a price the coupon lowered."
+  },
+  "chooseRideOutsideArea": "We don't serve this pickup point yet. Choose a point inside the city.",
+  "@chooseRideOutsideArea": {
+    "description": "The pickup is outside every service area."
+  },
+  "chooseRidePricesUpdated": "Prices were updated. Check them and request again.",
+  "@chooseRidePricesUpdated": {
+    "description": "The price expired before the request; new prices are shown."
+  },
+  "chooseRideNotNow": "You can't request a ride right now. You may already have a trip, or fees to pay.",
+  "@chooseRideNotNow": {
+    "description": "The request was refused: a trip under way or unpaid fees."
+  },
+  "paymentTitle": "Payment",
+  "@paymentTitle": {
+    "description": "Title of the payment and coupon sheet."
+  },
+  "paymentCash": "Cash",
+  "@paymentCash": {
+    "description": "Paying the captain in cash."
+  },
+  "paymentCashDetail": "Pay the captain in cash",
+  "@paymentCashDetail": {
+    "description": "Under the cash option."
+  },
+  "paymentWallet": "Wallet",
+  "@paymentWallet": {
+    "description": "Paying from the app wallet."
+  },
+  "paymentWalletBalance": "Balance: {amount}",
+  "@paymentWalletBalance": {
+    "description": "The wallet balance under the wallet option.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentWalletUnknown": "Balance not available right now",
+  "@paymentWalletUnknown": {
+    "description": "The wallet balance could not be read."
+  },
+  "paymentWalletLow": "Your balance is less than the fare. Top up, or pay in cash.",
+  "@paymentWalletLow": {
+    "description": "Wallet chosen with less than the fare in it."
+  },
+  "paymentTotal": "Estimated total",
+  "@paymentTotal": {
+    "description": "The price of the chosen ride in the payment sheet."
+  },
+  "couponTitle": "Coupon",
+  "@couponTitle": {
+    "description": "Coupon section title in the payment sheet."
+  },
+  "couponChip": "Coupon",
+  "@couponChip": {
+    "description": "The coupon button under the ride types."
+  },
+  "couponHint": "Enter the code",
+  "@couponHint": {
+    "description": "Hint of the coupon field."
+  },
+  "couponApply": "Apply",
+  "@couponApply": {
+    "description": "Button that tries the coupon code."
+  },
+  "couponRemove": "Remove",
+  "@couponRemove": {
+    "description": "Removes the coupon."
+  },
+  "couponApplied": "{code} applied",
+  "@couponApplied": {
+    "description": "The coupon lowered the price.",
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "couponNotFound": "There's no coupon with this code. Check it and try again.",
+  "@couponNotFound": {
+    "description": "Coupon code unknown."
+  },
+  "couponEnded": "This coupon is no longer active.",
+  "@couponEnded": {
+    "description": "Staff turned the coupon off."
+  },
+  "couponNotStarted": "This coupon hasn't started yet.",
+  "@couponNotStarted": {
+    "description": "The coupon starts later."
+  },
+  "couponExpired": "This coupon has expired.",
+  "@couponExpired": {
+    "description": "The coupon ended."
+  },
+  "couponUsedUp": "This coupon has been used up.",
+  "@couponUsedUp": {
+    "description": "Every use of the coupon is taken."
+  },
+  "couponAlreadyUsed": "You've already used this coupon.",
+  "@couponAlreadyUsed": {
+    "description": "The rider used it as often as allowed."
+  },
+  "couponNotInArea": "This coupon doesn't work in this area.",
+  "@couponNotInArea": {
+    "description": "The coupon is for another area."
+  },
+  "couponNotForClass": "This coupon doesn't work for this ride type.",
+  "@couponNotForClass": {
+    "description": "The coupon is for another ride type."
+  },
+  "couponNewRidersOnly": "This coupon is for new riders only.",
+  "@couponNewRidersOnly": {
+    "description": "The coupon is for a first ride."
+  },
+  "couponBelowMinimum": "This trip is below the coupon's minimum fare.",
+  "@couponBelowMinimum": {
+    "description": "The fare is too low for the coupon."
+  },
+  "couponBetterDiscount": "You already have a bigger discount on this trip.",
+  "@couponBetterDiscount": {
+    "description": "Another, larger discount applies instead."
   }
 }

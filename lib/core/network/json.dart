@@ -32,3 +32,16 @@ String requiredText(JsonMap json, String key) {
 
   throw FormatException('missing $key in the answer');
 }
+
+/// A money amount at [key] (the backend sends decimal strings, "3000.00") in whole
+/// currency units, or null when it is missing or not a number.
+int? amountAt(JsonMap json, String key) {
+  final value = json[key];
+  final number = value is num ? value : num.tryParse(value is String ? value : '');
+
+  return number?.round();
+}
+
+/// The money amount at [key]. An answer without it is malformed (see [requiredText]).
+int requiredAmount(JsonMap json, String key) =>
+    amountAt(json, key) ?? (throw FormatException('missing $key in the answer'));

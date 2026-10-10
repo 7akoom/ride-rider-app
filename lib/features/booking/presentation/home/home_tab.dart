@@ -10,8 +10,8 @@ import '../../booking_providers.dart';
 import '../../domain/entities/saved_place.dart';
 import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/spot_of_saved.dart';
+import '../choose_ride/choose_ride_screen.dart';
 import '../legacy_routes.dart';
-import '../review/trip_review_screen.dart';
 import '../where_to/where_to_controller.dart';
 import '../where_to/where_to_screen.dart';
 import 'home_panel.dart';
@@ -84,7 +84,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => pickup == null
           ? WhereToScreen(start: WhereToStart(destination: destination))
-          : TripReviewScreen(draft: TripDraft(pickup: pickup, destination: destination)),
+          : ChooseRideScreen(draft: TripDraft(pickup: pickup, destination: destination)),
     ));
   }
 

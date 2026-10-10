@@ -2,21 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/models/trip.dart';
+import '../domain/entities/payment_method.dart';
+import '../domain/entities/trip_draft.dart';
 import '../../../core/security/session_storage.dart';
 import '../../../state/api_providers.dart';
 import '../../rider/notifications_screen.dart';
 import '../../rider/profile_screen.dart';
-import '../../rider/request_ride_screen.dart';
 import '../../rider/ride_history_screen.dart';
 import '../../rider/searching_driver_screen.dart';
 import '../../rider/tracking_screen.dart';
 
 // The old screens the new home still opens, until their stages replace them:
-// booking (3b/3c), the trip (4), activity and account (6). This file goes with them.
+// searching for a captain (3c-2), the trip (4), activity and account (6). This file
+// goes with them.
 
-void openLegacyBooking(BuildContext context) => Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => const RequestRideScreen()),
-    );
+/// The trip was just requested: the old search screen follows it. Going back from it
+/// leads home, not to the prices.
+Future<void> openLegacySearching(
+  BuildContext context, {
+  required String tripId,
+  required TripDraft draft,
+  required String vehicleClass,
+  required PaymentMethod payment,
+  required String destinationLabel,
+}) {
+  // The search screen only follows the trip by its id; the rest is what was sent.
+  final trip = Trip(
+    id: tripId,
+    riderId: '',
+    driverId: '',
+    status: TripStatus.requested,
+    pickup: draft.pickup!.point,
+    dropoff: draft.destination!.point,
+    cancellationReason: '',
+    vehicleClass: vehicleClass,
+    paymentMethod: payment.name,
+  );
+
+  return Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute<void>(
+      builder: (_) => SearchingDriverScreen(trip: trip, destinationLabel: destinationLabel),
+    ),
+    (route) => route.isFirst,
+  );
+}
 
 void openLegacyNotifications(BuildContext context) => Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const NotificationsScreen()),

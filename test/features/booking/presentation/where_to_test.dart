@@ -9,8 +9,8 @@ import 'package:rider_app/core/location/geo_point.dart';
 import 'package:rider_app/design/map/app_map.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
 import 'package:rider_app/features/booking/domain/entities/spot.dart';
+import 'package:rider_app/features/booking/presentation/choose_ride/choose_ride_screen.dart';
 import 'package:rider_app/features/booking/presentation/map_picker/map_picker_screen.dart';
-import 'package:rider_app/features/booking/presentation/review/trip_review_screen.dart';
 import 'package:rider_app/features/booking/presentation/where_to/where_to_controller.dart';
 import 'package:rider_app/features/booking/presentation/where_to/where_to_screen.dart';
 
@@ -35,7 +35,7 @@ void main() {
 
   final l10n = lookupAppLocalizations(AppLocales.arabic);
 
-  testWidgets('typing finds places; choosing the destination reviews the trip',
+  testWidgets('typing finds places; choosing the destination opens the ride choice',
       (tester) async {
     usePhoneScreen(tester);
     await pumpApp(
@@ -49,9 +49,8 @@ void main() {
     await tester.tap(find.text('Family Mall'));
     await tester.pumpAndSettle();
 
-    expect(find.byType(TripReviewScreen), findsOneWidget);
-    expect(find.text('Family Mall'), findsOneWidget);
-    expect(find.textContaining(l10n.etaMinutes(12)), findsOneWidget);
+    expect(find.byType(ChooseRideScreen), findsOneWidget);
+    expect(find.text(l10n.chooseRideOrder(l10n.vehicleEconomy)), findsOneWidget);
   });
 
   testWidgets('nothing found says so in words', (tester) async {

@@ -14,9 +14,11 @@ import 'package:rider_app/features/booking/domain/repositories/saved_places_repo
 
 import '../../helpers/fake_location.dart';
 import '../../helpers/fake_rider.dart';
+import 'fake_rides.dart';
 
 export '../../helpers/fake_location.dart';
 export '../../helpers/fake_rider.dart';
+export 'fake_rides.dart';
 
 class FakeSavedPlaces implements SavedPlacesRepository {
   FakeSavedPlaces([this.result = const Ok(<SavedPlace>[])]);
@@ -106,6 +108,7 @@ List<Override> bookingFakes({
   FakeSavedPlaces? saved,
   FakePlaces? places,
   FakeRoutes? routes,
+  FakeRides? rides,
 }) =>
     [
       routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
@@ -115,4 +118,5 @@ List<Override> bookingFakes({
       ),
       savedPlacesRepositoryProvider.overrideWithValue(saved ?? FakeSavedPlaces()),
       placesRepositoryProvider.overrideWithValue(places ?? FakePlaces()),
+      ridesRepositoryProvider.overrideWithValue(rides ?? FakeRides()),
     ];

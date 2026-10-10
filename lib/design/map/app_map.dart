@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 
@@ -5,7 +7,9 @@ import '../../core/config/app_env.dart';
 import '../../core/error/error_reporter.dart';
 import '../../core/location/geo_point.dart';
 import '../design_context.dart';
+import 'map_route.dart';
 import 'map_style.dart';
+import 'route_layer.dart';
 
 /// Moves the map. Screens use this, never the plugin's controller.
 class AppMapController {
@@ -42,6 +46,7 @@ class AppMap extends StatefulWidget {
     this.showMyLocation = false,
     this.onCreated,
     this.onSettled,
+    this.route,
   });
 
   final GeoPoint? center;
@@ -53,6 +58,9 @@ class AppMap extends StatefulWidget {
 
   /// The middle of the map each time the rider stops moving it (picking a point).
   final ValueChanged<GeoPoint>? onSettled;
+
+  /// A trip to draw and frame (choosing a ride); redrawn when it changes.
+  final MapRoute? route;
 
   static const double cityZoom = 13;
   static const double streetZoom = 16;
@@ -71,11 +79,46 @@ class AppMap extends StatefulWidget {
 
 class _AppMapState extends State<AppMap> {
   AppMapController? _controller;
+  RouteLayer? _routeLayer;
+  bool _styleReady = false;
 
   void _created(MapLibreMapController map) {
     final controller = AppMapController(map);
     _controller = controller;
+    _routeLayer = RouteLayer(map, context.palette);
+    _styleReady = false;
     widget.onCreated?.call(controller);
+  }
+
+  /// Lines and markers can only be added once the style is there.
+  void _styleLoaded() {
+    _styleReady = true;
+    unawaited(_drawRoute());
+  }
+
+  @override
+  void didUpdateWidget(AppMap oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.route != oldWidget.route) {
+      unawaited(_drawRoute());
+    }
+  }
+
+  Future<void> _drawRoute() async {
+    final route = widget.route;
+    final layer = _routeLayer;
+
+    if (route == null || layer == null || !_styleReady) {
+      return;
+    }
+
+    try {
+      await layer.draw(route);
+    } catch (error, stack) {
+      // The map closed while drawing; the route is drawn again when it opens.
+      ErrorReporter.report(error, stack);
+    }
   }
 
   void _idle() {
@@ -117,6 +160,7 @@ class _AppMapState extends State<AppMap> {
           ? AttributionButtonPosition.bottomRight
           : AttributionButtonPosition.bottomLeft,
       onMapCreated: _created,
+      onStyleLoadedCallback: _styleLoaded,
     );
   }
 }

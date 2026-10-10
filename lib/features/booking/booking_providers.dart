@@ -4,16 +4,22 @@ import '../../core/location/location_providers.dart';
 import '../../core/network/api_client_provider.dart';
 import 'data/booking_api.dart';
 import 'data/places_repository_impl.dart';
+import 'data/rides_api.dart';
+import 'data/rides_repository_impl.dart';
 import 'data/routes_repository_impl.dart';
 import 'data/saved_places_repository_impl.dart';
 import 'domain/repositories/places_repository.dart';
+import 'domain/repositories/rides_repository.dart';
 import 'domain/repositories/routes_repository.dart';
 import 'domain/repositories/saved_places_repository.dart';
 import 'domain/use_cases/estimate_route.dart';
 import 'domain/use_cases/find_pickup.dart';
 import 'domain/use_cases/load_shortcuts.dart';
 import 'domain/use_cases/load_suggestions.dart';
+import 'domain/use_cases/load_wallet_balance.dart';
 import 'domain/use_cases/name_point.dart';
+import 'domain/use_cases/order_ride.dart';
+import 'domain/use_cases/quote_ride.dart';
 import 'domain/use_cases/search_places.dart';
 import 'domain/use_cases/turn_on_location.dart';
 
@@ -69,4 +75,20 @@ final estimateRouteProvider = Provider<EstimateRoute>(
 
 final namePointProvider = Provider<NamePoint>(
   (ref) => NamePoint(ref.watch(placesRepositoryProvider)),
+);
+
+final ridesRepositoryProvider = Provider<RidesRepository>(
+  (ref) => RidesRepositoryImpl(RidesApi(ref.watch(apiClientProvider))),
+);
+
+final quoteRideProvider = Provider<QuoteRide>(
+  (ref) => QuoteRide(ref.watch(ridesRepositoryProvider)),
+);
+
+final orderRideProvider = Provider<OrderRide>(
+  (ref) => OrderRide(ref.watch(ridesRepositoryProvider)),
+);
+
+final loadWalletBalanceProvider = Provider<LoadWalletBalance>(
+  (ref) => LoadWalletBalance(ref.watch(ridesRepositoryProvider)),
 );
