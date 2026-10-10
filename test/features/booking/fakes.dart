@@ -5,8 +5,11 @@ import 'package:rider_app/core/location/geo_point.dart';
 import 'package:rider_app/core/location/location_providers.dart';
 import 'package:rider_app/core/rider/rider_providers.dart';
 import 'package:rider_app/features/booking/booking_providers.dart';
+import 'package:rider_app/features/booking/domain/entities/route_estimate.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
+import 'package:rider_app/features/booking/domain/entities/spot.dart';
 import 'package:rider_app/features/booking/domain/repositories/places_repository.dart';
+import 'package:rider_app/features/booking/domain/repositories/routes_repository.dart';
 import 'package:rider_app/features/booking/domain/repositories/saved_places_repository.dart';
 
 import '../../helpers/fake_location.dart';
@@ -25,18 +28,68 @@ class FakeSavedPlaces implements SavedPlacesRepository {
 }
 
 class FakePlaces implements PlacesRepository {
-  FakePlaces({this.address = 'Gulan Street', this.failure});
+  FakePlaces({
+    this.address = 'Gulan Street',
+    this.failure,
+    this.found = const [],
+    this.popular = const [],
+  });
 
   String? address;
+
+  /// When set, every call fails with it.
+  Failure? failure;
+  List<Spot> found;
+  List<Spot> popular;
+  final List<String> queries = [];
+
+  Result<T> _answer<T>(T value) {
+    final f = failure;
+
+    return f == null ? Ok(value) : Err(f);
+  }
+
+  @override
+  Future<Result<String?>> addressAt(GeoPoint point, {required String languageCode}) async =>
+      _answer(address);
+
+  @override
+  Future<Result<List<Spot>>> search(
+    String query, {
+    GeoPoint? near,
+    required String languageCode,
+  }) async {
+    queries.add(query);
+
+    return _answer(found);
+  }
+
+  @override
+  Future<Result<List<Spot>>> featured({GeoPoint? near, required String languageCode}) async =>
+      _answer(popular);
+}
+
+class FakeRoutes implements RoutesRepository {
+  FakeRoutes({this.failure});
+
   Failure? failure;
 
   @override
-  Future<Result<String?>> addressAt(GeoPoint point, {required String languageCode}) async {
+  Future<Result<RouteEstimate>> route(List<GeoPoint> points) async {
     final f = failure;
 
-    return f == null ? Ok(address) : Err(f);
+    return f == null
+        ? const Ok(RouteEstimate(
+            distanceMeters: 5300,
+            duration: Duration(minutes: 12),
+            path: [GeoPoint(36.19, 44.01), GeoPoint(36.2, 44.02)],
+          ))
+        : Err(f);
   }
 }
+
+Spot spotNamed(String title, {SpotKind kind = SpotKind.other}) =>
+    Spot(point: const GeoPoint(36.21, 44.02), kind: kind, title: title);
 
 SavedPlace savedPlace(SavedPlaceKind kind, {String label = ''}) => SavedPlace(
       id: kind.name + label,
@@ -52,8 +105,10 @@ List<Override> bookingFakes({
   FakeAccounts? accounts,
   FakeSavedPlaces? saved,
   FakePlaces? places,
+  FakeRoutes? routes,
 }) =>
     [
+      routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
       locationAccessProvider.overrideWithValue(location ?? FakeLocation()),
       riderAccountRepositoryProvider.overrideWithValue(
         accounts ?? FakeAccounts(const Ok(someone)),

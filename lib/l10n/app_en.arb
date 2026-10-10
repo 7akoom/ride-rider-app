@@ -485,5 +485,116 @@
   "savedWork": "Work",
   "@savedWork": {
     "description": "The saved work address."
+  },
+  "whereToTitle": "Where are you going?",
+  "@whereToTitle": {
+    "description": "Where-to screen title."
+  },
+  "whereToPickupHint": "Pickup point",
+  "@whereToPickupHint": {
+    "description": "Pickup field placeholder."
+  },
+  "whereToDestinationHint": "Enter your destination",
+  "@whereToDestinationHint": {
+    "description": "Destination field placeholder."
+  },
+  "whereToStopHint": "Stop {number}",
+  "@whereToStopHint": {
+    "description": "Stop field placeholder.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "whereToAddStop": "Add a stop",
+  "@whereToAddStop": {
+    "description": "Button that adds a stop."
+  },
+  "whereToRemoveStop": "Remove this stop",
+  "@whereToRemoveStop": {
+    "description": "Button that removes a stop."
+  },
+  "whereToClear": "Clear",
+  "@whereToClear": {
+    "description": "Clears the field being typed in."
+  },
+  "whereToOnMap": "Choose on the map",
+  "@whereToOnMap": {
+    "description": "Opens the map to pick a point."
+  },
+  "whereToSaved": "Saved places",
+  "@whereToSaved": {
+    "description": "Section of saved addresses."
+  },
+  "whereToPopular": "Popular places",
+  "@whereToPopular": {
+    "description": "Section of places staff chose."
+  },
+  "whereToNoResults": "No places found. Try another name, or choose on the map.",
+  "@whereToNoResults": {
+    "description": "Search found nothing."
+  },
+  "whereToSearchUnavailable": "Search isn't available right now. Choose your place on the map.",
+  "@whereToSearchUnavailable": {
+    "description": "The address search service is down; the map still works."
+  },
+  "spotCurrentLocation": "Current location",
+  "@spotCurrentLocation": {
+    "description": "The rider's own position as a place."
+  },
+  "spotPinned": "Selected point",
+  "@spotPinned": {
+    "description": "A point picked on the map with no name."
+  },
+  "distanceKm": "{km} km",
+  "@distanceKm": {
+    "description": "A distance in kilometers; km is already formatted.",
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceMeters": "{meters} m",
+  "@distanceMeters": {
+    "description": "A distance in meters; meters is already formatted.",
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "mapPickerHint": "Move the map to place the pin exactly",
+  "@mapPickerHint": {
+    "description": "Hint over the map picker."
+  },
+  "mapPickerConfirm": "Confirm this place",
+  "@mapPickerConfirm": {
+    "description": "Map picker button."
+  },
+  "reviewTitle": "Your trip",
+  "@reviewTitle": {
+    "description": "Trip review title."
+  },
+  "reviewContinue": "Choose a ride",
+  "@reviewContinue": {
+    "description": "Continues to choosing the vehicle."
+  },
+  "reviewNoRoad": "We couldn't find a road between these places. Choose a point closer to a street.",
+  "@reviewNoRoad": {
+    "description": "No road between the trip's points."
+  },
+  "reviewDistanceTime": "{distance} · {time}",
+  "@reviewDistanceTime": {
+    "description": "Road distance and time of the trip; both already formatted.",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -5,8 +5,8 @@ import '../../../../core/location/location_providers.dart';
 import '../../../../core/rider/rider_providers.dart';
 import '../../../../state/locale_provider.dart';
 import '../../booking_providers.dart';
-import '../../domain/entities/pickup_spot.dart';
 import '../../domain/entities/saved_place.dart';
+import '../../domain/entities/spot.dart';
 
 // What the home screen shows. Each part loads on its own, so a slow or failed part
 // never holds up the others. Re-read when the app comes back to the front.
@@ -30,7 +30,7 @@ final locationStatusProvider = FutureProvider.autoDispose<LocationAccessStatus>(
 );
 
 /// Where the rider is; null without a position.
-final pickupProvider = FutureProvider.autoDispose<PickupSpot?>((ref) async {
+final pickupProvider = FutureProvider.autoDispose<Spot?>((ref) async {
   final language = ref.watch(localeProvider).languageCode;
   final result = await ref.watch(findPickupProvider).call(languageCode: language);
 

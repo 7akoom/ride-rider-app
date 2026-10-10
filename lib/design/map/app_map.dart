@@ -13,6 +13,13 @@ class AppMapController {
 
   final MapLibreMapController _map;
 
+  /// The point in the middle of the map, when it is known.
+  GeoPoint? get center {
+    final target = _map.cameraPosition?.target;
+
+    return target == null ? null : GeoPoint(target.latitude, target.longitude);
+  }
+
   Future<void> moveTo(GeoPoint point, {double zoom = AppMap.streetZoom}) async {
     try {
       await _map.animateCamera(
@@ -27,13 +34,14 @@ class AppMapController {
 
 /// The platform's own map (MapLibre with the copy's tile server), in the style of the
 /// current mode and language. It opens on [center], or on the copy's city.
-class AppMap extends StatelessWidget {
+class AppMap extends StatefulWidget {
   const AppMap({
     super.key,
     this.center,
     this.zoom = cityZoom,
     this.showMyLocation = false,
     this.onCreated,
+    this.onSettled,
   });
 
   final GeoPoint? center;
@@ -42,6 +50,9 @@ class AppMap extends StatelessWidget {
   /// The blue dot. Only when location is allowed.
   final bool showMyLocation;
   final ValueChanged<AppMapController>? onCreated;
+
+  /// The middle of the map each time the rider stops moving it (picking a point).
+  final ValueChanged<GeoPoint>? onSettled;
 
   static const double cityZoom = 13;
   static const double streetZoom = 16;
@@ -55,8 +66,29 @@ class AppMap extends StatelessWidget {
   static bool usePlaceholder = false;
 
   @override
+  State<AppMap> createState() => _AppMapState();
+}
+
+class _AppMapState extends State<AppMap> {
+  AppMapController? _controller;
+
+  void _created(MapLibreMapController map) {
+    final controller = AppMapController(map);
+    _controller = controller;
+    widget.onCreated?.call(controller);
+  }
+
+  void _idle() {
+    final center = _controller?.center;
+
+    if (center != null) {
+      widget.onSettled?.call(center);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (usePlaceholder) {
+    if (AppMap.usePlaceholder) {
       return ColoredBox(color: context.palette.surface2);
     }
 
@@ -64,7 +96,7 @@ class AppMap extends StatelessWidget {
       brightness: Theme.of(context).brightness,
       locale: Localizations.localeOf(context),
     );
-    final start = center ?? defaultCenter;
+    final start = widget.center ?? AppMap.defaultCenter;
     final rtl = Directionality.of(context) == TextDirection.rtl;
 
     return MapLibreMap(
@@ -73,16 +105,18 @@ class AppMap extends StatelessWidget {
       styleString: style,
       initialCameraPosition: CameraPosition(
         target: LatLng(start.latitude, start.longitude),
-        zoom: zoom,
+        zoom: widget.zoom,
       ),
-      myLocationEnabled: showMyLocation,
+      myLocationEnabled: widget.showMyLocation,
+      trackCameraPosition: widget.onSettled != null,
+      onCameraIdle: widget.onSettled == null ? null : _idle,
       compassEnabled: false,
       // The data's licence asks for the attribution; it sits at the start corner,
       // away from the map buttons at the end.
       attributionButtonPosition: rtl
           ? AttributionButtonPosition.bottomRight
           : AttributionButtonPosition.bottomLeft,
-      onMapCreated: (controller) => onCreated?.call(AppMapController(controller)),
+      onMapCreated: _created,
     );
   }
 }

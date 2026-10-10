@@ -7,7 +7,9 @@ import '../../tokens/metrics.dart';
 /// Every screen's frame: background, safe areas, the readable content width and the
 /// side gutters, with an optional action area pinned to the bottom.
 ///
-/// Screens that draw edge to edge (the map) set [padded] to false.
+/// Screens that draw edge to edge (the map) set [padded] to false; their body then
+/// gets the full width, whatever its own size (a map under a small pin would otherwise
+/// shrink to the pin's width).
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
@@ -46,7 +48,7 @@ class AppScaffold extends StatelessWidget {
             Expanded(
               child: padded
                   ? ContentWidth(child: Padding(padding: gutter, child: body))
-                  : body,
+                  : SizedBox(width: double.infinity, child: body),
             ),
             if (bottomAction != null)
               ContentWidth(

@@ -135,9 +135,9 @@ class _PickupLine extends ConsumerWidget {
 
     final String? text = switch (pickup) {
       AsyncData(:final value) when value == null => null,
-      AsyncData(:final value) => value!.address == null
+      AsyncData(:final value) => value!.title == null
           ? l10n.homePickupHere
-          : l10n.homePickupFrom(value.address!),
+          : l10n.homePickupFrom(value.title!),
       AsyncError() => null,
       _ => l10n.homePickupFinding,
     };

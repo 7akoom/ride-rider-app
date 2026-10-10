@@ -3,8 +3,8 @@ import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/location_access.dart';
 import 'package:rider_app/features/booking/domain/entities/day_part.dart';
-import 'package:rider_app/features/booking/domain/entities/pickup_spot.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
+import 'package:rider_app/features/booking/domain/entities/spot.dart';
 import 'package:rider_app/features/booking/domain/use_cases/find_pickup.dart';
 import 'package:rider_app/features/booking/domain/use_cases/load_shortcuts.dart';
 import 'package:rider_app/features/booking/domain/use_cases/turn_on_location.dart';
@@ -20,13 +20,13 @@ void main() {
   });
 
   group('FindPickup', () {
-    PickupSpot? spot(Result<PickupSpot?> result) => result.fold((s) => s, (_) => null);
+    Spot? spot(Result<Spot?> result) => result.fold((s) => s, (_) => null);
 
     test('no position: no pickup, and no failure', () async {
       final result = await FindPickup(location: FakeLocation(), places: FakePlaces())
           .call(languageCode: 'ar');
 
-      expect(result, isA<Ok<PickupSpot?>>());
+      expect(result, isA<Ok<Spot?>>());
       expect(spot(result), isNull);
     });
 
@@ -36,7 +36,7 @@ void main() {
         places: FakePlaces(),
       ).call(languageCode: 'ar');
 
-      expect(spot(result)?.address, 'Gulan Street');
+      expect(spot(result)?.title, 'Gulan Street');
     });
 
     test('no address (offline) still gives the pickup', () async {
@@ -46,7 +46,7 @@ void main() {
       ).call(languageCode: 'ar');
 
       expect(spot(result), isNotNull);
-      expect(spot(result)?.address, isNull);
+      expect(spot(result)?.title, isNull);
     });
   });
 

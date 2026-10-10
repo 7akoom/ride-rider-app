@@ -7,7 +7,13 @@ import '../../../../design/components/components.dart';
 import '../../../../design/map/app_map.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../booking_providers.dart';
+import '../../domain/entities/saved_place.dart';
+import '../../domain/entities/trip_draft.dart';
+import '../../domain/use_cases/spot_of_saved.dart';
 import '../legacy_routes.dart';
+import '../review/trip_review_screen.dart';
+import '../where_to/where_to_controller.dart';
+import '../where_to/where_to_screen.dart';
 import 'home_panel.dart';
 import 'home_state.dart';
 
@@ -62,6 +68,26 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     }
   }
 
+  void _whereTo() {
+    final pickup = ref.read(pickupProvider).valueOrNull;
+
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => WhereToScreen(start: WhereToStart(pickup: pickup)),
+    ));
+  }
+
+  /// A saved place is the destination: straight to the trip when the pickup is known.
+  void _goToSaved(SavedPlace place) {
+    final pickup = ref.read(pickupProvider).valueOrNull;
+    final destination = spotOfSaved(place);
+
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => pickup == null
+          ? WhereToScreen(start: WhereToStart(destination: destination))
+          : TripReviewScreen(draft: TripDraft(pickup: pickup, destination: destination)),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -112,8 +138,8 @@ class _HomeTabState extends ConsumerState<HomeTab> {
           ),
         ),
         HomePanel(
-          onWhereTo: () => openLegacyBooking(context),
-          onSavedPlace: (_) => openLegacyBooking(context),
+          onWhereTo: _whereTo,
+          onSavedPlace: _goToSaved,
           onTurnOnLocation: _turnOnLocation,
         ),
       ],
