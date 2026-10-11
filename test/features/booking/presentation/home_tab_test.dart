@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/result.dart';
+import 'package:rider_app/core/format/money_format.dart';
 import 'package:rider_app/core/l10n/app_locales.dart';
 import 'package:rider_app/core/l10n/l10n.dart';
 import 'package:rider_app/core/location/location_access.dart';
@@ -32,6 +33,8 @@ void main() {
     expect(find.text(l10n.savedHome), findsOneWidget);
     expect(find.text(l10n.homeLocationOff), findsNothing);
     expect(find.text(l10n.homeWhereTo), findsOneWidget);
+    expect(find.text(l10n.walletTitle), findsOneWidget);
+    expect(find.text(formatMoney(l10n, 12500)), findsOneWidget);
   });
 
   testWidgets('location off: the notice, and "Turn on" asks', (tester) async {

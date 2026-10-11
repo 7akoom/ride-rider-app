@@ -5,7 +5,7 @@ import '../../../core/network/json.dart';
 import '../domain/entities/payment_method.dart';
 import '../domain/entities/trip_payment.dart';
 import '../domain/repositories/trip_end_repository.dart';
-import 'rider_id.dart';
+import '../../../core/rider/rider_id.dart';
 import 'trip_end_api.dart';
 
 final class TripEndRepositoryImpl implements TripEndRepository {

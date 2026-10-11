@@ -11,7 +11,7 @@ import '../domain/entities/trip_draft.dart';
 import '../domain/repositories/rides_repository.dart';
 import 'fare_quote_json.dart';
 import 'ride_json.dart';
-import 'rider_id.dart';
+import '../../../core/rider/rider_id.dart';
 import 'rides_api.dart';
 import 'trip_body.dart';
 

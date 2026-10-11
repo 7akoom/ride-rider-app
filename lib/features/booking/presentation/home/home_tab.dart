@@ -14,6 +14,7 @@ import '../choose_ride/choose_ride_screen.dart';
 import '../legacy_routes.dart';
 import '../where_to/where_to_controller.dart';
 import '../where_to/where_to_screen.dart';
+import '../../../wallet/presentation/wallet_screen.dart';
 import 'home_panel.dart';
 import 'home_state.dart';
 
@@ -136,6 +137,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
         onWhereTo: _whereTo,
         onSavedPlace: _goToSaved,
         onTurnOnLocation: _turnOnLocation,
+        onWallet: () => openWallet(context),
       ),
     );
   }

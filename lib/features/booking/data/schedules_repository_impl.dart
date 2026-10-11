@@ -5,7 +5,7 @@ import '../domain/entities/payment_method.dart';
 import '../domain/entities/scheduled_ride.dart';
 import '../domain/entities/trip_draft.dart';
 import '../domain/repositories/schedules_repository.dart';
-import 'rider_id.dart';
+import '../../../core/rider/rider_id.dart';
 import 'rides_api.dart';
 import 'scheduled_ride_json.dart';
 import 'trip_body.dart';

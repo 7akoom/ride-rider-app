@@ -6,6 +6,7 @@ import 'package:rider_app/core/location/location_providers.dart';
 import 'package:rider_app/core/rider/rider_providers.dart';
 import 'package:rider_app/features/booking/booking_providers.dart';
 import 'package:rider_app/features/booking/trip_end_providers.dart';
+import 'package:rider_app/features/wallet/wallet_providers.dart';
 import 'package:rider_app/features/booking/domain/entities/route_estimate.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
 import 'package:rider_app/features/booking/domain/entities/spot.dart';
@@ -19,6 +20,7 @@ import 'fake_captains.dart';
 import 'fake_rides.dart';
 import 'fake_safety.dart';
 import 'fake_trip_end.dart';
+import '../wallet/fake_wallet.dart';
 import 'fake_schedules.dart';
 
 export '../../helpers/fake_location.dart';
@@ -27,6 +29,7 @@ export 'fake_captains.dart';
 export 'fake_rides.dart';
 export 'fake_safety.dart';
 export 'fake_trip_end.dart';
+export '../wallet/fake_wallet.dart';
 export 'fake_schedules.dart';
 
 class FakeSavedPlaces implements SavedPlacesRepository {
@@ -122,6 +125,7 @@ List<Override> bookingFakes({
   FakeCaptains? captains,
   FakeSafety? safety,
   FakeTripEnd? tripEnd,
+  FakeWallet? wallet,
 }) =>
     [
       routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
@@ -136,4 +140,5 @@ List<Override> bookingFakes({
       captainRepositoryProvider.overrideWithValue(captains ?? FakeCaptains()),
       safetyRepositoryProvider.overrideWithValue(safety ?? FakeSafety()),
       tripEndRepositoryProvider.overrideWithValue(tripEnd ?? FakeTripEnd()),
+      walletRepositoryProvider.overrideWithValue(wallet ?? FakeWallet()),
     ];

@@ -1423,5 +1423,172 @@
   "receiptAgain": "Take this trip again",
   "@receiptAgain": {
     "description": "Orders the same trip."
+  },
+  "walletTitle": "Wallet",
+  "@walletTitle": {
+    "description": "Wallet screen title and home row."
+  },
+  "walletBalance": "Wallet balance",
+  "@walletBalance": {
+    "description": "Over the balance."
+  },
+  "walletShow": "Show the balance",
+  "@walletShow": {
+    "description": "The eye button."
+  },
+  "walletHide": "Hide the balance",
+  "@walletHide": {
+    "description": "The eye button."
+  },
+  "walletOwed": "You owe {amount} in fees of cancelled trips. They are taken from the next money that reaches your wallet.",
+  "@walletOwed": {
+    "description": "Fees still owed.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "walletOwedBlocked": "You owe {amount} in fees of cancelled trips. Top up your wallet to order rides again.",
+  "@walletOwedBlocked": {
+    "description": "Fees owed and trips blocked until paid.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "walletRecent": "Latest movements",
+  "@walletRecent": {
+    "description": "Section title."
+  },
+  "walletAll": "All",
+  "@walletAll": {
+    "description": "Opens every movement."
+  },
+  "walletEmpty": "No movements yet.",
+  "@walletEmpty": {
+    "description": "Empty history."
+  },
+  "movementTopUp": "Top-up",
+  "@movementTopUp": {
+    "description": "A movement."
+  },
+  "movementTrip": "Trip payment",
+  "@movementTrip": {
+    "description": "A movement."
+  },
+  "movementChange": "Change from a trip",
+  "@movementChange": {
+    "description": "A movement: change the captain did not have."
+  },
+  "movementSent": "Money sent",
+  "@movementSent": {
+    "description": "A movement."
+  },
+  "movementReceived": "Money received",
+  "@movementReceived": {
+    "description": "A movement."
+  },
+  "movementDue": "Cancellation fee paid",
+  "@movementDue": {
+    "description": "A movement."
+  },
+  "movementVoucher": "Voucher",
+  "@movementVoucher": {
+    "description": "A movement."
+  },
+  "movementRefund": "Refund",
+  "@movementRefund": {
+    "description": "A movement."
+  },
+  "movementTip": "Tip for a captain",
+  "@movementTip": {
+    "description": "A movement."
+  },
+  "movementAdjustment": "Adjustment by support",
+  "@movementAdjustment": {
+    "description": "A movement."
+  },
+  "movementOther": "Other movement",
+  "@movementOther": {
+    "description": "A movement."
+  },
+  "movementBalanceAfter": "Balance: {amount}",
+  "@movementBalanceAfter": {
+    "description": "Balance after a movement.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "movementsTitle": "Transactions",
+  "@movementsTitle": {
+    "description": "Title of the history."
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Filter."
+  },
+  "filterIn": "Money in",
+  "@filterIn": {
+    "description": "Filter."
+  },
+  "filterOut": "Money out",
+  "@filterOut": {
+    "description": "Filter."
+  },
+  "filterTips": "Tips",
+  "@filterTips": {
+    "description": "Filter."
+  },
+  "filterRefunds": "Refunds",
+  "@filterRefunds": {
+    "description": "Filter."
+  },
+  "statementTitle": "Statement",
+  "@statementTitle": {
+    "description": "Title of the statement."
+  },
+  "period30Days": "30 days",
+  "@period30Days": {
+    "description": "A period."
+  },
+  "period3Months": "3 months",
+  "@period3Months": {
+    "description": "A period."
+  },
+  "periodYear": "A year",
+  "@periodYear": {
+    "description": "A period."
+  },
+  "statementRange": "{from} to {to}",
+  "@statementRange": {
+    "description": "The period's days.",
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "statementOpening": "Balance at the start",
+  "@statementOpening": {
+    "description": "A total."
+  },
+  "statementClosing": "Balance at the end",
+  "@statementClosing": {
+    "description": "A total."
+  },
+  "statementIn": "Total in",
+  "@statementIn": {
+    "description": "A total."
+  },
+  "statementOut": "Total out",
+  "@statementOut": {
+    "description": "A total."
   }
 }

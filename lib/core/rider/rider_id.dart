@@ -1,5 +1,5 @@
-import '../../../core/error/failure.dart';
-import '../../../core/security/session_storage.dart';
+import '../error/failure.dart';
+import '../security/session_storage.dart';
 
 /// The signed-in rider's id; a missing one means signing in again.
 Future<String> riderIdOrSignIn() async {

@@ -8,6 +8,7 @@ import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../domain/entities/day_part.dart';
 import '../../domain/entities/saved_place.dart';
+import '../../../wallet/presentation/wallet_state.dart';
 import 'home_state.dart';
 
 /// The sheet under the map: the greeting and pickup, the location notice when needed,
@@ -18,17 +19,20 @@ class HomePanel extends ConsumerWidget {
     required this.onWhereTo,
     required this.onSavedPlace,
     required this.onTurnOnLocation,
+    required this.onWallet,
   });
 
   final VoidCallback onWhereTo;
   final ValueChanged<SavedPlace> onSavedPlace;
   final VoidCallback onTurnOnLocation;
+  final VoidCallback onWallet;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final status = ref.watch(locationStatusProvider).valueOrNull;
     final shortcuts = ref.watch(shortcutsProvider).valueOrNull ?? const <SavedPlace>[];
+    final balance = ref.watch(walletBalanceProvider);
 
     return MapPanel(
       children: [
@@ -61,6 +65,13 @@ class HomePanel extends ConsumerWidget {
             ],
           ),
         ],
+        const SizedBox(height: Space.x2),
+        AppListRow(
+          icon: Icons.account_balance_wallet_outlined,
+          title: l10n.walletTitle,
+          trailing: balance == null ? null : MoneyText(balance, style: context.typo.bodyStrong),
+          onTap: onWallet,
+        ),
       ],
     );
   }
