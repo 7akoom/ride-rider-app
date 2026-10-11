@@ -1,6 +1,7 @@
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/geo_point.dart';
+import 'package:rider_app/features/booking/domain/entities/cancellation.dart';
 import 'package:rider_app/features/booking/domain/entities/fare_quote.dart';
 import 'package:rider_app/features/booking/domain/entities/passenger.dart';
 import 'package:rider_app/features/booking/domain/entities/payment_method.dart';
@@ -86,6 +87,7 @@ class FakeRides implements RidesRepository {
   final List<(FareQuote, PaymentMethod)> orders = [];
   final List<Passenger?> passengers = [];
   final List<String> cancelled = [];
+  final List<Cancellation?> reasons = [];
 
   @override
   Future<Result<FareQuotes>> quote(TripDraft draft, {String? couponCode}) async {
@@ -138,8 +140,9 @@ class FakeRides implements RidesRepository {
   Future<Result<Ride?>> activeRide() async => Ok(active);
 
   @override
-  Future<Result<Ride>> cancel(String id) async {
+  Future<Result<Ride>> cancel(String id, {Cancellation? why}) async {
     cancelled.add(id);
+    reasons.add(why);
     final f = cancelFailure;
 
     return f == null ? Ok(rideOf(id: id, status: RideStatus.cancelled)) : Err(f);

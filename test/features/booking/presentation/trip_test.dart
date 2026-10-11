@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/l10n/app_locales.dart';
 import 'package:rider_app/core/l10n/l10n.dart';
+import 'package:rider_app/core/share/share_text.dart';
 import 'package:rider_app/design/map/app_map.dart';
+import 'package:rider_app/features/booking/domain/entities/cancellation.dart';
 import 'package:rider_app/features/booking/domain/entities/ride.dart';
 import 'package:rider_app/features/booking/presentation/trip/trip_controller.dart';
 import 'package:rider_app/features/booking/presentation/trip/trip_screen.dart';
@@ -23,6 +25,8 @@ Future<void> _open(
   Ride ride, {
   FakeRides? rides,
   FakeCaptains? captains,
+  FakeSafety? safety,
+  List<String>? shared,
   Locale? locale,
 }) async {
   usePhoneScreen(tester);
@@ -33,8 +37,13 @@ Future<void> _open(
     inScaffold: false,
     settle: false,
     overrides: [
-      ...bookingFakes(rides: (rides ?? FakeRides())..state ??= ride, captains: captains),
+      ...bookingFakes(
+        rides: (rides ?? FakeRides())..state ??= ride,
+        captains: captains,
+        safety: safety,
+      ),
       tripCheckIntervalProvider.overrideWithValue(_tick),
+      shareTextProvider.overrideWithValue((text) async => shared?.add(text)),
     ],
   );
   await _wait(tester);
@@ -65,13 +74,16 @@ void main() {
     await _wait(tester);
     await tester.tap(find.text(l10n.tripCancel));
     await _wait(tester);
-    expect(find.text(l10n.tripCancelTitle), findsOneWidget);
+    expect(find.text(l10n.cancelWhyTitle), findsOneWidget);
     expect(rides.cancelled, isEmpty);
 
-    await tester.tap(find.text(l10n.tripCancelYes));
+    await tester.tap(find.text(l10n.cancelReasonLate));
+    await _wait(tester);
+    await tester.tap(find.text(l10n.tripCancel).last);
     await _wait(tester);
 
     expect(rides.cancelled, ['trip-1']);
+    expect(rides.reasons.single?.reason, CancelReason.captainLate);
     expect(find.text(l10n.tripCancelled), findsOneWidget);
   });
 
@@ -110,6 +122,63 @@ void main() {
     await _wait(tester);
 
     expect(find.text(l10n.tripCancelledByCaptain), findsOneWidget);
+  });
+
+  testWidgets('another reason needs words before the ride is cancelled', (tester) async {
+    final rides = FakeRides();
+    await _open(tester, coming, rides: rides);
+    await tester.drag(find.text(l10n.tripComingLabel), const Offset(0, -400));
+    await _wait(tester);
+    await tester.ensureVisible(find.text(l10n.tripCancel));
+    await tester.tap(find.text(l10n.tripCancel));
+    await _wait(tester);
+
+    await tester.tap(find.text(l10n.cancelReasonOther));
+    await _wait(tester);
+    await tester.ensureVisible(find.text(l10n.tripCancel).last);
+    await tester.tap(find.text(l10n.tripCancel).last);
+    await _wait(tester);
+
+    expect(find.text(l10n.cancelOtherEmpty), findsOneWidget);
+    expect(rides.cancelled, isEmpty);
+  });
+
+  testWidgets('the safety centre shares the trip and sends the alarm', (tester) async {
+    final safety = FakeSafety();
+    final shared = <String>[];
+    await _open(tester, rideOf(status: RideStatus.onTrip), safety: safety, shared: shared);
+
+    await tester.tap(find.byIcon(Icons.shield_outlined));
+    await _wait(tester);
+    expect(find.text(l10n.safetyTitle), findsOneWidget);
+
+    await tester.tap(find.text(l10n.safetyShare));
+    await _wait(tester);
+    expect(shared, [l10n.safetyShareMessage('https://ride.example/t/abc')]);
+    expect(find.text(l10n.safetyStopShare), findsOneWidget);
+
+    await tester.ensureVisible(find.text(l10n.safetySosSend));
+    await tester.tap(find.text(l10n.safetySosSend));
+    await _wait(tester);
+    await tester.tap(find.text(l10n.safetySosConfirmYes));
+    await _wait(tester);
+
+    expect(safety.calls, ['share', 'alarm']);
+    expect(find.text(l10n.safetySosSent), findsOneWidget);
+  });
+
+  testWidgets('without a page for shared trips, the centre says sharing is not available',
+      (tester) async {
+    final shared = <String>[];
+    await _open(tester, coming, safety: FakeSafety(link: null), shared: shared);
+
+    await tester.tap(find.byIcon(Icons.shield_outlined));
+    await _wait(tester);
+    await tester.tap(find.text(l10n.safetyShare));
+    await _wait(tester);
+
+    expect(shared, isEmpty);
+    expect(find.text(l10n.safetyShareUnavailable), findsOneWidget);
   });
 
   for (final locale in AppLocales.all) {

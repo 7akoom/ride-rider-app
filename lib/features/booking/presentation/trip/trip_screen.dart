@@ -7,6 +7,7 @@ import '../../../../design/map/app_map.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../domain/entities/ride.dart';
 import '../legacy_routes.dart';
+import 'safety_sheet.dart';
 import 'trip_controller.dart';
 import 'trip_panel.dart';
 import 'trip_state.dart';
@@ -54,6 +55,15 @@ class TripScreen extends ConsumerWidget {
     }
   }
 
+  /// 21; when the alarm went, the trip screen says so (the sheet has closed).
+  Future<void> _safety(BuildContext context) async {
+    final alarmed = await showSafetySheet(context, ride.id);
+
+    if (alarmed == true && context.mounted) {
+      showAppToast(context, context.l10n.safetySosSent, tone: Tone.danger);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = tripControllerProvider(ride);
@@ -77,6 +87,17 @@ class TripScreen extends ConsumerWidget {
                 frameBottom: box.maxHeight * sheetStart + Space.x6,
               ),
             ),
+            if (state.stage != TripStage.completed && state.stage != TripStage.cancelled)
+              PositionedDirectional(
+                top: Space.x3,
+                start: Space.gutter,
+                child: AppIconButton(
+                  icon: Icons.shield_outlined,
+                  semanticLabel: context.l10n.safetyTitle,
+                  floating: true,
+                  onPressed: () => _safety(context),
+                ),
+              ),
             DraggableScrollableSheet(
               initialChildSize: sheetStart,
               minChildSize: sheetMin,

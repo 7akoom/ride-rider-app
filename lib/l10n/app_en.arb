@@ -1069,5 +1069,134 @@
   "tripCancelledByCaptain": "Your captain cancelled the ride. You can order a new one.",
   "@tripCancelledByCaptain": {
     "description": "The captain cancelled."
+  },
+  "cancelWhyTitle": "Why are you cancelling?",
+  "@cancelWhyTitle": {
+    "description": "Title of the cancel sheet once a captain took the ride."
+  },
+  "cancelReasonLate": "The captain is late",
+  "@cancelReasonLate": {
+    "description": "A reason to cancel."
+  },
+  "cancelReasonChangedMind": "I changed my mind",
+  "@cancelReasonChangedMind": {
+    "description": "A reason to cancel."
+  },
+  "cancelReasonMistake": "I ordered by mistake",
+  "@cancelReasonMistake": {
+    "description": "A reason to cancel."
+  },
+  "cancelReasonCaptainAsked": "The captain asked me to cancel",
+  "@cancelReasonCaptainAsked": {
+    "description": "A reason to cancel."
+  },
+  "cancelReasonOther": "Another reason",
+  "@cancelReasonOther": {
+    "description": "A reason to cancel, written by the rider."
+  },
+  "cancelOtherHint": "Write the reason here",
+  "@cancelOtherHint": {
+    "description": "Hint of the field for another reason."
+  },
+  "cancelOtherEmpty": "Write the reason first.",
+  "@cancelOtherEmpty": {
+    "description": "Another reason was chosen without words."
+  },
+  "cancelBack": "Back to my ride",
+  "@cancelBack": {
+    "description": "Closes the cancel sheet, keeping the ride."
+  },
+  "safetyTitle": "Safety centre",
+  "@safetyTitle": {
+    "description": "Title of the safety sheet; also the shield button's label."
+  },
+  "safetyShare": "Share the trip with someone you trust",
+  "@safetyShare": {
+    "description": "Safety centre row."
+  },
+  "safetyShareHint": "They follow your trip live",
+  "@safetyShareHint": {
+    "description": "Under the share row."
+  },
+  "safetyShareMessage": "I'm on a trip now. Follow it here: {url}",
+  "@safetyShareMessage": {
+    "description": "The text shared with a trusted person.",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "safetyShareUnavailable": "Sharing trips is not available yet.",
+  "@safetyShareUnavailable": {
+    "description": "The copy has no page for shared trips."
+  },
+  "safetyStopShare": "Stop sharing",
+  "@safetyStopShare": {
+    "description": "Safety centre row once the trip is shared."
+  },
+  "safetyStopShareHint": "The links you sent stop working at once",
+  "@safetyStopShareHint": {
+    "description": "Under the stop sharing row."
+  },
+  "safetyStopped": "Your trip is no longer shared.",
+  "@safetyStopped": {
+    "description": "After stopping the links."
+  },
+  "safetyReport": "Report a safety problem",
+  "@safetyReport": {
+    "description": "Safety centre row."
+  },
+  "safetyReportHint": "The captain's behaviour, the route, or anything else",
+  "@safetyReportHint": {
+    "description": "Under the report row."
+  },
+  "safetyReportTitle": "What happened?",
+  "@safetyReportTitle": {
+    "description": "Title of the report sheet."
+  },
+  "safetyReportField": "Tell the safety team what happened",
+  "@safetyReportField": {
+    "description": "Hint of the report field."
+  },
+  "safetyReportSend": "Send the report",
+  "@safetyReportSend": {
+    "description": "Sends the report."
+  },
+  "safetyReportSent": "The safety team has your report and will contact you.",
+  "@safetyReportSent": {
+    "description": "After the report was sent."
+  },
+  "safetyReportEmpty": "Write what happened first.",
+  "@safetyReportEmpty": {
+    "description": "The report has no words."
+  },
+  "safetySosTitle": "Do you need urgent help?",
+  "@safetySosTitle": {
+    "description": "Title of the alarm card."
+  },
+  "safetySosBody": "We tell the safety team at once and share where you are with them.",
+  "@safetySosBody": {
+    "description": "Under the alarm title."
+  },
+  "safetySosSend": "Send an emergency alert",
+  "@safetySosSend": {
+    "description": "The alarm button."
+  },
+  "safetySosConfirmTitle": "Send an emergency alert?",
+  "@safetySosConfirmTitle": {
+    "description": "Asks before the alarm."
+  },
+  "safetySosConfirmBody": "The safety team gets an alert right away, with your location.",
+  "@safetySosConfirmBody": {
+    "description": "Under the alarm question."
+  },
+  "safetySosConfirmYes": "Yes, send the alert",
+  "@safetySosConfirmYes": {
+    "description": "Confirms the alarm."
+  },
+  "safetySosSent": "The safety team has your alert. Stay somewhere safe.",
+  "@safetySosSent": {
+    "description": "After the alarm went."
   }
 }

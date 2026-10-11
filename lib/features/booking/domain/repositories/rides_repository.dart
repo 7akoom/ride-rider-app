@@ -1,4 +1,5 @@
 import '../../../../core/error/result.dart';
+import '../entities/cancellation.dart';
 import '../entities/fare_quote.dart';
 import '../entities/passenger.dart';
 import '../entities/payment_method.dart';
@@ -27,5 +28,6 @@ abstract interface class RidesRepository {
   /// The rider's trip that has not ended, or null when there is none.
   Future<Result<Ride?>> activeRide();
 
-  Future<Result<Ride>> cancel(String id);
+  /// Cancels the ride; [why] is what the rider said, once a captain had it.
+  Future<Result<Ride>> cancel(String id, {Cancellation? why});
 }

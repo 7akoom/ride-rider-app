@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/error/result.dart';
 import '../../../../core/location/geo_point.dart';
 import '../../booking_providers.dart';
+import '../../domain/entities/cancellation.dart';
 import '../../domain/entities/ride.dart';
 import '../../domain/entities/route_estimate.dart';
 import 'trip_state.dart';
@@ -120,13 +121,13 @@ class TripController extends AutoDisposeFamilyNotifier<TripState, Ride> {
     }
   }
 
-  Future<void> cancel() async {
+  Future<void> cancel(Cancellation why) async {
     if (!state.canCancel || state.cancelling) {
       return;
     }
 
     state = state.copyWith(cancelling: true);
-    final result = await ref.read(cancelRideProvider).call(state.ride.id);
+    final result = await ref.read(cancelRideProvider).call(state.ride.id, why: why);
 
     if (_closed) {
       return;

@@ -1,4 +1,5 @@
 import '../../../../core/error/result.dart';
+import '../entities/cancellation.dart';
 import '../entities/ride.dart';
 import '../repositories/rides_repository.dart';
 
@@ -20,11 +21,11 @@ final class FindActiveRide {
   Future<Result<Ride?>> call() => rides.activeRide();
 }
 
-/// The rider gives up the request while no captain has it yet.
+/// The rider gives up the ride: while no captain has it, or later saying [why].
 final class CancelRide {
   const CancelRide(this.rides);
 
   final RidesRepository rides;
 
-  Future<Result<Ride>> call(String id) => rides.cancel(id);
+  Future<Result<Ride>> call(String id, {Cancellation? why}) => rides.cancel(id, why: why);
 }

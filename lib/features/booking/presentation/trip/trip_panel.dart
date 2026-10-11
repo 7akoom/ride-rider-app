@@ -4,8 +4,10 @@ import '../../../../core/error/failure_messages.dart';
 import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/tokens/metrics.dart';
+import '../../domain/entities/cancellation.dart';
 import '../../domain/entities/captain.dart';
 import '../ride_summary_view.dart';
+import 'cancel_sheet.dart';
 import 'trip_header.dart';
 import 'trip_state.dart';
 
@@ -15,23 +17,16 @@ class TripPanel extends StatelessWidget {
   const TripPanel({super.key, required this.state, required this.onCancel});
 
   final TripState state;
-  final VoidCallback onCancel;
+  final ValueChanged<Cancellation> onCancel;
 
   /// About the height of the captain's card.
   static const double _captainHeight = 112;
 
-  Future<void> _confirmCancel(BuildContext context) async {
-    final l10n = context.l10n;
-    final yes = await confirmSheet(
-      context,
-      title: l10n.tripCancelTitle,
-      message: l10n.tripCancelBody,
-      confirmLabel: l10n.tripCancelYes,
-      keepLabel: l10n.tripCancelNo,
-    );
+  Future<void> _askWhy(BuildContext context) async {
+    final why = await showCancelSheet(context);
 
-    if (yes) {
-      onCancel();
+    if (why != null) {
+      onCancel(why);
     }
   }
 
@@ -73,7 +68,7 @@ class TripPanel extends StatelessWidget {
             icon: Icons.close,
             variant: AppButtonVariant.danger,
             loading: state.cancelling,
-            onPressed: state.cancelling ? null : () => _confirmCancel(context),
+            onPressed: state.cancelling ? null : () => _askWhy(context),
           ),
         ],
       ],

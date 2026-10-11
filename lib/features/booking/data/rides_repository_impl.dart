@@ -2,6 +2,7 @@ import '../../../core/error/failure.dart';
 import '../../../core/error/guard.dart';
 import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
+import '../domain/entities/cancellation.dart';
 import '../domain/entities/fare_quote.dart';
 import '../domain/entities/passenger.dart';
 import '../domain/entities/payment_method.dart';
@@ -21,6 +22,16 @@ final class RidesRepositoryImpl implements RidesRepository {
 
   /// Recorded on the trip; staff read it, riders never see it.
   static const String cancelReason = 'rider cancelled in the app';
+
+  /// The reason as staff read it, in English: "rider: the captain was late".
+  static String reasonOf(Cancellation? why) => switch (why) {
+        null => cancelReason,
+        Cancellation(reason: CancelReason.captainLate) => 'rider: the captain was late',
+        Cancellation(reason: CancelReason.changedMind) => 'rider: changed their mind',
+        Cancellation(reason: CancelReason.orderedByMistake) => 'rider: ordered by mistake',
+        Cancellation(reason: CancelReason.captainAsked) => 'rider: the captain asked to cancel',
+        Cancellation(reason: CancelReason.other, :final text) => 'rider: $text',
+      };
 
   @override
   Future<Result<FareQuotes>> quote(TripDraft draft, {String? couponCode}) => guard(() async {
@@ -78,6 +89,6 @@ final class RidesRepositoryImpl implements RidesRepository {
   }
 
   @override
-  Future<Result<Ride>> cancel(String id) =>
-      guard(() async => RideJson.fromAnswer(await _api.cancelTrip(id, cancelReason)));
+  Future<Result<Ride>> cancel(String id, {Cancellation? why}) =>
+      guard(() async => RideJson.fromAnswer(await _api.cancelTrip(id, reasonOf(why))));
 }

@@ -8,6 +8,8 @@ import 'data/captain_repository_impl.dart';
 import 'data/places_repository_impl.dart';
 import 'data/rides_api.dart';
 import 'data/rides_repository_impl.dart';
+import 'data/safety_api.dart';
+import 'data/safety_repository_impl.dart';
 import 'data/schedules_repository_impl.dart';
 import 'data/routes_repository_impl.dart';
 import 'data/saved_places_repository_impl.dart';
@@ -15,6 +17,7 @@ import 'domain/repositories/captain_repository.dart';
 import 'domain/repositories/places_repository.dart';
 import 'domain/repositories/rides_repository.dart';
 import 'domain/repositories/routes_repository.dart';
+import 'domain/repositories/safety_repository.dart';
 import 'domain/repositories/saved_places_repository.dart';
 import 'domain/repositories/schedules_repository.dart';
 import 'domain/use_cases/book_ride.dart';
@@ -31,6 +34,7 @@ import 'domain/use_cases/order_ride.dart';
 import 'domain/use_cases/quote_ride.dart';
 import 'domain/use_cases/retry_ride.dart';
 import 'domain/use_cases/search_places.dart';
+import 'domain/use_cases/stay_safe.dart';
 import 'domain/use_cases/turn_on_location.dart';
 
 // The feature's wiring: the one file that knows both the data classes and the domain
@@ -151,4 +155,22 @@ final locateCaptainProvider = Provider<LocateCaptain>(
 
 final routeAheadProvider = Provider<RouteAhead>(
   (ref) => RouteAhead(ref.watch(routesRepositoryProvider)),
+);
+
+final safetyRepositoryProvider = Provider<SafetyRepository>(
+  (ref) => SafetyRepositoryImpl(SafetyApi(ref.watch(apiClientProvider))),
+);
+
+final shareTripProvider = Provider<ShareTrip>((ref) => ShareTrip(ref.watch(safetyRepositoryProvider)));
+
+final stopSharingProvider = Provider<StopSharing>(
+  (ref) => StopSharing(ref.watch(safetyRepositoryProvider)),
+);
+
+final raiseAlarmProvider = Provider<RaiseAlarm>(
+  (ref) => RaiseAlarm(safety: ref.watch(safetyRepositoryProvider), location: ref.watch(locationAccessProvider)),
+);
+
+final reportSafetyProvider = Provider<ReportSafety>(
+  (ref) => ReportSafety(ref.watch(safetyRepositoryProvider)),
 );

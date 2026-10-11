@@ -16,12 +16,14 @@ import '../../helpers/fake_location.dart';
 import '../../helpers/fake_rider.dart';
 import 'fake_captains.dart';
 import 'fake_rides.dart';
+import 'fake_safety.dart';
 import 'fake_schedules.dart';
 
 export '../../helpers/fake_location.dart';
 export '../../helpers/fake_rider.dart';
 export 'fake_captains.dart';
 export 'fake_rides.dart';
+export 'fake_safety.dart';
 export 'fake_schedules.dart';
 
 class FakeSavedPlaces implements SavedPlacesRepository {
@@ -115,6 +117,7 @@ List<Override> bookingFakes({
   FakeRides? rides,
   FakeSchedules? schedules,
   FakeCaptains? captains,
+  FakeSafety? safety,
 }) =>
     [
       routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
@@ -127,4 +130,5 @@ List<Override> bookingFakes({
       ridesRepositoryProvider.overrideWithValue(rides ?? FakeRides()),
       schedulesRepositoryProvider.overrideWithValue(schedules ?? FakeSchedules()),
       captainRepositoryProvider.overrideWithValue(captains ?? FakeCaptains()),
+      safetyRepositoryProvider.overrideWithValue(safety ?? FakeSafety()),
     ];
