@@ -348,5 +348,20 @@
   "statementOpening": "رصيد أول الفترة",
   "statementClosing": "رصيد آخر الفترة",
   "statementIn": "مجموع الداخل",
-  "statementOut": "مجموع الخارج"
+  "statementOut": "مجموع الخارج",
+  "walletUseVoucher": "استخدم قسيمة",
+  "voucherTitle": "تطبيق القسيمة",
+  "voucherBody": "أدخل رمز القسيمة لإضافة رصيدها إلى محفظتك.",
+  "voucherHelper": "اكتب أو الصق الرمز المطبوع على القسيمة التي اشتريتها.",
+  "voucherApply": "تطبيق",
+  "voucherFormat": "رمز القسيمة 16 حرفاً ورقماً إنكليزياً، مثل ABCD-EFGH-JKMN-PQRS.",
+  "voucherWrong": "هذا الرمز غير صحيح. تأكد منه وحاول مرة أخرى.",
+  "voucherUnusable": "هذه القسيمة مستخدمة أو ملغاة أو منتهية الصلاحية.",
+  "voucherTooMany": "محاولات خاطئة كثيرة. حاول مرة أخرى بعد ساعة.",
+  "voucherAdded": "تمت إضافة {amount} إلى محفظتك",
+  "voucherBalance": "رصيدك الآن {amount}",
+  "voucherDuesFirst": "رسوم الإلغاء التي كانت عليك سُدِّدت من هذا المبلغ أولاً.",
+  "voucherDone": "تم",
+  "voucherAlready": "استخدمت هذه القسيمة من قبل",
+  "voucherAlreadyBody": "أُضيف مبلغها {amount} إلى محفظتك في المرة الأولى، ولم يُضف شيء الآن."
 }

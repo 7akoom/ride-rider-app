@@ -1590,5 +1590,80 @@
   "statementOut": "Total out",
   "@statementOut": {
     "description": "A total."
+  },
+  "walletUseVoucher": "Use a voucher",
+  "@walletUseVoucher": {
+    "description": "A wallet action: opens the voucher sheet."
+  },
+  "voucherTitle": "Redeem a voucher",
+  "@voucherTitle": {
+    "description": "The voucher sheet's title."
+  },
+  "voucherBody": "Enter the voucher's code to add its amount to your wallet.",
+  "@voucherBody": {
+    "description": "Under the voucher sheet's title."
+  },
+  "voucherHelper": "Type or paste the code on the voucher you bought.",
+  "@voucherHelper": {
+    "description": "Under the voucher code field."
+  },
+  "voucherApply": "Redeem",
+  "@voucherApply": {
+    "description": "Redeems the typed voucher code."
+  },
+  "voucherFormat": "A voucher code is 16 letters and digits, like ABCD-EFGH-JKMN-PQRS.",
+  "@voucherFormat": {
+    "description": "The typed text cannot be a voucher code."
+  },
+  "voucherWrong": "This code is not right. Check it and try again.",
+  "@voucherWrong": {
+    "description": "No voucher has this code."
+  },
+  "voucherUnusable": "This voucher was already used, was cancelled or has expired.",
+  "@voucherUnusable": {
+    "description": "The voucher cannot be redeemed any more."
+  },
+  "voucherTooMany": "Too many wrong codes. Try again in an hour.",
+  "@voucherTooMany": {
+    "description": "Wrong codes are counted; after five the rider waits up to an hour."
+  },
+  "voucherAdded": "{amount} added to your wallet",
+  "@voucherAdded": {
+    "description": "The voucher was redeemed.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "voucherBalance": "Your balance is now {amount}",
+  "@voucherBalance": {
+    "description": "The wallet's balance after the voucher.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "voucherDuesFirst": "The cancellation fees you owed were paid from it first.",
+  "@voucherDuesFirst": {
+    "description": "Fees owed were paid from the voucher first."
+  },
+  "voucherDone": "Done",
+  "@voucherDone": {
+    "description": "Closes the voucher sheet after it worked."
+  },
+  "voucherAlready": "You redeemed this voucher before",
+  "@voucherAlready": {
+    "description": "The rider redeems a voucher they had redeemed already; nothing is added."
+  },
+  "voucherAlreadyBody": "Its {amount} reached your wallet the first time; nothing was added now.",
+  "@voucherAlreadyBody": {
+    "description": "Under voucherAlready.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -36,4 +36,18 @@ void main() {
     expect(WalletJson.filterOf(MovementFilter.moneyIn), {'direction': 'in'});
     expect(WalletJson.filterOf(MovementFilter.tips), {'types': 'TRANSACTION_TYPE_TIP'});
   });
+
+  test('a redeemed voucher is read with the wallet after it', () {
+    final credit = WalletJson.voucherCreditOf({
+      'serial': 'V3-17',
+      'amount': '10000.000',
+      'currencyCode': 'IQD',
+      'wallet': {'id': 'w', 'balance': '22500'},
+    });
+
+    expect(credit.amount, 10000);
+    expect(credit.balance, 22500);
+    expect(credit.alreadyRedeemed, isFalse);
+    expect(WalletJson.voucherCreditOf({'amount': '10000', 'alreadyRedeemed': true}).alreadyRedeemed, isTrue);
+  });
 }

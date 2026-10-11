@@ -10,12 +10,13 @@ import 'balance_card.dart';
 import 'movement_view.dart';
 import 'movements_screen.dart';
 import 'statement_screen.dart';
+import 'voucher_sheet.dart';
 import 'wallet_state.dart';
 
 Future<void> openWallet(BuildContext context) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const WalletScreen()));
 
-/// 28: the balance, fees still owed, and the latest movements.
+/// 28: the balance, fees still owed, what adds to it, and the latest movements.
 class WalletScreen extends ConsumerWidget {
   const WalletScreen({super.key});
 
@@ -36,6 +37,17 @@ class WalletScreen extends ConsumerWidget {
                   : l10n.walletOwedBlocked(formatMoney(l10n, overview.owed)),
             ),
           ],
+          const SizedBox(height: Space.x4),
+          // Top-up, send and request join the voucher here (5c, 5d).
+          Row(
+            children: [
+              ShortcutTile(
+                icon: Icons.redeem_outlined,
+                label: l10n.walletUseVoucher,
+                onTap: () => showVoucherSheet(context, owed: overview.owed),
+              ),
+            ],
+          ),
           const SizedBox(height: Space.x4),
           SectionHeader(
             title: l10n.walletRecent,

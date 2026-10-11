@@ -20,4 +20,7 @@ class WalletApi {
 
   Future<JsonMap> statement(String riderId, Map<String, dynamic> query) =>
       _client.get('${_path(riderId)}/statement', query: {..._rider, ...query});
+
+  Future<JsonMap> redeemVoucher(String riderId, String code) =>
+      _client.post('${_path(riderId)}/vouchers:redeem', body: {'code': code});
 }

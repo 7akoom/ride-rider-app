@@ -3,6 +3,7 @@ import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
 import '../../../core/rider/rider_id.dart';
 import '../domain/entities/statement.dart';
+import '../domain/entities/voucher_credit.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
 import '../domain/repositories/wallet_repository.dart';
@@ -50,5 +51,12 @@ final class WalletRepositoryImpl implements WalletRepository {
         });
 
         return WalletJson.statementOf(json);
+      });
+
+  @override
+  Future<Result<VoucherCredit>> redeemVoucher(String code) => guard(() async {
+        final json = await _api.redeemVoucher(await riderIdOrSignIn(), code);
+
+        return WalletJson.voucherCreditOf(json);
       });
 }

@@ -1,5 +1,6 @@
 import '../../../core/network/json.dart';
 import '../domain/entities/statement.dart';
+import '../domain/entities/voucher_credit.dart';
 import '../domain/entities/wallet_movement.dart';
 
 /// Reads the gateway's wallet answers. Amounts are decimal strings; missing ones are 0.
@@ -45,6 +46,13 @@ abstract final class WalletJson {
       next: next.isEmpty ? null : next,
     );
   }
+
+  /// A redeemed voucher: its amount and the wallet after it.
+  static VoucherCredit voucherCreditOf(JsonMap json) => VoucherCredit(
+        amount: amountAt(json, 'amount') ?? 0,
+        balance: amountAt(objectAt(json, 'wallet') ?? const {}, 'balance') ?? 0,
+        alreadyRedeemed: json['alreadyRedeemed'] == true,
+      );
 
   /// The statement's query for [filter].
   static Map<String, dynamic> filterOf(MovementFilter filter) => switch (filter) {

@@ -1,6 +1,7 @@
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/features/wallet/domain/entities/statement.dart';
+import 'package:rider_app/features/wallet/domain/entities/voucher_credit.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_overview.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_repository.dart';
@@ -15,6 +16,7 @@ class FakeWallet implements WalletRepository {
     List<WalletMovement>? latest,
     List<StatementPage>? pages,
     this.statementFailure,
+    this.voucherResult = const Ok(VoucherCredit(amount: 10000, balance: 22500)),
   })  : latest = latest ??
             [
               movementOf(MovementKind.topUp, 10000, id: 'a'),
@@ -35,7 +37,9 @@ class FakeWallet implements WalletRepository {
   List<WalletMovement> latest;
   List<StatementPage> pages;
   Failure? statementFailure;
+  Result<VoucherCredit> voucherResult;
   final List<(MovementFilter, String?)> asked = [];
+  final List<String> redeemed = [];
 
   @override
   Future<Result<WalletOverview>> overview() async => overviewResult;
@@ -57,5 +61,12 @@ class FakeWallet implements WalletRepository {
     }
 
     return Ok(pages[page == null ? 0 : int.parse(page)]);
+  }
+
+  @override
+  Future<Result<VoucherCredit>> redeemVoucher(String code) async {
+    redeemed.add(code);
+
+    return voucherResult;
   }
 }
