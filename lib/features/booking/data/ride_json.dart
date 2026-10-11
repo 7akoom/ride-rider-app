@@ -36,6 +36,8 @@ abstract final class RideJson {
       cancellationReason: _text(json['cancellationReason']),
       riderId: _text(json['riderId']),
       arrivedAt: DateTime.tryParse(_text(json['arrivedAt'])),
+      startedAt: DateTime.tryParse(_text(json['startedAt'])),
+      completedAt: DateTime.tryParse(_text(json['completedAt'])),
       cancelledByCaptain: json['cancelledBy'] == 'driver',
     );
   }

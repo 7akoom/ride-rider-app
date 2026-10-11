@@ -47,6 +47,8 @@ final class Ride {
     this.cancellationReason = '',
     this.riderId = '',
     this.arrivedAt,
+    this.startedAt,
+    this.completedAt,
     this.cancelledByCaptain = false,
   });
 
@@ -69,6 +71,8 @@ final class Ride {
 
   /// When the captain said they were at the pickup.
   final DateTime? arrivedAt;
+  final DateTime? startedAt;
+  final DateTime? completedAt;
   final bool cancelledByCaptain;
 
   TripStage get stage => switch (status) {

@@ -27,7 +27,6 @@ lib/features/rider/ride_history_screen.dart
 lib/features/rider/saved_address.dart
 lib/features/rider/saved_addresses_screen.dart
 lib/features/rider/settings_screen.dart
-lib/features/rider/trip_complete_screen.dart
 lib/features/rider/trip_detail_screen.dart
 lib/features/rider/wallet_screen.dart
 lib/features/support/support_screen.dart

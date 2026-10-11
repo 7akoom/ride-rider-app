@@ -21,6 +21,7 @@ export 'inputs/numeric_keypad.dart';
 export 'inputs/otp_boxes.dart';
 export 'inputs/phone_field.dart';
 export 'inputs/search_bar_button.dart';
+export 'inputs/star_rating.dart';
 export 'layout/app_bottom_nav.dart';
 export 'layout/app_scaffold.dart';
 export 'layout/app_sheet.dart';

@@ -1198,5 +1198,230 @@
   "safetySosSent": "The safety team has your alert. Stay somewhere safe.",
   "@safetySosSent": {
     "description": "After the alarm went."
+  },
+  "tripDoneBarTitle": "Trip summary",
+  "@tripDoneBarTitle": {
+    "description": "Title of the trip summary."
+  },
+  "tripDoneTitle": "You've arrived safely",
+  "@tripDoneTitle": {
+    "description": "The trip ended."
+  },
+  "tripDonePayCash": "Pay {amount} to the captain in cash",
+  "@tripDonePayCash": {
+    "description": "Under the total of a cash trip.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tripDonePaidWallet": "Paid from your wallet",
+  "@tripDonePaidWallet": {
+    "description": "Under the total of a wallet trip."
+  },
+  "tripDoneFareLater": "The fare will show in your activity shortly.",
+  "@tripDoneFareLater": {
+    "description": "The settlement did not come in time."
+  },
+  "tripDoneRate": "Rate the trip",
+  "@tripDoneRate": {
+    "description": "Button on the summary."
+  },
+  "tripDoneReceipt": "View receipt",
+  "@tripDoneReceipt": {
+    "description": "Button on the summary."
+  },
+  "fareTitle": "Payment",
+  "@fareTitle": {
+    "description": "Title of the payment card."
+  },
+  "fareTrip": "Trip fare",
+  "@fareTrip": {
+    "description": "A payment line."
+  },
+  "fareTip": "Tip",
+  "@fareTip": {
+    "description": "A payment line."
+  },
+  "fareTotal": "Total paid",
+  "@fareTotal": {
+    "description": "The payment total."
+  },
+  "farePaidCash": "In cash",
+  "@farePaidCash": {
+    "description": "How part of it was paid."
+  },
+  "farePaidWallet": "From your wallet",
+  "@farePaidWallet": {
+    "description": "How part of it was paid."
+  },
+  "fareChange": "Change put in your wallet",
+  "@fareChange": {
+    "description": "Change the captain did not have."
+  },
+  "rateBarTitle": "Rate your captain",
+  "@rateBarTitle": {
+    "description": "Title of the rating screen."
+  },
+  "rateQuestion": "How was your trip with {name}?",
+  "@rateQuestion": {
+    "description": "Over the stars.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "rateStars": "{count} of 5 stars",
+  "@rateStars": {
+    "description": "Screen reader label of a star.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rateWord1": "Poor",
+  "@rateWord1": {
+    "description": "One star."
+  },
+  "rateWord2": "Fair",
+  "@rateWord2": {
+    "description": "Two stars."
+  },
+  "rateWord3": "Good",
+  "@rateWord3": {
+    "description": "Three stars."
+  },
+  "rateWord4": "Very good",
+  "@rateWord4": {
+    "description": "Four stars."
+  },
+  "rateWord5": "Excellent",
+  "@rateWord5": {
+    "description": "Five stars."
+  },
+  "rateComment": "Add a comment (optional)",
+  "@rateComment": {
+    "description": "Hint of the comment; only the operator reads it."
+  },
+  "rateSend": "Send",
+  "@rateSend": {
+    "description": "Sends the rating and the tip."
+  },
+  "tipTitle": "Add a tip for the captain",
+  "@tipTitle": {
+    "description": "Title of the tips."
+  },
+  "tipNone": "No tip",
+  "@tipNone": {
+    "description": "No tip."
+  },
+  "tipOther": "Other amount",
+  "@tipOther": {
+    "description": "A typed tip."
+  },
+  "tipOtherHint": "Amount",
+  "@tipOtherHint": {
+    "description": "Hint of the typed tip."
+  },
+  "tipNote": "The whole tip goes to the captain, from your wallet.",
+  "@tipNote": {
+    "description": "Under the tips."
+  },
+  "tipBalance": "Your wallet: {amount}",
+  "@tipBalance": {
+    "description": "The wallet's balance.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tipTooSmall": "The smallest tip is {amount}.",
+  "@tipTooSmall": {
+    "description": "Tip below the limit.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tipTooBig": "The largest tip is {amount}.",
+  "@tipTooBig": {
+    "description": "Tip above the limit.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tipNotEnough": "Your wallet doesn't have enough for this tip.",
+  "@tipNotEnough": {
+    "description": "Tip above the balance."
+  },
+  "tipNotNow": "A tip can't be sent for this trip now.",
+  "@tipNotNow": {
+    "description": "The platform refused the tip."
+  },
+  "thanksTitle": "Thank you!",
+  "@thanksTitle": {
+    "description": "After rating."
+  },
+  "thanksRating": "Your rating helps make every trip better.",
+  "@thanksRating": {
+    "description": "After rating without a tip."
+  },
+  "thanksTip": "Your tip of {amount} went to the captain.",
+  "@thanksTip": {
+    "description": "After a tip.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "thanksHome": "Back to home",
+  "@thanksHome": {
+    "description": "Leaves the thanks."
+  },
+  "receiptBarTitle": "Receipt",
+  "@receiptBarTitle": {
+    "description": "Title of the receipt."
+  },
+  "receiptNumber": "Trip {number}",
+  "@receiptNumber": {
+    "description": "The trip's number.",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptWhen": "{day} · {time}",
+  "@receiptWhen": {
+    "description": "When the trip ended.",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptDuration": "Duration: {duration}",
+  "@receiptDuration": {
+    "description": "How long the trip took; duration is like 25 min.",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptAgain": "Take this trip again",
+  "@receiptAgain": {
+    "description": "Orders the same trip."
   }
 }

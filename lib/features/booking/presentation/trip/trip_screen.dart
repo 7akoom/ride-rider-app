@@ -6,7 +6,7 @@ import '../../../../design/components/components.dart';
 import '../../../../design/map/app_map.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../domain/entities/ride.dart';
-import '../legacy_routes.dart';
+import '../trip_end/trip_done_screen.dart';
 import 'safety_sheet.dart';
 import 'trip_controller.dart';
 import 'trip_panel.dart';
@@ -41,7 +41,7 @@ class TripScreen extends ConsumerWidget {
 
     switch (now.stage) {
       case TripStage.completed:
-        openLegacyTripComplete(context, now.ride);
+        openTripDone(context, now.ride);
       case TripStage.cancelled:
         final message = switch (now) {
           TripState(cancelledByRider: true) => l10n.tripCancelled,
