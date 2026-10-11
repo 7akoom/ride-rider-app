@@ -43,77 +43,63 @@ class _MapPickerScreenState extends ConsumerState<MapPickerScreen> {
     return AppScaffold(
       topBar: const AppTopBar(),
       padded: false,
-      body: Column(
-        // The map takes the full width: in a centred column the stack would shrink to
-        // the pin, its only child with a size of its own.
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned.fill(
-                  child: AppMap(
-                    center: _point,
-                    zoom: AppMap.streetZoom,
-                    onSettled: (point) => setState(() => _point = point),
-                  ),
-                ),
-                // The pin's tip is the chosen point: it stands above the middle.
-                IgnorePointer(
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.only(bottom: Sizes.icon * 2),
-                    child: Icon(Icons.location_on, size: Sizes.icon * 2, color: p.brandStrong),
-                  ),
-                ),
-                PositionedDirectional(
-                  top: Space.x3,
-                  start: Space.gutter,
-                  end: Space.gutter,
-                  child: Center(
-                    child: Container(
-                      padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: Space.x4,
-                        vertical: Space.x2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: p.ink,
-                        borderRadius: const BorderRadius.all(Radius.circular(Radii.pill)),
-                      ),
-                      child: Text(
-                        l10n.mapPickerHint,
-                        style: context.typo.caption.copyWith(color: p.onInk),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+      body: MapLayout(
+        panelShare: 0.45,
+        map: (_) => AppMap(
+          center: _point,
+          zoom: AppMap.streetZoom,
+          onSettled: (point) => setState(() => _point = point),
+        ),
+        // The pin's tip is the chosen point, the map's middle: it stands above it.
+        marker: (_) => Center(
+          child: Padding(
+            padding: const EdgeInsetsDirectional.only(bottom: Sizes.icon * 2),
+            child: Icon(Icons.location_on, size: Sizes.icon * 2, color: p.brandStrong),
+          ),
+        ),
+        buttons: Align(
+          alignment: AlignmentDirectional.topCenter,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(Space.gutter, Space.x3, Space.gutter, 0),
+            child: Container(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: Space.x4,
+                vertical: Space.x2,
+              ),
+              decoration: BoxDecoration(
+                color: p.ink,
+                borderRadius: const BorderRadius.all(Radius.circular(Radii.pill)),
+              ),
+              child: Text(
+                l10n.mapPickerHint,
+                style: context.typo.caption.copyWith(color: p.onInk),
+              ),
             ),
           ),
-          MapPanel(
-            children: [
-              switch (pinned) {
-                AsyncData(:final value) => Text(
-                    SpotView.title(l10n, value),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.typo.h3,
-                  ),
-                _ => const SkeletonView(child: SkeletonBox(height: 22)),
+        ),
+        panel: MapPanel(
+          children: [
+            switch (pinned) {
+              AsyncData(:final value) => Text(
+                  SpotView.title(l10n, value),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.typo.h3,
+                ),
+              _ => const SkeletonView(child: SkeletonBox(height: 22)),
+            },
+            const SizedBox(height: Space.x4),
+            AppButton(
+              label: l10n.mapPickerConfirm,
+              icon: Icons.check,
+              // Only the name of the point under the pin now, not of an earlier one.
+              onPressed: switch (pinned) {
+                AsyncData(:final value) => () => Navigator.of(context).pop(value),
+                _ => null,
               },
-              const SizedBox(height: Space.x4),
-              AppButton(
-                label: l10n.mapPickerConfirm,
-                icon: Icons.check,
-                // Only the name of the point under the pin now, not of an earlier one.
-                onPressed: switch (pinned) {
-                  AsyncData(:final value) => () => Navigator.of(context).pop(value),
-                  _ => null,
-                },
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

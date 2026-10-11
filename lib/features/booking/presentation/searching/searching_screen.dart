@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/l10n/l10n.dart';
+import '../../../../core/location/geo_point.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/map/app_map.dart';
+import '../../../../design/map/map_route.dart';
 import '../../domain/entities/ride.dart';
 import '../../domain/use_cases/retry_ride.dart';
 import '../choose_ride/choose_ride_screen.dart';
@@ -12,6 +14,11 @@ import 'no_captain_panel.dart';
 import 'searching_controller.dart';
 import 'searching_panel.dart';
 import 'searching_state.dart';
+
+/// The pickup alone on the map, framed (the same one each time, so it is drawn once).
+final _pickupProvider = Provider.autoDispose.family<MapRoute, GeoPoint>(
+  (ref, pickup) => MapRoute(points: [(pickup, RoutePointKind.pickup)]),
+);
 
 /// Shows a ride that waits for a captain. Going back from it leads home; the ride
 /// goes on, and opening the app again comes back here.
@@ -70,34 +77,28 @@ class SearchingScreen extends ConsumerWidget {
     return AppScaffold(
       topBar: AppTopBar(title: context.l10n.searchingBarTitle),
       padded: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                AppMap(center: state.ride.pickup, zoom: AppMap.streetZoom),
-                // The map opens on the pickup: the rings stand on it.
-                if (searching) const IgnorePointer(child: Center(child: PulseRings())),
-              ],
-            ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.sizeOf(context).height * panelShare,
-            ),
-            child: SingleChildScrollView(
-              child: searching
-                  ? SearchingPanel(state: state, onCancel: controller.cancel)
-                  : NoCaptainPanel(
-                      state: state,
-                      onRetry: controller.retry,
-                      onChange: () => _chooseAnother(context, state.ride),
-                    ),
-            ),
-          ),
-        ],
+      body: MapLayout(
+        panelShare: panelShare,
+        map: (covered) => AppMap(
+          center: state.ride.pickup,
+          zoom: AppMap.streetZoom,
+          route: ref.watch(_pickupProvider(state.ride.pickup)),
+          frameBottom: covered,
+        ),
+        // The pickup is framed in the middle of the open part: the rings stand on it.
+        marker: searching
+            ? (covered) => Padding(
+                  padding: EdgeInsetsDirectional.only(bottom: covered),
+                  child: const Center(child: PulseRings()),
+                )
+            : null,
+        panel: searching
+            ? SearchingPanel(state: state, onCancel: controller.cancel)
+            : NoCaptainPanel(
+                state: state,
+                onRetry: controller.retry,
+                onChange: () => _chooseAnother(context, state.ride),
+              ),
       ),
     );
   }

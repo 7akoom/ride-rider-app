@@ -100,49 +100,43 @@ class _HomeTabState extends ConsumerState<HomeTab> {
       }
     });
 
-    return Column(
-      children: [
-        Expanded(
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: AppMap(
-                  showMyLocation: granted,
-                  onCreated: (map) {
-                    _map = map;
-                    _centreOnPickup();
-                  },
-                ),
-              ),
-              PositionedDirectional(
-                top: Space.x3,
-                end: Space.gutter,
-                child: AppIconButton(
-                  icon: Icons.notifications_outlined,
-                  semanticLabel: l10n.homeNotifications,
-                  floating: true,
-                  onPressed: () => openLegacyNotifications(context),
-                ),
-              ),
-              PositionedDirectional(
-                bottom: Space.x4,
-                end: Space.gutter,
-                child: AppIconButton(
-                  icon: Icons.my_location,
-                  semanticLabel: l10n.homeMyLocation,
-                  floating: true,
-                  onPressed: _myLocation,
-                ),
-              ),
-            ],
+    return MapLayout(
+      map: (_) => AppMap(
+        showMyLocation: granted,
+        onCreated: (map) {
+          _map = map;
+          _centreOnPickup();
+        },
+      ),
+      buttons: Stack(
+        children: [
+          PositionedDirectional(
+            top: Space.x3,
+            end: Space.gutter,
+            child: AppIconButton(
+              icon: Icons.notifications_outlined,
+              semanticLabel: l10n.homeNotifications,
+              floating: true,
+              onPressed: () => openLegacyNotifications(context),
+            ),
           ),
-        ),
-        HomePanel(
-          onWhereTo: _whereTo,
-          onSavedPlace: _goToSaved,
-          onTurnOnLocation: _turnOnLocation,
-        ),
-      ],
+          PositionedDirectional(
+            bottom: Space.x4,
+            end: Space.gutter,
+            child: AppIconButton(
+              icon: Icons.my_location,
+              semanticLabel: l10n.homeMyLocation,
+              floating: true,
+              onPressed: _myLocation,
+            ),
+          ),
+        ],
+      ),
+      panel: HomePanel(
+        onWhereTo: _whereTo,
+        onSavedPlace: _goToSaved,
+        onTurnOnLocation: _turnOnLocation,
+      ),
     );
   }
 }

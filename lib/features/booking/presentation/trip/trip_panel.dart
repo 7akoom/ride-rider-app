@@ -55,6 +55,7 @@ class TripPanel extends StatelessWidget {
     final failure = state.failure;
 
     return MapPanel(
+      handle: true,
       children: [
         TripHeader(state: state),
         const SizedBox(height: Space.x4),

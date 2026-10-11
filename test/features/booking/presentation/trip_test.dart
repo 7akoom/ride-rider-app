@@ -58,7 +58,11 @@ void main() {
     expect(find.text(someCaptain.car), findsOneWidget);
     expect(find.text('Family Mall'), findsOneWidget);
 
+    // The sheet is dragged up, as the rider would, to reach the button at its end.
+    await tester.drag(find.text(l10n.tripComingLabel), const Offset(0, -400));
+    await _wait(tester);
     await tester.ensureVisible(find.text(l10n.tripCancel));
+    await _wait(tester);
     await tester.tap(find.text(l10n.tripCancel));
     await _wait(tester);
     expect(find.text(l10n.tripCancelTitle), findsOneWidget);

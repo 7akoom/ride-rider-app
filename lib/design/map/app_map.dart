@@ -9,6 +9,7 @@ import '../../core/error/error_reporter.dart';
 import '../../core/location/geo_point.dart';
 import '../design_context.dart';
 import '../tokens/metrics.dart';
+import 'map_layers.dart';
 import 'map_route.dart';
 import 'map_style.dart';
 import 'route_layer.dart';
@@ -50,6 +51,7 @@ class AppMap extends StatefulWidget {
     this.onSettled,
     this.route,
     this.vehicle,
+    this.frameBottom = RouteLayer.framePadding,
   });
 
   final GeoPoint? center;
@@ -65,8 +67,11 @@ class AppMap extends StatefulWidget {
   /// A trip to draw and frame (choosing a ride); redrawn when it changes.
   final MapRoute? route;
 
-  /// Where the captain's car is; it moves without moving the map.
+  /// Where the captain's car is; it slides there without moving the map.
   final GeoPoint? vehicle;
+
+  /// Room left under a framed route, for what covers the map's bottom (a sheet).
+  final double frameBottom;
 
   static const double cityZoom = 13;
   static const double streetZoom = 16;
@@ -85,21 +90,34 @@ class AppMap extends StatefulWidget {
 
 class _AppMapState extends State<AppMap> {
   AppMapController? _controller;
-  RouteLayer? _routeLayer;
+  MapLayers? _layers;
   bool _styleReady = false;
 
   void _created(MapLibreMapController map) {
     final controller = AppMapController(map);
     _controller = controller;
-    _routeLayer = RouteLayer(map, context.palette);
+    _layers?.dispose();
+    _layers = MapLayers(map, context.palette, MediaQuery.devicePixelRatioOf(context));
     _styleReady = false;
     widget.onCreated?.call(controller);
   }
 
   /// Lines and markers can only be added once the style is there.
-  void _styleLoaded() {
+  Future<void> _styleLoaded() async {
+    final layers = _layers;
+
+    if (layers == null) {
+      return;
+    }
+
+    await layers.ready();
+
+    if (!mounted) {
+      return;
+    }
+
     _styleReady = true;
-    unawaited(widget.route == null ? _placeVehicle() : _drawRoute());
+    _draw();
   }
 
   @override
@@ -107,41 +125,31 @@ class _AppMapState extends State<AppMap> {
     super.didUpdateWidget(oldWidget);
 
     if (widget.route != oldWidget.route) {
-      unawaited(_drawRoute());
-    } else if (widget.vehicle != oldWidget.vehicle) {
-      unawaited(_placeVehicle());
+      _draw();
+    } else if (widget.vehicle != oldWidget.vehicle && _styleReady) {
+      _layers?.moveCar(widget.vehicle);
     }
   }
 
-  Future<void> _placeVehicle() async {
-    final layer = _routeLayer;
-
-    if (layer == null || !_styleReady) {
-      return;
-    }
-
-    try {
-      await layer.placeVehicle(widget.vehicle);
-    } catch (error, stack) {
-      // The map closed meanwhile; the car is placed again with the next position.
-      ErrorReporter.report(error, stack);
-    }
-  }
-
-  Future<void> _drawRoute() async {
+  void _draw() {
+    final layers = _layers;
     final route = widget.route;
-    final layer = _routeLayer;
 
-    if (route == null || layer == null || !_styleReady) {
+    if (layers == null || !_styleReady) {
       return;
     }
 
-    try {
-      await layer.draw(route, vehicle: widget.vehicle);
-    } catch (error, stack) {
-      // The map closed while drawing; the route is drawn again when it opens.
-      ErrorReporter.report(error, stack);
+    if (route == null) {
+      layers.moveCar(widget.vehicle);
+    } else {
+      unawaited(layers.draw(route, car: widget.vehicle, bottom: widget.frameBottom));
     }
+  }
+
+  @override
+  void dispose() {
+    _layers?.dispose();
+    super.dispose();
   }
 
   void _idle() {
@@ -185,7 +193,7 @@ class _AppMapState extends State<AppMap> {
           : AttributionButtonPosition.bottomLeft,
       attributionButtonMargins: const Point(Space.x2, Space.x2),
       onMapCreated: _created,
-      onStyleLoadedCallback: _styleLoaded,
+      onStyleLoadedCallback: () => unawaited(_styleLoaded()),
     );
   }
 }

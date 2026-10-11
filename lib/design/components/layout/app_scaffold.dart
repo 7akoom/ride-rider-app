@@ -9,7 +9,8 @@ import '../../tokens/metrics.dart';
 ///
 /// Screens that draw edge to edge (the map) set [padded] to false; their body then
 /// gets the full width, whatever its own size (a map under a small pin would otherwise
-/// shrink to the pin's width).
+/// shrink to the pin's width), and keeps its height when the keyboard opens (over
+/// another screen too): a map must never change size (see MapLayout).
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
@@ -38,6 +39,7 @@ class AppScaffold extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: background ?? context.palette.background,
+      resizeToAvoidBottomInset: padded,
       appBar: topBar,
       bottomNavigationBar: bottomNavigation,
       body: SafeArea(

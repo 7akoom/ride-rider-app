@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/map/app_map.dart';
+import '../../../../design/tokens/metrics.dart';
 import '../../domain/entities/ride.dart';
 import '../legacy_routes.dart';
 import 'trip_controller.dart';
@@ -24,8 +25,11 @@ class TripScreen extends ConsumerWidget {
 
   final Ride ride;
 
-  /// The panel takes at most this share of the screen; the map keeps the rest.
-  static const double panelShare = 0.62;
+  /// The sheet over the map: where it opens, how low and how high it goes (shares of
+  /// the screen). The map is the whole screen under it.
+  static const double sheetStart = 0.42;
+  static const double sheetMin = 0.2;
+  static const double sheetMax = 0.9;
 
   void _follow(BuildContext context, TripState? before, TripState now) {
     if (before?.stage == now.stage) {
@@ -60,26 +64,37 @@ class TripScreen extends ConsumerWidget {
     return AppScaffold(
       topBar: AppTopBar(title: context.l10n.tripBarTitle),
       padded: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: AppMap(
-              center: state.ride.pickup,
-              zoom: AppMap.streetZoom,
-              route: state.map,
-              vehicle: state.captainAt,
+      body: LayoutBuilder(
+        builder: (context, box) => Stack(
+          children: [
+            Positioned.fill(
+              child: AppMap(
+                center: state.ride.pickup,
+                zoom: AppMap.streetZoom,
+                route: state.map,
+                vehicle: state.captainAt,
+                // The route is framed in the part of the map the sheet leaves open.
+                frameBottom: box.maxHeight * sheetStart + Space.x6,
+              ),
             ),
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.sizeOf(context).height * panelShare,
+            DraggableScrollableSheet(
+              initialChildSize: sheetStart,
+              minChildSize: sheetMin,
+              maxChildSize: sheetMax,
+              snap: true,
+              builder: (context, scroll) => LayoutBuilder(
+                builder: (context, sheet) => SingleChildScrollView(
+                  controller: scroll,
+                  child: ConstrainedBox(
+                    // The panel's colour reaches the sheet's bottom, however short it is.
+                    constraints: BoxConstraints(minHeight: sheet.maxHeight),
+                    child: TripPanel(state: state, onCancel: ref.read(provider.notifier).cancel),
+                  ),
+                ),
+              ),
             ),
-            child: SingleChildScrollView(
-              child: TripPanel(state: state, onCancel: ref.read(provider.notifier).cancel),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

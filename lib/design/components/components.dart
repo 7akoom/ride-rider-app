@@ -27,6 +27,7 @@ export 'layout/app_sheet.dart';
 export 'layout/app_top_bar.dart';
 export 'layout/confirm_sheet.dart';
 export 'layout/end_action_row.dart';
+export 'layout/map_layout.dart';
 export 'layout/map_panel.dart';
 export 'lists/app_list_row.dart';
 export 'lists/section_header.dart';

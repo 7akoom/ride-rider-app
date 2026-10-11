@@ -6,6 +6,7 @@ import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/map/app_map.dart';
 import '../../../../design/map/map_route.dart';
+import '../../../../design/tokens/metrics.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/route_estimate.dart';
 import '../../domain/entities/trip_draft.dart';
@@ -48,6 +49,9 @@ class ChooseRideScreen extends ConsumerWidget {
   /// A complete draft: pickup and destination are known.
   final TripDraft draft;
 
+  /// The most of the screen the panel takes; the route is framed above it.
+  static const double panelShare = 0.75;
+
   Future<void> _order(BuildContext context, WidgetRef ref) async {
     final ride = await ref.read(chooseRideControllerProvider(draft).notifier).order();
 
@@ -81,24 +85,21 @@ class ChooseRideScreen extends ConsumerWidget {
     return AppScaffold(
       topBar: AppTopBar(title: context.l10n.chooseRideTitle),
       padded: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: AppMap(
-              center: draft.pickup!.point,
-              route: ref.watch(_mapRouteProvider(draft)),
-            ),
-          ),
-          ChooseRidePanel(
-            draft: draft,
-            noRoad: noRoad,
-            onPayment: () => showPaymentSheet(context, draft),
-            onPassenger: () => showPassengerSheet(context, draft),
-            onOrder: () => _order(context, ref),
-            onSchedule: () => _schedule(context, ref),
-          ),
-        ],
+      body: MapLayout(
+        panelShare: panelShare,
+        map: (covered) => AppMap(
+          center: draft.pickup!.point,
+          route: ref.watch(_mapRouteProvider(draft)),
+          frameBottom: covered + Space.x6,
+        ),
+        panel: ChooseRidePanel(
+          draft: draft,
+          noRoad: noRoad,
+          onPayment: () => showPaymentSheet(context, draft),
+          onPassenger: () => showPassengerSheet(context, draft),
+          onOrder: () => _order(context, ref),
+          onSchedule: () => _schedule(context, ref),
+        ),
       ),
     );
   }
