@@ -58,9 +58,11 @@ class DriverCard extends StatelessWidget {
               children: [
                 Text(name, style: t.bodyStrong, maxLines: 1, overflow: TextOverflow.ellipsis),
                 if (rating != null) _Rating(value: rating!),
-                Text(car, style: t.caption.copyWith(color: p.textSecondary)),
-                const SizedBox(height: Space.x2),
-                PlateBadge(number: plate, region: plateRegion),
+                if (car.isNotEmpty) Text(car, style: t.caption.copyWith(color: p.textSecondary)),
+                if (plate.isNotEmpty) ...[
+                  const SizedBox(height: Space.x2),
+                  PlateBadge(number: plate, region: plateRegion),
+                ],
               ],
             ),
           ),

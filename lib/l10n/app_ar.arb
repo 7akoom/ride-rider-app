@@ -221,5 +221,22 @@
   "bookingCancelTitle": "إلغاء هذا الحجز؟",
   "bookingCancelBody": "الإلغاء مجاني قبل أن نبدأ البحث عن كابتن.",
   "bookingCancelNo": "إبقاء الحجز",
-  "bookingCancelled": "تم إلغاء الحجز."
+  "bookingCancelled": "تم إلغاء الحجز.",
+  "tripBarTitle": "رحلتك",
+  "tripComingLabel": "كابتنك في الطريق إليك",
+  "tripComingSoon": "جارٍ حساب وقت الوصول",
+  "tripArrivedTitle": "وصل الكابتن",
+  "tripArrivedWaiting": "ينتظرك منذ {time}",
+  "tripArrivedHint": "توجّه إلى الكابتن عند نقطة الانطلاق.",
+  "tripArrivalLabel": "الوصول المتوقع",
+  "tripOnTheWay": "في الطريق إلى وجهتك",
+  "tripRemaining": "متبقٍّ {duration}",
+  "tripCaptain": "الكابتن",
+  "tripCancel": "إلغاء الرحلة",
+  "tripCancelTitle": "إلغاء الرحلة؟",
+  "tripCancelBody": "الكابتن في طريقه إليك. قد تُحتسب رسوم إلغاء إذا مرّت بضع دقائق على قبوله للرحلة.",
+  "tripCancelYes": "نعم، ألغِ الرحلة",
+  "tripCancelNo": "متابعة الرحلة",
+  "tripCancelled": "تم إلغاء الرحلة.",
+  "tripCancelledByCaptain": "ألغى الكابتن الرحلة. يمكنك طلب رحلة جديدة."
 }

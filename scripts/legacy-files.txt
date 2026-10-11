@@ -20,16 +20,13 @@ lib/core/models/trip.dart
 lib/core/models/wallet_tx.dart
 lib/core/navigation.dart
 lib/core/phone.dart
-lib/features/rider/cancel_trip_sheet.dart
 lib/features/rider/coupons_screen.dart
-lib/features/rider/map_overlay.dart
 lib/features/rider/notifications_screen.dart
 lib/features/rider/profile_screen.dart
 lib/features/rider/ride_history_screen.dart
 lib/features/rider/saved_address.dart
 lib/features/rider/saved_addresses_screen.dart
 lib/features/rider/settings_screen.dart
-lib/features/rider/tracking_screen.dart
 lib/features/rider/trip_complete_screen.dart
 lib/features/rider/trip_detail_screen.dart
 lib/features/rider/wallet_screen.dart

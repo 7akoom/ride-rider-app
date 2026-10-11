@@ -5,14 +5,31 @@ enum RideStatus { searching, accepted, onTrip, completed, cancelled }
 
 /// A stop on the way, as it was requested.
 final class RideStop {
-  const RideStop({required this.point, this.address = ''});
+  const RideStop({required this.point, this.address = '', this.reached = false});
 
   final GeoPoint point;
   final String address;
+
+  /// The captain marked it on the way.
+  final bool reached;
 }
 
-/// A requested trip, as far as booking follows it: until a captain accepts it, or it
-/// ends without one.
+/// Where a ride with a captain stands, for the rider.
+enum TripStage {
+  /// No captain yet.
+  searching,
+
+  /// The captain is on the way to the pickup.
+  coming,
+
+  /// The captain is at the pickup.
+  arrived,
+  onTrip,
+  completed,
+  cancelled,
+}
+
+/// A requested trip, from the request to its end.
 final class Ride {
   const Ride({
     required this.id,
@@ -28,6 +45,9 @@ final class Ride {
     this.requestedAt,
     this.cancelledBySystem = false,
     this.cancellationReason = '',
+    this.riderId = '',
+    this.arrivedAt,
+    this.cancelledByCaptain = false,
   });
 
   final String id;
@@ -45,6 +65,19 @@ final class Ride {
   final DateTime? requestedAt;
   final bool cancelledBySystem;
   final String cancellationReason;
+  final String riderId;
+
+  /// When the captain said they were at the pickup.
+  final DateTime? arrivedAt;
+  final bool cancelledByCaptain;
+
+  TripStage get stage => switch (status) {
+        RideStatus.searching => TripStage.searching,
+        RideStatus.accepted => arrivedAt == null ? TripStage.coming : TripStage.arrived,
+        RideStatus.onTrip => TripStage.onTrip,
+        RideStatus.completed => TripStage.completed,
+        RideStatus.cancelled => TripStage.cancelled,
+      };
 
   /// The search for a captain ran out: the platform cancelled it for want of one.
   bool get noCaptainFound =>

@@ -991,5 +991,83 @@
   "bookingCancelled": "Booking cancelled.",
   "@bookingCancelled": {
     "description": "After cancelling a booking."
+  },
+  "tripBarTitle": "Your ride",
+  "@tripBarTitle": {
+    "description": "Title of the trip screen."
+  },
+  "tripComingLabel": "Your captain is on the way",
+  "@tripComingLabel": {
+    "description": "Over the minutes until the captain reaches the pickup."
+  },
+  "tripComingSoon": "Working out the arrival time",
+  "@tripComingSoon": {
+    "description": "In place of the minutes, until the captain's position is known."
+  },
+  "tripArrivedTitle": "Your captain is here",
+  "@tripArrivedTitle": {
+    "description": "The captain is at the pickup."
+  },
+  "tripArrivedWaiting": "Waiting for you for {time}",
+  "@tripArrivedWaiting": {
+    "description": "How long the captain has waited at the pickup; time is like 2:38.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tripArrivedHint": "Meet your captain at the pickup point.",
+  "@tripArrivedHint": {
+    "description": "Under the waiting time."
+  },
+  "tripArrivalLabel": "Expected arrival",
+  "@tripArrivalLabel": {
+    "description": "Over the time the trip should reach the destination."
+  },
+  "tripOnTheWay": "On the way to your destination",
+  "@tripOnTheWay": {
+    "description": "In place of the arrival time, until it is known."
+  },
+  "tripRemaining": "{duration} left",
+  "@tripRemaining": {
+    "description": "Under the arrival time; duration is like 8 min.",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "tripCaptain": "Your captain",
+  "@tripCaptain": {
+    "description": "In place of the captain's name when it is not known."
+  },
+  "tripCancel": "Cancel ride",
+  "@tripCancel": {
+    "description": "Button: cancel before the trip starts."
+  },
+  "tripCancelTitle": "Cancel this ride?",
+  "@tripCancelTitle": {
+    "description": "Asks before cancelling a ride a captain took."
+  },
+  "tripCancelBody": "Your captain is already on the way. A cancellation fee may apply once some minutes have passed since they accepted.",
+  "@tripCancelBody": {
+    "description": "The rate card may charge after its grace minutes."
+  },
+  "tripCancelYes": "Yes, cancel",
+  "@tripCancelYes": {
+    "description": "Confirms cancelling."
+  },
+  "tripCancelNo": "Keep my ride",
+  "@tripCancelNo": {
+    "description": "Keeps the ride."
+  },
+  "tripCancelled": "Your ride was cancelled.",
+  "@tripCancelled": {
+    "description": "After the rider cancelled."
+  },
+  "tripCancelledByCaptain": "Your captain cancelled the ride. You can order a new one.",
+  "@tripCancelledByCaptain": {
+    "description": "The captain cancelled."
   }
 }

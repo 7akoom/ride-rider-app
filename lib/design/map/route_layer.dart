@@ -9,19 +9,25 @@ import '../tokens/palette.dart';
 import 'map_route.dart';
 
 /// Draws a [MapRoute] on a map whose style has loaded, and frames it. The markers keep
-/// the colours of [RouteMarker]: ink pickup, hollow stops, brand destination.
+/// the colours of [RouteMarker]: ink pickup, hollow stops, brand destination. The
+/// captain's car is a larger brand dot that moves on its own, without reframing.
 final class RouteLayer {
   RouteLayer(this._map, this._palette);
 
   final MapLibreMapController _map;
   final Palette _palette;
+  Circle? _vehicle;
+  GeoPoint? _vehicleAt;
 
   /// Space between the route and the map's edges.
   static const double framePadding = 56;
 
-  Future<void> draw(MapRoute route) async {
+  /// Draws [route] with the car at [vehicle] (none when null).
+  Future<void> draw(MapRoute route, {GeoPoint? vehicle}) async {
+    _vehicleAt = vehicle;
     await _map.clearLines();
     await _map.clearCircles();
+    _vehicle = null;
 
     if (route.path.length > 1) {
       await _map.addLine(LineOptions(
@@ -42,7 +48,35 @@ final class RouteLayer {
       ));
     }
 
+    await placeVehicle(_vehicleAt);
     await _frame(route.extent);
+  }
+
+  /// Puts the car at [point], or takes it off the map when null.
+  Future<void> placeVehicle(GeoPoint? point) async {
+    _vehicleAt = point;
+    final vehicle = _vehicle;
+
+    if (point == null) {
+      _vehicle = null;
+      if (vehicle != null) {
+        await _map.removeCircle(vehicle);
+      }
+      return;
+    }
+
+    if (vehicle != null) {
+      await _map.updateCircle(vehicle, CircleOptions(geometry: _latLng(point)));
+      return;
+    }
+
+    _vehicle = await _map.addCircle(CircleOptions(
+      geometry: _latLng(point),
+      circleRadius: 10,
+      circleColor: _hex(_palette.brand),
+      circleStrokeColor: _hex(_palette.ink),
+      circleStrokeWidth: 4,
+    ));
   }
 
   Color _fill(RoutePointKind kind) =>
@@ -50,6 +84,12 @@ final class RouteLayer {
 
   Future<void> _frame(List<GeoPoint> extent) async {
     if (extent.isEmpty) {
+      return;
+    }
+
+    // One point has no extent to fit: the map goes to it at street level.
+    if (extent.toSet().length == 1) {
+      await _map.animateCamera(CameraUpdate.newLatLngZoom(_latLng(extent.first), 16));
       return;
     }
 

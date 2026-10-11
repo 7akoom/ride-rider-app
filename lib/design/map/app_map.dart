@@ -49,6 +49,7 @@ class AppMap extends StatefulWidget {
     this.onCreated,
     this.onSettled,
     this.route,
+    this.vehicle,
   });
 
   final GeoPoint? center;
@@ -63,6 +64,9 @@ class AppMap extends StatefulWidget {
 
   /// A trip to draw and frame (choosing a ride); redrawn when it changes.
   final MapRoute? route;
+
+  /// Where the captain's car is; it moves without moving the map.
+  final GeoPoint? vehicle;
 
   static const double cityZoom = 13;
   static const double streetZoom = 16;
@@ -95,7 +99,7 @@ class _AppMapState extends State<AppMap> {
   /// Lines and markers can only be added once the style is there.
   void _styleLoaded() {
     _styleReady = true;
-    unawaited(_drawRoute());
+    unawaited(widget.route == null ? _placeVehicle() : _drawRoute());
   }
 
   @override
@@ -104,6 +108,23 @@ class _AppMapState extends State<AppMap> {
 
     if (widget.route != oldWidget.route) {
       unawaited(_drawRoute());
+    } else if (widget.vehicle != oldWidget.vehicle) {
+      unawaited(_placeVehicle());
+    }
+  }
+
+  Future<void> _placeVehicle() async {
+    final layer = _routeLayer;
+
+    if (layer == null || !_styleReady) {
+      return;
+    }
+
+    try {
+      await layer.placeVehicle(widget.vehicle);
+    } catch (error, stack) {
+      // The map closed meanwhile; the car is placed again with the next position.
+      ErrorReporter.report(error, stack);
     }
   }
 
@@ -116,7 +137,7 @@ class _AppMapState extends State<AppMap> {
     }
 
     try {
-      await layer.draw(route);
+      await layer.draw(route, vehicle: widget.vehicle);
     } catch (error, stack) {
       // The map closed while drawing; the route is drawn again when it opens.
       ErrorReporter.report(error, stack);

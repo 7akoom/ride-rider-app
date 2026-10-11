@@ -38,6 +38,8 @@ Ride rideOf({
   bool noCaptain = false,
   String vehicleClass = 'economy',
   PaymentMethod payment = PaymentMethod.cash,
+  DateTime? arrivedAt,
+  bool byCaptain = false,
 }) =>
     Ride(
       id: id,
@@ -52,6 +54,9 @@ Ride rideOf({
       requestedAt: DateTime.now(),
       cancelledBySystem: noCaptain,
       cancellationReason: noCaptain ? 'no drivers available' : '',
+      riderId: 'r1',
+      arrivedAt: arrivedAt,
+      cancelledByCaptain: byCaptain,
     );
 
 class FakeRides implements RidesRepository {

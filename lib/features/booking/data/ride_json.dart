@@ -25,6 +25,7 @@ abstract final class RideJson {
               RideStop(
                 point: GeoPoint.fromJson(stop['coordinates']),
                 address: _text(stop['address']),
+                reached: _text(stop['reachedAt']).isNotEmpty,
               ),
       ],
       vehicleClass: _text(json['vehicleClass']),
@@ -33,6 +34,9 @@ abstract final class RideJson {
       requestedAt: DateTime.tryParse(_text(json['requestedAt'])),
       cancelledBySystem: json['cancelledBy'] == 'system',
       cancellationReason: _text(json['cancellationReason']),
+      riderId: _text(json['riderId']),
+      arrivedAt: DateTime.tryParse(_text(json['arrivedAt'])),
+      cancelledByCaptain: json['cancelledBy'] == 'driver',
     );
   }
 

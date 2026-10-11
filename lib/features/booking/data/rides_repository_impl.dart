@@ -20,7 +20,7 @@ final class RidesRepositoryImpl implements RidesRepository {
   final RidesApi _api;
 
   /// Recorded on the trip; staff read it, riders never see it.
-  static const String cancelReason = 'rider cancelled while waiting for a captain';
+  static const String cancelReason = 'rider cancelled in the app';
 
   @override
   Future<Result<FareQuotes>> quote(TripDraft draft, {String? couponCode}) => guard(() async {

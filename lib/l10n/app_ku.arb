@@ -221,5 +221,22 @@
   "bookingCancelTitle": "ئەم داواکارییە پێشوەختەیە هەڵدەوەشێنیتەوە؟",
   "bookingCancelBody": "هەڵوەشاندنەوە بەخۆڕاییە تا دەست بە گەڕان بۆ کاپتن دەکەین.",
   "bookingCancelNo": "بیهێڵەوە",
-  "bookingCancelled": "داواکارییەکە هەڵوەشێنرایەوە."
+  "bookingCancelled": "داواکارییەکە هەڵوەشێنرایەوە.",
+  "tripBarTitle": "گەشتەکەت",
+  "tripComingLabel": "کاپتنەکەت لە ڕێگادایە بۆ لات",
+  "tripComingSoon": "کاتی گەیشتن هەژمار دەکرێت",
+  "tripArrivedTitle": "کاپتن گەیشت",
+  "tripArrivedWaiting": "بۆ ماوەی {time} چاوەڕێتە",
+  "tripArrivedHint": "لە خاڵی دەستپێکردن بڕۆ بۆ لای کاپتن.",
+  "tripArrivalLabel": "گەیشتنی چاوەڕوانکراو",
+  "tripOnTheWay": "لە ڕێگای شوێنی مەبەستتدا",
+  "tripRemaining": "{duration} ماوە",
+  "tripCaptain": "کاپتن",
+  "tripCancel": "هەڵوەشاندنەوەی گەشت",
+  "tripCancelTitle": "گەشتەکە هەڵبوەشێنیتەوە؟",
+  "tripCancelBody": "کاپتن لە ڕێگادایە بۆ لات. لەوانەیە کرێی هەڵوەشاندنەوە هەبێت ئەگەر چەند خولەکێک بەسەر قبوڵکردنیدا تێپەڕیبێت.",
+  "tripCancelYes": "بەڵێ، هەڵیبوەشێنەوە",
+  "tripCancelNo": "گەشتەکە بهێڵەوە",
+  "tripCancelled": "گەشتەکە هەڵوەشێنرایەوە.",
+  "tripCancelledByCaptain": "کاپتن گەشتەکەی هەڵوەشاندەوە. دەتوانیت گەشتێکی نوێ داوا بکەیت."
 }

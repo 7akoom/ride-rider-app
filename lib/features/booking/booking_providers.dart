@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/location/location_providers.dart';
 import '../../core/network/api_client_provider.dart';
 import 'data/booking_api.dart';
+import 'data/captain_api.dart';
+import 'data/captain_repository_impl.dart';
 import 'data/places_repository_impl.dart';
 import 'data/rides_api.dart';
 import 'data/rides_repository_impl.dart';
 import 'data/schedules_repository_impl.dart';
 import 'data/routes_repository_impl.dart';
 import 'data/saved_places_repository_impl.dart';
+import 'domain/repositories/captain_repository.dart';
 import 'domain/repositories/places_repository.dart';
 import 'domain/repositories/rides_repository.dart';
 import 'domain/repositories/routes_repository.dart';
@@ -18,6 +21,7 @@ import 'domain/use_cases/book_ride.dart';
 import 'domain/use_cases/estimate_route.dart';
 import 'domain/use_cases/find_pickup.dart';
 import 'domain/use_cases/follow_ride.dart';
+import 'domain/use_cases/follow_trip.dart';
 import 'domain/use_cases/load_shortcuts.dart';
 import 'domain/use_cases/load_suggestions.dart';
 import 'domain/use_cases/load_wallet_balance.dart';
@@ -131,4 +135,20 @@ final bookRideProvider = Provider<BookRide>(
 
 final cancelBookingProvider = Provider<CancelBooking>(
   (ref) => CancelBooking(ref.watch(schedulesRepositoryProvider)),
+);
+
+final captainRepositoryProvider = Provider<CaptainRepository>(
+  (ref) => CaptainRepositoryImpl(CaptainApi(ref.watch(apiClientProvider))),
+);
+
+final loadCaptainProvider = Provider<LoadCaptain>(
+  (ref) => LoadCaptain(ref.watch(captainRepositoryProvider)),
+);
+
+final locateCaptainProvider = Provider<LocateCaptain>(
+  (ref) => LocateCaptain(ref.watch(captainRepositoryProvider)),
+);
+
+final routeAheadProvider = Provider<RouteAhead>(
+  (ref) => RouteAhead(ref.watch(routesRepositoryProvider)),
 );

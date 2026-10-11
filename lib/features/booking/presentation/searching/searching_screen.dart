@@ -7,7 +7,7 @@ import '../../../../design/map/app_map.dart';
 import '../../domain/entities/ride.dart';
 import '../../domain/use_cases/retry_ride.dart';
 import '../choose_ride/choose_ride_screen.dart';
-import '../legacy_routes.dart';
+import '../trip/trip_screen.dart';
 import 'no_captain_panel.dart';
 import 'searching_controller.dart';
 import 'searching_panel.dart';
@@ -39,7 +39,7 @@ class SearchingScreen extends ConsumerWidget {
 
     switch (now.phase) {
       case SearchPhase.captainFound:
-        openLegacyTracking(context, now.ride);
+        openTrip(context, now.ride);
       case SearchPhase.ended:
         showAppToast(
           context,
