@@ -2,25 +2,22 @@ import '../../../core/error/failure.dart';
 import '../../../core/error/guard.dart';
 import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
-import '../../../core/security/session_storage.dart';
 import '../domain/entities/fare_quote.dart';
 import '../domain/entities/passenger.dart';
 import '../domain/entities/payment_method.dart';
 import '../domain/entities/ride.dart';
-import '../domain/entities/spot.dart';
 import '../domain/entities/trip_draft.dart';
 import '../domain/repositories/rides_repository.dart';
 import 'fare_quote_json.dart';
 import 'ride_json.dart';
+import 'rider_id.dart';
 import 'rides_api.dart';
+import 'trip_body.dart';
 
 final class RidesRepositoryImpl implements RidesRepository {
   RidesRepositoryImpl(this._api);
 
   final RidesApi _api;
-
-  /// The trip-service's limit for an address.
-  static const int maxAddressLength = 300;
 
   /// Recorded on the trip; staff read it, riders never see it.
   static const String cancelReason = 'rider cancelled while waiting for a captain';
@@ -28,7 +25,7 @@ final class RidesRepositoryImpl implements RidesRepository {
   @override
   Future<Result<FareQuotes>> quote(TripDraft draft, {String? couponCode}) => guard(() async {
         final json = await _api.quotes({
-          'riderId': await _riderId(),
+          'riderId': await riderIdOrSignIn(),
           'pickup': draft.pickup!.point.toJson(),
           'dropoff': draft.destination!.point.toJson(),
           if (draft.stops.isNotEmpty) 'stops': [for (final s in draft.stops) s.point.toJson()],
@@ -40,7 +37,7 @@ final class RidesRepositoryImpl implements RidesRepository {
 
   @override
   Future<Result<int>> walletBalance() => guard(() async {
-        final json = await _api.wallet(await _riderId());
+        final json = await _api.wallet(await riderIdOrSignIn());
 
         return amountAt(objectAt(json, 'wallet') ?? const {}, 'balance') ?? 0;
       });
@@ -54,23 +51,11 @@ final class RidesRepositoryImpl implements RidesRepository {
   }) =>
       guard(() async {
         final json = await _api.requestTrip({
-          'riderId': await _riderId(),
-          'pickup': draft.pickup!.point.toJson(),
-          'dropoff': draft.destination!.point.toJson(),
-          'pickupAddress': addressOf(draft.pickup!),
-          'dropoffAddress': addressOf(draft.destination!),
+          'riderId': await riderIdOrSignIn(),
+          ...TripBody.of(draft, passenger: passenger),
           'vehicleClass': quote.vehicleClass,
           'paymentMethod': payment.name,
           'quoteId': quote.id,
-          if (passenger != null) ...{
-            'passengerName': passenger.name,
-            'passengerPhone': passenger.phone,
-          },
-          if (draft.stops.isNotEmpty)
-            'stops': [
-              for (final stop in draft.stops)
-                {'coordinates': stop.point.toJson(), 'address': addressOf(stop)},
-            ],
         });
 
         return RideJson.fromAnswer(json);
@@ -82,7 +67,7 @@ final class RidesRepositoryImpl implements RidesRepository {
 
   @override
   Future<Result<Ride?>> activeRide() async {
-    final result = await guard(() async => RideJson.fromAnswer(await _api.activeTrip(await _riderId())));
+    final result = await guard(() async => RideJson.fromAnswer(await _api.activeTrip(await riderIdOrSignIn())));
 
     // No trip under way is answered 404.
     return switch (result) {
@@ -95,28 +80,4 @@ final class RidesRepositoryImpl implements RidesRepository {
   @override
   Future<Result<Ride>> cancel(String id) =>
       guard(() async => RideJson.fromAnswer(await _api.cancelTrip(id, cancelReason)));
-
-  /// The place as the captain reads it: its name and address, within the limit.
-  static String addressOf(Spot spot) {
-    final text = [spot.title, spot.detail]
-        .whereType<String>()
-        .map((part) => part.trim())
-        .where((part) => part.isNotEmpty)
-        .join(', ');
-    final runes = text.runes;
-
-    return runes.length <= maxAddressLength
-        ? text
-        : String.fromCharCodes(runes.take(maxAddressLength));
-  }
-
-  static Future<String> _riderId() async {
-    final riderId = await SessionStorage.readRiderId();
-
-    if (riderId == null || riderId.isEmpty) {
-      throw const SessionExpiredFailure();
-    }
-
-    return riderId;
-  }
 }

@@ -17,6 +17,7 @@ final class ChooseRideState {
     this.ordering = false,
     this.orderFailure,
     this.passenger,
+    this.bookingFailure,
   });
 
   /// The last prices; kept on screen while new ones load.
@@ -38,6 +39,9 @@ final class ChooseRideState {
   /// Set when the ride is for someone else.
   final Passenger? passenger;
 
+  /// Why booking ahead did not go through.
+  final Failure? bookingFailure;
+
   FareQuote? get selected => quotes?.ofClass(selectedClass);
 
   /// What became of the coupon on the chosen ride type.
@@ -55,6 +59,7 @@ final class ChooseRideState {
     bool? ordering,
     Object? orderFailure = _same,
     Object? passenger = _same,
+    Object? bookingFailure = _same,
   }) =>
       ChooseRideState(
         quotes: identical(quotes, _same) ? this.quotes : quotes as FareQuotes?,
@@ -69,5 +74,7 @@ final class ChooseRideState {
         orderFailure:
             identical(orderFailure, _same) ? this.orderFailure : orderFailure as Failure?,
         passenger: identical(passenger, _same) ? this.passenger : passenger as Passenger?,
+        bookingFailure:
+            identical(bookingFailure, _same) ? this.bookingFailure : bookingFailure as Failure?,
       );
 }

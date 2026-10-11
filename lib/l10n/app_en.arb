@@ -827,5 +827,157 @@
   "rideType": "Ride type",
   "@rideType": {
     "description": "Label of the ride type in a ride's summary."
+  },
+  "scheduleTitle": "Book for later",
+  "@scheduleTitle": {
+    "description": "The schedule button and sheet title."
+  },
+  "scheduleExplain": "Pick the day and time for your ride.",
+  "@scheduleExplain": {
+    "description": "Under the schedule sheet title."
+  },
+  "scheduleDay": "Day",
+  "@scheduleDay": {
+    "description": "Label above the days."
+  },
+  "scheduleTime": "Pickup time",
+  "@scheduleTime": {
+    "description": "Label above the times."
+  },
+  "scheduleRules": "From {minMinutes} minutes to {maxDays} days ahead. We start looking for a captain {leadMinutes} minutes before.",
+  "@scheduleRules": {
+    "description": "The booking window and when the search starts.",
+    "placeholders": {
+      "minMinutes": {
+        "type": "int"
+      },
+      "maxDays": {
+        "type": "int"
+      },
+      "leadMinutes": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleChosen": "Pickup at",
+  "@scheduleChosen": {
+    "description": "Label of the chosen time."
+  },
+  "scheduleConfirm": "Confirm time",
+  "@scheduleConfirm": {
+    "description": "Books the ride for the chosen time."
+  },
+  "scheduleTimeGone": "That time is too close now. Pick a later one.",
+  "@scheduleTimeGone": {
+    "description": "The chosen time is out of the window."
+  },
+  "scheduleTooMany": "You already have as many upcoming bookings as allowed. Cancel one first.",
+  "@scheduleTooMany": {
+    "description": "Too many upcoming bookings."
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Today."
+  },
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "description": "Tomorrow."
+  },
+  "weekdayMonday": "Monday",
+  "@weekdayMonday": {
+    "description": "Day name."
+  },
+  "weekdayTuesday": "Tuesday",
+  "@weekdayTuesday": {
+    "description": "Day name."
+  },
+  "weekdayWednesday": "Wednesday",
+  "@weekdayWednesday": {
+    "description": "Day name."
+  },
+  "weekdayThursday": "Thursday",
+  "@weekdayThursday": {
+    "description": "Day name."
+  },
+  "weekdayFriday": "Friday",
+  "@weekdayFriday": {
+    "description": "Day name."
+  },
+  "weekdaySaturday": "Saturday",
+  "@weekdaySaturday": {
+    "description": "Day name."
+  },
+  "weekdaySunday": "Sunday",
+  "@weekdaySunday": {
+    "description": "Day name."
+  },
+  "timeAm": "AM",
+  "@timeAm": {
+    "description": "Before noon, after a time."
+  },
+  "timePm": "PM",
+  "@timePm": {
+    "description": "After noon, after a time."
+  },
+  "dayAndTime": "{day}, {time}",
+  "@dayAndTime": {
+    "description": "A day and a time together.",
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bookedBarTitle": "Booked ride",
+  "@bookedBarTitle": {
+    "description": "Title bar of a booked ride."
+  },
+  "bookedTitle": "Your ride is booked",
+  "@bookedTitle": {
+    "description": "After booking."
+  },
+  "bookedExplain": "We'll start looking for a captain {minutes} minutes before the time, and let you know.",
+  "@bookedExplain": {
+    "description": "What happens next.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bookedConfirmed": "Confirmed",
+  "@bookedConfirmed": {
+    "description": "Badge on a booking."
+  },
+  "bookedEstimate": "The price is set when the ride starts; this one is an estimate.",
+  "@bookedEstimate": {
+    "description": "Why the price may change."
+  },
+  "bookedDone": "Done",
+  "@bookedDone": {
+    "description": "Leaves the booking screen."
+  },
+  "bookingCancel": "Cancel booking",
+  "@bookingCancel": {
+    "description": "Cancels the booking."
+  },
+  "bookingCancelTitle": "Cancel this booking?",
+  "@bookingCancelTitle": {
+    "description": "Confirming the cancel."
+  },
+  "bookingCancelBody": "It's free until we start looking for a captain.",
+  "@bookingCancelBody": {
+    "description": "Why cancelling now is free."
+  },
+  "bookingCancelNo": "Keep it",
+  "@bookingCancelNo": {
+    "description": "Keeps the booking."
+  },
+  "bookingCancelled": "Booking cancelled.",
+  "@bookingCancelled": {
+    "description": "After cancelling a booking."
   }
 }

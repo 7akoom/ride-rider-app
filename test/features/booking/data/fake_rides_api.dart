@@ -43,4 +43,21 @@ class FakeRidesApi implements RidesApi {
 
     return followed;
   }
+
+  JsonMap bookingAnswer = {};
+  String? cancelledBooking;
+
+  @override
+  Future<JsonMap> scheduleTrip(JsonMap body) async {
+    sent = body;
+
+    return bookingAnswer;
+  }
+
+  @override
+  Future<JsonMap> cancelScheduled(String id, String riderId) async {
+    cancelledBooking = id;
+
+    return bookingAnswer;
+  }
 }

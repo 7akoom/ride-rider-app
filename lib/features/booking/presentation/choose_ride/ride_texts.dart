@@ -5,6 +5,7 @@ import '../../../../core/error/failure_messages.dart';
 import '../../../../core/l10n/l10n.dart';
 import '../../domain/entities/fare_quote.dart';
 import '../../domain/entities/payment_method.dart';
+import '../../domain/use_cases/book_ride.dart';
 import '../../domain/use_cases/order_ride.dart';
 import '../../domain/use_cases/quote_ride.dart';
 
@@ -38,6 +39,14 @@ abstract final class RideTexts {
       switch (orderProblemOf(failure)) {
         OrderProblem.pricesChanged => l10n.chooseRidePricesUpdated,
         OrderProblem.notNow => l10n.chooseRideNotNow,
+        null => failure.message(l10n),
+      };
+
+  /// Booking ahead was refused or failed.
+  static String bookingFailure(AppLocalizations l10n, Failure failure) =>
+      switch (bookingProblemOf(failure)) {
+        BookingProblem.timeGone => l10n.scheduleTimeGone,
+        BookingProblem.tooMany => l10n.scheduleTooMany,
         null => failure.message(l10n),
       };
 

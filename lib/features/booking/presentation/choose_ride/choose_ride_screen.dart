@@ -10,6 +10,8 @@ import '../../booking_providers.dart';
 import '../../domain/entities/route_estimate.dart';
 import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/estimate_route.dart';
+import '../schedule/schedule_sheet.dart';
+import '../schedule/scheduled_screen.dart';
 import '../searching/searching_screen.dart';
 import 'choose_ride_controller.dart';
 import 'choose_ride_panel.dart';
@@ -54,6 +56,21 @@ class ChooseRideScreen extends ConsumerWidget {
     }
   }
 
+  /// 13 then 17: the chosen ride type booked for a later time.
+  Future<void> _schedule(BuildContext context, WidgetRef ref) async {
+    final at = await showScheduleSheet(context);
+    if (at == null || !context.mounted) {
+      return;
+    }
+
+    final estimate = ref.read(chooseRideControllerProvider(draft)).selected?.total;
+    final booking = await ref.read(chooseRideControllerProvider(draft).notifier).book(at);
+
+    if (booking != null && context.mounted) {
+      await openScheduled(context, booking, estimate: estimate);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final noRoad = switch (ref.watch(_routeProvider(draft))) {
@@ -79,6 +96,7 @@ class ChooseRideScreen extends ConsumerWidget {
             onPayment: () => showPaymentSheet(context, draft),
             onPassenger: () => showPassengerSheet(context, draft),
             onOrder: () => _order(context, ref),
+            onSchedule: () => _schedule(context, ref),
           ),
         ],
       ),

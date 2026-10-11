@@ -4,6 +4,7 @@ import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/geo_point.dart';
 import 'package:rider_app/features/booking/data/rides_repository_impl.dart';
+import 'package:rider_app/features/booking/data/trip_body.dart';
 import 'package:rider_app/features/booking/domain/entities/fare_quote.dart';
 import 'package:rider_app/features/booking/domain/entities/passenger.dart';
 import 'package:rider_app/features/booking/domain/entities/payment_method.dart';
@@ -108,7 +109,7 @@ void main() {
   test('an address is cut at the backend limit', () {
     final long = Spot(point: const GeoPoint(0, 0), kind: SpotKind.other, title: 'a' * 400);
 
-    expect(RidesRepositoryImpl.addressOf(long).length, RidesRepositoryImpl.maxAddressLength);
+    expect(TripBody.addressOf(long).length, TripBody.maxAddressLength);
   });
 
   test('the wallet balance is read in whole units', () async {

@@ -19,6 +19,7 @@ class ChooseRidePanel extends ConsumerWidget {
     required this.onPayment,
     required this.onPassenger,
     required this.onOrder,
+    required this.onSchedule,
   });
 
   final TripDraft draft;
@@ -29,12 +30,16 @@ class ChooseRidePanel extends ConsumerWidget {
   final VoidCallback onPassenger;
   final VoidCallback onOrder;
 
+  /// Book the chosen ride type for later (13).
+  final VoidCallback onSchedule;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final state = ref.watch(chooseRideControllerProvider(draft));
     final controller = ref.read(chooseRideControllerProvider(draft).notifier);
     final orderFailure = state.orderFailure;
+    final bookingFailure = state.bookingFailure;
 
     return MapPanel(
       children: [
@@ -46,6 +51,11 @@ class ChooseRidePanel extends ConsumerWidget {
           _notice(StatusBanner(
             tone: Tone.danger,
             message: RideTexts.orderFailure(l10n, orderFailure),
+          )),
+        if (bookingFailure != null)
+          _notice(StatusBanner(
+            tone: Tone.danger,
+            message: RideTexts.bookingFailure(l10n, bookingFailure),
           )),
         QuoteList(state: state, onSelect: controller.select, onRetry: controller.retry),
         const SizedBox(height: Space.x2),
@@ -79,12 +89,24 @@ class ChooseRidePanel extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: Space.x4),
-        AppButton(
-          label: l10n.chooseRideOrder(
-            RideTexts.vehicle(l10n, state.selectedClass ?? ''),
-          ),
-          loading: state.ordering,
-          onPressed: state.canOrder && !noRoad ? onOrder : null,
+        Row(
+          children: [
+            Expanded(
+              child: AppButton(
+                label: l10n.chooseRideOrder(
+                  RideTexts.vehicle(l10n, state.selectedClass ?? ''),
+                ),
+                loading: state.ordering,
+                onPressed: state.canOrder && !noRoad ? onOrder : null,
+              ),
+            ),
+            const SizedBox(width: Space.x3),
+            AppIconButton(
+              icon: Icons.schedule,
+              semanticLabel: l10n.scheduleTitle,
+              onPressed: state.canOrder && !noRoad ? onSchedule : null,
+            ),
+          ],
         ),
       ],
     );

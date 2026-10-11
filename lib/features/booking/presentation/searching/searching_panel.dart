@@ -7,7 +7,7 @@ import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
-import 'ride_summary_view.dart';
+import '../ride_summary_view.dart';
 import 'searching_state.dart';
 
 /// 15, under the map: looking for a captain, the ride, and cancelling it.
@@ -22,31 +22,15 @@ class SearchingPanel extends StatelessWidget {
 
   Future<void> _confirmCancel(BuildContext context) async {
     final l10n = context.l10n;
-    final yes = await showAppSheet<bool>(
-      context: context,
-      builder: (sheet) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SheetTitle(title: l10n.searchingCancelTitle),
-          Text(l10n.searchingCancelBody, style: sheet.typo.body),
-          const SizedBox(height: Space.x5),
-          AppButton(
-            label: l10n.searchingCancelYes,
-            variant: AppButtonVariant.danger,
-            onPressed: () => Navigator.of(sheet).pop(true),
-          ),
-          const SizedBox(height: Space.x2),
-          AppButton(
-            label: l10n.searchingCancelNo,
-            variant: AppButtonVariant.text,
-            onPressed: () => Navigator.of(sheet).pop(false),
-          ),
-        ],
-      ),
+    final yes = await confirmSheet(
+      context,
+      title: l10n.searchingCancelTitle,
+      message: l10n.searchingCancelBody,
+      confirmLabel: l10n.searchingCancelYes,
+      keepLabel: l10n.searchingCancelNo,
     );
 
-    if (yes == true) {
+    if (yes) {
       onCancel();
     }
   }
@@ -78,7 +62,7 @@ class SearchingPanel extends StatelessWidget {
           ),
         ),
         const SizedBox(height: Space.x4),
-        RideSummaryView(ride: state.ride),
+        RideSummaryView.ofRide(state.ride),
         const SizedBox(height: Space.x3),
         StatusBanner(tone: Tone.info, message: l10n.searchingNotice),
         if (failure != null) ...[

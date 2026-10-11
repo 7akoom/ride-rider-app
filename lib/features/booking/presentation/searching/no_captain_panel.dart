@@ -5,7 +5,7 @@ import '../../../../core/l10n/l10n.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
-import 'ride_summary_view.dart';
+import '../ride_summary_view.dart';
 import 'searching_state.dart';
 
 /// 16: the search ran out. Try the same ride again, or choose another type.
@@ -47,7 +47,7 @@ class NoCaptainPanel extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: Space.x4),
-        RideSummaryView(ride: state.ride),
+        RideSummaryView.ofRide(state.ride),
         if (failure != null) ...[
           const SizedBox(height: Space.x3),
           StatusBanner(tone: Tone.danger, message: failure.message(l10n)),

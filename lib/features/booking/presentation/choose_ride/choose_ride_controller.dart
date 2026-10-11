@@ -4,11 +4,13 @@ import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/error/result.dart';
+import '../../../../core/security/random_key.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/fare_quote.dart';
 import '../../domain/entities/passenger.dart';
 import '../../domain/entities/payment_method.dart';
 import '../../domain/entities/ride.dart';
+import '../../domain/entities/scheduled_ride.dart';
 import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/order_ride.dart';
 import '../../domain/use_cases/quote_ride.dart';
@@ -141,6 +143,51 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
         if (orderProblemOf(failure) == OrderProblem.pricesChanged) {
           unawaited(_load());
         }
+
+        return null;
+    }
+  }
+
+  /// One key per time asked for: sending the same booking again (a lost answer)
+  /// never books twice; another time is another booking.
+  String? _bookingKey;
+  DateTime? _bookingAt;
+
+  /// Books the chosen ride type for [at]. Returns the booking, or null when it did
+  /// not go through (the reason is in [ChooseRideState.bookingFailure]).
+  Future<ScheduledRide?> book(DateTime at) async {
+    final quote = state.selected;
+    if (quote == null || state.ordering) {
+      return null;
+    }
+
+    if (_bookingAt != at) {
+      _bookingAt = at;
+      _bookingKey = randomKey();
+    }
+
+    state = state.copyWith(ordering: true, bookingFailure: null, orderFailure: null);
+    final result = await ref.read(bookRideProvider).call(
+          draft: arg,
+          vehicleClass: quote.vehicleClass,
+          payment: state.payment,
+          at: at,
+          key: _bookingKey!,
+          passenger: state.passenger,
+        );
+
+    if (_closed) {
+      return null;
+    }
+
+    switch (result) {
+      case Ok(:final value):
+        state = state.copyWith(ordering: false);
+        _bookingAt = null;
+
+        return value;
+      case Err(:final failure):
+        state = state.copyWith(ordering: false, bookingFailure: failure);
 
         return null;
     }
