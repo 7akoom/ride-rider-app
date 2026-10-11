@@ -32,7 +32,8 @@ class VehicleOptionCard extends StatelessWidget {
   final int price;
   final int? priceBeforeDiscount;
 
-  /// A short success line under the price ("coupon applied").
+  /// A short success line ("first ride discount"). It sits under the name, where a
+  /// long translation can wrap, so the price column keeps its width.
   final String? note;
 
   /// The vehicle picture; a car icon when null.
@@ -82,6 +83,13 @@ class VehicleOptionCard extends StatelessWidget {
                         ].join(' · '),
                         style: t.caption.copyWith(color: p.textSecondary),
                       ),
+                      if (note != null)
+                        Text(
+                          note!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: t.micro.copyWith(color: p.success),
+                        ),
                     ],
                   ),
                 ),
@@ -91,8 +99,6 @@ class VehicleOptionCard extends StatelessWidget {
                     if (priceBeforeDiscount != null)
                       MoneyText(priceBeforeDiscount!, style: t.caption, tone: MoneyTone.struck),
                     MoneyText(price),
-                    if (note != null)
-                      Text(note!, style: t.micro.copyWith(color: p.success)),
                   ],
                 ),
               ],

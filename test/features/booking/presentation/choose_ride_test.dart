@@ -5,6 +5,7 @@ import 'package:rider_app/core/format/money_format.dart';
 import 'package:rider_app/core/l10n/app_locales.dart';
 import 'package:rider_app/core/l10n/l10n.dart';
 import 'package:rider_app/design/map/app_map.dart';
+import 'package:rider_app/features/booking/domain/entities/fare_quote.dart';
 import 'package:rider_app/features/booking/domain/entities/trip_draft.dart';
 import 'package:rider_app/features/booking/presentation/choose_ride/choose_ride_screen.dart';
 import 'package:rider_app/features/booking/presentation/searching/searching_screen.dart';
@@ -124,10 +125,29 @@ void main() {
     expect(find.text(l10n.actionRetry), findsNothing);
   });
 
+  testWidgets('a lowered price says which discount lowered it', (tester) async {
+    await _open(
+      tester,
+      rides: FakeRides(quotes: [
+        quoteOf('economy', 3000, beforeDiscount: 6000, discount: DiscountKind.firstRide),
+        quoteOf('comfort', 3750),
+      ]),
+    );
+
+    expect(find.text(formatMoney(l10n, 6000)), findsOneWidget);
+    expect(find.text(l10n.discountFirstRide), findsOneWidget);
+  });
+
   for (final locale in AppLocales.all) {
     testWidgets('choosing a ride fits a phone: ${locale.languageCode}', (tester) async {
       await _open(tester, locale: locale, rides: FakeRides(quotes: [
-        quoteOf('economy', 3000, beforeDiscount: 4250, surging: true),
+        quoteOf(
+          'economy',
+          3000,
+          beforeDiscount: 4250,
+          surging: true,
+          discount: DiscountKind.loyalty,
+        ),
         quoteOf('comfort', 3750, driversAvailable: false),
       ]));
 

@@ -602,6 +602,18 @@
   "@chooseRideCouponApplied": {
     "description": "Under a price the coupon lowered."
   },
+  "discountFirstRide": "First ride discount",
+  "@discountFirstRide": {
+    "description": "Under a price lowered because it is the rider's first ride."
+  },
+  "discountLoyalty": "Loyalty discount",
+  "@discountLoyalty": {
+    "description": "Under a price lowered as a reward for riding often."
+  },
+  "discountOther": "Discount",
+  "@discountOther": {
+    "description": "Under a lowered price, when the kind of discount has no name in the app."
+  },
   "chooseRideOutsideArea": "We don't serve this pickup point yet. Choose a point inside the city.",
   "@chooseRideOutsideArea": {
     "description": "The pickup is outside every service area."

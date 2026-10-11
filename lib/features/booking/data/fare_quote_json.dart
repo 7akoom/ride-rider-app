@@ -30,8 +30,18 @@ abstract final class FareQuoteJson {
       pickupEtaMinutes: eta is num ? eta.round() : 0,
       surging: (amountAt(fare, 'surgeAmount') ?? 0) > 0,
       coupon: couponOf(fare['couponStatus']),
+      discount: discount > 0 ? discountOf(fare['appliedDiscountLabel']) : DiscountKind.none,
     );
   }
+
+  /// The server names the discount in English for its staff ("First ride discount",
+  /// "Loyalty discount", "Coupon: CODE"); the app shows its own words for each.
+  static DiscountKind discountOf(Object? label) => switch (label) {
+        'First ride discount' => DiscountKind.firstRide,
+        'Loyalty discount' => DiscountKind.loyalty,
+        String text when text.startsWith('Coupon:') => DiscountKind.coupon,
+        _ => DiscountKind.other,
+      };
 
   static CouponResult couponOf(Object? status) => switch (status) {
         'COUPON_STATUS_APPLIED' => CouponResult.applied,

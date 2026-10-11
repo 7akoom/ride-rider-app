@@ -16,6 +16,7 @@ FareQuote quoteOf(
   bool surging = false,
   bool driversAvailable = true,
   CouponResult coupon = CouponResult.none,
+  DiscountKind discount = DiscountKind.none,
 }) =>
     FareQuote(
       id: 'q-$vehicleClass-$total',
@@ -27,6 +28,7 @@ FareQuote quoteOf(
       pickupEtaMinutes: 5,
       surging: surging,
       coupon: coupon,
+      discount: discount,
     );
 
 /// A ride for tests: waiting for a captain unless told otherwise.
@@ -98,6 +100,7 @@ class FakeRides implements RidesRepository {
               q.total * 3 ~/ 4,
               beforeDiscount: q.total,
               coupon: CouponResult.applied,
+              discount: DiscountKind.coupon,
             ),
           _ => quoteOf(q.vehicleClass, q.total, coupon: CouponResult.notFound),
         },

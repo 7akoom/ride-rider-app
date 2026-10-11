@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/location/geo_point.dart';
+import 'package:rider_app/features/booking/data/fare_quote_json.dart';
 import 'package:rider_app/features/booking/data/rides_repository_impl.dart';
 import 'package:rider_app/features/booking/data/trip_body.dart';
 import 'package:rider_app/features/booking/domain/entities/fare_quote.dart';
@@ -45,6 +46,7 @@ void main() {
               'discountAmount': '1250',
               'surgeAmount': '500',
               'couponStatus': 'COUPON_STATUS_APPLIED',
+              'appliedDiscountLabel': 'Coupon: BTS26',
             },
           },
           {
@@ -70,6 +72,24 @@ void main() {
     expect(quotes.quotes.last.driversAvailable, isFalse);
     expect(quotes.quotes.last.pickupEtaMinutes, 0);
     expect(quotes.quotes.last.beforeDiscount, isNull);
+    expect(quotes.quotes.first.discount, DiscountKind.coupon);
+    expect(quotes.quotes.last.discount, DiscountKind.none);
+  });
+
+  test('the discount is named from the server label, and only when something is off', () {
+    expect(FareQuoteJson.discountOf('First ride discount'), DiscountKind.firstRide);
+    expect(FareQuoteJson.discountOf('Loyalty discount'), DiscountKind.loyalty);
+    expect(FareQuoteJson.discountOf('Coupon: EID'), DiscountKind.coupon);
+    expect(FareQuoteJson.discountOf('Ramadan'), DiscountKind.other);
+    expect(FareQuoteJson.discountOf(null), DiscountKind.other);
+
+    final quote = FareQuoteJson.quoteOf({
+      'quoteId': 'q1',
+      'vehicleClass': 'economy',
+      'expiresAt': '2026-10-10T10:00:00Z',
+      'fare': {'total': '3000', 'appliedDiscountLabel': 'First ride discount'},
+    });
+    expect(quote.discount, DiscountKind.none);
   });
 
   test('a price without a total is a malformed answer, never shown', () async {

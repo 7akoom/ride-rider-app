@@ -17,6 +17,17 @@ enum CouponResult {
   betterDiscount,
 }
 
+/// Which discount lowered the price. One at most: the server never stacks them.
+enum DiscountKind {
+  none,
+  firstRide,
+  loyalty,
+  coupon,
+
+  /// A discount this version of the app has no name for.
+  other,
+}
+
 /// The fixed price of one ride type for the trip. Requesting the trip with it keeps the
 /// price, until [expiresAt].
 final class FareQuote {
@@ -30,6 +41,7 @@ final class FareQuote {
     this.pickupEtaMinutes = 0,
     this.surging = false,
     this.coupon = CouponResult.none,
+    this.discount = DiscountKind.none,
   });
 
   final String id;
@@ -53,6 +65,9 @@ final class FareQuote {
   /// Demand is high: the price includes a surge.
   final bool surging;
   final CouponResult coupon;
+
+  /// Why the price is lower than [beforeDiscount].
+  final DiscountKind discount;
 
   bool isExpiredAt(DateTime now) => !now.isBefore(expiresAt);
 }

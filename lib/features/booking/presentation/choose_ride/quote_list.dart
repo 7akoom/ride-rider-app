@@ -79,7 +79,7 @@ class QuoteList extends StatelessWidget {
       unavailable: quote.driversAvailable ? null : l10n.chooseRideNoCaptains,
       price: quote.total,
       priceBeforeDiscount: quote.beforeDiscount,
-      note: quote.coupon == CouponResult.applied ? l10n.chooseRideCouponApplied : null,
+      note: RideTexts.discount(l10n, quote.discount),
       selected: quote.vehicleClass == state.selectedClass,
       onTap: () => onSelect(quote.vehicleClass),
     );

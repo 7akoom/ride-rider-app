@@ -30,6 +30,15 @@ abstract final class RideTexts {
         PaymentMethod.wallet => Icons.account_balance_wallet_outlined,
       };
 
+  /// The short line under a lowered price saying why; null when nothing was taken off.
+  static String? discount(AppLocalizations l10n, DiscountKind kind) => switch (kind) {
+        DiscountKind.none => null,
+        DiscountKind.firstRide => l10n.discountFirstRide,
+        DiscountKind.loyalty => l10n.discountLoyalty,
+        DiscountKind.coupon => l10n.chooseRideCouponApplied,
+        DiscountKind.other => l10n.discountOther,
+      };
+
   /// The prices could not be loaded.
   static String quoteFailure(AppLocalizations l10n, Failure failure) =>
       isOutsideServiceArea(failure) ? l10n.chooseRideOutsideArea : failure.message(l10n);
