@@ -37,7 +37,7 @@ Future<void> _open(
     settle: false,
     overrides: [
       ...bookingFakes(wallet: wallet),
-      topUpPageOpenerProvider.overrideWithValue((page) async {
+      topUpPageOpenerProvider.overrideWithValue((context, page) async {
         opened?.add(page);
 
         return true;
@@ -118,9 +118,8 @@ void main() {
     await _pay(tester, l10n);
     expect(wallet.startedTopUps, [(5000, 'ar')]);
     expect(opened, [Uri.parse('https://pay.example/topup-1')]);
-    expect(find.text(l10n.topUpWaitingTitle), findsOneWidget);
-
-    await _checks(tester, 1);
+    // The page closed (here at once): the server is asked straight away.
+    expect(wallet.topUpChecks, 1);
     expect(find.text(l10n.topUpWaitingTitle), findsOneWidget);
 
     await _checks(tester, 1);

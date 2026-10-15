@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/l10n/l10n.dart';
 import '../../../design/components/components.dart';
 import '../domain/entities/top_up.dart';
+import 'payment_page_screen.dart';
 import 'top_up_controller.dart';
 import 'top_up_entry_view.dart';
 import 'top_up_progress_view.dart';
@@ -16,10 +16,14 @@ Future<void> openTopUp(BuildContext context, TopUpOptions options) => Navigator.
       MaterialPageRoute<void>(builder: (_) => TopUpScreen(options: options)),
     );
 
-/// Opens the provider's payment page in the in-app browser; false when it could not.
-/// Tests replace it.
-final topUpPageOpenerProvider = Provider<Future<bool> Function(Uri)>(
-  (ref) => (page) => launchUrl(page, mode: LaunchMode.inAppBrowserView),
+/// Opens the provider's payment page inside the app and returns when it closes (it
+/// closes by itself on our return page); false when it could not open. Tests replace it.
+final topUpPageOpenerProvider = Provider<Future<bool> Function(BuildContext, Uri)>(
+  (ref) => (context, page) async {
+    await openPaymentPage(context, page);
+
+    return true;
+  },
 );
 
 /// 31–32: top up the wallet through ZainCash. The amount, a review, ZainCash's own
@@ -49,7 +53,8 @@ class _TopUpScreenState extends ConsumerState<TopUpScreen> with WidgetsBindingOb
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    // Back from the payment page: ask at once rather than at the next tick.
+    // Back from a provider's own app opened from its page: ask at once rather than
+    // at the next tick.
     if (state == AppLifecycleState.resumed) {
       unawaited(ref.read(topUpControllerProvider.notifier).check());
     }
@@ -75,12 +80,19 @@ class _TopUpScreenState extends ConsumerState<TopUpScreen> with WidgetsBindingOb
     var opened = false;
 
     try {
-      opened = await ref.read(topUpPageOpenerProvider)(page);
+      opened = await ref.read(topUpPageOpenerProvider)(context, page);
     } catch (_) {
       opened = false;
     }
 
-    if (!opened && mounted) {
+    if (!mounted) {
+      return;
+    }
+
+    if (opened) {
+      // The page closed (paid, failed, or closed by the rider): ask at once.
+      unawaited(ref.read(topUpControllerProvider.notifier).check());
+    } else {
       showAppToast(context, context.l10n.topUpOpenFailed, tone: Tone.danger);
     }
   }
