@@ -3,6 +3,7 @@ import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
 import '../../../core/rider/rider_id.dart';
 import '../domain/entities/statement.dart';
+import '../domain/entities/top_up.dart';
 import '../domain/entities/voucher_credit.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
@@ -58,5 +59,22 @@ final class WalletRepositoryImpl implements WalletRepository {
         final json = await _api.redeemVoucher(await riderIdOrSignIn(), code);
 
         return WalletJson.voucherCreditOf(json);
+      });
+
+  @override
+  Future<Result<TopUpOptions>> topUpOptions() => guard(() async {
+        return WalletJson.topUpOptionsOf(await _api.topUpOptions(await riderIdOrSignIn()));
+      });
+
+  @override
+  Future<Result<TopUpStart>> startTopUp({required int amount, required String language}) => guard(() async {
+        final json = await _api.startTopUp(await riderIdOrSignIn(), amount: amount, language: language);
+
+        return WalletJson.topUpStartOf(json);
+      });
+
+  @override
+  Future<Result<TopUpStatus>> topUpStatus(String id) => guard(() async {
+        return WalletJson.topUpStatusOf(await _api.topUp(await riderIdOrSignIn(), id));
       });
 }

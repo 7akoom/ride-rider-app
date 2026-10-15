@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/error/result.dart';
+import '../domain/entities/top_up.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
 import '../wallet_providers.dart';
@@ -17,3 +18,8 @@ final walletBalanceProvider = Provider.autoDispose<int?>((ref) {
     _ => null,
   };
 });
+
+/// What a top-up may be here; the wallet offers it only when ZainCash is set up.
+final topUpOptionsProvider = FutureProvider.autoDispose<Result<TopUpOptions>>(
+  (ref) => ref.watch(loadTopUpOptionsProvider).call(),
+);

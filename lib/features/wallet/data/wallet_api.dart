@@ -23,4 +23,14 @@ class WalletApi {
 
   Future<JsonMap> redeemVoucher(String riderId, String code) =>
       _client.post('${_path(riderId)}/vouchers:redeem', body: {'code': code});
+
+  Future<JsonMap> topUpOptions(String riderId) => _client.get('${_path(riderId)}/topup-options', query: _rider);
+
+  Future<JsonMap> startTopUp(String riderId, {required int amount, required String language}) => _client.post(
+        '${_path(riderId)}/topups',
+        body: {..._rider, 'amount': '$amount', 'provider': 'zaincash', 'language': language},
+      );
+
+  Future<JsonMap> topUp(String riderId, String id) =>
+      _client.get('${_path(riderId)}/topups/${Uri.encodeComponent(id)}', query: _rider);
 }

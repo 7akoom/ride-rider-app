@@ -1665,5 +1665,143 @@
         "type": "String"
       }
     }
+  },
+  "walletTopUp": "Top up",
+  "@walletTopUp": {
+    "description": "A wallet action: opens the top-up screen."
+  },
+  "topUpTitle": "Add balance",
+  "@topUpTitle": {
+    "description": "The top-up screen's title."
+  },
+  "topUpNote": "The balance is for the app's services only and cannot be refunded as cash.",
+  "@topUpNote": {
+    "description": "Above the amount on the top-up screen."
+  },
+  "topUpLimits": "From {min} to {max}",
+  "@topUpLimits": {
+    "description": "Under the amount: the least and the most.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpTooSmall": "The least you can top up is {amount}",
+  "@topUpTooSmall": {
+    "description": "The typed amount is below the least.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpTooBig": "The most you can top up is {amount}",
+  "@topUpTooBig": {
+    "description": "The typed amount is above the most.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpNext": "Next",
+  "@topUpNext": {
+    "description": "Goes on to review the payment."
+  },
+  "topUpUnavailable": "Topping up is not available now. You can use a voucher.",
+  "@topUpUnavailable": {
+    "description": "No payment provider is set up."
+  },
+  "topUpOpenFailed": "The payment page could not open. Try again.",
+  "@topUpOpenFailed": {
+    "description": "The in-app browser did not open."
+  },
+  "topUpReviewTitle": "Review and pay",
+  "@topUpReviewTitle": {
+    "description": "The review sheet's title."
+  },
+  "topUpReviewWhat": "Wallet top-up",
+  "@topUpReviewWhat": {
+    "description": "Under the amount on the review sheet."
+  },
+  "topUpZainCash": "ZainCash",
+  "@topUpZainCash": {
+    "description": "The payment method."
+  },
+  "topUpZainCashNote": "You pay on ZainCash's page with your ZainCash wallet.",
+  "@topUpZainCashNote": {
+    "description": "Under the payment method."
+  },
+  "topUpPay": "Pay {amount}",
+  "@topUpPay": {
+    "description": "Opens ZainCash's page.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpWaitingTitle": "Processing your payment",
+  "@topUpWaitingTitle": {
+    "description": "While the payment is open."
+  },
+  "topUpWaitingBody": "Finish paying {amount} on ZainCash's page; your balance updates by itself.",
+  "@topUpWaitingBody": {
+    "description": "While the payment is open.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpReopen": "Open the payment page",
+  "@topUpReopen": {
+    "description": "Opens ZainCash's page again."
+  },
+  "topUpSlowTitle": "No confirmation yet",
+  "@topUpSlowTitle": {
+    "description": "Still pending after a few minutes."
+  },
+  "topUpSlowBody": "If you paid, {amount} reaches your wallet and we send you a notification.",
+  "@topUpSlowBody": {
+    "description": "Still pending after a few minutes.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpDoneTitle": "{amount} added to your wallet",
+  "@topUpDoneTitle": {
+    "description": "The top-up succeeded.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "topUpDoneBody": "You can use your balance on your next rides.",
+  "@topUpDoneBody": {
+    "description": "The top-up succeeded."
+  },
+  "topUpFailedTitle": "The payment did not go through",
+  "@topUpFailedTitle": {
+    "description": "The top-up failed."
+  },
+  "topUpFailedBody": "Nothing was added to your wallet.",
+  "@topUpFailedBody": {
+    "description": "The top-up failed."
+  },
+  "topUpTryAgain": "Try again",
+  "@topUpTryAgain": {
+    "description": "After a failed top-up."
+  },
+  "topUpDone": "Done",
+  "@topUpDone": {
+    "description": "Closes the top-up screen."
   }
 }

@@ -1,5 +1,6 @@
 import '../../../core/network/json.dart';
 import '../domain/entities/statement.dart';
+import '../domain/entities/top_up.dart';
 import '../domain/entities/voucher_credit.dart';
 import '../domain/entities/wallet_movement.dart';
 
@@ -53,6 +54,34 @@ abstract final class WalletJson {
         balance: amountAt(objectAt(json, 'wallet') ?? const {}, 'balance') ?? 0,
         alreadyRedeemed: json['alreadyRedeemed'] == true,
       );
+
+  /// What a top-up may be; the limits are whole amounts.
+  static TopUpOptions topUpOptionsOf(JsonMap json) => TopUpOptions(
+        min: amountAt(json, 'minAmount') ?? 0,
+        max: amountAt(json, 'maxAmount') ?? 0,
+        providers: [
+          if (json['providers'] case final List<dynamic> names)
+            for (final name in names)
+              if (name is String) name,
+        ],
+      );
+
+  /// A payment opened at the provider; an answer without its page is a bug.
+  static TopUpStart topUpStartOf(JsonMap json) {
+    final page = Uri.tryParse(_text(json['redirectUrl']));
+
+    if (page == null || !page.isAbsolute) {
+      throw const FormatException('the top-up has no payment page');
+    }
+
+    return TopUpStart(id: requiredText(json, 'topUpId'), page: page);
+  }
+
+  static TopUpStatus topUpStatusOf(JsonMap json) => switch (_text(json['status'])) {
+        'succeeded' => TopUpStatus.succeeded,
+        'failed' => TopUpStatus.failed,
+        _ => TopUpStatus.pending,
+      };
 
   /// The statement's query for [filter].
   static Map<String, dynamic> filterOf(MovementFilter filter) => switch (filter) {

@@ -6,6 +6,7 @@ import 'data/wallet_repository_impl.dart';
 import 'domain/repositories/wallet_repository.dart';
 import 'domain/use_cases/follow_wallet.dart';
 import 'domain/use_cases/redeem_voucher.dart';
+import 'domain/use_cases/top_up.dart';
 
 // The wallet feature's wiring: the one file that knows both the data classes and the
 // domain interfaces. Tests override walletRepositoryProvider.
@@ -23,3 +24,11 @@ final loadStatementProvider = Provider<LoadStatement>(
 final redeemVoucherProvider = Provider<RedeemVoucher>(
   (ref) => RedeemVoucher(ref.watch(walletRepositoryProvider)),
 );
+
+final loadTopUpOptionsProvider = Provider<LoadTopUpOptions>(
+  (ref) => LoadTopUpOptions(ref.watch(walletRepositoryProvider)),
+);
+
+final startTopUpProvider = Provider<StartTopUp>((ref) => StartTopUp(ref.watch(walletRepositoryProvider)));
+
+final checkTopUpProvider = Provider<CheckTopUp>((ref) => CheckTopUp(ref.watch(walletRepositoryProvider)));

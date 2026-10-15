@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/features/wallet/data/wallet_json.dart';
 import 'package:rider_app/features/wallet/domain/entities/statement.dart';
+import 'package:rider_app/features/wallet/domain/entities/top_up.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 
 void main() {
@@ -49,5 +50,29 @@ void main() {
     expect(credit.balance, 22500);
     expect(credit.alreadyRedeemed, isFalse);
     expect(WalletJson.voucherCreditOf({'amount': '10000', 'alreadyRedeemed': true}).alreadyRedeemed, isTrue);
+  });
+
+  test('the top-up options, the payment page and the status are read', () {
+    final options = WalletJson.topUpOptionsOf({
+      'minAmount': '1000.000',
+      'maxAmount': '1000000',
+      'currencyCode': 'IQD',
+      'providers': ['zaincash'],
+    });
+    expect((options.min, options.max, options.available), (1000, 1000000, true));
+    expect(WalletJson.topUpOptionsOf({'minAmount': '1000', 'maxAmount': '5000'}).available, isFalse);
+
+    final start = WalletJson.topUpStartOf({
+      'topUpId': 't-1',
+      'status': 'pending',
+      'redirectUrl': 'https://pg-api-uat.zaincash.iq/transaction/pay?id=x&token=y',
+    });
+    expect(start.id, 't-1');
+    expect(start.page.host, 'pg-api-uat.zaincash.iq');
+    expect(() => WalletJson.topUpStartOf({'topUpId': 't-1'}), throwsFormatException);
+
+    expect(WalletJson.topUpStatusOf({'status': 'succeeded'}), TopUpStatus.succeeded);
+    expect(WalletJson.topUpStatusOf({'status': 'failed'}), TopUpStatus.failed);
+    expect(WalletJson.topUpStatusOf({'status': 'pending'}), TopUpStatus.pending);
   });
 }

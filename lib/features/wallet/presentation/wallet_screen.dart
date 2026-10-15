@@ -10,6 +10,7 @@ import 'balance_card.dart';
 import 'movement_view.dart';
 import 'movements_screen.dart';
 import 'statement_screen.dart';
+import 'top_up_screen.dart';
 import 'voucher_sheet.dart';
 import 'wallet_state.dart';
 
@@ -20,10 +21,18 @@ Future<void> openWallet(BuildContext context) =>
 class WalletScreen extends ConsumerWidget {
   const WalletScreen({super.key});
 
+  /// How many actions fit in the row under the balance.
+  static const int _actionPlaces = 4;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final result = ref.watch(walletProvider);
+    // Offered only where ZainCash is set up; vouchers always.
+    final topUp = switch (ref.watch(topUpOptionsProvider)) {
+      AsyncData(value: Ok(:final value)) when value.available => value,
+      _ => null,
+    };
 
     final body = switch (result) {
       AsyncData(value: Ok(value: (final overview, final recent))) => [
@@ -38,14 +47,25 @@ class WalletScreen extends ConsumerWidget {
             ),
           ],
           const SizedBox(height: Space.x4),
-          // Top-up, send and request join the voucher here (5c, 5d).
+          // Four equal places, as on Careem's wallet; send and request take the
+          // free ones (5d). A long label (Kurdish) shortens instead of overflowing.
           Row(
             children: [
-              ShortcutTile(
-                icon: Icons.redeem_outlined,
-                label: l10n.walletUseVoucher,
-                onTap: () => showVoucherSheet(context, owed: overview.owed),
-              ),
+              for (final tile in [
+                if (topUp != null)
+                  ShortcutTile(
+                    icon: Icons.add_card_outlined,
+                    label: l10n.walletTopUp,
+                    onTap: () => openTopUp(context, topUp),
+                  ),
+                ShortcutTile(
+                  icon: Icons.redeem_outlined,
+                  label: l10n.walletUseVoucher,
+                  onTap: () => showVoucherSheet(context, owed: overview.owed),
+                ),
+              ])
+                Expanded(child: tile),
+              for (var free = topUp != null ? 2 : 1; free < _actionPlaces; free++) const Spacer(),
             ],
           ),
           const SizedBox(height: Space.x4),
@@ -76,7 +96,11 @@ class WalletScreen extends ConsumerWidget {
     return AppScaffold(
       topBar: AppTopBar(title: l10n.walletTitle),
       body: RefreshIndicator(
-        onRefresh: () => ref.refresh(walletProvider.future),
+        onRefresh: () {
+          ref.invalidate(topUpOptionsProvider);
+
+          return ref.refresh(walletProvider.future);
+        },
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsetsDirectional.symmetric(vertical: Space.x4),
