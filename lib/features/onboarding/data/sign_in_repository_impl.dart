@@ -1,3 +1,4 @@
+import '../../../core/error/failure.dart';
 import '../../../core/error/guard.dart';
 import '../../../core/error/result.dart';
 import '../../../core/network/json.dart';
@@ -54,6 +55,43 @@ final class SignInRepositoryImpl implements SignInRepository {
           refreshToken: refreshToken,
           identityId: identityId,
         );
+      });
+
+  @override
+  Future<Result<void>> confirmCodeAgain(OtpChallenge challenge, OtpCode code) =>
+      guard(() async {
+        final previousIdentity = await SessionStorage.readIdentityId();
+        final previousRefresh = await SessionStorage.readRefreshToken();
+
+        final json = await _api.verifyCode(
+          challengeId: challenge.id,
+          code: code.digits,
+          deviceId: await SessionStorage.deviceId(),
+          client: _client,
+        );
+
+        final identityId = requiredText(json, 'identityId');
+        final accessToken = requiredText(json, 'accessToken');
+        final refreshToken = requiredText(json, 'refreshToken');
+
+        if (previousIdentity != null && previousIdentity != identityId) {
+          throw const ForbiddenFailure();
+        }
+
+        // The rider profile id stays: the same person, a new session.
+        await SessionStorage.saveTokens(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          identityId: identityId,
+        );
+
+        if (previousRefresh != null && previousRefresh != refreshToken) {
+          try {
+            await _api.logout(previousRefresh);
+          } catch (_) {
+            // The old session ends by itself; the new one works either way.
+          }
+        }
       });
 
   @override

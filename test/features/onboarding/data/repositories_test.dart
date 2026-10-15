@@ -30,6 +30,16 @@ class _SignInApi implements SignInApi {
     required ClientInfo client,
   }) async =>
       error == null ? answer : throw error!;
+
+  /// The refresh tokens of the sessions ended.
+  final List<String> loggedOut = [];
+
+  @override
+  Future<JsonMap> logout(String refreshToken) async {
+    loggedOut.add(refreshToken);
+
+    return {};
+  }
 }
 
 class _RiderApi implements RiderAccountApi {
@@ -90,6 +100,39 @@ void main() {
 
       expect(_failureOf(await repo.confirmCode(_challenge, _code)), isA<UnexpectedFailure>());
       expect(await repo.hasSession(), isFalse);
+    });
+
+    test('signing in again keeps the rider and ends the old session', () async {
+      FlutterSecureStorage.setMockInitialValues({
+        'identity_id': 'i1',
+        'rider_id': 'r1',
+        'access_token': 'old-a',
+        'refresh_token': 'old-r',
+      });
+      final api = _SignInApi()
+        ..answer = {'identityId': 'i1', 'accessToken': 'new-a', 'refreshToken': 'new-r'};
+
+      expect(await SignInRepositoryImpl(api).confirmCodeAgain(_challenge, _code), isA<Ok<void>>());
+      expect(await SessionStorage.readRiderId(), 'r1');
+      expect(await SessionStorage.readToken(), 'new-a');
+      expect(await SessionStorage.readRefreshToken(), 'new-r');
+      expect(api.loggedOut, ['old-r']);
+    });
+
+    test('signing in again as someone else changes nothing', () async {
+      FlutterSecureStorage.setMockInitialValues({
+        'identity_id': 'i1',
+        'rider_id': 'r1',
+        'access_token': 'old-a',
+        'refresh_token': 'old-r',
+      });
+      final api = _SignInApi()
+        ..answer = {'identityId': 'i2', 'accessToken': 'new-a', 'refreshToken': 'new-r'};
+
+      expect(_failureOf(await SignInRepositoryImpl(api).confirmCodeAgain(_challenge, _code)), isA<ForbiddenFailure>());
+      expect(await SessionStorage.readToken(), 'old-a');
+      expect(await SessionStorage.readIdentityId(), 'i1');
+      expect(api.loggedOut, isEmpty);
     });
 
     test('forgetting keeps the device id', () async {

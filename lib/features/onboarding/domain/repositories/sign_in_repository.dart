@@ -11,6 +11,12 @@ abstract interface class SignInRepository {
   /// Checks [code] against [challenge]. On success the session is stored securely.
   Future<Result<void>> confirmCode(OtpChallenge challenge, OtpCode code);
 
+  /// Signs the signed-in rider in again with a fresh code (a forgotten wallet PIN may
+  /// be set anew only moments after signing in). The new session replaces the old one,
+  /// which is ended; the rider profile stays. A code for another person is refused
+  /// (ForbiddenFailure) and nothing changes.
+  Future<Result<void>> confirmCodeAgain(OtpChallenge challenge, OtpCode code);
+
   /// Whether a session is stored on the phone (not yet whether the backend accepts it).
   Future<bool> hasSession();
 

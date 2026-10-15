@@ -3,15 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/error/result.dart';
 import '../../../core/format/money_format.dart';
+import '../../../core/format/time_format.dart';
 import '../../../core/l10n/l10n.dart';
 import '../../../design/components/components.dart';
 import '../../../design/tokens/metrics.dart';
+import '../domain/entities/wallet_pin.dart';
 import 'balance_card.dart';
 import 'movement_view.dart';
 import 'movements_screen.dart';
 import 'statement_screen.dart';
 import 'top_up_screen.dart';
 import 'voucher_sheet.dart';
+import 'wallet_pin_screen.dart';
 import 'wallet_state.dart';
 
 Future<void> openWallet(BuildContext context) =>
@@ -31,6 +34,12 @@ class WalletScreen extends ConsumerWidget {
     // Offered only where ZainCash is set up; vouchers always.
     final topUp = switch (ref.watch(topUpOptionsProvider)) {
       AsyncData(value: Ok(:final value)) when value.available => value,
+      _ => null,
+    };
+
+    // The PIN row shows once its status is known; a failure leaves it out.
+    final pin = switch (ref.watch(pinStatusProvider)) {
+      AsyncData(value: Ok(:final value)) => value,
       _ => null,
     };
 
@@ -82,6 +91,13 @@ class WalletScreen extends ConsumerWidget {
             title: l10n.statementTitle,
             onTap: () => openStatement(context),
           ),
+          if (pin != null)
+            AppListRow(
+              icon: Icons.password_outlined,
+              title: l10n.walletPinRow,
+              subtitle: _pinSubtitle(l10n, pin),
+              onTap: () => openWalletPin(context, pin),
+            ),
         ],
       AsyncData(value: Err(:final failure)) => [
           FailureView(failure: failure, onRetry: () => ref.invalidate(walletProvider)),
@@ -98,6 +114,7 @@ class WalletScreen extends ConsumerWidget {
       body: RefreshIndicator(
         onRefresh: () {
           ref.invalidate(topUpOptionsProvider);
+          ref.invalidate(pinStatusProvider);
 
           return ref.refresh(walletProvider.future);
         },
@@ -108,5 +125,15 @@ class WalletScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  static String _pinSubtitle(AppLocalizations l10n, PinStatus pin) {
+    final now = DateTime.now();
+
+    if (pin.lockedAt(now)) {
+      return l10n.walletPinLockedUntil(formatClock(l10n, pin.lockedUntil!));
+    }
+
+    return pin.isSet ? l10n.walletPinIsSet : l10n.walletPinNotSet;
   }
 }

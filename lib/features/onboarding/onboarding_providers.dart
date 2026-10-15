@@ -10,6 +10,7 @@ import 'domain/repositories/onboarding_preferences.dart';
 import 'domain/repositories/sign_in_repository.dart';
 import 'domain/use_cases/account_step.dart';
 import 'domain/use_cases/confirm_code.dart';
+import 'domain/use_cases/confirm_code_again.dart';
 import 'domain/use_cases/decide_start.dart';
 import 'domain/use_cases/finish_language_step.dart';
 import 'domain/use_cases/finish_location_step.dart';
@@ -46,6 +47,10 @@ final decideStartProvider = Provider<DecideStart>(
 
 final sendCodeProvider = Provider<SendCode>(
   (ref) => SendCode(ref.watch(signInRepositoryProvider)),
+);
+
+final confirmCodeAgainProvider = Provider<ConfirmCodeAgain>(
+  (ref) => ConfirmCodeAgain(ref.watch(signInRepositoryProvider)),
 );
 
 final confirmCodeProvider = Provider<ConfirmCode>(

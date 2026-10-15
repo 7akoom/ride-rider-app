@@ -74,6 +74,16 @@ class FakeSignIn implements SignInRepository {
   Future<Result<void>> confirmCode(OtpChallenge challenge, OtpCode code) async =>
       confirmResult;
 
+  /// Codes confirmed by signing in again (a forgotten wallet PIN).
+  final List<String> confirmedAgain = [];
+
+  @override
+  Future<Result<void>> confirmCodeAgain(OtpChallenge challenge, OtpCode code) async {
+    confirmedAgain.add(code.digits);
+
+    return confirmResult;
+  }
+
   @override
   Future<bool> hasSession() async => session;
 

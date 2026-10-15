@@ -5,6 +5,8 @@ import 'package:rider_app/features/wallet/domain/entities/top_up.dart';
 import 'package:rider_app/features/wallet/domain/entities/voucher_credit.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_overview.dart';
+import 'package:rider_app/features/wallet/domain/entities/wallet_pin.dart';
+import 'package:rider_app/features/wallet/domain/repositories/wallet_pin_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_repository.dart';
 
 WalletMovement movementOf(MovementKind kind, int amount, {String id = 'm', DateTime? at, int? balanceAfter}) =>
@@ -99,5 +101,91 @@ class FakeWallet implements WalletRepository {
     topUpChecks++;
 
     return status;
+  }
+}
+
+/// The wallet PIN as identity-service keeps it: [pin] is the PIN set (null: none),
+/// [lockedUntil] a lock. A wrong current PIN counts like the server's.
+class FakeWalletPin implements WalletPinRepository {
+  FakeWalletPin({this.pin, this.lockedUntil, this.attemptsLeft = 5, this.freshSignIn = false, this.setFailure});
+
+  String? pin;
+  DateTime? lockedUntil;
+  int attemptsLeft;
+
+  /// The rider signed in moments ago: a new PIN without the current one is accepted.
+  bool freshSignIn;
+
+  /// When set, saving fails with it.
+  Failure? setFailure;
+  final List<(String, String?)> sets = [];
+
+  PinStatus get _status => PinStatus(isSet: pin != null, lockedUntil: lockedUntil, attemptsLeft: attemptsLeft);
+
+  @override
+  Future<Result<PinStatus>> status() async => Ok(_status);
+
+  final List<String> verified = [];
+
+  @override
+  Future<Result<PinCheck>> verify(String pin) async {
+    verified.add(pin);
+    final locked = lockedUntil;
+
+    if (this.pin == null) {
+      return const Ok(PinCheck(PinCheckResult.notSet));
+    }
+
+    if (locked != null && locked.isAfter(DateTime.now())) {
+      return Ok(PinCheck(PinCheckResult.locked, lockedUntil: locked));
+    }
+
+    if (pin == this.pin) {
+      attemptsLeft = 5;
+
+      return const Ok(PinCheck(PinCheckResult.ok, attemptsLeft: 5));
+    }
+
+    attemptsLeft--;
+
+    if (attemptsLeft <= 0) {
+      lockedUntil = DateTime.now().add(const Duration(minutes: 15));
+
+      return Ok(PinCheck(PinCheckResult.locked, lockedUntil: lockedUntil));
+    }
+
+    return Ok(PinCheck(PinCheckResult.wrong, attemptsLeft: attemptsLeft));
+  }
+
+  @override
+  Future<Result<PinStatus>> set({required String newPin, String? currentPin}) async {
+    sets.add((newPin, currentPin));
+    final failure = setFailure;
+
+    if (failure != null) {
+      return Err(failure);
+    }
+
+    if (pin != null && !freshSignIn) {
+      if (lockedUntil != null) {
+        return const Err(PreconditionFailure());
+      }
+
+      if (currentPin == null) {
+        return const Err(PreconditionFailure());
+      }
+
+      if (currentPin != pin) {
+        attemptsLeft--;
+
+        return const Err(ForbiddenFailure());
+      }
+    }
+
+    pin = newPin;
+    lockedUntil = null;
+    attemptsLeft = 5;
+
+    return Ok(_status);
   }
 }

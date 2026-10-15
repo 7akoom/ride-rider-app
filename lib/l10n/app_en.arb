@@ -1803,5 +1803,118 @@
   "topUpDone": "Done",
   "@topUpDone": {
     "description": "Closes the top-up screen."
+  },
+  "walletPinRow": "Wallet PIN",
+  "@walletPinRow": {
+    "description": "The wallet row that opens the PIN screen, and that screen's title."
+  },
+  "walletPinNotSet": "Not set. You'll need it to send money.",
+  "@walletPinNotSet": {
+    "description": "Under the wallet PIN row when the rider has none."
+  },
+  "walletPinIsSet": "Set",
+  "@walletPinIsSet": {
+    "description": "Under the wallet PIN row when the rider has one."
+  },
+  "walletPinLockedUntil": "Locked until {time}",
+  "@walletPinLockedUntil": {
+    "description": "Under the wallet PIN row while wrong PINs keep it locked.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "pinCreateTitle": "Create your wallet PIN",
+  "@pinCreateTitle": {
+    "description": "The PIN screen's heading when the rider has no PIN yet."
+  },
+  "pinCreateBody": "4 digits that confirm sending money and paying requests.",
+  "@pinCreateBody": {
+    "description": "Under the PIN screen's heading."
+  },
+  "pinCurrentTitle": "Enter your current PIN",
+  "@pinCurrentTitle": {
+    "description": "The PIN screen's heading when changing it: the current one first."
+  },
+  "pinNewTitle": "Enter a new PIN",
+  "@pinNewTitle": {
+    "description": "The PIN screen's heading for the new PIN (a change or a reset)."
+  },
+  "pinConfirmTitle": "Enter the PIN again to confirm",
+  "@pinConfirmTitle": {
+    "description": "The PIN screen's heading for the second entry of the new PIN."
+  },
+  "pinWeak": "Too easy to guess. Avoid repeated or running digits like 1111 or 1234.",
+  "@pinWeak": {
+    "description": "A new PIN that is all the same digit or a straight run."
+  },
+  "pinMismatch": "The PINs don't match. Try again.",
+  "@pinMismatch": {
+    "description": "The second entry of the new PIN differs from the first."
+  },
+  "pinWrongCurrent": "Wrong PIN. Attempts left: {count}",
+  "@pinWrongCurrent": {
+    "description": "A wrong PIN, with the wrong ones left before it locks.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pinLocked": "Too many wrong tries: the PIN is locked until {time}. You can reset it now.",
+  "@pinLocked": {
+    "description": "The PIN is locked after wrong tries; a reset still works.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "pinSignInAgain": "The time to choose a new PIN ran out. Verify your number again.",
+  "@pinSignInAgain": {
+    "description": "A new PIN without the old one needs a fresh sign-in, and too long has passed since."
+  },
+  "pinForgot": "Forgot your PIN?",
+  "@pinForgot": {
+    "description": "Opens the PIN reset."
+  },
+  "pinSaved": "Your wallet PIN is saved",
+  "@pinSaved": {
+    "description": "After the new PIN is saved."
+  },
+  "pinSavedBody": "You'll need it when you send money or pay a request.",
+  "@pinSavedBody": {
+    "description": "Under the saved PIN heading."
+  },
+  "pinDone": "Done",
+  "@pinDone": {
+    "description": "Closes the PIN screen once it is saved."
+  },
+  "pinEntered": "{count} of 4 digits entered",
+  "@pinEntered": {
+    "description": "Read by screen readers: how many PIN digits are typed.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pinResetTitle": "Reset your PIN",
+  "@pinResetTitle": {
+    "description": "The PIN reset screen's title."
+  },
+  "pinResetBody": "To make sure it's you, we sent a code to {phone}. Then you choose a new PIN.",
+  "@pinResetBody": {
+    "description": "The PIN reset screen: a code is sent to the rider's phone.",
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "pinResetNoPhone": "Your account has no phone number. Contact support.",
+  "@pinResetNoPhone": {
+    "description": "The PIN cannot be reset: no phone to send a code to."
   }
 }

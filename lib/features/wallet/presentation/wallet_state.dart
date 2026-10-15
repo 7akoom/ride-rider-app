@@ -4,6 +4,7 @@ import '../../../core/error/result.dart';
 import '../domain/entities/top_up.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
+import '../domain/entities/wallet_pin.dart';
 import '../wallet_providers.dart';
 
 /// The wallet screen's data. A failure is a value, so the screen shows it in words.
@@ -22,4 +23,9 @@ final walletBalanceProvider = Provider.autoDispose<int?>((ref) {
 /// What a top-up may be here; the wallet offers it only when ZainCash is set up.
 final topUpOptionsProvider = FutureProvider.autoDispose<Result<TopUpOptions>>(
   (ref) => ref.watch(loadTopUpOptionsProvider).call(),
+);
+
+/// Whether the rider has a wallet PIN, and whether wrong PINs locked it.
+final pinStatusProvider = FutureProvider.autoDispose<Result<PinStatus>>(
+  (ref) => ref.watch(loadPinStatusProvider).call(),
 );

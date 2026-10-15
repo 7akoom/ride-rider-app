@@ -38,4 +38,11 @@ class SignInApi {
           'appVersion': client.appVersion,
         },
       );
+
+  /// Ends a session; its refresh token is the credential.
+  Future<JsonMap> logout(String refreshToken) => _client.post(
+        '/v1/auth/logout',
+        auth: false,
+        body: <String, dynamic>{'refreshToken': refreshToken},
+      );
 }
