@@ -58,9 +58,10 @@ Future<void> _type(WidgetTester tester, List<String> keys) async {
   }
 }
 
-/// 5,000 typed, reviewed, paid.
+/// 5,000 picked, reviewed, paid.
 Future<void> _pay(WidgetTester tester, AppLocalizations l10n) async {
-  await _type(tester, ['5', '000']);
+  await tester.tap(find.text(formatAmount(5000)));
+  await tester.pump();
   await tester.tap(find.text(l10n.topUpNext));
   await _wait(tester);
   await tester.tap(find.text(l10n.topUpPay(formatMoney(l10n, 5000))));
@@ -93,21 +94,45 @@ void main() {
     expect(find.text(l10n.walletUseVoucher), findsOneWidget);
   });
 
-  testWidgets('the amount is typed on the pad and checked against the limits', (tester) async {
-    await _open(tester, const TopUpScreen(options: _options));
+  testWidgets('a ready amount is one tap; one outside the limits cannot be picked', (tester) async {
+    await _open(tester, const TopUpScreen(options: TopUpOptions(min: 1000, max: 20000, providers: [TopUpOptions.zainCash])));
     expect(_next(tester, l10n).onPressed, isNull);
+
+    await tester.tap(find.text(formatAmount(25000)));
+    await tester.pump();
+    expect(_next(tester, l10n).onPressed, isNull);
+
+    await tester.tap(find.text(formatAmount(10000)));
+    await tester.pump();
+    expect(find.text(formatMoney(l10n, 10000)), findsOneWidget);
+    expect(_next(tester, l10n).onPressed, isNotNull);
+  });
+
+  testWidgets('another amount is typed on the pad in a sheet, within the limits', (tester) async {
+    await _open(tester, const TopUpScreen(options: _options));
+
+    await tester.tap(find.text(l10n.amountOther));
+    await _wait(tester);
+    AppButton done() => tester.widget<AppButton>(find.widgetWithText(AppButton, l10n.amountOtherDone));
 
     await _type(tester, ['5', '0', '0']);
     expect(find.text(l10n.topUpTooSmall(formatMoney(l10n, 1000))), findsOneWidget);
-    expect(_next(tester, l10n).onPressed, isNull);
+    expect(done().onPressed, isNull);
 
-    await _type(tester, ['0']);
-    expect(find.text(formatMoney(l10n, 5000)), findsOneWidget);
+    for (var i = 0; i < 3; i++) {
+      await tester.tap(find.byIcon(Icons.backspace_outlined));
+      await tester.pump();
+    }
+    await _type(tester, ['7', '000']);
+    expect(done().onPressed, isNotNull);
+
+    await tester.tap(find.text(l10n.amountOtherDone));
+    await _wait(tester);
+    expect(find.text(formatMoney(l10n, 7000)), findsOneWidget);
+    // The typed amount shows on the "another amount" chip, picked.
+    expect(find.text(formatAmount(7000)), findsOneWidget);
+    expect(find.text(l10n.amountOther), findsNothing);
     expect(_next(tester, l10n).onPressed, isNotNull);
-
-    await tester.tap(find.byIcon(Icons.backspace_outlined));
-    await tester.pump();
-    expect(find.text(formatMoney(l10n, 500)), findsOneWidget);
   });
 
   testWidgets('a paid top-up: the page opens, the payment is followed, the money arrives', (tester) async {

@@ -109,8 +109,7 @@ class _TopUpScreenState extends ConsumerState<TopUpScreen> with WidgetsBindingOb
           ? TopUpEntryView(
               flow: flow,
               options: widget.options,
-              onDigit: controller.digit,
-              onBackspace: controller.backspace,
+              onAmount: controller.setAmount,
               onNext: _next,
             )
           : TopUpProgressView(

@@ -46,8 +46,6 @@ class TopUpController extends AutoDisposeNotifier<TopUpFlow> {
   /// Checks before the screen stops asking (15 minutes); the server goes on.
   static const int stopAfterChecks = 300;
 
-  static const int maxDigits = 7;
-
   Timer? _timer;
   String? _id;
   int _checks = 0;
@@ -64,26 +62,13 @@ class TopUpController extends AutoDisposeNotifier<TopUpFlow> {
     return const TopUpFlow();
   }
 
-  /// A key of the pad: a digit, or "000".
-  void digit(String digits) {
-    if (state.phase != TopUpPhase.entering) {
+  /// The amount picked (a ready one, or one typed on "another amount").
+  void setAmount(int amount) {
+    if (state.phase != TopUpPhase.entering || amount < 0) {
       return;
     }
 
-    final text = state.amount == 0 ? digits : '${state.amount}$digits';
-
-    if (text.length <= maxDigits) {
-      state = TopUpFlow(amount: int.parse(text));
-    }
-  }
-
-  void backspace() {
-    if (state.phase != TopUpPhase.entering) {
-      return;
-    }
-
-    final text = '${state.amount}';
-    state = TopUpFlow(amount: text.length <= 1 ? 0 : int.parse(text.substring(0, text.length - 1)));
+    state = TopUpFlow(amount: amount);
   }
 
   /// Opens the payment; its page, or null when it could not be opened.

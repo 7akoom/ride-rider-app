@@ -1916,5 +1916,244 @@
   "pinResetNoPhone": "Your account has no phone number. Contact support.",
   "@pinResetNoPhone": {
     "description": "The PIN cannot be reset: no phone to send a code to."
+  },
+  "walletSend": "Send",
+  "@walletSend": {
+    "description": "The wallet action that sends money to another rider."
+  },
+  "sendTitle": "Send money",
+  "@sendTitle": {
+    "description": "The send money screen's title."
+  },
+  "sendStepRecipient": "Recipient",
+  "@sendStepRecipient": {
+    "description": "Send money steps: the first."
+  },
+  "sendStepAmount": "Amount",
+  "@sendStepAmount": {
+    "description": "Send money steps: the second."
+  },
+  "sendStepConfirm": "Confirm",
+  "@sendStepConfirm": {
+    "description": "Send money steps: the third (the PIN)."
+  },
+  "sendPhoneLabel": "Recipient's phone",
+  "@sendPhoneLabel": {
+    "description": "The phone field's label."
+  },
+  "sendPickContact": "Choose from contacts",
+  "@sendPickContact": {
+    "description": "Opens the phone's own contact list."
+  },
+  "sendContactNoNumber": "This contact has no Iraqi mobile number.",
+  "@sendContactNoNumber": {
+    "description": "The contact picked has no number money can be sent to."
+  },
+  "sendRecent": "Recent",
+  "@sendRecent": {
+    "description": "The phones the rider sent to lately."
+  },
+  "sendNotRegistered": "This number isn't registered in the app. You can only send to registered numbers.",
+  "@sendNotRegistered": {
+    "description": "The phone typed is no rider's."
+  },
+  "sendSelf": "That's your own number. Choose another.",
+  "@sendSelf": {
+    "description": "The phone typed is the rider's own."
+  },
+  "sendLookupTooMany": "You looked up many numbers. Try again in a while.",
+  "@sendLookupTooMany": {
+    "description": "Too many lookups in an hour."
+  },
+  "sendRecipientGone": "This number is no longer registered. Nothing was sent.",
+  "@sendRecipientGone": {
+    "description": "The recipient's account went away before the money was sent."
+  },
+  "sendContinue": "Continue",
+  "@sendContinue": {
+    "description": "Goes to the next step."
+  },
+  "sendChange": "Change",
+  "@sendChange": {
+    "description": "Goes back to choose another recipient."
+  },
+  "sendAvailable": "Available: {amount}",
+  "@sendAvailable": {
+    "description": "The wallet's balance under the amount.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "sendLimits": "{min} to {max} per transfer",
+  "@sendLimits": {
+    "description": "The transfer limits under the amount.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "sendTooSmall": "The least you can send is {amount}",
+  "@sendTooSmall": {
+    "description": "The amount is below the least.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "sendTooBig": "The most one transfer can move is {amount}",
+  "@sendTooBig": {
+    "description": "The amount is above the most.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "sendOverToday": "You can send only {amount} more in the next 24 hours",
+  "@sendOverToday": {
+    "description": "The amount passes the day's limit.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "sendTooManyToday": "You've made as many transfers as allowed in 24 hours.",
+  "@sendTooManyToday": {
+    "description": "No more transfers today."
+  },
+  "sendOverBalance": "Your balance isn't enough for this amount.",
+  "@sendOverBalance": {
+    "description": "The amount is more than the wallet holds."
+  },
+  "sendNotSent": "The money wasn't sent. Try again.",
+  "@sendNotSent": {
+    "description": "The server refused the transfer for a reason the app cannot tell."
+  },
+  "sendNote": "Add a note (optional)",
+  "@sendNote": {
+    "description": "The note field."
+  },
+  "pinSheetTitle": "Enter your wallet PIN",
+  "@pinSheetTitle": {
+    "description": "The PIN sheet's title."
+  },
+  "sendPinDetail": "To confirm sending {amount} to {name}",
+  "@sendPinDetail": {
+    "description": "Under the PIN sheet's title.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sendNeedsPin": "Create your wallet PIN first to send money.",
+  "@sendNeedsPin": {
+    "description": "The rider left the PIN screen without creating one."
+  },
+  "sendDoneTitle": "{amount} sent to {name}",
+  "@sendDoneTitle": {
+    "description": "The transfer went through.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sendDoneBody": "It reached their wallet at once.",
+  "@sendDoneBody": {
+    "description": "Under the transfer's title."
+  },
+  "sendReceiptId": "Transaction",
+  "@sendReceiptId": {
+    "description": "The receipt: the transfer's number."
+  },
+  "sendReceiptTime": "Date and time",
+  "@sendReceiptTime": {
+    "description": "The receipt: when."
+  },
+  "sendReceiptNote": "Note",
+  "@sendReceiptNote": {
+    "description": "The receipt: the note."
+  },
+  "sendNewBalance": "Your new balance",
+  "@sendNewBalance": {
+    "description": "The receipt: the wallet after it."
+  },
+  "sendDone": "Done",
+  "@sendDone": {
+    "description": "Closes the send money screen."
+  },
+  "sendShare": "Share the receipt",
+  "@sendShare": {
+    "description": "Shares the receipt as text."
+  },
+  "sendShareText": "I sent {amount} to {name}. Transaction {id}, {time}.",
+  "@sendShareText": {
+    "description": "The shared receipt (without the recipient's phone: it may go to someone else).",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "id": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "amountOther": "Another amount",
+  "@amountOther": {
+    "description": "The chip that opens the number pad for any amount."
+  },
+  "amountOtherTitle": "Enter the amount",
+  "@amountOtherTitle": {
+    "description": "The another-amount sheet's title."
+  },
+  "amountOtherDone": "Use this amount",
+  "@amountOtherDone": {
+    "description": "Confirms the amount typed in the sheet."
+  },
+  "sendReviewTitle": "Review the transfer",
+  "@sendReviewTitle": {
+    "description": "The review step's heading."
+  },
+  "sendBalanceAfter": "Your balance after it",
+  "@sendBalanceAfter": {
+    "description": "The review: the wallet after the transfer."
+  },
+  "sendReviewNote": "The money reaches their wallet at once, and a transfer can't be undone once sent.",
+  "@sendReviewNote": {
+    "description": "Under the review."
+  },
+  "sendNow": "Send {amount}",
+  "@sendNow": {
+    "description": "The review's button: asks for the PIN.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "sendEditAmount": "Change the amount",
+  "@sendEditAmount": {
+    "description": "Goes back from the review to the amount."
   }
 }

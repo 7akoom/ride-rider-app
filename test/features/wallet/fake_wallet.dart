@@ -1,11 +1,14 @@
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
+import 'package:rider_app/core/phone/phone_number.dart';
 import 'package:rider_app/features/wallet/domain/entities/statement.dart';
 import 'package:rider_app/features/wallet/domain/entities/top_up.dart';
+import 'package:rider_app/features/wallet/domain/entities/transfer.dart';
 import 'package:rider_app/features/wallet/domain/entities/voucher_credit.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_overview.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_pin.dart';
+import 'package:rider_app/features/wallet/domain/repositories/transfer_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_pin_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_repository.dart';
 
@@ -187,5 +190,88 @@ class FakeWalletPin implements WalletPinRepository {
     attemptsLeft = 5;
 
     return Ok(_status);
+  }
+}
+
+/// Transfers: [riders] are the registered phones with their short names; the rider's
+/// own phone is [self]. Each send takes the next of [sendResults] (the last stays);
+/// none means it goes through.
+class FakeTransfers implements TransferRepository {
+  FakeTransfers({
+    this.optionsResult = const Ok(TransferOptions(min: 250, max: 100000, dailyAmount: 200000, dailyCount: 10)),
+    Map<String, String>? riders,
+    this.self = '+9647500000000',
+    List<PhoneNumber>? recent,
+    this.lookupFailure,
+    List<Result<SentMoney>>? sendResults,
+  })  : riders = riders ?? {'+9647501234567': 'Haidar K.'},
+        recent = recent ?? [],
+        sendResults = sendResults ?? [];
+
+  Result<TransferOptions> optionsResult;
+  Map<String, String> riders;
+  String self;
+  List<PhoneNumber> recent;
+  Failure? lookupFailure;
+  List<Result<SentMoney>> sendResults;
+  final List<String> lookedUp = [];
+  final List<({String phone, int amount, String note, String pin, String key})> sent = [];
+
+  @override
+  Future<Result<TransferOptions>> options() async => optionsResult;
+
+  @override
+  Future<Result<Recipient>> lookup(PhoneNumber phone) async {
+    lookedUp.add(phone.e164);
+    final failure = lookupFailure;
+
+    if (failure != null) {
+      return Err(failure);
+    }
+
+    if (phone.e164 == self) {
+      return Ok(Recipient(phone: phone, result: RecipientResult.self));
+    }
+
+    final name = riders[phone.e164];
+
+    return Ok(
+      name == null
+          ? Recipient(phone: phone, result: RecipientResult.notFound)
+          : Recipient(phone: phone, result: RecipientResult.found, name: name),
+    );
+  }
+
+  @override
+  Future<Result<List<PhoneNumber>>> recentRecipients() async => Ok(recent);
+
+  @override
+  Future<Result<SentMoney>> send({
+    required PhoneNumber phone,
+    required int amount,
+    required String note,
+    required String pin,
+    required String key,
+  }) async {
+    sent.add((phone: phone.e164, amount: amount, note: note, pin: pin, key: key));
+
+    if (sendResults.isNotEmpty) {
+      final result = sent.length <= sendResults.length ? sendResults[sent.length - 1] : sendResults.last;
+
+      if (result is Err<SentMoney>) {
+        return result;
+      }
+    }
+
+    return Ok(
+      SentMoney(
+        id: 'f3a9c2d1-0000-4000-8000-000000000001',
+        phone: phone,
+        amount: amount,
+        note: note,
+        at: DateTime(2026, 10, 15, 14, 30),
+        balance: 12500 - amount,
+      ),
+    );
   }
 }

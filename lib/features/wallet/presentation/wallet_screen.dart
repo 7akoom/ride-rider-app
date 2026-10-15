@@ -11,6 +11,7 @@ import '../domain/entities/wallet_pin.dart';
 import 'balance_card.dart';
 import 'movement_view.dart';
 import 'movements_screen.dart';
+import 'send_money_screen.dart';
 import 'statement_screen.dart';
 import 'top_up_screen.dart';
 import 'voucher_sheet.dart';
@@ -37,6 +38,29 @@ class WalletScreen extends ConsumerWidget {
       _ => null,
     };
 
+    final owed = switch (result) {
+      AsyncData(value: Ok(value: (final overview, _))) => overview.owed,
+      _ => 0,
+    };
+    final tiles = [
+      if (topUp != null)
+        ShortcutTile(
+          icon: Icons.add_card_outlined,
+          label: l10n.walletTopUp,
+          onTap: () => openTopUp(context, topUp),
+        ),
+      ShortcutTile(
+        icon: Icons.north_east,
+        label: l10n.walletSend,
+        onTap: () => openSendMoney(context),
+      ),
+      ShortcutTile(
+        icon: Icons.redeem_outlined,
+        label: l10n.walletUseVoucher,
+        onTap: () => showVoucherSheet(context, owed: owed),
+      ),
+    ];
+
     // The PIN row shows once its status is known; a failure leaves it out.
     final pin = switch (ref.watch(pinStatusProvider)) {
       AsyncData(value: Ok(:final value)) => value,
@@ -56,25 +80,12 @@ class WalletScreen extends ConsumerWidget {
             ),
           ],
           const SizedBox(height: Space.x4),
-          // Four equal places, as on Careem's wallet; send and request take the
-          // free ones (5d). A long label (Kurdish) shortens instead of overflowing.
+          // Four equal places, as on Careem's wallet; "request money" takes the free
+          // one (5d-3). A long label (Kurdish) shortens instead of overflowing.
           Row(
             children: [
-              for (final tile in [
-                if (topUp != null)
-                  ShortcutTile(
-                    icon: Icons.add_card_outlined,
-                    label: l10n.walletTopUp,
-                    onTap: () => openTopUp(context, topUp),
-                  ),
-                ShortcutTile(
-                  icon: Icons.redeem_outlined,
-                  label: l10n.walletUseVoucher,
-                  onTap: () => showVoucherSheet(context, owed: overview.owed),
-                ),
-              ])
-                Expanded(child: tile),
-              for (var free = topUp != null ? 2 : 1; free < _actionPlaces; free++) const Spacer(),
+              for (final tile in tiles) Expanded(child: tile),
+              for (var free = tiles.length; free < _actionPlaces; free++) const Spacer(),
             ],
           ),
           const SizedBox(height: Space.x4),
