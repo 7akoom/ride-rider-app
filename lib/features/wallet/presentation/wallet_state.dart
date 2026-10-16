@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/error/result.dart';
 import '../domain/entities/biometric.dart';
+import '../domain/entities/money_request.dart';
 import '../domain/entities/top_up.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
@@ -39,3 +40,13 @@ final biometricProvider = FutureProvider.autoDispose<BiometricState>((ref) async
 
   return BiometricState(kind: kind, enabled: kind != null && await biometric.kept() != null);
 });
+
+/// Requests waiting for the rider to pay or decline, newest first; the wallet shows them.
+final incomingRequestsProvider = FutureProvider.autoDispose<Result<List<MoneyRequest>>>(
+  (ref) => ref.watch(loadMoneyRequestsProvider).call(MoneyRequestSide.incoming, status: MoneyRequestStatus.pending),
+);
+
+/// One side's requests, every status, newest first ("my requests").
+final moneyRequestsProvider = FutureProvider.autoDispose.family<Result<List<MoneyRequest>>, MoneyRequestSide>(
+  (ref, side) => ref.watch(loadMoneyRequestsProvider).call(side),
+);

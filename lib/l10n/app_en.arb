@@ -2203,5 +2203,369 @@
   "pinBiometricStale": "Your PIN changed since paying with fingerprint was turned on. Type it this time.",
   "@pinBiometricStale": {
     "description": "The kept PIN was refused: the rider types it."
+  },
+  "walletRequest": "Request",
+  "@walletRequest": {
+    "description": "The wallet's tile that asks someone for money."
+  },
+  "walletRequests": "Money requests",
+  "@walletRequests": {
+    "description": "The wallet row that opens the money requests."
+  },
+  "walletRequestsSubtitle": "Pay with a code, and follow your requests",
+  "@walletRequestsSubtitle": {
+    "description": "Under the money requests row."
+  },
+  "walletIncomingTitle": "Waiting for you",
+  "@walletIncomingTitle": {
+    "description": "The wallet's section of requests asked of the rider."
+  },
+  "requestTitle": "Request money",
+  "@requestTitle": {
+    "description": "The request money screen's title."
+  },
+  "requestAmountTitle": "How much are you asking for?",
+  "@requestAmountTitle": {
+    "description": "Above the amount."
+  },
+  "requestLimits": "{min} to {max}",
+  "@requestLimits": {
+    "description": "What may be asked, under the amount.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "requestTooSmall": "The least you can ask for is {amount}",
+  "@requestTooSmall": {
+    "description": "Under an amount below the limit.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestTooBig": "The most you can ask for is {amount}",
+  "@requestTooBig": {
+    "description": "Under an amount above the limit.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestWhoTitle": "Who are you asking?",
+  "@requestWhoTitle": {
+    "description": "Above the choice of whom to ask."
+  },
+  "requestKindPerson": "A specific person",
+  "@requestKindPerson": {
+    "description": "Ask one rider, by phone."
+  },
+  "requestKindOpen": "Open link",
+  "@requestKindOpen": {
+    "description": "Ask whoever opens the code."
+  },
+  "requestOpenBody": "You get a QR code and a code to share. The first one to pay it from the app closes the request.",
+  "@requestOpenBody": {
+    "description": "Under the open link choice."
+  },
+  "requestPhoneLabel": "Their phone",
+  "@requestPhoneLabel": {
+    "description": "The phone field."
+  },
+  "requestNotRegistered": "This number isn't registered in the app. You can ask registered numbers only, or share an open link.",
+  "@requestNotRegistered": {
+    "description": "A phone that is no rider's."
+  },
+  "requestSelf": "That's your own number.",
+  "@requestSelf": {
+    "description": "The rider's own phone."
+  },
+  "requestGone": "This number is no longer registered. Choose another.",
+  "@requestGone": {
+    "description": "The phone stopped being a rider's before the request was made."
+  },
+  "requestNotCreated": "The request wasn't made. Try again.",
+  "@requestNotCreated": {
+    "description": "The server refused the request."
+  },
+  "requestCreate": "Request {amount}",
+  "@requestCreate": {
+    "description": "The button that asks a rider.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestCreateOpen": "Create a link for {amount}",
+  "@requestCreateOpen": {
+    "description": "The button that makes an open request.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSentTitle": "You asked {name} for {amount}",
+  "@requestSentTitle": {
+    "description": "After asking a rider.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSentBody": "They are notified and can pay or decline from their wallet. Valid until {time}.",
+  "@requestSentBody": {
+    "description": "Under it.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "requestOpenTitle": "Your request for {amount}",
+  "@requestOpenTitle": {
+    "description": "Above an open request's QR code.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestOpenHow": "Let them scan it, or share the code. They pay in the app: Wallet, Money requests, Pay with a code.",
+  "@requestOpenHow": {
+    "description": "Under an open request's QR code."
+  },
+  "requestValidUntil": "Valid until {time}",
+  "@requestValidUntil": {
+    "description": "When a pending request ends.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "requestCode": "Code",
+  "@requestCode": {
+    "description": "The request's code."
+  },
+  "requestShare": "Share the request",
+  "@requestShare": {
+    "description": "Shares an open request's code."
+  },
+  "requestCopyCode": "Copy the code",
+  "@requestCopyCode": {
+    "description": "Copies the code."
+  },
+  "requestCodeCopied": "Code copied",
+  "@requestCodeCopied": {
+    "description": "After copying it."
+  },
+  "requestShareText": "I'm asking you for {amount}. In the app: Wallet, Money requests, Pay with a code, and type {code}. Valid until {time}.",
+  "@requestShareText": {
+    "description": "What sharing an open request sends.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "requestFrom": "{name} asks you",
+  "@requestFrom": {
+    "description": "A request asked of the rider.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestTo": "You asked {name}",
+  "@requestTo": {
+    "description": "A request the rider made of someone.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSomeone": "A rider",
+  "@requestSomeone": {
+    "description": "A name the server could not read."
+  },
+  "requestStatusPending": "Waiting",
+  "@requestStatusPending": {
+    "description": "Status."
+  },
+  "requestStatusPaid": "Paid",
+  "@requestStatusPaid": {
+    "description": "Status."
+  },
+  "requestStatusDeclined": "Declined",
+  "@requestStatusDeclined": {
+    "description": "Status."
+  },
+  "requestStatusCancelled": "Cancelled",
+  "@requestStatusCancelled": {
+    "description": "Status."
+  },
+  "requestStatusExpired": "Expired",
+  "@requestStatusExpired": {
+    "description": "Status."
+  },
+  "requestsIncoming": "Asked of me",
+  "@requestsIncoming": {
+    "description": "The tab of requests asked of the rider."
+  },
+  "requestsOutgoing": "My requests",
+  "@requestsOutgoing": {
+    "description": "The tab of requests the rider made."
+  },
+  "requestsEmptyIncoming": "Nobody has asked you for money.",
+  "@requestsEmptyIncoming": {
+    "description": "No incoming requests."
+  },
+  "requestsEmptyOutgoing": "You haven't asked anyone for money.",
+  "@requestsEmptyOutgoing": {
+    "description": "No outgoing requests."
+  },
+  "requestPayWithCode": "Pay with a code",
+  "@requestPayWithCode": {
+    "description": "Opens a request by its code."
+  },
+  "requestNew": "New request",
+  "@requestNew": {
+    "description": "Asks someone for money."
+  },
+  "payCodeBody": "Type the code you were sent.",
+  "@payCodeBody": {
+    "description": "The pay with a code sheet."
+  },
+  "payCodeOpen": "Open the request",
+  "@payCodeOpen": {
+    "description": "Opens it."
+  },
+  "payCodeInvalid": "A code is 10 letters and digits.",
+  "@payCodeInvalid": {
+    "description": "A code that cannot be one."
+  },
+  "requestNotFound": "We found no request with this code.",
+  "@requestNotFound": {
+    "description": "No request the rider may see."
+  },
+  "requestDetailTitle": "Money request",
+  "@requestDetailTitle": {
+    "description": "The request's screen."
+  },
+  "requestPay": "Pay {amount}",
+  "@requestPay": {
+    "description": "Pays the request (asks for the PIN).",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "requestPinDetail": "To confirm paying {amount} to {name}",
+  "@requestPinDetail": {
+    "description": "On the PIN sheet.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestNeedsPin": "Create your wallet PIN first to pay.",
+  "@requestNeedsPin": {
+    "description": "Paying without a PIN."
+  },
+  "requestDecline": "Decline",
+  "@requestDecline": {
+    "description": "The rider asked says no."
+  },
+  "requestDeclineTitle": "Decline this request?",
+  "@requestDeclineTitle": {
+    "description": "Asks before declining."
+  },
+  "requestDeclineBody": "{name} will see that you declined.",
+  "@requestDeclineBody": {
+    "description": "Asks before declining.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestKeep": "Keep it",
+  "@requestKeep": {
+    "description": "Keeps the request as it is."
+  },
+  "requestCancel": "Cancel the request",
+  "@requestCancel": {
+    "description": "The requester takes it back."
+  },
+  "requestCancelTitle": "Cancel this request?",
+  "@requestCancelTitle": {
+    "description": "Asks before cancelling."
+  },
+  "requestCancelBody": "It can't be paid after that.",
+  "@requestCancelBody": {
+    "description": "Asks before cancelling."
+  },
+  "requestPaidTitle": "{amount} paid to {name}",
+  "@requestPaidTitle": {
+    "description": "After paying a request.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestPaidBy": "Paid by {name}",
+  "@requestPaidBy": {
+    "description": "Who paid the rider's request.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestClosedAt": "On {time}",
+  "@requestClosedAt": {
+    "description": "When a request was paid or closed.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "requestOutsideLimits": "This amount is outside what a transfer may move now, so it can't be paid.",
+  "@requestOutsideLimits": {
+    "description": "The limits changed since it was asked."
+  },
+  "requestNotPaid": "It wasn't paid. Try again.",
+  "@requestNotPaid": {
+    "description": "A refusal without a known reason."
   }
 }

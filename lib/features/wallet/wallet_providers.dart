@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/network/api_client_provider.dart';
 import 'data/biometric_pin_repository_impl.dart';
+import 'data/money_request_api.dart';
+import 'data/money_request_repository_impl.dart';
 import 'data/transfer_api.dart';
 import 'data/transfer_repository_impl.dart';
 import 'data/wallet_api.dart';
@@ -9,10 +11,12 @@ import 'data/wallet_pin_api.dart';
 import 'data/wallet_pin_repository_impl.dart';
 import 'data/wallet_repository_impl.dart';
 import 'domain/repositories/biometric_pin_repository.dart';
+import 'domain/repositories/money_request_repository.dart';
 import 'domain/repositories/transfer_repository.dart';
 import 'domain/repositories/wallet_pin_repository.dart';
 import 'domain/repositories/wallet_repository.dart';
 import 'domain/use_cases/follow_wallet.dart';
+import 'domain/use_cases/money_requests.dart';
 import 'domain/use_cases/redeem_voucher.dart';
 import 'domain/use_cases/send_money.dart';
 import 'domain/use_cases/top_up.dart';
@@ -78,3 +82,31 @@ final loadRecentRecipientsProvider = Provider<LoadRecentRecipients>(
 );
 
 final sendMoneyProvider = Provider<SendMoney>((ref) => SendMoney(ref.watch(transferRepositoryProvider)));
+
+// Asking for money and paying what others ask. Tests override moneyRequestRepositoryProvider.
+
+final moneyRequestRepositoryProvider = Provider<MoneyRequestRepository>(
+  (ref) => MoneyRequestRepositoryImpl(MoneyRequestApi(ref.watch(apiClientProvider))),
+);
+
+final requestMoneyProvider = Provider<RequestMoney>((ref) => RequestMoney(ref.watch(moneyRequestRepositoryProvider)));
+
+final loadMoneyRequestsProvider = Provider<LoadMoneyRequests>(
+  (ref) => LoadMoneyRequests(ref.watch(moneyRequestRepositoryProvider)),
+);
+
+final openMoneyRequestProvider = Provider<OpenMoneyRequest>(
+  (ref) => OpenMoneyRequest(ref.watch(moneyRequestRepositoryProvider)),
+);
+
+final payMoneyRequestProvider = Provider<PayMoneyRequest>(
+  (ref) => PayMoneyRequest(ref.watch(moneyRequestRepositoryProvider)),
+);
+
+final declineMoneyRequestProvider = Provider<DeclineMoneyRequest>(
+  (ref) => DeclineMoneyRequest(ref.watch(moneyRequestRepositoryProvider)),
+);
+
+final cancelMoneyRequestProvider = Provider<CancelMoneyRequest>(
+  (ref) => CancelMoneyRequest(ref.watch(moneyRequestRepositoryProvider)),
+);

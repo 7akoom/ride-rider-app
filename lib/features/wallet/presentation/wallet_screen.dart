@@ -10,11 +10,16 @@ import '../../../core/l10n/l10n.dart';
 import '../../../design/components/components.dart';
 import '../../../design/tokens/metrics.dart';
 import '../domain/entities/biometric.dart';
+import '../domain/entities/money_request.dart';
 import '../domain/entities/wallet_pin.dart';
 import 'biometric_unlock.dart';
 import 'balance_card.dart';
 import 'movement_view.dart';
+import 'money_request_screen.dart';
+import 'money_requests_screen.dart';
 import 'movements_screen.dart';
+import 'request_money_screen.dart';
+import 'request_widgets.dart';
 import 'send_money_screen.dart';
 import 'statement_screen.dart';
 import 'top_up_screen.dart';
@@ -31,6 +36,9 @@ class WalletScreen extends ConsumerWidget {
 
   /// How many actions fit in the row under the balance.
   static const int _actionPlaces = 4;
+
+  /// How many waiting requests the wallet shows; "all" opens the rest.
+  static const int _waitingShown = 3;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,11 +67,22 @@ class WalletScreen extends ConsumerWidget {
         onTap: () => openSendMoney(context),
       ),
       ShortcutTile(
+        icon: Icons.south_west,
+        label: l10n.walletRequest,
+        onTap: () => openRequestMoney(context),
+      ),
+      ShortcutTile(
         icon: Icons.redeem_outlined,
         label: l10n.walletUseVoucher,
         onTap: () => showVoucherSheet(context, owed: owed),
       ),
     ];
+
+    // Requests waiting for the rider; a failure leaves the section out.
+    final waiting = switch (ref.watch(incomingRequestsProvider)) {
+      AsyncData(value: Ok(:final value)) => value,
+      _ => const <MoneyRequest>[],
+    };
 
     // The PIN row shows once its status is known; a failure leaves it out.
     final pin = switch (ref.watch(pinStatusProvider)) {
@@ -96,14 +115,28 @@ class WalletScreen extends ConsumerWidget {
             ),
           ],
           const SizedBox(height: Space.x4),
-          // Four equal places, as on Careem's wallet; "request money" takes the free
-          // one (5d-3). A long label (Kurdish) shortens instead of overflowing.
+          // Four equal places, as on Careem's wallet. A long label (Kurdish)
+          // shortens instead of overflowing.
           Row(
             children: [
               for (final tile in tiles) Expanded(child: tile),
               for (var free = tiles.length; free < _actionPlaces; free++) const Spacer(),
             ],
           ),
+          if (waiting.isNotEmpty) ...[
+            const SizedBox(height: Space.x4),
+            SectionHeader(
+              title: l10n.walletIncomingTitle,
+              actionLabel: waiting.length > _waitingShown ? l10n.walletAll : null,
+              onAction: () => openMoneyRequests(context),
+            ),
+            for (final request in waiting.take(_waitingShown))
+              MoneyRequestRow(
+                request: request,
+                // Paying or declining it there reloads this list.
+                onTap: () => openMoneyRequest(context, request.code),
+              ),
+          ],
           const SizedBox(height: Space.x4),
           SectionHeader(
             title: l10n.walletRecent,
@@ -117,6 +150,12 @@ class WalletScreen extends ConsumerWidget {
             icon: Icons.summarize_outlined,
             title: l10n.statementTitle,
             onTap: () => openStatement(context),
+          ),
+          AppListRow(
+            icon: Icons.request_page_outlined,
+            title: l10n.walletRequests,
+            subtitle: l10n.walletRequestsSubtitle,
+            onTap: () => openMoneyRequests(context),
           ),
           if (pin != null)
             AppListRow(
@@ -148,6 +187,7 @@ class WalletScreen extends ConsumerWidget {
           ref.invalidate(topUpOptionsProvider);
           ref.invalidate(pinStatusProvider);
           ref.invalidate(biometricProvider);
+          ref.invalidate(incomingRequestsProvider);
 
           return ref.refresh(walletProvider.future);
         },

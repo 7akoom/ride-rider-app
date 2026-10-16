@@ -129,6 +129,7 @@ List<Override> bookingFakes({
   FakeWalletPin? walletPin,
   FakeTransfers? transfers,
   FakeBiometricPin? biometric,
+  FakeMoneyRequests? requests,
 }) =>
     [
       routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
@@ -147,4 +148,5 @@ List<Override> bookingFakes({
       walletPinRepositoryProvider.overrideWithValue(walletPin ?? FakeWalletPin(pin: '2580')),
       transferRepositoryProvider.overrideWithValue(transfers ?? FakeTransfers()),
       biometricPinProvider.overrideWithValue(biometric ?? FakeBiometricPin()),
+      moneyRequestRepositoryProvider.overrideWithValue(requests ?? FakeMoneyRequests()),
     ];

@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/error/failure.dart';
 import '../../../core/error/failure_messages.dart';
-import '../../../core/error/result.dart';
 import '../../../core/format/bidi.dart';
 import '../../../core/format/money_format.dart';
 import '../../../core/format/time_format.dart';
@@ -17,15 +16,11 @@ import '../../../design/components/components.dart';
 import '../../../design/design_context.dart';
 import '../../../design/tokens/metrics.dart';
 import '../domain/entities/transfer.dart';
-import '../domain/entities/wallet_pin.dart';
 import '../domain/use_cases/send_money.dart';
-import '../wallet_providers.dart';
 import 'amount_choice.dart';
-import 'biometric_unlock.dart';
 import 'contact_picker.dart';
-import 'pin_sheet.dart';
+import 'pin_confirm.dart';
 import 'send_money_controller.dart';
-import 'wallet_pin_screen.dart';
 
 Future<void> openSendMoney(BuildContext context) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const SendMoneyScreen()));
@@ -78,52 +73,15 @@ class _SendMoneyScreenState extends ConsumerState<SendMoneyScreen> {
   }
 
   /// The PIN: created first when there is none, then the sheet.
-  Future<void> _confirm() async {
+  Future<void> _confirm() {
     final l10n = context.l10n;
     final flow = ref.read(sendMoneyControllerProvider);
-    final status = await ref.read(loadPinStatusProvider).call();
 
-    if (!mounted) {
-      return;
-    }
-
-    final PinStatus pin;
-
-    switch (status) {
-      case Ok(:final value):
-        pin = value;
-      case Err(:final failure):
-        showAppToast(context, failure.message(l10n), tone: Tone.danger);
-
-        return;
-    }
-
-    if (!pin.isSet) {
-      final created = await openWalletPin(context, pin);
-
-      if (!mounted) {
-        return;
-      }
-
-      if (!created) {
-        showAppToast(context, l10n.sendNeedsPin, tone: Tone.warning);
-
-        return;
-      }
-    }
-
-    final biometric = await biometricUnlockOf(ref, l10n);
-
-    if (!mounted) {
-      return;
-    }
-
-    final now = DateTime.now();
-    await showPinSheet(
+    return confirmWithPin(
       context,
+      ref,
       detail: l10n.sendPinDetail(formatMoney(l10n, flow.amount), flow.recipient?.name ?? ''),
-      lockedUntil: pin.lockedAt(now) ? pin.lockedUntil : null,
-      biometric: biometric,
+      needsPin: l10n.sendNeedsPin,
       submit: _controller.confirm,
     );
   }

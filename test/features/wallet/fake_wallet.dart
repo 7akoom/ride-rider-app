@@ -2,6 +2,7 @@ import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/phone/phone_number.dart';
 import 'package:rider_app/features/wallet/domain/entities/biometric.dart';
+import 'package:rider_app/features/wallet/domain/entities/money_request.dart';
 import 'package:rider_app/features/wallet/domain/entities/statement.dart';
 import 'package:rider_app/features/wallet/domain/entities/top_up.dart';
 import 'package:rider_app/features/wallet/domain/entities/transfer.dart';
@@ -10,6 +11,7 @@ import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_overview.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_pin.dart';
 import 'package:rider_app/features/wallet/domain/repositories/biometric_pin_repository.dart';
+import 'package:rider_app/features/wallet/domain/repositories/money_request_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/transfer_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_pin_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_repository.dart';
@@ -306,4 +308,167 @@ class FakeBiometricPin implements BiometricPinRepository {
 
   @override
   Future<void> forget() async => pin = null;
+}
+
+/// A request as wallet-service would give it; [role] is the signed-in rider's.
+MoneyRequest requestOf({
+  String code = 'K7XMQ2PQRX',
+  MoneyRequestRole role = MoneyRequestRole.payer,
+  bool open = false,
+  int amount = 5000,
+  MoneyRequestStatus status = MoneyRequestStatus.pending,
+  String requesterName = 'Haidar K.',
+  String requesterPhone = '+9647501234567',
+  String payerName = '',
+  String payerPhone = '',
+  String note = 'dinner',
+}) =>
+    MoneyRequest(
+      id: 'request-$code',
+      code: code,
+      role: role,
+      open: open,
+      amount: amount,
+      status: status,
+      expiresAt: DateTime(2026, 10, 19, 14, 30),
+      createdAt: DateTime(2026, 10, 16, 14, 30),
+      requesterName: requesterName,
+      requesterPhone: requesterPhone,
+      payerName: payerName,
+      payerPhone: payerPhone,
+      note: note,
+    );
+
+/// Money requests: [requests] are those the rider sees (any role); [riders] the
+/// registered phones with their short names, [self] the rider's own phone. Paying
+/// takes [pin]; [payFailure], when set, is the next payment's answer.
+class FakeMoneyRequests implements MoneyRequestRepository {
+  FakeMoneyRequests({
+    List<MoneyRequest>? requests,
+    Map<String, String>? riders,
+    this.self = '+9647500000000',
+    this.pin = '2580',
+    this.payFailure,
+    this.createFailure,
+  })  : requests = requests ?? [],
+        riders = riders ?? {'+9647501234567': 'Haidar K.'};
+
+  final List<MoneyRequest> requests;
+  Map<String, String> riders;
+  String self;
+  String pin;
+  Failure? payFailure;
+  Failure? createFailure;
+  final List<({String? phone, int amount, String note, String key})> created = [];
+  final List<(String, String)> paid = [];
+  final List<String> declined = [];
+  final List<String> cancelled = [];
+
+  int _index(String code) => requests.indexWhere((r) => r.code == code);
+
+  @override
+  Future<Result<MoneyRequest>> create({PhoneNumber? payer, required int amount, required String note, required String key}) async {
+    created.add((phone: payer?.e164, amount: amount, note: note, key: key));
+
+    final failure = createFailure;
+    if (failure != null) {
+      return Err(failure);
+    }
+
+    if (payer != null && payer.e164 == self) {
+      return const Err(InvalidInputFailure());
+    }
+
+    final name = payer == null ? '' : riders[payer.e164];
+
+    if (name == null) {
+      return const Err(NotFoundFailure());
+    }
+
+    final request = requestOf(
+      code: 'NEWRQ${created.length + 1}ABCD',
+      role: MoneyRequestRole.requester,
+      open: payer == null,
+      amount: amount,
+      note: note,
+      requesterName: 'Me',
+      requesterPhone: self,
+      payerName: name,
+      payerPhone: payer?.e164 ?? '',
+    );
+    requests.insert(0, request);
+
+    return Ok(request);
+  }
+
+  @override
+  Future<Result<List<MoneyRequest>>> list(MoneyRequestSide side, {MoneyRequestStatus? status}) async => Ok([
+        for (final r in requests)
+          if ((side == MoneyRequestSide.outgoing) == (r.role == MoneyRequestRole.requester) &&
+              (status == null || r.status == status))
+            r,
+      ]);
+
+  @override
+  Future<Result<MoneyRequest>> byCode(String code) async {
+    final i = _index(code);
+
+    return i < 0 ? const Err(NotFoundFailure()) : Ok(requests[i]);
+  }
+
+  @override
+  Future<Result<PaidRequest>> pay(String code, String pin) async {
+    paid.add((code, pin));
+
+    final failure = payFailure;
+    if (failure != null) {
+      payFailure = null;
+
+      return Err(failure);
+    }
+
+    if (pin != this.pin) {
+      return const Err(ForbiddenFailure());
+    }
+
+    final i = _index(code);
+    if (i < 0) {
+      return const Err(NotFoundFailure());
+    }
+
+    final request = requests[i].copyWith(status: MoneyRequestStatus.paid, closedAt: DateTime(2026, 10, 16, 15));
+    requests[i] = request;
+
+    return Ok(PaidRequest(
+      request: request,
+      transferId: 'f3a9c2d1-0000-4000-8000-000000000002',
+      at: DateTime(2026, 10, 16, 15),
+      balance: 12500 - request.amount,
+    ));
+  }
+
+  Result<MoneyRequest> _close(String code, MoneyRequestStatus status) {
+    final i = _index(code);
+    if (i < 0) {
+      return const Err(NotFoundFailure());
+    }
+
+    requests[i] = requests[i].copyWith(status: status, closedAt: DateTime(2026, 10, 16, 15));
+
+    return Ok(requests[i]);
+  }
+
+  @override
+  Future<Result<MoneyRequest>> decline(String code) async {
+    declined.add(code);
+
+    return _close(code, MoneyRequestStatus.declined);
+  }
+
+  @override
+  Future<Result<MoneyRequest>> cancel(String code) async {
+    cancelled.add(code);
+
+    return _close(code, MoneyRequestStatus.cancelled);
+  }
 }
