@@ -17,6 +17,7 @@ class SessionStorage {
   static const _riderKey = 'rider_id';
   static const _deviceKey = 'device_id';
   static const _walletPinKey = 'wallet_pin';
+  static const _couponKey = 'kept_coupon';
 
   static Future<void> saveTokens({
     required String accessToken,
@@ -81,6 +82,29 @@ class SessionStorage {
 
   static Future<void> deleteWalletPin() => _storage.delete(key: _walletPinKey);
 
+  /// A coupon code the rider chose for their next ride, with the identity it is
+  /// for; null when there is none (or it is someone else's).
+  static Future<String?> readKeptCoupon() async {
+    final identity = await readIdentityId();
+    final kept = await _storage.read(key: _couponKey);
+
+    if (identity == null || kept == null || !kept.startsWith('$identity:')) {
+      return null;
+    }
+
+    return kept.substring(identity.length + 1);
+  }
+
+  static Future<void> saveKeptCoupon(String code) async {
+    final identity = await readIdentityId();
+
+    if (identity != null) {
+      await _storage.write(key: _couponKey, value: '$identity:$code');
+    }
+  }
+
+  static Future<void> deleteKeptCoupon() => _storage.delete(key: _couponKey);
+
   /// Forgets the signed-in person. The device id stays.
   static Future<void> clear() async {
     await _storage.delete(key: _accessKey);
@@ -88,5 +112,6 @@ class SessionStorage {
     await _storage.delete(key: _identityKey);
     await _storage.delete(key: _riderKey);
     await _storage.delete(key: _walletPinKey);
+    await _storage.delete(key: _couponKey);
   }
 }

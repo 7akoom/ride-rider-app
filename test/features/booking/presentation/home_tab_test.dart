@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rider_app/core/error/result.dart';
-import 'package:rider_app/core/format/money_format.dart';
 import 'package:rider_app/core/l10n/app_locales.dart';
 import 'package:rider_app/core/l10n/l10n.dart';
 import 'package:rider_app/core/location/location_access.dart';
@@ -17,7 +17,7 @@ void main() {
 
   final l10n = lookupAppLocalizations(AppLocales.arabic);
 
-  testWidgets('greets the rider by first name; pickup and saved places', (tester) async {
+  testWidgets('the booking map: pickup, "Where to?" and saved places', (tester) async {
     usePhoneScreen(tester);
     await pumpApp(
       tester,
@@ -28,13 +28,18 @@ void main() {
       ),
     );
 
-    expect(find.textContaining('Salem'), findsOneWidget);
+    expect(find.text(l10n.homeRide), findsOneWidget);
     expect(find.text(l10n.homePickupFrom('Gulan Street')), findsOneWidget);
     expect(find.text(l10n.savedHome), findsOneWidget);
     expect(find.text(l10n.homeLocationOff), findsNothing);
     expect(find.text(l10n.homeWhereTo), findsOneWidget);
-    expect(find.text(l10n.walletTitle), findsOneWidget);
-    expect(find.text(formatMoney(l10n, 12500)), findsOneWidget);
+  });
+
+  testWidgets('opened from the home, it has a way back', (tester) async {
+    usePhoneScreen(tester);
+    await pumpApp(tester, const BookingMapScreen(), inScaffold: false, overrides: bookingFakes());
+
+    expect(find.byIcon(Icons.arrow_back), findsOneWidget);
   });
 
   testWidgets('location off: the notice, and "Turn on" asks', (tester) async {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,50 +45,77 @@ final _mapRouteProvider = Provider.autoDispose.family<MapRoute, TripDraft>((ref,
 
 /// 11: the route on the map, and the ride types with their fixed prices. Requesting
 /// opens the search for a captain (15).
-class ChooseRideScreen extends ConsumerWidget {
-  const ChooseRideScreen({super.key, required this.draft});
+class ChooseRideScreen extends ConsumerStatefulWidget {
+  const ChooseRideScreen({super.key, required this.draft, this.schedule = false});
 
   /// A complete draft: pickup and destination are known.
   final TripDraft draft;
 
+  /// Booking ahead (the home's "Book ahead"): the time sheet opens by itself once the
+  /// prices are there.
+  final bool schedule;
+
   /// The most of the screen the panel takes; the route is framed above it.
   static const double panelShare = 0.75;
 
-  Future<void> _order(BuildContext context, WidgetRef ref) async {
+  @override
+  ConsumerState<ChooseRideScreen> createState() => _ChooseRideScreenState();
+}
+
+class _ChooseRideScreenState extends ConsumerState<ChooseRideScreen> {
+  /// The time sheet opened by itself already (once, not on every new price).
+  bool _askedTime = false;
+
+  TripDraft get draft => widget.draft;
+
+  Future<void> _order() async {
     final ride = await ref.read(chooseRideControllerProvider(draft).notifier).order();
 
-    if (ride != null && context.mounted) {
+    if (ride != null && mounted) {
       await openSearching(context, ride);
     }
   }
 
   /// 13 then 17: the chosen ride type booked for a later time.
-  Future<void> _schedule(BuildContext context, WidgetRef ref) async {
+  Future<void> _schedule() async {
     final at = await showScheduleSheet(context);
-    if (at == null || !context.mounted) {
+    if (at == null || !mounted) {
       return;
     }
 
     final estimate = ref.read(chooseRideControllerProvider(draft)).selected?.total;
     final booking = await ref.read(chooseRideControllerProvider(draft).notifier).book(at);
 
-    if (booking != null && context.mounted) {
+    if (booking != null && mounted) {
       await openScheduled(context, booking, estimate: estimate);
     }
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final noRoad = switch (ref.watch(_routeProvider(draft))) {
       AsyncData(value: Err(:final failure)) => isNoRoad(failure),
       _ => false,
     };
 
+    if (widget.schedule) {
+      ref.listen(chooseRideControllerProvider(draft), (_, next) {
+        if (!_askedTime && next.selected != null) {
+          _askedTime = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              unawaited(_schedule());
+            }
+          });
+        }
+      });
+    }
+
     return AppScaffold(
       topBar: AppTopBar(title: context.l10n.chooseRideTitle),
       padded: false,
       body: MapLayout(
-        panelShare: panelShare,
+        panelShare: ChooseRideScreen.panelShare,
         map: (covered) => AppMap(
           center: draft.pickup!.point,
           route: ref.watch(_mapRouteProvider(draft)),
@@ -97,8 +126,8 @@ class ChooseRideScreen extends ConsumerWidget {
           noRoad: noRoad,
           onPayment: () => showPaymentSheet(context, draft),
           onPassenger: () => showPassengerSheet(context, draft),
-          onOrder: () => _order(context, ref),
-          onSchedule: () => _schedule(context, ref),
+          onOrder: _order,
+          onSchedule: _schedule,
         ),
       ),
     );

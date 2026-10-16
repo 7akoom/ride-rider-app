@@ -53,6 +53,26 @@ void main() {
     expect(find.textContaining('٠'), findsNothing);
   });
 
+  testWidgets('"Book ahead" from the home opens the time sheet once the prices are there',
+      (tester) async {
+    usePhoneScreen(tester);
+    await pumpApp(
+      tester,
+      ChooseRideScreen(draft: _draft, schedule: true),
+      inScaffold: false,
+      overrides: bookingFakes(),
+    );
+
+    expect(find.byType(ScheduleSheet), findsOneWidget);
+
+    await tester.ensureVisible(find.text(l10n.scheduleConfirm));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.scheduleConfirm));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(ScheduledScreen), findsOneWidget);
+  });
+
   testWidgets('booking for later shows the booking; cancelling it asks first',
       (tester) async {
     final schedules = FakeSchedules();

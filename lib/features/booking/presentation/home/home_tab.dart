@@ -8,19 +8,36 @@ import '../../../../design/map/app_map.dart';
 import '../../../../design/tokens/metrics.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/saved_place.dart';
-import '../../domain/entities/trip_draft.dart';
 import '../../domain/use_cases/spot_of_saved.dart';
-import '../choose_ride/choose_ride_screen.dart';
-import '../legacy_routes.dart';
-import '../where_to/where_to_controller.dart';
-import '../where_to/where_to_screen.dart';
-import '../../../wallet/presentation/wallet_screen.dart';
 import 'home_panel.dart';
 import 'home_state.dart';
+import 'start_trip.dart';
+
+/// Opens the booking map from the home ("Ride").
+Future<void> openBookingMap(BuildContext context) => Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const BookingMapScreen()),
+    );
+
+/// 07 as its own screen, behind the home: the map around the rider and the panel
+/// that starts a booking.
+class BookingMapScreen extends StatelessWidget {
+  const BookingMapScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppScaffold(
+      padded: false,
+      body: HomeTab(onBack: () => Navigator.of(context).maybePop()),
+    );
+  }
+}
 
 /// 07: the map around the rider, and the panel that starts a booking.
 class HomeTab extends ConsumerStatefulWidget {
-  const HomeTab({super.key});
+  const HomeTab({super.key, this.onBack});
+
+  /// Shows a back button over the map.
+  final VoidCallback? onBack;
 
   @override
   ConsumerState<HomeTab> createState() => _HomeTabState();
@@ -69,25 +86,10 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     }
   }
 
-  void _whereTo() {
-    final pickup = ref.read(pickupProvider).valueOrNull;
-
-    Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => WhereToScreen(start: WhereToStart(pickup: pickup)),
-    ));
-  }
+  void _whereTo() => openWhereTo(context, ref);
 
   /// A saved place is the destination: straight to the trip when the pickup is known.
-  void _goToSaved(SavedPlace place) {
-    final pickup = ref.read(pickupProvider).valueOrNull;
-    final destination = spotOfSaved(place);
-
-    Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => pickup == null
-          ? WhereToScreen(start: WhereToStart(destination: destination))
-          : ChooseRideScreen(draft: TripDraft(pickup: pickup, destination: destination)),
-    ));
-  }
+  void _goToSaved(SavedPlace place) => openTripTo(context, ref, spotOfSaved(place));
 
   @override
   Widget build(BuildContext context) {
@@ -111,16 +113,17 @@ class _HomeTabState extends ConsumerState<HomeTab> {
       ),
       buttons: Stack(
         children: [
-          PositionedDirectional(
-            top: Space.x3,
-            end: Space.gutter,
-            child: AppIconButton(
-              icon: Icons.notifications_outlined,
-              semanticLabel: l10n.homeNotifications,
-              floating: true,
-              onPressed: () => openLegacyNotifications(context),
+          if (widget.onBack != null)
+            PositionedDirectional(
+              top: Space.x3,
+              start: Space.gutter,
+              child: AppIconButton(
+                icon: Icons.arrow_back,
+                semanticLabel: MaterialLocalizations.of(context).backButtonTooltip,
+                floating: true,
+                onPressed: widget.onBack,
+              ),
             ),
-          ),
           PositionedDirectional(
             bottom: Space.x4,
             end: Space.gutter,
@@ -137,7 +140,6 @@ class _HomeTabState extends ConsumerState<HomeTab> {
         onWhereTo: _whereTo,
         onSavedPlace: _goToSaved,
         onTurnOnLocation: _turnOnLocation,
-        onWallet: () => openWallet(context),
       ),
     );
   }

@@ -50,7 +50,9 @@ class _WhereToScreenState extends ConsumerState<WhereToScreen> {
     if (complete && mounted) {
       final draft = ref.read(whereToControllerProvider(widget.start)).draft;
       await Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => ChooseRideScreen(draft: draft)),
+        MaterialPageRoute<void>(
+          builder: (_) => ChooseRideScreen(draft: draft, schedule: widget.start.schedule),
+        ),
       );
     }
   }

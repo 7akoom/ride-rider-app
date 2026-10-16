@@ -14,10 +14,13 @@ import 'where_to_state.dart';
 /// Where the where-to screen starts: the pickup the home screen found, and a
 /// destination when a saved place was tapped.
 final class WhereToStart {
-  const WhereToStart({this.pickup, this.destination});
+  const WhereToStart({this.pickup, this.destination, this.schedule = false});
 
   final Spot? pickup;
   final Spot? destination;
+
+  /// Booking ahead: the prices open with the time sheet.
+  final bool schedule;
 }
 
 final whereToControllerProvider = NotifierProvider.autoDispose

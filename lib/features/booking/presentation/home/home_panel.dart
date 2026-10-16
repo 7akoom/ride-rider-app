@@ -6,37 +6,32 @@ import '../../../../core/location/location_access.dart';
 import '../../../../design/components/components.dart';
 import '../../../../design/design_context.dart';
 import '../../../../design/tokens/metrics.dart';
-import '../../domain/entities/day_part.dart';
 import '../../domain/entities/saved_place.dart';
-import '../../../wallet/presentation/wallet_state.dart';
 import 'home_state.dart';
 
-/// The sheet under the map: the greeting and pickup, the location notice when needed,
-/// "Where to?" and the saved places.
+/// The sheet under the map: the pickup, the location notice when needed, "Where to?"
+/// and the saved places.
 class HomePanel extends ConsumerWidget {
   const HomePanel({
     super.key,
     required this.onWhereTo,
     required this.onSavedPlace,
     required this.onTurnOnLocation,
-    required this.onWallet,
   });
 
   final VoidCallback onWhereTo;
   final ValueChanged<SavedPlace> onSavedPlace;
   final VoidCallback onTurnOnLocation;
-  final VoidCallback onWallet;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final status = ref.watch(locationStatusProvider).valueOrNull;
     final shortcuts = ref.watch(shortcutsProvider).valueOrNull ?? const <SavedPlace>[];
-    final balance = ref.watch(walletBalanceProvider);
 
     return MapPanel(
       children: [
-        const _Greeting(),
+        Text(l10n.homeRide, style: context.typo.h2),
         const SizedBox(height: Space.x1),
         const _PickupLine(),
         if (status != null && status != LocationAccessStatus.granted) ...[
@@ -66,12 +61,6 @@ class HomePanel extends ConsumerWidget {
           ),
         ],
         const SizedBox(height: Space.x2),
-        AppListRow(
-          icon: Icons.account_balance_wallet_outlined,
-          title: l10n.walletTitle,
-          trailing: balance == null ? null : MoneyText(balance, style: context.typo.bodyStrong),
-          onTap: onWallet,
-        ),
       ],
     );
   }
@@ -87,36 +76,6 @@ class HomePanel extends ConsumerWidget {
         SavedPlaceKind.work => l10n.savedWork,
         SavedPlaceKind.other => place.label,
       };
-}
-
-class _Greeting extends ConsumerWidget {
-  const _Greeting();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final name = ref.watch(riderFirstNameProvider);
-
-    if (name.isLoading) {
-      return const SkeletonView(child: SkeletonBox(width: 180, height: 28));
-    }
-
-    final first = name.valueOrNull;
-    final text = first == null
-        ? l10n.homeGreetingPlain
-        : switch (DayPart.of(DateTime.now())) {
-            DayPart.morning => l10n.homeGreetingMorning(first),
-            DayPart.afternoon => l10n.homeGreetingAfternoon(first),
-            DayPart.evening => l10n.homeGreetingEvening(first),
-          };
-
-    return Text(
-      text,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: context.typo.h2,
-    );
-  }
 }
 
 class _PickupLine extends ConsumerWidget {

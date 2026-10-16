@@ -2567,5 +2567,203 @@
   "requestNotPaid": "It wasn't paid. Try again.",
   "@requestNotPaid": {
     "description": "A refusal without a known reason."
+  },
+  "homeRide": "Ride",
+  "@homeRide": {
+    "description": "Home service tile and booking map title: order a ride now."
+  },
+  "homeSchedule": "Book ahead",
+  "@homeSchedule": {
+    "description": "Home service tile: book a ride for later."
+  },
+  "homeBalance": "Balance",
+  "@homeBalance": {
+    "description": "Home shortcut card title for the wallet balance."
+  },
+  "homeRideTo": "Ride to",
+  "@homeRideTo": {
+    "description": "Home shortcut card title above a saved place (Home, Work)."
+  },
+  "homeLastTrip": "Last destination",
+  "@homeLastTrip": {
+    "description": "Home shortcut card title above where the last trip ended."
+  },
+  "homeWaitingRequests": "{count, plural, =1{1 request waiting} other{{count} requests waiting}}",
+  "@homeWaitingRequests": {
+    "description": "Screen reader text of the wallet tile badge.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "offersTitle": "Offers",
+  "@offersTitle": {
+    "description": "Home section of discounts and coupons."
+  },
+  "offerPercent": "{percent}% off",
+  "@offerPercent": {
+    "description": "A coupon's discount as a percent.",
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "offerAmount": "{amount} off",
+  "@offerAmount": {
+    "description": "A coupon's discount as an amount with the currency.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "offerUpTo": "Up to {amount}",
+  "@offerUpTo": {
+    "description": "The most a percentage discount takes off.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "offerUntil": "Until {date}",
+  "@offerUntil": {
+    "description": "Last day of an offer.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "offerDefaultDescription": "A discount on your rides",
+  "@offerDefaultDescription": {
+    "description": "Shown when a coupon has no description."
+  },
+  "offerMinimumFare": "On rides from {amount}",
+  "@offerMinimumFare": {
+    "description": "A coupon's minimum fare.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "offerSomeClasses": "On some ride types only",
+  "@offerSomeClasses": {
+    "description": "A coupon limited to ride types; the price says which."
+  },
+  "offerSomeAreas": "In some areas only",
+  "@offerSomeAreas": {
+    "description": "A coupon limited to areas; the price says whether a pickup is in one."
+  },
+  "offerNewRiders": "For your first ride",
+  "@offerNewRiders": {
+    "description": "A coupon only for riders without a completed trip."
+  },
+  "offerUsesLeft": "{count, plural, =1{Once} other{{count} rides}}",
+  "@offerUsesLeft": {
+    "description": "How many more of the rider's rides a coupon may take off.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "offerCode": "Code",
+  "@offerCode": {
+    "description": "Label before a coupon code."
+  },
+  "offerCopy": "Copy the code",
+  "@offerCopy": {
+    "description": "Copies a coupon code."
+  },
+  "offerCopied": "Code copied",
+  "@offerCopied": {
+    "description": "The code is on the clipboard."
+  },
+  "offerUseNext": "Use on my next ride",
+  "@offerUseNext": {
+    "description": "Keeps the coupon for the next ride's price."
+  },
+  "offerKept": "{code} will be applied to your next ride",
+  "@offerKept": {
+    "description": "A coupon kept for the next ride.",
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "offerKeptBadge": "Kept for your next ride",
+  "@offerKeptBadge": {
+    "description": "The coupon shown is already kept."
+  },
+  "offerDetails": "Details",
+  "@offerDetails": {
+    "description": "Opens a coupon's details."
+  },
+  "offerFirstRideTitle": "{percent}% off your first ride",
+  "@offerFirstRideTitle": {
+    "description": "The first-ride discount.",
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "offerAutomatic": "Applied by itself, no code needed",
+  "@offerAutomatic": {
+    "description": "A discount without a code."
+  },
+  "offerLoyaltyTitle": "{percent}% off every {every, plural, =1{ride} other{{every} rides}}",
+  "@offerLoyaltyTitle": {
+    "description": "The loyalty discount.",
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      },
+      "every": {
+        "type": "int"
+      }
+    }
+  },
+  "offerLoyaltyNext": "Your next ride is discounted",
+  "@offerLoyaltyNext": {
+    "description": "The next ride gets the loyalty discount."
+  },
+  "offerLoyaltyToGo": "{count, plural, other{{count} rides to your discount}}",
+  "@offerLoyaltyToGo": {
+    "description": "How many rides until the loyalty discount (2 or more).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "offerLoyaltyProgress": "{done} of {every} rides",
+  "@offerLoyaltyProgress": {
+    "description": "Screen reader text of the loyalty progress bar.",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "every": {
+        "type": "int"
+      }
+    }
+  },
+  "promoTitle": "Enter a promo code",
+  "@promoTitle": {
+    "description": "Home row and sheet title for typing a coupon code."
+  },
+  "promoSubtitle": "It applies to your next ride",
+  "@promoSubtitle": {
+    "description": "Under the promo code row."
+  },
+  "promoBody": "We check the code now and apply it to your next ride's price.",
+  "@promoBody": {
+    "description": "Promo code sheet text."
   }
 }

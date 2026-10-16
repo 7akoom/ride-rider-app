@@ -7,15 +7,19 @@ import 'package:rider_app/features/booking/domain/entities/payment_method.dart';
 import 'package:rider_app/features/booking/domain/entities/trip_draft.dart';
 import 'package:rider_app/features/booking/presentation/choose_ride/choose_ride_controller.dart';
 import 'package:rider_app/features/booking/presentation/choose_ride/choose_ride_state.dart';
+import 'package:rider_app/features/offers/offers_providers.dart';
 
 import '../fakes.dart';
 
 final _draft = TripDraft(pickup: spotNamed('Gulan'), destination: spotNamed('Mall'));
 
 /// A container with [rides], whose controller stays alive for the test.
-Future<(ProviderContainer, ChooseRideController)> _open(FakeRides rides) async {
+Future<(ProviderContainer, ChooseRideController)> _open(FakeRides rides, {FakeOffers? offers}) async {
   final container = ProviderContainer(
-    overrides: [ridesRepositoryProvider.overrideWithValue(rides)],
+    overrides: [
+      ridesRepositoryProvider.overrideWithValue(rides),
+      offersRepositoryProvider.overrideWithValue(offers ?? FakeOffers()),
+    ],
   );
   addTearDown(container.dispose);
   container.listen(chooseRideControllerProvider(_draft), (_, __) {});
@@ -27,6 +31,54 @@ Future<(ProviderContainer, ChooseRideController)> _open(FakeRides rides) async {
 ChooseRideState _state(ProviderContainer c) => c.read(chooseRideControllerProvider(_draft));
 
 void main() {
+  group('a code kept on the home for the next ride', () {
+    test('is tried on the first prices, and forgotten once a trip used it', () async {
+      final rides = FakeRides();
+      final offers = FakeOffers(kept: FakeRides.goodCode);
+      final (container, controller) = await _open(rides, offers: offers);
+
+      expect(rides.couponsTried.first, FakeRides.goodCode);
+      expect(_state(container).coupon, CouponResult.applied);
+      expect(offers.kept, FakeRides.goodCode);
+
+      await controller.order();
+      await pumpEventQueue();
+
+      expect(offers.kept, isNull);
+    });
+
+    test('is forgotten when the rider removes it', () async {
+      final offers = FakeOffers(kept: FakeRides.goodCode);
+      final (_, controller) = await _open(FakeRides(), offers: offers);
+
+      await controller.removeCoupon();
+      await pumpEventQueue();
+
+      expect(offers.kept, isNull);
+    });
+
+    test('is forgotten when no ride type will take it', () async {
+      final offers = FakeOffers(kept: 'GONE26');
+      final (container, _) = await _open(FakeRides(), offers: offers);
+      await pumpEventQueue();
+
+      expect(_state(container).coupon, CouponResult.notFound);
+      expect(offers.kept, isNull);
+    });
+
+    test('a code typed here is never forgotten for the rider', () async {
+      final offers = FakeOffers(kept: FakeRides.goodCode);
+      final (_, controller) = await _open(FakeRides(), offers: offers);
+
+      await controller.applyCoupon('other');
+      await controller.removeCoupon();
+      await pumpEventQueue();
+
+      expect(offers.forgotten, 0);
+      expect(offers.kept, FakeRides.goodCode);
+    });
+  });
+
   test('the cheapest ride is chosen first, and a choice survives new prices', () async {
     final (container, controller) = await _open(FakeRides());
 

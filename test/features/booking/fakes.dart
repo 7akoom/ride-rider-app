@@ -7,6 +7,8 @@ import 'package:rider_app/core/rider/rider_providers.dart';
 import 'package:rider_app/features/booking/booking_providers.dart';
 import 'package:rider_app/features/booking/trip_end_providers.dart';
 import 'package:rider_app/features/wallet/wallet_providers.dart';
+import 'package:rider_app/features/home/home_providers.dart';
+import 'package:rider_app/features/offers/offers_providers.dart';
 import 'package:rider_app/features/booking/domain/entities/route_estimate.dart';
 import 'package:rider_app/features/booking/domain/entities/saved_place.dart';
 import 'package:rider_app/features/booking/domain/entities/spot.dart';
@@ -20,6 +22,7 @@ import 'fake_captains.dart';
 import 'fake_rides.dart';
 import 'fake_safety.dart';
 import 'fake_trip_end.dart';
+import '../offers/fake_offers.dart';
 import '../wallet/fake_wallet.dart';
 import 'fake_schedules.dart';
 
@@ -29,6 +32,7 @@ export 'fake_captains.dart';
 export 'fake_rides.dart';
 export 'fake_safety.dart';
 export 'fake_trip_end.dart';
+export '../offers/fake_offers.dart';
 export '../wallet/fake_wallet.dart';
 export 'fake_schedules.dart';
 
@@ -130,6 +134,8 @@ List<Override> bookingFakes({
   FakeTransfers? transfers,
   FakeBiometricPin? biometric,
   FakeMoneyRequests? requests,
+  FakeOffers? offers,
+  FakeRecentDestinations? recent,
 }) =>
     [
       routesRepositoryProvider.overrideWithValue(routes ?? FakeRoutes()),
@@ -149,4 +155,6 @@ List<Override> bookingFakes({
       transferRepositoryProvider.overrideWithValue(transfers ?? FakeTransfers()),
       biometricPinProvider.overrideWithValue(biometric ?? FakeBiometricPin()),
       moneyRequestRepositoryProvider.overrideWithValue(requests ?? FakeMoneyRequests()),
+      offersRepositoryProvider.overrideWithValue(offers ?? FakeOffers()),
+      recentDestinationsRepositoryProvider.overrideWithValue(recent ?? FakeRecentDestinations()),
     ];

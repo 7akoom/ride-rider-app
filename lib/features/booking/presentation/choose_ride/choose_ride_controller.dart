@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/error/result.dart';
 import '../../../../core/security/random_key.dart';
+import '../../../offers/offers_providers.dart';
 import '../../booking_providers.dart';
 import '../../domain/entities/fare_quote.dart';
 import '../../domain/entities/passenger.dart';
@@ -39,10 +40,48 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
     });
     // After build: loading reads and sets the state, which exists only once build
     // has returned it.
-    unawaited(Future.microtask(_load));
+    unawaited(Future.microtask(_start));
 
     return const ChooseRideState();
   }
+
+  /// The code the rider kept for their next ride (an offer on the home) is tried
+  /// first, as if they had typed it here.
+  String? _keptCode;
+
+  Future<void> _start() async {
+    _keptCode = await ref.read(keepCodeProvider).kept();
+
+    if (_closed) {
+      return;
+    }
+
+    if (_keptCode != null && state.couponCode == null) {
+      state = state.copyWith(couponCode: _keptCode);
+    }
+
+    await _load();
+  }
+
+  /// The kept code goes once it did its work or can no longer: used on a trip,
+  /// removed here, or refused for good on every ride type.
+  Future<void> _forgetKept() async {
+    if (_keptCode == null) {
+      return;
+    }
+
+    _keptCode = null;
+    await ref.read(keepCodeProvider).forget();
+  }
+
+  static const Set<CouponResult> _refusedForGood = {
+    CouponResult.notFound,
+    CouponResult.ended,
+    CouponResult.expired,
+    CouponResult.usedUp,
+    CouponResult.alreadyUsed,
+    CouponResult.newRidersOnly,
+  };
 
   Future<void> _load() async {
     _refresh?.cancel();
@@ -67,6 +106,13 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
           selectedClass: _keptSelection(value),
         );
         _scheduleRefresh(value);
+
+        if (state.couponCode != null &&
+            state.couponCode == _keptCode &&
+            value.quotes.isNotEmpty &&
+            value.quotes.every((quote) => _refusedForGood.contains(quote.coupon))) {
+          unawaited(_forgetKept());
+        }
       case Err(:final failure):
         state = state.copyWith(loading: false, quotes: null, quoteFailure: failure);
     }
@@ -111,6 +157,10 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
   }
 
   Future<void> removeCoupon() async {
+    if (state.couponCode == _keptCode) {
+      unawaited(_forgetKept());
+    }
+
     state = state.copyWith(couponCode: null);
     await _load();
   }
@@ -135,6 +185,10 @@ class ChooseRideController extends AutoDisposeFamilyNotifier<ChooseRideState, Tr
     switch (result) {
       case Ok(:final value):
         state = state.copyWith(ordering: false);
+
+        if (quote.coupon == CouponResult.applied && state.couponCode == _keptCode) {
+          unawaited(_forgetKept());
+        }
 
         return value;
       case Err(:final failure):
