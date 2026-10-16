@@ -1,6 +1,7 @@
 import 'package:rider_app/core/error/failure.dart';
 import 'package:rider_app/core/error/result.dart';
 import 'package:rider_app/core/phone/phone_number.dart';
+import 'package:rider_app/features/wallet/domain/entities/biometric.dart';
 import 'package:rider_app/features/wallet/domain/entities/statement.dart';
 import 'package:rider_app/features/wallet/domain/entities/top_up.dart';
 import 'package:rider_app/features/wallet/domain/entities/transfer.dart';
@@ -8,6 +9,7 @@ import 'package:rider_app/features/wallet/domain/entities/voucher_credit.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_movement.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_overview.dart';
 import 'package:rider_app/features/wallet/domain/entities/wallet_pin.dart';
+import 'package:rider_app/features/wallet/domain/repositories/biometric_pin_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/transfer_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_pin_repository.dart';
 import 'package:rider_app/features/wallet/domain/repositories/wallet_repository.dart';
@@ -274,4 +276,34 @@ class FakeTransfers implements TransferRepository {
       ),
     );
   }
+}
+
+/// The phone's fingerprint check: [kind] is what it has (null: none), [confirms] what
+/// the prompt answers, [pin] the PIN kept (null: paying this way is off).
+class FakeBiometricPin implements BiometricPinRepository {
+  FakeBiometricPin({this.kind, this.confirms = true, this.pin});
+
+  BiometricKind? kind;
+  bool confirms;
+  String? pin;
+  final List<String> prompts = [];
+
+  @override
+  Future<BiometricKind?> available() async => kind;
+
+  @override
+  Future<bool> confirm(String reason) async {
+    prompts.add(reason);
+
+    return confirms;
+  }
+
+  @override
+  Future<String?> kept() async => pin;
+
+  @override
+  Future<void> keep(String pin) async => this.pin = pin;
+
+  @override
+  Future<void> forget() async => pin = null;
 }

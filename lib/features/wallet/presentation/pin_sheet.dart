@@ -8,7 +8,9 @@ import '../../../core/l10n/l10n.dart';
 import '../../../design/components/components.dart';
 import '../../../design/design_context.dart';
 import '../../../design/tokens/metrics.dart';
+import '../domain/entities/biometric.dart';
 import '../domain/entities/wallet_pin.dart';
+import 'biometric_unlock.dart';
 import 'pin_pad.dart';
 import 'pin_reset_screen.dart';
 import 'wallet_pin_controller.dart';
@@ -38,28 +40,32 @@ final class PinSheetClosed extends PinSheetOutcome {
 }
 
 /// 35: confirms money leaving the wallet with the PIN. [submit] gets each PIN typed;
-/// true when it was accepted. [lockedUntil] opens it on a locked PIN.
+/// true when it was accepted. [lockedUntil] opens it on a locked PIN. With
+/// [biometric] the phone's prompt shows at once and gives the kept PIN; the pad stays
+/// for typing it instead.
 Future<bool> showPinSheet(
   BuildContext context, {
   required String detail,
   required Future<PinSheetOutcome> Function(String pin) submit,
   DateTime? lockedUntil,
+  BiometricUnlock? biometric,
 }) async {
   final accepted = await showAppSheet<bool>(
     context: context,
-    builder: (_) => PinSheet(detail: detail, submit: submit, lockedUntil: lockedUntil),
+    builder: (_) => PinSheet(detail: detail, submit: submit, lockedUntil: lockedUntil, biometric: biometric),
   );
 
   return accepted ?? false;
 }
 
 class PinSheet extends StatefulWidget {
-  const PinSheet({super.key, required this.detail, required this.submit, this.lockedUntil});
+  const PinSheet({super.key, required this.detail, required this.submit, this.lockedUntil, this.biometric});
 
   /// What the PIN confirms ("5,000 IQD to Haidar K.").
   final String detail;
   final Future<PinSheetOutcome> Function(String pin) submit;
   final DateTime? lockedUntil;
+  final BiometricUnlock? biometric;
 
   @override
   State<PinSheet> createState() => _PinSheetState();
@@ -70,6 +76,10 @@ class _PinSheetState extends State<PinSheet> {
   bool _busy = false;
   PinProblem? _problem;
 
+  /// The kept PIN was refused: it changed since paying this way was turned on. The
+  /// rider types it (and it is kept again once it is taken).
+  bool _stale = false;
+
   @override
   void initState() {
     super.initState();
@@ -77,10 +87,29 @@ class _PinSheetState extends State<PinSheet> {
 
     if (locked != null) {
       _problem = PinLocked(locked);
+    } else if (widget.biometric != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(_useBiometric()));
     }
   }
 
   bool get _locked => _problem is PinLocked;
+
+  bool get _canUseBiometric => widget.biometric != null && !_stale && !_locked && !_busy;
+
+  Future<void> _useBiometric() async {
+    final biometric = widget.biometric;
+
+    if (!mounted || biometric == null || !_canUseBiometric) {
+      return;
+    }
+
+    final pin = await biometric.unlock();
+
+    // Cancelled or not confirmed: the pad is there to type it.
+    if (pin != null && mounted && !_busy) {
+      await _submit(pin, kept: true);
+    }
+  }
 
   void _digit(String digit) {
     if (_busy || _locked || _typed.length >= WalletPin.length) {
@@ -108,7 +137,7 @@ class _PinSheetState extends State<PinSheet> {
     setState(() => _typed = _typed.substring(0, _typed.length - 1));
   }
 
-  Future<void> _submit(String pin) async {
+  Future<void> _submit(String pin, {bool kept = false}) async {
     setState(() => _busy = true);
     final outcome = await widget.submit(pin);
 
@@ -118,7 +147,15 @@ class _PinSheetState extends State<PinSheet> {
 
     switch (outcome) {
       case PinAccepted():
-        Navigator.of(context).pop(true);
+        final biometric = widget.biometric;
+
+        if (!kept && biometric != null) {
+          await biometric.keep(pin);
+        }
+
+        if (mounted) {
+          Navigator.of(context).pop(true);
+        }
       case PinSheetClosed():
         Navigator.of(context).pop(false);
       case PinRefused(:final problem):
@@ -126,6 +163,7 @@ class _PinSheetState extends State<PinSheet> {
           _busy = false;
           _typed = '';
           _problem = problem;
+          _stale = _stale || (kept && problem is WrongCurrentPin);
         });
     }
   }
@@ -144,6 +182,7 @@ class _PinSheetState extends State<PinSheet> {
 
   String? _message(AppLocalizations l10n) => switch (_problem) {
         null => null,
+        WrongCurrentPin() when _stale => l10n.pinBiometricStale,
         WrongCurrentPin(:final attemptsLeft) => l10n.pinWrongCurrent(attemptsLeft),
         PinLocked(:final until) => l10n.pinLocked(formatClock(l10n, until)),
         PinFailed(:final failure) => failure.message(l10n),
@@ -177,8 +216,16 @@ class _PinSheetState extends State<PinSheet> {
             ),
             if (_busy)
               SizedBox(height: Sizes.buttonHeight, child: Center(child: LoadingDots(color: context.palette.brandStrong)))
-            else
+            else ...[
+              if (_canUseBiometric)
+                AppButton(
+                  label: widget.biometric!.kind == BiometricKind.face ? l10n.pinUseFace : l10n.pinUseFingerprint,
+                  icon: widget.biometric!.kind == BiometricKind.face ? Icons.face_outlined : Icons.fingerprint,
+                  variant: AppButtonVariant.secondary,
+                  onPressed: () => unawaited(_useBiometric()),
+                ),
               AppButton(label: l10n.pinForgot, variant: AppButtonVariant.text, onPressed: _reset),
+            ],
           ],
         ],
       ),

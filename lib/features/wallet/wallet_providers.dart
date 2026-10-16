@@ -1,12 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/network/api_client_provider.dart';
+import 'data/biometric_pin_repository_impl.dart';
 import 'data/transfer_api.dart';
 import 'data/transfer_repository_impl.dart';
 import 'data/wallet_api.dart';
 import 'data/wallet_pin_api.dart';
 import 'data/wallet_pin_repository_impl.dart';
 import 'data/wallet_repository_impl.dart';
+import 'domain/repositories/biometric_pin_repository.dart';
 import 'domain/repositories/transfer_repository.dart';
 import 'domain/repositories/wallet_pin_repository.dart';
 import 'domain/repositories/wallet_repository.dart';
@@ -54,6 +56,10 @@ final setWalletPinProvider = Provider<SetWalletPin>((ref) => SetWalletPin(ref.wa
 final verifyWalletPinProvider = Provider<VerifyWalletPin>(
   (ref) => VerifyWalletPin(ref.watch(walletPinRepositoryProvider)),
 );
+
+// Paying with a fingerprint or the face instead of typing the PIN. Tests override it.
+
+final biometricPinProvider = Provider<BiometricPinRepository>((ref) => BiometricPinRepositoryImpl());
 
 // Sending money to other riders. Tests override transferRepositoryProvider.
 

@@ -217,6 +217,17 @@ class WalletPinController extends AutoDisposeFamilyNotifier<PinFlow, PinMode> {
     switch (result) {
       case Ok():
         ref.invalidate(pinStatusProvider);
+        // Paying with a fingerprint or the face keeps working with the new PIN.
+        final biometric = ref.read(biometricPinProvider);
+
+        if (await biometric.kept() != null) {
+          await biometric.keep(pin);
+        }
+
+        if (_disposed) {
+          return;
+        }
+
         state = state.copyWith(step: PinStep.done, typed: '', clearProblem: true);
 
       case Err(failure: InvalidInputFailure()):

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,7 +9,9 @@ import '../../../core/format/time_format.dart';
 import '../../../core/l10n/l10n.dart';
 import '../../../design/components/components.dart';
 import '../../../design/tokens/metrics.dart';
+import '../domain/entities/biometric.dart';
 import '../domain/entities/wallet_pin.dart';
+import 'biometric_unlock.dart';
 import 'balance_card.dart';
 import 'movement_view.dart';
 import 'movements_screen.dart';
@@ -67,6 +71,18 @@ class WalletScreen extends ConsumerWidget {
       _ => null,
     };
 
+    // Paying with a fingerprint or the face: offered once there is a PIN, on a phone
+    // that has one set up.
+    // Read with the last value while it loads again, so the row does not blink.
+    final hasPin = switch (ref.watch(pinStatusProvider).valueOrNull) {
+      Ok(:final value) => value.isSet,
+      _ => false,
+    };
+    final biometric = switch (ref.watch(biometricProvider).valueOrNull) {
+      final BiometricState value when value.available && hasPin => value,
+      _ => null,
+    };
+
     final body = switch (result) {
       AsyncData(value: Ok(value: (final overview, final recent))) => [
           BalanceCard(balance: overview.balance),
@@ -109,6 +125,11 @@ class WalletScreen extends ConsumerWidget {
               subtitle: _pinSubtitle(l10n, pin),
               onTap: () => openWalletPin(context, pin),
             ),
+          if (biometric != null)
+            _BiometricRow(
+              state: biometric,
+              onChanged: (on) => unawaited(switchBiometric(context, ref, on: on, pin: pin)),
+            ),
         ],
       AsyncData(value: Err(:final failure)) => [
           FailureView(failure: failure, onRetry: () => ref.invalidate(walletProvider)),
@@ -126,6 +147,7 @@ class WalletScreen extends ConsumerWidget {
         onRefresh: () {
           ref.invalidate(topUpOptionsProvider);
           ref.invalidate(pinStatusProvider);
+          ref.invalidate(biometricProvider);
 
           return ref.refresh(walletProvider.future);
         },
@@ -146,5 +168,31 @@ class WalletScreen extends ConsumerWidget {
     }
 
     return pin.isSet ? l10n.walletPinIsSet : l10n.walletPinNotSet;
+  }
+}
+
+/// "Pay with fingerprint": a switch; turning it on takes the PIN once. The wallet
+/// screen does the switching: this row may go while the PIN's status loads again.
+class _BiometricRow extends StatelessWidget {
+  const _BiometricRow({required this.state, required this.onChanged});
+
+  final BiometricState state;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final face = state.kind == BiometricKind.face;
+    void flip() => onChanged(!state.enabled);
+
+    return MergeSemantics(
+      child: AppListRow(
+        icon: face ? Icons.face_outlined : Icons.fingerprint,
+        title: face ? l10n.walletBiometricFace : l10n.walletBiometricFingerprint,
+        subtitle: l10n.walletBiometricSubtitle,
+        onTap: flip,
+        trailing: Switch.adaptive(value: state.enabled, onChanged: (_) => flip()),
+      ),
+    );
   }
 }

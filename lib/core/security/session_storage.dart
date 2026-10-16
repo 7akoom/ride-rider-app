@@ -16,6 +16,7 @@ class SessionStorage {
   static const _identityKey = 'identity_id';
   static const _riderKey = 'rider_id';
   static const _deviceKey = 'device_id';
+  static const _walletPinKey = 'wallet_pin';
 
   static Future<void> saveTokens({
     required String accessToken,
@@ -57,11 +58,35 @@ class SessionStorage {
     return id;
   }
 
+  /// The wallet PIN kept for paying with a fingerprint or the face, with the identity
+  /// it belongs to; null when it is not kept (or kept for someone else).
+  static Future<String?> readWalletPin() async {
+    final identity = await readIdentityId();
+    final kept = await _storage.read(key: _walletPinKey);
+
+    if (identity == null || kept == null || !kept.startsWith('$identity:')) {
+      return null;
+    }
+
+    return kept.substring(identity.length + 1);
+  }
+
+  static Future<void> saveWalletPin(String pin) async {
+    final identity = await readIdentityId();
+
+    if (identity != null) {
+      await _storage.write(key: _walletPinKey, value: '$identity:$pin');
+    }
+  }
+
+  static Future<void> deleteWalletPin() => _storage.delete(key: _walletPinKey);
+
   /// Forgets the signed-in person. The device id stays.
   static Future<void> clear() async {
     await _storage.delete(key: _accessKey);
     await _storage.delete(key: _refreshKey);
     await _storage.delete(key: _identityKey);
     await _storage.delete(key: _riderKey);
+    await _storage.delete(key: _walletPinKey);
   }
 }

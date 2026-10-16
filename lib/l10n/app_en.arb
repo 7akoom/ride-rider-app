@@ -2155,5 +2155,53 @@
   "sendEditAmount": "Change the amount",
   "@sendEditAmount": {
     "description": "Goes back from the review to the amount."
+  },
+  "walletBiometricFingerprint": "Pay with fingerprint",
+  "@walletBiometricFingerprint": {
+    "description": "The wallet row that turns paying with a fingerprint on or off."
+  },
+  "walletBiometricFace": "Pay with Face ID",
+  "@walletBiometricFace": {
+    "description": "The same row on a phone that confirms with the face."
+  },
+  "walletBiometricSubtitle": "Instead of typing your PIN",
+  "@walletBiometricSubtitle": {
+    "description": "Under the row."
+  },
+  "biometricEnableDetail": "Enter your PIN once to turn it on.",
+  "@biometricEnableDetail": {
+    "description": "The PIN sheet when turning it on."
+  },
+  "biometricEnableReason": "Confirm to use it for wallet payments",
+  "@biometricEnableReason": {
+    "description": "The phone's own prompt when turning it on."
+  },
+  "biometricPayReason": "Confirm it's you to pay from your wallet",
+  "@biometricPayReason": {
+    "description": "The phone's own prompt when paying."
+  },
+  "biometricOn": "You can now confirm payments with your fingerprint or face",
+  "@biometricOn": {
+    "description": "Toast after turning it on."
+  },
+  "biometricOff": "Payments will ask for your PIN",
+  "@biometricOff": {
+    "description": "Toast after turning it off."
+  },
+  "biometricNotConfirmed": "Not confirmed, so it wasn't turned on.",
+  "@biometricNotConfirmed": {
+    "description": "Toast when the phone's prompt was cancelled or failed."
+  },
+  "pinUseFingerprint": "Use fingerprint",
+  "@pinUseFingerprint": {
+    "description": "The PIN sheet's button that shows the phone's prompt again."
+  },
+  "pinUseFace": "Use Face ID",
+  "@pinUseFace": {
+    "description": "The same button on a phone that confirms with the face."
+  },
+  "pinBiometricStale": "Your PIN changed since paying with fingerprint was turned on. Type it this time.",
+  "@pinBiometricStale": {
+    "description": "The kept PIN was refused: the rider types it."
   }
 }

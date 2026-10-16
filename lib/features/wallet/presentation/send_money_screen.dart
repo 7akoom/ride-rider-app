@@ -21,6 +21,7 @@ import '../domain/entities/wallet_pin.dart';
 import '../domain/use_cases/send_money.dart';
 import '../wallet_providers.dart';
 import 'amount_choice.dart';
+import 'biometric_unlock.dart';
 import 'contact_picker.dart';
 import 'pin_sheet.dart';
 import 'send_money_controller.dart';
@@ -111,11 +112,18 @@ class _SendMoneyScreenState extends ConsumerState<SendMoneyScreen> {
       }
     }
 
+    final biometric = await biometricUnlockOf(ref, l10n);
+
+    if (!mounted) {
+      return;
+    }
+
     final now = DateTime.now();
     await showPinSheet(
       context,
       detail: l10n.sendPinDetail(formatMoney(l10n, flow.amount), flow.recipient?.name ?? ''),
       lockedUntil: pin.lockedAt(now) ? pin.lockedUntil : null,
+      biometric: biometric,
       submit: _controller.confirm,
     );
   }

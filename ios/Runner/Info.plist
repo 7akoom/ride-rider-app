@@ -34,6 +34,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID confirms payments from your wallet instead of typing your PIN.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location sets your pickup point, finds the nearest captain and lets the safety team find you if you ask for help.</string>
 	<key>UIApplicationSceneManifest</key>

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/error/result.dart';
+import '../domain/entities/biometric.dart';
 import '../domain/entities/top_up.dart';
 import '../domain/entities/wallet_movement.dart';
 import '../domain/entities/wallet_overview.dart';
@@ -29,3 +30,12 @@ final topUpOptionsProvider = FutureProvider.autoDispose<Result<TopUpOptions>>(
 final pinStatusProvider = FutureProvider.autoDispose<Result<PinStatus>>(
   (ref) => ref.watch(loadPinStatusProvider).call(),
 );
+
+/// Whether payments can be confirmed with a fingerprint or the face, and whether the
+/// rider turned it on.
+final biometricProvider = FutureProvider.autoDispose<BiometricState>((ref) async {
+  final biometric = ref.watch(biometricPinProvider);
+  final kind = await biometric.available();
+
+  return BiometricState(kind: kind, enabled: kind != null && await biometric.kept() != null);
+});

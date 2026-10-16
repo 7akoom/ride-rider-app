@@ -454,5 +454,17 @@
   "sendBalanceAfter": "رصيدك بعد التحويل",
   "sendReviewNote": "يصل المبلغ إلى محفظة المستلم فوراً، ولا يمكن إلغاء التحويل بعد إرساله.",
   "sendNow": "إرسال {amount}",
-  "sendEditAmount": "تعديل المبلغ"
+  "sendEditAmount": "تعديل المبلغ",
+  "walletBiometricFingerprint": "الدفع بالبصمة",
+  "walletBiometricFace": "الدفع ببصمة الوجه",
+  "walletBiometricSubtitle": "بدل كتابة رمز المحفظة",
+  "biometricEnableDetail": "أدخل رمز المحفظة مرة واحدة للتفعيل.",
+  "biometricEnableReason": "أكّد لاستخدامها في الدفع من المحفظة",
+  "biometricPayReason": "أكّد هويتك للدفع من محفظتك",
+  "biometricOn": "صار بإمكانك تأكيد الدفع بالبصمة",
+  "biometricOff": "سيُطلب رمز المحفظة عند الدفع",
+  "biometricNotConfirmed": "لم يتم التأكيد، فلم يُفعَّل الدفع بالبصمة.",
+  "pinUseFingerprint": "استخدم البصمة",
+  "pinUseFace": "استخدم بصمة الوجه",
+  "pinBiometricStale": "تغيّر رمز المحفظة منذ تفعيل الدفع بالبصمة. أدخله هذه المرة."
 }

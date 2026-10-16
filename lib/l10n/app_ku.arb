@@ -454,5 +454,17 @@
   "sendBalanceAfter": "باڵانسەکەت دوای ناردن",
   "sendReviewNote": "بڕەکە یەکسەر دەگاتە جزدانی وەرگر، و دوای ناردن ناگەڕێتەوە.",
   "sendNow": "ناردنی {amount}",
-  "sendEditAmount": "گۆڕینی بڕ"
+  "sendEditAmount": "گۆڕینی بڕ",
+  "walletBiometricFingerprint": "پارەدان بە پەنجەمۆر",
+  "walletBiometricFace": "پارەدان بە ناسینەوەی ڕوو",
+  "walletBiometricSubtitle": "لە جیاتی نووسینی کۆدی جزدان",
+  "biometricEnableDetail": "بۆ چالاککردن، کۆدی جزدان یەک جار بنووسە.",
+  "biometricEnableReason": "پشتڕاستی بکەرەوە بۆ پارەدان لە جزدان",
+  "biometricPayReason": "پشتڕاستی بکەرەوە کە خۆتی بۆ پارەدان لە جزدانەکەت",
+  "biometricOn": "ئێستا دەتوانیت پارەدان بە پەنجەمۆر پشتڕاست بکەیتەوە",
+  "biometricOff": "بۆ پارەدان کۆدی جزدان داوا دەکرێت",
+  "biometricNotConfirmed": "پشتڕاست نەکرایەوە، بۆیە چالاک نەکرا.",
+  "pinUseFingerprint": "پەنجەمۆر بەکاربهێنە",
+  "pinUseFace": "ناسینەوەی ڕوو بەکاربهێنە",
+  "pinBiometricStale": "کۆدی جزدان گۆڕاوە لە دوای چالاککردنی پەنجەمۆر. ئەم جارە بینووسە."
 }
